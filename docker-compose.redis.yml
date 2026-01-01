@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # Redis para Queue y Analytics
+  redis:
+    image: redis:7-alpine
+    container_name: anclora-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    networks:
+      - anclora-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # Redis Commander (GUI opcional)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: anclora-redis-commander
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    networks:
+      - anclora-network
+    depends_on:
+      - redis
+
+  # Bull Board (Monitoring de colas)
+  bull-board:
+    image: deadly0/bull-board:latest
+    container_name: anclora-bull-board
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      - BULL_PREFIX=bullmq
+    networks:
+      - anclora-network
+    depends_on:
+      - redis
+
+networks:
+  anclora-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+    driver: local

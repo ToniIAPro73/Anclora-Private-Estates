@@ -1,0 +1,288 @@
+# Prometheus Alerting Rules
+# https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
+
+groups:
+  # ============================================================================
+  # QUEUE ALERTS
+  # ============================================================================
+  - name: queue_alerts
+    interval: 30s
+    rules:
+      - alert: HighQueueLatency
+        expr: histogram_quantile(0.99, rate(anclora_queue_processing_duration_seconds_bucket[5m])) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+          component: queue
+        annotations:
+          summary: "High queue processing latency"
+          description: "P99 latency is {{ $value }}s (threshold: 0.5s)"
+
+      - alert: CriticalQueueLatency
+        expr: histogram_quantile(0.99, rate(anclora_queue_processing_duration_seconds_bucket[5m])) > 1.0
+        for: 2m
+        labels:
+          severity: critical
+          component: queue
+        annotations:
+          summary: "CRITICAL: Queue processing latency"
+          description: "P99 latency is {{ $value }}s (threshold: 1.0s)"
+
+      - alert: HighQueueBacklog
+        expr: anclora_queue_waiting_messages > 10000
+        for: 10m
+        labels:
+          severity: warning
+          component: queue
+        annotations:
+          summary: "High queue backlog"
+          description: "{{ $value }} messages waiting in queue (threshold: 10,000)"
+
+      - alert: CriticalQueueBacklog
+        expr: anclora_queue_waiting_messages > 50000
+        for: 5m
+        labels:
+          severity: critical
+          component: queue
+        annotations:
+          summary: "CRITICAL: Queue backlog"
+          description: "{{ $value }} messages waiting in queue (threshold: 50,000)"
+
+      - alert: HighQueueErrorRate
+        expr: 100 * rate(anclora_queue_messages_failed_total[5m]) / (rate(anclora_queue_messages_processed_total[5m]) + rate(anclora_queue_messages_failed_total[5m])) > 1
+        for: 5m
+        labels:
+          severity: warning
+          component: queue
+        annotations:
+          summary: "High queue error rate"
+          description: "Error rate is {{ $value }}% (threshold: 1%)"
+
+      - alert: CriticalQueueErrorRate
+        expr: 100 * rate(anclora_queue_messages_failed_total[5m]) / (rate(anclora_queue_messages_processed_total[5m]) + rate(anclora_queue_messages_failed_total[5m])) > 5
+        for: 2m
+        labels:
+          severity: critical
+          component: queue
+        annotations:
+          summary: "CRITICAL: Queue error rate"
+          description: "Error rate is {{ $value }}% (threshold: 5%)"
+
+      - alert: HighDLQMessages
+        expr: anclora_queue_dlq_messages > 1000
+        for: 15m
+        labels:
+          severity: warning
+          component: queue
+        annotations:
+          summary: "High number of messages in DLQ"
+          description: "{{ $value }} messages in Dead Letter Queue (threshold: 1,000)"
+
+      - alert: QueueProcessingStopped
+        expr: rate(anclora_queue_messages_processed_total[5m]) == 0 and anclora_queue_waiting_messages > 0
+        for: 5m
+        labels:
+          severity: critical
+          component: queue
+        annotations:
+          summary: "CRITICAL: Queue processing stopped"
+          description: "No messages processed in 5 minutes but queue has messages"
+
+  # ============================================================================
+  # ANALYTICS ALERTS
+  # ============================================================================
+  - name: analytics_alerts
+    interval: 30s
+    rules:
+      - alert: LowDeliveryRate
+        expr: 100 * rate(anclora_analytics_messages_delivered_total[10m]) / rate(anclora_analytics_messages_sent_total[10m]) < 80
+        for: 10m
+        labels:
+          severity: warning
+          component: analytics
+        annotations:
+          summary: "Low message delivery rate"
+          description: "Delivery rate is {{ $value }}% (threshold: 80%)"
+
+      - alert: CriticalDeliveryRate
+        expr: 100 * rate(anclora_analytics_messages_delivered_total[10m]) / rate(anclora_analytics_messages_sent_total[10m]) < 50
+        for: 5m
+        labels:
+          severity: critical
+          component: analytics
+        annotations:
+          summary: "CRITICAL: Message delivery rate"
+          description: "Delivery rate is {{ $value }}% (threshold: 50%)"
+
+      - alert: HighResponseTime
+        expr: histogram_quantile(0.95, rate(anclora_analytics_response_time_seconds_bucket[5m])) > 300
+        for: 10m
+        labels:
+          severity: warning
+          component: analytics
+        annotations:
+          summary: "High response time"
+          description: "P95 response time is {{ $value }}s (threshold: 300s)"
+
+      - alert: HighHandoffRate
+        expr: rate(anclora_analytics_handoffs_total[10m]) > 0.5
+        for: 15m
+        labels:
+          severity: info
+          component: analytics
+        annotations:
+          summary: "High handoff rate to humans"
+          description: "{{ $value }} handoffs/s (may indicate bot issues)"
+
+  # ============================================================================
+  # WHATSAPP CLIENT ALERTS
+  # ============================================================================
+  - name: whatsapp_alerts
+    interval: 30s
+    rules:
+      - alert: HighWhatsAppAPILatency
+        expr: histogram_quantile(0.95, rate(anclora_whatsapp_api_latency_seconds_bucket[5m])) > 2
+        for: 5m
+        labels:
+          severity: warning
+          component: whatsapp
+        annotations:
+          summary: "High WhatsApp API latency"
+          description: "P95 latency is {{ $value }}s (threshold: 2s)"
+
+      - alert: WhatsAppAPIErrors
+        expr: rate(anclora_whatsapp_api_calls_total{status_code=~"5.."}[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          component: whatsapp
+        annotations:
+          summary: "High WhatsApp API error rate"
+          description: "{{ $value }} 5xx errors/s"
+
+      - alert: WhatsAppRateLimitHit
+        expr: rate(anclora_whatsapp_rate_limit_hits_total[5m]) > 1
+        for: 5m
+        labels:
+          severity: warning
+          component: whatsapp
+        annotations:
+          summary: "WhatsApp rate limit being hit"
+          description: "{{ $value }} rate limit hits/s"
+
+      - alert: NoActiveInstances
+        expr: anclora_whatsapp_active_instances == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: whatsapp
+        annotations:
+          summary: "CRITICAL: No active WhatsApp instances"
+          description: "All WhatsApp instances are down"
+
+  # ============================================================================
+  # REDIS ALERTS
+  # ============================================================================
+  - name: redis_alerts
+    interval: 30s
+    rules:
+      - alert: HighRedisLatency
+        expr: histogram_quantile(0.95, rate(anclora_redis_latency_seconds_bucket[5m])) > 0.01
+        for: 5m
+        labels:
+          severity: warning
+          component: redis
+        annotations:
+          summary: "High Redis latency"
+          description: "P95 latency is {{ $value }}s (threshold: 10ms)"
+
+      - alert: RedisConnectionPoolExhausted
+        expr: anclora_redis_connections{pool="main"} >= 20
+        for: 5m
+        labels:
+          severity: warning
+          component: redis
+        annotations:
+          summary: "Redis connection pool exhausted"
+          description: "{{ $value }}/20 connections in use"
+
+  # ============================================================================
+  # SYSTEM ALERTS
+  # ============================================================================
+  - name: system_alerts
+    interval: 30s
+    rules:
+      - alert: HighMemoryUsage
+        expr: (anclora_nodejs_heap_used_bytes / 1024 / 1024) > 768
+        for: 10m
+        labels:
+          severity: warning
+          component: system
+        annotations:
+          summary: "High memory usage"
+          description: "Heap usage is {{ $value }}MB (threshold: 768MB)"
+
+      - alert: CriticalMemoryUsage
+        expr: (anclora_nodejs_heap_used_bytes / 1024 / 1024) > 1024
+        for: 5m
+        labels:
+          severity: critical
+          component: system
+        annotations:
+          summary: "CRITICAL: Memory usage"
+          description: "Heap usage is {{ $value }}MB (threshold: 1024MB)"
+
+      - alert: HighEventLoopLag
+        expr: anclora_nodejs_eventloop_lag_seconds > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          component: system
+        annotations:
+          summary: "High event loop lag"
+          description: "Event loop lag is {{ $value }}s (threshold: 100ms)"
+
+      - alert: HighCPUUsage
+        expr: rate(anclora_process_cpu_seconds_total[5m]) * 100 > 80
+        for: 10m
+        labels:
+          severity: warning
+          component: system
+        annotations:
+          summary: "High CPU usage"
+          description: "CPU usage is {{ $value }}% (threshold: 80%)"
+
+  # ============================================================================
+  # BUSINESS ALERTS
+  # ============================================================================
+  - name: business_alerts
+    interval: 1m
+    rules:
+      - alert: NoConversionsToday
+        expr: sum(increase(anclora_analytics_conversions_total[24h])) == 0
+        for: 6h
+        labels:
+          severity: warning
+          component: business
+        annotations:
+          summary: "No conversions recorded today"
+          description: "Zero conversions in the last 24 hours"
+
+      - alert: LowLeadCaptureRate
+        expr: rate(anclora_analytics_conversions_total{conversion_type="lead"}[1h]) < 0.1
+        for: 2h
+        labels:
+          severity: info
+          component: business
+        annotations:
+          summary: "Low lead capture rate"
+          description: "{{ $value }} leads/hour (threshold: 0.1)"
+
+      - alert: HighValueSale
+        expr: anclora_analytics_conversion_value_euros > 5000000
+        labels:
+          severity: info
+          component: business
+        annotations:
+          summary: "High value sale detected"
+          description: "Sale value: €{{ $value }}"

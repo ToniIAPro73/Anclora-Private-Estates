@@ -1,0 +1,514 @@
+{
+  "name": "Property Inquiry - Send Listings WhatsApp",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "property-inquiry",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-property-inquiry",
+      "name": "Webhook Property Inquiry",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "property-inquiry-webhook"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT * FROM properties WHERE price BETWEEN {{ $json.budgetMin }} AND {{ $json.budgetMax }} AND location ILIKE '%{{ $json.location }}%' AND bedrooms >= {{ $json.bedrooms }} AND status = 'available' ORDER BY created_at DESC LIMIT 3",
+        "options": {}
+      },
+      "id": "query-properties",
+      "name": "Query Properties from Database",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "PostgreSQL - Properties DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.length }}",
+              "operation": "largerEqual",
+              "value2": 1
+            }
+          ]
+        }
+      },
+      "id": "check-properties-found",
+      "name": "Check Properties Found",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "split-properties",
+      "name": "Split Properties",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [850, 200]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "nombrePropiedad",
+              "value": "={{ $json.name }}"
+            },
+            {
+              "name": "ubicacion",
+              "value": "={{ $json.location }}"
+            },
+            {
+              "name": "precio",
+              "value": "={{ $json.price }}"
+            },
+            {
+              "name": "dormitorios",
+              "value": "={{ $json.bedrooms }}"
+            },
+            {
+              "name": "banos",
+              "value": "={{ $json.bathrooms }}"
+            },
+            {
+              "name": "superficie",
+              "value": "={{ $json.surface_area }}"
+            },
+            {
+              "name": "descripcion",
+              "value": "={{ $json.description.substring(0, 200) }}..."
+            }
+          ]
+        }
+      },
+      "id": "prepare-property-data",
+      "name": "Prepare Property Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [1050, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/whatsapp/send-property",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instanceName",
+              "value": "anclora-main"
+            },
+            {
+              "name": "number",
+              "value": "={{ $('Webhook Property Inquiry').first().json.phone }}"
+            },
+            {
+              "name": "template",
+              "value": "propertyInfo"
+            },
+            {
+              "name": "variables",
+              "value": "={{ $json }}"
+            },
+            {
+              "name": "language",
+              "value": "es"
+            }
+          ]
+        }
+      },
+      "id": "send-property-info",
+      "name": "Send Property Info via WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1250, 200],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2",
+          "name": "WhatsApp API Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "id": "wait-2-seconds",
+      "name": "Wait 2 Seconds",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [1450, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/whatsapp/send-media",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instanceName",
+              "value": "anclora-main"
+            },
+            {
+              "name": "number",
+              "value": "={{ $('Webhook Property Inquiry').first().json.phone }}"
+            },
+            {
+              "name": "mediaType",
+              "value": "image"
+            },
+            {
+              "name": "mediaUrl",
+              "value": "={{ $('Prepare Property Data').first().json.image_url }}"
+            },
+            {
+              "name": "caption",
+              "value": "{{ $('Prepare Property Data').first().json.nombrePropiedad }} - {{ $('Prepare Property Data').first().json.precio }}€"
+            }
+          ]
+        }
+      },
+      "id": "send-property-image",
+      "name": "Send Property Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1650, 200],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2",
+          "name": "WhatsApp API Auth"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "loop-properties",
+      "name": "Loop Properties",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [1850, 200]
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "id": "wait-final",
+      "name": "Wait 1 Second",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [2050, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/whatsapp/send",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instanceName",
+              "value": "anclora-main"
+            },
+            {
+              "name": "number",
+              "value": "={{ $('Webhook Property Inquiry').first().json.phone }}"
+            },
+            {
+              "name": "messageType",
+              "value": "text"
+            },
+            {
+              "name": "text",
+              "value": "¿Alguna de estas propiedades te interesa? ¿Te gustaría agendar una visita? 🏡"
+            }
+          ]
+        }
+      },
+      "id": "send-followup-question",
+      "name": "Send Follow-up Question",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [2250, 200]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "resource": "activity",
+        "additionalFields": {
+          "contactPhone": "={{ $('Webhook Property Inquiry').first().json.phone }}",
+          "type": "properties_sent_whatsapp",
+          "description": "{{ $('Query Properties from Database').all().length }} properties sent via WhatsApp",
+          "metadata": {
+            "propertiesCount": "={{ $('Query Properties from Database').all().length }}",
+            "budget": "={{ $('Webhook Property Inquiry').first().json.budgetMin }} - {{ $('Webhook Property Inquiry').first().json.budgetMax }}",
+            "location": "={{ $('Webhook Property Inquiry').first().json.location }}"
+          }
+        }
+      },
+      "id": "log-crm-activity",
+      "name": "Log Activity in CRM",
+      "type": "n8n-nodes-base.twentyCrm",
+      "typeVersion": 1,
+      "position": [2450, 200],
+      "credentials": {
+        "twentyCrmApi": {
+          "id": "1",
+          "name": "Twenty CRM API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, propertiesSent: $('Query Properties from Database').all().length, phone: $('Webhook Property Inquiry').first().json.phone } }}"
+      },
+      "id": "webhook-response-success",
+      "name": "Webhook Response Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [2650, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/whatsapp/send",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instanceName",
+              "value": "anclora-main"
+            },
+            {
+              "name": "number",
+              "value": "={{ $('Webhook Property Inquiry').first().json.phone }}"
+            },
+            {
+              "name": "text",
+              "value": "Lo siento, no encontré propiedades que coincidan con tus criterios en este momento. 😔\n\n¿Te gustaría ajustar tu búsqueda o que te contacte un asesor?"
+            }
+          ]
+        }
+      },
+      "id": "send-no-properties-message",
+      "name": "Send No Properties Message",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [850, 400]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: false, message: 'No properties found', criteria: $('Webhook Property Inquiry').first().json } }}"
+      },
+      "id": "webhook-response-no-properties",
+      "name": "Webhook Response No Properties",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1050, 400]
+    }
+  ],
+  "connections": {
+    "Webhook Property Inquiry": {
+      "main": [
+        [
+          {
+            "node": "Query Properties from Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query Properties from Database": {
+      "main": [
+        [
+          {
+            "node": "Check Properties Found",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Properties Found": {
+      "main": [
+        [
+          {
+            "node": "Split Properties",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send No Properties Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Properties": {
+      "main": [
+        [
+          {
+            "node": "Prepare Property Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Property Data": {
+      "main": [
+        [
+          {
+            "node": "Send Property Info via WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Property Info via WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Wait 2 Seconds",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 2 Seconds": {
+      "main": [
+        [
+          {
+            "node": "Send Property Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Property Image": {
+      "main": [
+        [
+          {
+            "node": "Loop Properties",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Properties": {
+      "main": [
+        [
+          {
+            "node": "Wait 1 Second",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Follow-up Question",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 1 Second": {
+      "main": [
+        [
+          {
+            "node": "Split Properties",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Follow-up Question": {
+      "main": [
+        [
+          {
+            "node": "Log Activity in CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Activity in CRM": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send No Properties Message": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response No Properties",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "id": "property-inquiry-whatsapp-2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "anclora-n8n"
+  },
+  "tags": [
+    {
+      "name": "whatsapp",
+      "id": "1"
+    },
+    {
+      "name": "property-inquiry",
+      "id": "4"
+    },
+    {
+      "name": "automation",
+      "id": "3"
+    }
+  ]
+}

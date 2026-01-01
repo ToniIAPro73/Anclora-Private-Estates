@@ -1,0 +1,50 @@
+# Prometheus Configuration for Anclora WhatsApp System
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'anclora-production'
+    service: 'whatsapp-integration'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - 'alertmanager:9093'
+
+# Load rules
+rule_files:
+  - '/etc/prometheus/alerts/prometheus-alerts.yml'
+
+# Scrape configurations
+scrape_configs:
+  # Node.js application metrics
+  - job_name: 'anclora-whatsapp'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # Redis metrics
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+    metrics_path: '/metrics'
+
+  # Redis analytics
+  - job_name: 'redis-analytics'
+    static_configs:
+      - targets: ['redis-analytics:6379']
+    metrics_path: '/metrics'
+
+  # Node exporter (system metrics)
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

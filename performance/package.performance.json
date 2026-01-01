@@ -1,0 +1,47 @@
+{
+  "name": "anclora-performance-testing",
+  "version": "1.0.0",
+  "description": "Performance testing suite for Anclora WhatsApp integration",
+  "scripts": {
+    "perf:smoke": "artillery run --quiet performance/load-tests/queue-load-test.yml -e smoke",
+    "perf:load": "artillery run performance/load-tests/queue-load-test.yml",
+    "perf:stress": "artillery run performance/load-tests/queue-load-test.yml -e stress",
+    "perf:endurance": "artillery run performance/load-tests/queue-load-test.yml -e endurance",
+    "perf:spike": "artillery run performance/load-tests/queue-load-test.yml -e spike",
+    "perf:analytics": "artillery run performance/load-tests/analytics-load-test.yml",
+    "perf:all": "npm run perf:smoke && npm run perf:load && npm run perf:analytics",
+    "bench:queue": "ts-node performance/benchmarks/queue-benchmarks.ts",
+    "bench:redis": "ts-node performance/benchmarks/redis-benchmarks.ts",
+    "bench:all": "npm run bench:queue && npm run bench:redis",
+    "profile:heap": "ts-node performance/profiling/memory-profiler.ts heap",
+    "profile:cpu": "ts-node performance/profiling/memory-profiler.ts cpu",
+    "profile:flame": "ts-node performance/profiling/memory-profiler.ts flame",
+    "profile:leaks": "ts-node performance/profiling/memory-profiler.ts leaks",
+    "profile:eventloop": "ts-node performance/profiling/memory-profiler.ts eventloop",
+    "profile:all": "ts-node performance/profiling/memory-profiler.ts comprehensive",
+    "profile:monitor": "ts-node performance/profiling/memory-profiler.ts monitor 300",
+    "profile:snapshot": "ts-node performance/profiling/memory-profiler.ts snapshot",
+    "analyze:results": "ts-node performance/scripts/analyze-results.ts",
+    "analyze:compare": "ts-node performance/scripts/compare-results.ts",
+    "report:performance": "ts-node performance/scripts/generate-report.ts",
+    "clinic:doctor": "clinic doctor -- node dist/server.js",
+    "clinic:flame": "clinic flame -- node dist/server.js",
+    "clinic:bubbleprof": "clinic bubbleprof -- node dist/server.js",
+    "clinic:heapprofiler": "clinic heapprofiler -- node dist/server.js",
+    "monitor:live": "ts-node performance/monitoring/live-monitor.ts",
+    "health:check": "curl -s http://localhost:3000/health | jq",
+    "metrics": "curl -s http://localhost:3000/metrics"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "artillery": "^2.0.3",
+    "autocannon": "^7.14.0",
+    "clinic": "^13.0.0",
+    "prom-client": "^15.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "ioredis": "^5.3.2"
+  }
+}

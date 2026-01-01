@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  # Redis para Queue y Analytics
+  redis-whatsapp:
+    image: redis:7-alpine
+    container_name: anclora-redis-whatsapp
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-whatsapp-data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    networks:
+      - anclora-network
+
+  # Redis Commander (GUI para desarrollo)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: anclora-redis-commander
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      - REDIS_HOSTS=local:redis-whatsapp:6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+    depends_on:
+      - redis-whatsapp
+    networks:
+      - anclora-network
+    profiles:
+      - dev
+
+  # BullMQ Board (Monitoreo de colas)
+  bullmq-board:
+    image: deadly0/bull-board
+    container_name: anclora-bullmq-board
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      - REDIS_HOST=redis-whatsapp
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+      - REDIS_DB=0
+      - BULL_PREFIX=bull
+    depends_on:
+      - redis-whatsapp
+    networks:
+      - anclora-network
+    profiles:
+      - dev
+
+volumes:
+  redis-whatsapp-data:
+    driver: local
+
+networks:
+  anclora-network:
+    driver: bridge

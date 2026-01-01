@@ -1,0 +1,333 @@
+name: Performance Testing
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20.x'
+
+jobs:
+  # ==========================================================================
+  # LOAD TESTING
+  # ==========================================================================
+  load-test:
+    name: Load Testing
+    runs-on: ubuntu-latest
+    
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd performance
+          npm ci
+
+      - name: Start application
+        run: |
+          npm run build
+          npm start &
+          sleep 10
+        env:
+          NODE_ENV: production
+          REDIS_URL: redis://localhost:6379
+
+      - name: Run smoke load test
+        run: npm run perf:smoke
+        working-directory: performance
+
+      - name: Run queue load test
+        run: npm run perf:load
+        working-directory: performance
+
+      - name: Run analytics load test
+        run: npm run perf:analytics
+        working-directory: performance
+
+      - name: Generate report
+        run: npm run analyze:results
+        working-directory: performance
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: load-test-results-${{ github.sha }}
+          path: performance/results/
+          retention-days: 30
+
+  # ==========================================================================
+  # BENCHMARK TESTING
+  # ==========================================================================
+  benchmark:
+    name: Benchmark Testing
+    runs-on: ubuntu-latest
+    
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd performance
+          npm ci
+
+      - name: Run Redis benchmarks
+        run: npm run bench:redis
+        working-directory: performance
+        env:
+          REDIS_URL: redis://localhost:6379
+
+      - name: Start application
+        run: |
+          npm run build
+          npm start &
+          sleep 10
+        env:
+          NODE_ENV: production
+          REDIS_URL: redis://localhost:6379
+
+      - name: Run Queue benchmarks
+        run: npm run bench:queue
+        working-directory: performance
+
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results-${{ github.sha }}
+          path: performance/benchmarks/results/
+          retention-days: 30
+
+  # ==========================================================================
+  # REGRESSION DETECTION
+  # ==========================================================================
+  regression-check:
+    name: Performance Regression Check
+    runs-on: ubuntu-latest
+    needs: [load-test, benchmark]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download current results
+        uses: actions/download-artifact@v4
+        with:
+          name: load-test-results-${{ github.sha }}
+          path: current-results/
+
+      - name: Download baseline results
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          workflow: performance.yml
+          branch: main
+          name: load-test-results-*
+          path: baseline-results/
+          if_no_artifact_found: warn
+
+      - name: Compare results
+        id: compare
+        run: |
+          node performance/scripts/compare-results.js \
+            baseline-results/ \
+            current-results/ \
+            > comparison.json
+
+      - name: Check for regressions
+        run: |
+          REGRESSION=$(cat comparison.json | jq -r '.regression')
+          
+          if [ "$REGRESSION" = "true" ]; then
+            echo "❌ Performance regression detected!"
+            cat comparison.json | jq '.details'
+            exit 1
+          else
+            echo "✅ No performance regressions"
+          fi
+
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const comparison = JSON.parse(fs.readFileSync('comparison.json', 'utf8'));
+            
+            const comment = `## 📊 Performance Test Results
+            
+            ${comparison.regression ? '❌ **Regression Detected**' : '✅ **No Regressions**'}
+            
+            ### Metrics Comparison
+            
+            | Metric | Baseline | Current | Change |
+            |--------|----------|---------|--------|
+            | Queue P99 Latency | ${comparison.baseline.queue_p99}ms | ${comparison.current.queue_p99}ms | ${comparison.change.queue_p99}% |
+            | Queue Throughput | ${comparison.baseline.queue_throughput} req/s | ${comparison.current.queue_throughput} req/s | ${comparison.change.queue_throughput}% |
+            | Analytics P99 Latency | ${comparison.baseline.analytics_p99}ms | ${comparison.current.analytics_p99}ms | ${comparison.change.analytics_p99}% |
+            
+            ### Thresholds
+            - ✅ Pass: Change < 10%
+            - ⚠️ Warning: Change 10-20%
+            - ❌ Fail: Change > 20%
+            `;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  # ==========================================================================
+  # MEMORY PROFILING
+  # ==========================================================================
+  memory-profile:
+    name: Memory Profiling
+    runs-on: ubuntu-latest
+    
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd performance
+          npm ci
+
+      - name: Start application
+        run: |
+          npm run build
+          npm start &
+          sleep 10
+        env:
+          NODE_ENV: production
+          REDIS_URL: redis://localhost:6379
+
+      - name: Run memory profiler
+        run: npm run profile:monitor -- --duration=300000
+        working-directory: performance
+
+      - name: Check for memory leaks
+        run: npm run profile:leaks
+        working-directory: performance
+
+      - name: Upload heap snapshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: heap-snapshots-${{ github.sha }}
+          path: performance/profiling/*.heapsnapshot
+          retention-days: 7
+
+      - name: Upload memory analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: memory-analysis-${{ github.sha }}
+          path: performance/profiling/memory-trend.json
+          retention-days: 30
+
+  # ==========================================================================
+  # STRESS TESTING
+  # ==========================================================================
+  stress-test:
+    name: Stress Testing
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd performance
+          npm ci
+
+      - name: Start application
+        run: |
+          npm run build
+          npm start &
+          sleep 10
+        env:
+          NODE_ENV: production
+          REDIS_URL: redis://localhost:6379
+
+      - name: Run stress test
+        run: npm run perf:stress
+        working-directory: performance
+
+      - name: Upload stress test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: stress-test-results-${{ github.sha }}
+          path: performance/results/stress/
+          retention-days: 30
+
+      - name: Notify if stress test fails
+        if: failure()
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "⚠️ Stress test failed for commit ${{ github.sha }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_PERFORMANCE }}

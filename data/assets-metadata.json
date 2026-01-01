@@ -1,0 +1,73 @@
+{
+  "images": {
+    "hero": {
+      "main": {
+        "path": "/assets/images/placeholders/hero-placeholder.svg",
+        "alt": "Anclora Private Estates - Luxury Real Estate in Mallorca",
+        "width": 1920,
+        "height": 1080,
+        "photographer": "TBD",
+        "license": "TBD"
+      }
+    },
+    "properties": {
+      "prop-001": {
+        "main": "/assets/images/placeholders/property-placeholder.svg",
+        "gallery": [
+          "/assets/images/placeholders/property-placeholder.svg"
+        ],
+        "photographer": "TBD",
+        "license": "TBD"
+      }
+    },
+    "blog": {
+      "post-001": {
+        "featured": "/assets/images/placeholders/blog-placeholder.svg",
+        "photographer": "TBD",
+        "license": "TBD"
+      }
+    }
+  },
+  "videos": {
+    "hero-background": {
+      "path": "/assets/videos/hero-background.mp4",
+      "poster": "/assets/images/placeholders/hero-placeholder.svg",
+      "duration": 30,
+      "format": "mp4",
+      "resolution": "1920x1080",
+      "license": "TBD"
+    }
+  },
+  "partners": {
+    "make": {
+      "path": "/assets/partners/placeholder-partner.svg",
+      "alt": "Make.com",
+      "url": "https://make.com"
+    },
+    "openai": {
+      "path": "/assets/partners/placeholder-partner.svg",
+      "alt": "OpenAI",
+      "url": "https://openai.com"
+    },
+    "n8n": {
+      "path": "/assets/partners/placeholder-partner.svg",
+      "alt": "n8n",
+      "url": "https://n8n.io"
+    },
+    "exp-realty": {
+      "path": "/assets/partners/placeholder-partner.svg",
+      "alt": "eXp Realty Spain",
+      "url": "https://exprealty.com"
+    },
+    "mls": {
+      "path": "/assets/partners/placeholder-partner.svg",
+      "alt": "MLS",
+      "url": "#"
+    }
+  },
+  "meta": {
+    "last_updated": "2025-01-01",
+    "version": "1.0.0",
+    "notes": "Asset metadata for Anclora Private Estates. Update paths when real assets are added."
+  }
+}

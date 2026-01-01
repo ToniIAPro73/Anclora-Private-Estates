@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{SUBJECT}}</title>
+  <style>
+    /* Reset styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333333;
+      background-color: #f4f4f4;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Container */
+    .email-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+    }
+    
+    /* Header */
+    .email-header {
+      background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+      padding: 40px 30px;
+      text-align: center;
+    }
+    
+    .email-header img {
+      max-width: 200px;
+      height: auto;
+    }
+    
+    .email-header h1 {
+      color: #C5A059;
+      font-size: 24px;
+      font-weight: 300;
+      margin-top: 20px;
+      letter-spacing: 1px;
+    }
+    
+    /* Body */
+    .email-body {
+      padding: 40px 30px;
+      background-color: #ffffff;
+    }
+    
+    .email-body h2 {
+      color: #1A1A1A;
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+    
+    .email-body p {
+      color: #4A4A4A;
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+    
+    /* Content Box */
+    .content-box {
+      background-color: #FAF9F6;
+      border-left: 4px solid #C5A059;
+      padding: 20px;
+      margin: 25px 0;
+    }
+    
+    .content-box h3 {
+      color: #1A1A1A;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    
+    .content-box p {
+      margin-bottom: 10px;
+    }
+    
+    .content-box .label {
+      color: #666666;
+      font-weight: 600;
+      display: inline-block;
+      min-width: 100px;
+    }
+    
+    /* Button */
+    .email-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #C5A059 0%, #D4B575 100%);
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 15px 35px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 500;
+      margin: 20px 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(197, 160, 89, 0.2);
+    }
+    
+    .email-button:hover {
+      box-shadow: 0 6px 12px rgba(197, 160, 89, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    /* List */
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    
+    .feature-list li {
+      padding: 10px 0;
+      padding-left: 30px;
+      position: relative;
+      color: #4A4A4A;
+    }
+    
+    .feature-list li:before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #C5A059;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #E5E5E5, transparent);
+      margin: 30px 0;
+    }
+    
+    /* Footer */
+    .email-footer {
+      background-color: #1A1A1A;
+      padding: 30px;
+      text-align: center;
+      color: #999999;
+      font-size: 14px;
+    }
+    
+    .email-footer a {
+      color: #C5A059;
+      text-decoration: none;
+    }
+    
+    .email-footer .social-links {
+      margin: 20px 0;
+    }
+    
+    .email-footer .social-links a {
+      display: inline-block;
+      margin: 0 10px;
+      color: #C5A059;
+      font-size: 18px;
+    }
+    
+    .email-footer .legal {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #666666;
+      line-height: 1.6;
+    }
+    
+    /* Alert Box */
+    .alert-box {
+      background-color: #FFF9E6;
+      border-left: 4px solid #FFA500;
+      padding: 15px;
+      margin: 20px 0;
+      color: #333333;
+    }
+    
+    .alert-box.success {
+      background-color: #E8F5E9;
+      border-left-color: #4CAF50;
+    }
+    
+    .alert-box.info {
+      background-color: #E3F2FD;
+      border-left-color: #2196F3;
+    }
+    
+    /* Responsive */
+    @media only screen and (max-width: 600px) {
+      .email-wrapper {
+        width: 100% !important;
+      }
+      
+      .email-header,
+      .email-body,
+      .email-footer {
+        padding: 20px !important;
+      }
+      
+      .email-header h1 {
+        font-size: 20px;
+      }
+      
+      .email-body h2 {
+        font-size: 18px;
+      }
+      
+      .email-button {
+        display: block;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-wrapper">
+    <!-- Header -->
+    <div class="email-header">
+      <!-- Logo (puede ser base64 o URL) -->
+      <img src="{{LOGO_URL}}" alt="Anclora Private Estates">
+      <h1>{{HEADER_TITLE}}</h1>
+    </div>
+    
+    <!-- Body -->
+    <div class="email-body">
+      {{EMAIL_CONTENT}}
+    </div>
+    
+    <!-- Footer -->
+    <div class="email-footer">
+      <div class="social-links">
+        <a href="https://linkedin.com/company/anclora-private-estates" target="_blank">LinkedIn</a>
+        <a href="https://instagram.com/ancloraprivateestates" target="_blank">Instagram</a>
+        <a href="https://facebook.com/ancloraprivateestates" target="_blank">Facebook</a>
+      </div>
+      
+      <p>
+        <strong>Anclora Private Estates</strong><br>
+        Mallorca, Islas Baleares, España<br>
+        <a href="mailto:info@ancloraprivateestates.com">info@ancloraprivateestates.com</a><br>
+        <a href="tel:+34971XXXXXX">+34 971 XXX XXX</a>
+      </p>
+      
+      <div class="divider"></div>
+      
+      <div class="legal">
+        <p>
+          Has recibido este email porque solicitaste información en nuestra web.<br>
+          Si no deseas recibir más comunicaciones, puedes 
+          <a href="{{UNSUBSCRIBE_URL}}">darte de baja aquí</a>.
+        </p>
+        <p>
+          © {{YEAR}} Anclora Private Estates. Todos los derechos reservados.<br>
+          Una marca de Anclora Nexus Group | Brokered by eXp Realty Spain
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

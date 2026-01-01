@@ -1,0 +1,156 @@
+{
+  "welcome": {
+    "greeting": "¡Hola! Soy el asistente virtual de Anclora Private Estates.",
+    "intro": "Estoy aquí para ayudarte a encontrar la propiedad perfecta en Mallorca.",
+    "ask_name": "¿Cómo te llamo?"
+  },
+  "menu": {
+    "main": "¿En qué puedo ayudarte hoy?",
+    "options": {
+      "search": "🔍 Buscar propiedades",
+      "appointment": "📅 Agendar visita",
+      "info": "ℹ️ Información sobre una propiedad",
+      "agent": "👤 Hablar con un agente",
+      "language": "🌍 Cambiar idioma"
+    }
+  },
+  "search": {
+    "property_type": "¿Qué tipo de propiedad buscas?",
+    "types": {
+      "villa": "Villa",
+      "apartment": "Apartamento",
+      "land": "Terreno",
+      "commercial": "Comercial"
+    },
+    "location": "¿En qué zona de Mallorca te gustaría buscar?",
+    "locations": {
+      "palma": "Palma de Mallorca",
+      "southwest": "Suroeste (Calvià, Andratx)",
+      "north": "Norte (Pollença, Alcúdia)",
+      "east": "Este (Manacor, Artà)",
+      "center": "Centro (Inca, Binissalem)"
+    },
+    "budget": "¿Cuál es tu presupuesto aproximado?",
+    "budget_ranges": {
+      "under_500k": "Menos de 500.000€",
+      "500k_1m": "500.000€ - 1.000.000€",
+      "1m_2m": "1.000.000€ - 2.000.000€",
+      "2m_5m": "2.000.000€ - 5.000.000€",
+      "over_5m": "Más de 5.000.000€"
+    },
+    "timeline": "¿Cuándo te gustaría comprar?",
+    "timelines": {
+      "immediate": "Lo antes posible",
+      "1_3_months": "En 1-3 meses",
+      "3_6_months": "En 3-6 meses",
+      "6_12_months": "En 6-12 meses",
+      "exploring": "Solo estoy explorando"
+    },
+    "results": "He encontrado {{count}} propiedades que coinciden con tus criterios:",
+    "no_results": "Lo siento, no encontré propiedades con esos criterios. ¿Te gustaría ajustar tu búsqueda?"
+  },
+  "property": {
+    "details": "📍 **{{title}}**\n\n💰 Precio: {{price}}€\n📐 Superficie: {{size}}m²\n🛏️ Dormitorios: {{bedrooms}}\n🚿 Baños: {{bathrooms}}\n📍 Ubicación: {{location}}\n\n{{description}}",
+    "schedule_visit": "¿Te gustaría agendar una visita?",
+    "request_info": "¿Necesitas más información?",
+    "similar": "Ver propiedades similares"
+  },
+  "appointment": {
+    "request": "¿Qué propiedad te gustaría visitar?",
+    "date": "¿Qué día te viene bien?",
+    "time": "¿A qué hora prefieres?",
+    "times": {
+      "morning": "Mañana (10:00-12:00)",
+      "afternoon": "Tarde (15:00-17:00)",
+      "evening": "Noche (17:00-19:00)"
+    },
+    "contact": "¿Cómo prefieres que te contactemos?",
+    "contact_methods": {
+      "whatsapp": "WhatsApp",
+      "phone": "Llamada telefónica",
+      "email": "Email"
+    },
+    "confirmation": "✅ **Visita agendada**\n\n📅 Fecha: {{date}}\n🕐 Hora: {{time}}\n📍 Propiedad: {{property}}\n\nUn agente se pondrá en contacto contigo para confirmar los detalles.",
+    "notes": "¿Hay algo más que debamos saber?"
+  },
+  "handoff": {
+    "agent_requested": "Entendido, voy a conectarte con un agente humano.",
+    "transferring": "🔄 Transfiriendo a un agente...",
+    "wait_time": "Tiempo de espera estimado: {{minutes}} minutos",
+    "agent_connected": "✅ Conectado con {{agent_name}}",
+    "agent_unavailable": "Lo siento, todos nuestros agentes están ocupados en este momento. ¿Te gustaría dejar un mensaje?",
+    "leave_message": "Por favor, escribe tu mensaje y te contactaremos lo antes posible.",
+    "message_received": "✅ Mensaje recibido. Te contactaremos dentro de {{hours}} horas.",
+    "business_hours": "Nuestro horario de atención es de lunes a viernes, 9:00-18:00 CET."
+  },
+  "buyer_qualification": {
+    "buyer_type": "¿Eres inversor o comprador final?",
+    "types": {
+      "investor": "Inversor",
+      "end_user": "Comprador final (vivienda propia)",
+      "relocating": "Me estoy mudando a Mallorca",
+      "vacation": "Segunda residencia/vacaciones"
+    },
+    "financing": "¿Cómo piensas financiar la compra?",
+    "financing_options": {
+      "cash": "Pago al contado",
+      "mortgage_approved": "Hipoteca pre-aprobada",
+      "mortgage_needed": "Necesito hipoteca",
+      "other": "Otro"
+    },
+    "investment_goals": "¿Cuáles son tus objetivos de inversión?",
+    "goals": {
+      "rental_income": "Ingresos por alquiler",
+      "capital_appreciation": "Apreciación del capital",
+      "personal_use": "Uso personal",
+      "diversification": "Diversificación de portfolio"
+    }
+  },
+  "errors": {
+    "generic": "Lo siento, ocurrió un error. ¿Podrías intentarlo de nuevo?",
+    "invalid_input": "No entendí tu respuesta. ¿Podrías reformularla?",
+    "property_not_found": "No encontré esa propiedad. ¿Podrías darme más detalles?",
+    "system_error": "Estamos experimentando problemas técnicos. Un agente te contactará pronto.",
+    "timeout": "No recibí respuesta. ¿Sigues ahí?",
+    "rate_limit": "Has enviado muchos mensajes. Por favor, espera un momento."
+  },
+  "confirmation": {
+    "yes": "Sí",
+    "no": "No",
+    "maybe": "Quizás",
+    "back": "Volver",
+    "cancel": "Cancelar",
+    "continue": "Continuar"
+  },
+  "system": {
+    "typing": "Escribiendo...",
+    "processing": "Procesando...",
+    "searching": "Buscando...",
+    "loading": "Cargando..."
+  },
+  "feedback": {
+    "rate_experience": "¿Cómo calificarías tu experiencia?",
+    "comments": "¿Tienes algún comentario adicional?",
+    "thank_you": "¡Gracias por tu feedback!"
+  },
+  "language": {
+    "current": "Idioma actual: Español",
+    "change": "Cambiar idioma",
+    "options": {
+      "es": "🇪🇸 Español",
+      "en": "🇬🇧 English",
+      "de": "🇩🇪 Deutsch"
+    },
+    "changed": "Idioma cambiado a Español"
+  },
+  "marketing": {
+    "newsletter": "¿Te gustaría recibir nuestro boletín con las mejores propiedades?",
+    "alerts": "¿Quieres recibir alertas cuando haya nuevas propiedades que coincidan con tus criterios?",
+    "subscribed": "✅ Suscrito correctamente"
+  },
+  "legal": {
+    "privacy": "Al usar este servicio, aceptas nuestra Política de Privacidad.",
+    "terms": "Ver términos y condiciones",
+    "gdpr": "Tus datos están protegidos según GDPR."
+  }
+}

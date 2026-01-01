@@ -1,0 +1,274 @@
+{
+  "name": "Anclora - Contact Form General",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "contact-general",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "https://ancloraprivateestates.com,http://localhost:3000"
+        }
+      },
+      "id": "webhook-contact-general",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "contact-general"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract form data\nconst formData = $input.first().json.body;\n\n// Validate required fields\nconst requiredFields = ['name', 'email', 'message', 'acceptPrivacy'];\nconst missingFields = requiredFields.filter(field => !formData[field]);\n\nif (missingFields.length > 0) {\n  return {\n    json: {\n      success: false,\n      error: `Missing required fields: ${missingFields.join(', ')}`,\n      code: 'VALIDATION_ERROR'\n    }\n  };\n}\n\n// Validate email format\nconst emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\nif (!emailRegex.test(formData.email)) {\n  return {\n    json: {\n      success: false,\n      error: 'Invalid email format',\n      code: 'INVALID_EMAIL'\n    }\n  };\n}\n\n// Validate privacy acceptance\nif (formData.acceptPrivacy !== true) {\n  return {\n    json: {\n      success: false,\n      error: 'Privacy policy must be accepted',\n      code: 'PRIVACY_NOT_ACCEPTED'\n    }\n  };\n}\n\n// Sanitize data\nconst sanitizedData = {\n  name: formData.name.trim(),\n  email: formData.email.trim().toLowerCase(),\n  phone: formData.phone?.trim() || null,\n  message: formData.message.trim(),\n  type: 'general',\n  timestamp: new Date().toISOString(),\n  source: 'website',\n  metadata: {\n    userAgent: $input.first().json.headers['user-agent'],\n    ip: $input.first().json.headers['x-forwarded-for'] || $input.first().json.headers['x-real-ip']\n  }\n};\n\nreturn { json: sanitizedData };"
+      },
+      "id": "validate-sanitize",
+      "name": "Validate & Sanitize",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.success }}",
+              "operation": "notEqual",
+              "value2": "false"
+            }
+          ]
+        }
+      },
+      "id": "check-validation",
+      "name": "Check Validation",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.TWENTY_CRM_API_URL }}/contacts",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "twentyApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer ={{ $env.TWENTY_CRM_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "firstName",
+              "value": "={{ $json.name.split(' ')[0] }}"
+            },
+            {
+              "name": "lastName",
+              "value": "={{ $json.name.split(' ').slice(1).join(' ') }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "source",
+              "value": "Website - General Contact"
+            },
+            {
+              "name": "notes",
+              "value": "={{ $json.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "create-crm-contact",
+      "name": "Create CRM Contact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [850, 200],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $env.SMTP_FROM_EMAIL }}",
+        "toEmail": "={{ $json.email }}",
+        "subject": "Gracias por contactarnos - Anclora Private Estates",
+        "emailType": "html",
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }\n    .container { max-width: 600px; margin: 0 auto; padding: 20px; }\n    .header { background: #C5A059; color: white; padding: 30px; text-align: center; }\n    .content { background: #f9f9f9; padding: 30px; }\n    .footer { text-align: center; padding: 20px; font-size: 12px; color: #666; }\n    .button { background: #C5A059; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block; margin: 20px 0; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"header\">\n      <h1>Anclora Private Estates</h1>\n    </div>\n    <div class=\"content\">\n      <h2>Hola {{ $json.name }},</h2>\n      <p>Gracias por ponerte en contacto con nosotros. Hemos recibido tu mensaje y te responderemos en menos de 24 horas.</p>\n      <p><strong>Tu mensaje:</strong></p>\n      <p style=\"background: white; padding: 15px; border-left: 3px solid #C5A059;\">{{ $json.message }}</p>\n      <p>Mientras tanto, puedes explorar nuestras propiedades exclusivas:</p>\n      <a href=\"https://ancloraprivateestates.com/propiedades\" class=\"button\">Ver Propiedades</a>\n      <p>Saludos,<br><strong>Equipo Anclora Private Estates</strong></p>\n    </div>\n    <div class=\"footer\">\n      <p>Anclora Private Estates | Palma de Mallorca<br>\n      info@ancloraprivateestates.com | +34 971 XXX XXX</p>\n    </div>\n  </div>\n</body>\n</html>",
+        "options": {}
+      },
+      "id": "send-confirmation-email",
+      "name": "Send Confirmation Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [850, 350],
+      "continueOnFail": true,
+      "credentials": {
+        "smtp": {
+          "id": "smtp-credentials",
+          "name": "SMTP Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $env.SMTP_FROM_EMAIL }}",
+        "toEmail": "={{ $env.SALES_TEAM_EMAIL }}",
+        "subject": "🔔 Nuevo contacto general - {{ $json.name }}",
+        "emailType": "html",
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }\n    .container { max-width: 600px; margin: 0 auto; padding: 20px; }\n    .alert { background: #C5A059; color: white; padding: 20px; text-align: center; border-radius: 4px; }\n    .info-box { background: #f9f9f9; padding: 20px; margin: 20px 0; border-left: 4px solid #C5A059; }\n    .label { font-weight: bold; color: #666; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"alert\">\n      <h2>🔔 Nuevo Contacto General</h2>\n    </div>\n    <div class=\"info-box\">\n      <p><span class=\"label\">Nombre:</span> {{ $json.name }}</p>\n      <p><span class=\"label\">Email:</span> <a href=\"mailto:{{ $json.email }}\">{{ $json.email }}</a></p>\n      <p><span class=\"label\">Teléfono:</span> {{ $json.phone || 'No proporcionado' }}</p>\n      <p><span class=\"label\">Fecha:</span> {{ $json.timestamp }}</p>\n    </div>\n    <div class=\"info-box\">\n      <p><span class=\"label\">Mensaje:</span></p>\n      <p>{{ $json.message }}</p>\n    </div>\n    <p><em>Este contacto ha sido añadido automáticamente al CRM.</em></p>\n  </div>\n</body>\n</html>",
+        "options": {}
+      },
+      "id": "notify-sales-team",
+      "name": "Notify Sales Team",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [850, 500],
+      "continueOnFail": true,
+      "credentials": {
+        "smtp": {
+          "id": "smtp-credentials",
+          "name": "SMTP Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, message: 'Mensaje recibido. Te responderemos pronto.', contactId: $('Create CRM Contact').item.json.id } }}"
+      },
+      "id": "success-response",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "error-response",
+      "name": "Error Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [850, 650]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Validate & Sanitize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate & Sanitize": {
+      "main": [
+        [
+          {
+            "node": "Check Validation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Validation": {
+      "main": [
+        [
+          {
+            "node": "Create CRM Contact",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Confirmation Email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notify Sales Team",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create CRM Contact": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Confirmation Email": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify Sales Team": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "id": "anclora",
+      "name": "Anclora"
+    },
+    {
+      "id": "contact-forms",
+      "name": "Contact Forms"
+    }
+  ],
+  "pinData": {},
+  "meta": {
+    "instanceId": "anclora-n8n-production"
+  }
+}

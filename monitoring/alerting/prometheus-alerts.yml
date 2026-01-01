@@ -1,0 +1,311 @@
+groups:
+  - name: anclora_whatsapp_alerts
+    interval: 30s
+    rules:
+      # ========================================================================
+      # QUEUE ALERTS
+      # ========================================================================
+      
+      - alert: HighQueueLatency
+        expr: |
+          histogram_quantile(0.99,
+            rate(anclora_queue_processing_duration_seconds_bucket[5m])
+          ) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          component: queue
+        annotations:
+          summary: "High queue processing latency"
+          description: "Queue P99 latency is {{ $value }}s (threshold: 0.1s) for {{ $labels.message_type }}"
+          
+      - alert: CriticalQueueLatency
+        expr: |
+          histogram_quantile(0.99,
+            rate(anclora_queue_processing_duration_seconds_bucket[5m])
+          ) > 0.5
+        for: 2m
+        labels:
+          severity: critical
+          component: queue
+        annotations:
+          summary: "Critical queue processing latency"
+          description: "Queue P99 latency is {{ $value }}s (threshold: 0.5s) for {{ $labels.message_type }}"
+          
+      - alert: HighErrorRate
+        expr: |
+          rate(anclora_queue_messages_failed_total[5m]) 
+          / 
+          rate(anclora_queue_messages_total[5m]) 
+          * 100 > 1
+        for: 5m
+        labels:
+          severity: warning
+          component: queue
+        annotations:
+          summary: "High queue error rate"
+          description: "Queue error rate is {{ $value }}% (threshold: 1%) for {{ $labels.message_type }}"
+          
+      - alert: QueueStuck
+        expr: |
+          anclora_queue_waiting_messages > 1000 
+          and 
+          anclora_queue_active_messages == 0
+        for: 5m
+        labels:
+          severity: critical
+          component: queue
+        annotations:
+          summary: "Queue appears stuck"
+          description: "{{ $value }} messages waiting but no active processing"
+          
+      - alert: HighDLQCount
+        expr: anclora_queue_dlq_messages > 100
+        for: 10m
+        labels:
+          severity: warning
+          component: queue
+        annotations:
+          summary: "High number of messages in DLQ"
+          description: "{{ $value }} messages in Dead Letter Queue"
+          
+      # ========================================================================
+      # WHATSAPP ALERTS
+      # ========================================================================
+      
+      - alert: HighWhatsAppAPILatency
+        expr: |
+          histogram_quantile(0.99,
+            rate(anclora_whatsapp_api_latency_seconds_bucket[5m])
+          ) > 2
+        for: 5m
+        labels:
+          severity: warning
+          component: whatsapp
+        annotations:
+          summary: "High WhatsApp API latency"
+          description: "WhatsApp API P99 latency is {{ $value }}s for {{ $labels.endpoint }}"
+          
+      - alert: WhatsAppAPIErrors
+        expr: |
+          sum(rate(anclora_whatsapp_api_calls_total{status_code=~"5.."}[5m])) 
+          / 
+          sum(rate(anclora_whatsapp_api_calls_total[5m])) 
+          * 100 > 5
+        for: 5m
+        labels:
+          severity: warning
+          component: whatsapp
+        annotations:
+          summary: "High WhatsApp API error rate"
+          description: "{{ $value }}% of API calls returning 5xx errors"
+          
+      - alert: RateLimitHit
+        expr: rate(anclora_whatsapp_rate_limit_hits_total[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          component: whatsapp
+        annotations:
+          summary: "WhatsApp rate limits being hit"
+          description: "Rate limits hit {{ $value }} times/sec for {{ $labels.instance_name }}"
+          
+      - alert: NoActiveInstances
+        expr: anclora_whatsapp_active_instances == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: whatsapp
+        annotations:
+          summary: "No active WhatsApp instances"
+          description: "All WhatsApp instances are down"
+          
+      # ========================================================================
+      # MEMORY & PERFORMANCE ALERTS
+      # ========================================================================
+      
+      - alert: HighMemoryUsage
+        expr: |
+          anclora_nodejs_heap_size_used_bytes / 1024 / 1024 > 768
+        for: 5m
+        labels:
+          severity: warning
+          component: system
+        annotations:
+          summary: "High memory usage"
+          description: "Heap usage is {{ $value }}MB (threshold: 768MB)"
+          
+      - alert: CriticalMemoryUsage
+        expr: |
+          anclora_nodejs_heap_size_used_bytes / 1024 / 1024 > 1024
+        for: 2m
+        labels:
+          severity: critical
+          component: system
+        annotations:
+          summary: "Critical memory usage"
+          description: "Heap usage is {{ $value }}MB (threshold: 1024MB)"
+          
+      - alert: MemoryLeak
+        expr: |
+          (
+            anclora_nodejs_heap_size_used_bytes - 
+            anclora_nodejs_heap_size_used_bytes offset 1h
+          ) / anclora_nodejs_heap_size_used_bytes offset 1h * 100 > 50
+        for: 30m
+        labels:
+          severity: warning
+          component: system
+        annotations:
+          summary: "Potential memory leak detected"
+          description: "Heap usage grew by {{ $value }}% in the last hour"
+          
+      - alert: HighEventLoopLag
+        expr: anclora_nodejs_eventloop_lag_seconds * 1000 > 100
+        for: 5m
+        labels:
+          severity: warning
+          component: system
+        annotations:
+          summary: "High event loop lag"
+          description: "Event loop lag is {{ $value }}ms (threshold: 100ms)"
+          
+      - alert: HighCPUUsage
+        expr: rate(anclora_process_cpu_seconds_total[5m]) * 100 > 80
+        for: 10m
+        labels:
+          severity: warning
+          component: system
+        annotations:
+          summary: "High CPU usage"
+          description: "CPU usage is {{ $value }}%"
+          
+      # ========================================================================
+      # REDIS ALERTS
+      # ========================================================================
+      
+      - alert: RedisDown
+        expr: up{job="redis"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: redis
+        annotations:
+          summary: "Redis is down"
+          description: "Redis instance {{ $labels.instance }} is unreachable"
+          
+      - alert: RedisHighMemory
+        expr: redis_memory_used_bytes / redis_memory_max_bytes * 100 > 80
+        for: 5m
+        labels:
+          severity: warning
+          component: redis
+        annotations:
+          summary: "Redis high memory usage"
+          description: "Redis memory usage is {{ $value }}%"
+          
+      - alert: RedisConnectionsHigh
+        expr: redis_connected_clients > 100
+        for: 5m
+        labels:
+          severity: warning
+          component: redis
+        annotations:
+          summary: "High number of Redis connections"
+          description: "{{ $value }} clients connected to Redis"
+          
+      # ========================================================================
+      # ANALYTICS ALERTS
+      # ========================================================================
+      
+      - alert: LowConversionRate
+        expr: |
+          rate(anclora_analytics_conversions_total{conversion_type="qualified_lead"}[1h]) 
+          / 
+          rate(anclora_analytics_conversions_total{conversion_type="lead"}[1h]) 
+          * 100 < 10
+        for: 2h
+        labels:
+          severity: info
+          component: analytics
+        annotations:
+          summary: "Low lead qualification rate"
+          description: "Only {{ $value }}% of leads are being qualified (threshold: 10%)"
+          
+      - alert: HighHandoffRate
+        expr: |
+          rate(anclora_analytics_handoffs_total[1h]) 
+          / 
+          rate(anclora_analytics_messages_received_total[1h]) 
+          * 100 > 30
+        for: 1h
+        labels:
+          severity: warning
+          component: bot
+        annotations:
+          summary: "High bot handoff rate"
+          description: "{{ $value }}% of conversations handed off to humans (threshold: 30%)"
+          
+      - alert: LongResponseTime
+        expr: |
+          histogram_quantile(0.95,
+            rate(anclora_analytics_response_time_seconds_bucket[10m])
+          ) > 300
+        for: 15m
+        labels:
+          severity: warning
+          component: analytics
+        annotations:
+          summary: "Long average response time"
+          description: "P95 response time is {{ $value }}s (threshold: 300s)"
+          
+      # ========================================================================
+      # BUSINESS ALERTS
+      # ========================================================================
+      
+      - alert: NoLeadsCaptured
+        expr: |
+          rate(anclora_business_leads_captured_total[1h]) == 0
+        for: 2h
+        labels:
+          severity: warning
+          component: business
+        annotations:
+          summary: "No leads captured in last 2 hours"
+          description: "Lead capture has stopped - check campaigns and bots"
+          
+      - alert: NoAppointmentsScheduled
+        expr: |
+          rate(anclora_business_appointments_scheduled_total[6h]) == 0
+        for: 6h
+        labels:
+          severity: info
+          component: business
+        annotations:
+          summary: "No appointments scheduled in 6 hours"
+          description: "No appointments have been scheduled recently"
+          
+      # ========================================================================
+      # INFRASTRUCTURE ALERTS
+      # ========================================================================
+      
+      - alert: ServiceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: infrastructure
+        annotations:
+          summary: "Service is down"
+          description: "{{ $labels.job }} service on {{ $labels.instance }} is down"
+          
+      - alert: HighRestartRate
+        expr: |
+          rate(anclora_process_start_time_seconds[15m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          component: infrastructure
+        annotations:
+          summary: "High service restart rate"
+          description: "Service is restarting frequently"

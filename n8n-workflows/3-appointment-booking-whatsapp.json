@@ -1,0 +1,633 @@
+{
+  "name": "Appointment Booking - WhatsApp Confirmation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "appointment-booking",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-appointment",
+      "name": "Webhook Appointment Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "appointment-booking-webhook"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT * FROM properties WHERE id = '{{ $json.propertyId }}' LIMIT 1",
+        "options": {}
+      },
+      "id": "get-property-details",
+      "name": "Get Property Details",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "PostgreSQL - Properties DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT * FROM appointments WHERE date = '{{ $json.appointmentDate }}' AND time = '{{ $json.appointmentTime }}' AND status != 'cancelled'",
+        "options": {}
+      },
+      "id": "check-availability",
+      "name": "Check Availability",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [650, 300],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "PostgreSQL - Properties DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.length }}",
+              "operation": "equal",
+              "value2": 0
+            }
+          ]
+        }
+      },
+      "id": "check-time-available",
+      "name": "Check Time Available",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO appointments (contact_phone, property_id, date, time, status, created_at, notes) VALUES ('{{ $('Webhook Appointment Request').first().json.phone }}', '{{ $('Webhook Appointment Request').first().json.propertyId }}', '{{ $('Webhook Appointment Request').first().json.appointmentDate }}', '{{ $('Webhook Appointment Request').first().json.appointmentTime }}', 'confirmed', NOW(), '{{ $('Webhook Appointment Request').first().json.notes }}') RETURNING *",
+        "options": {}
+      },
+      "id": "create-appointment",
+      "name": "Create Appointment",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [1050, 200],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "PostgreSQL - Properties DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "resource": "activity",
+        "additionalFields": {
+          "contactPhone": "={{ $('Webhook Appointment Request').first().json.phone }}",
+          "type": "appointment_booked",
+          "description": "Appointment booked for {{ $('Webhook Appointment Request').first().json.appointmentDate }} at {{ $('Webhook Appointment Request').first().json.appointmentTime }}",
+          "metadata": {
+            "appointmentId": "={{ $json.id }}",
+            "propertyId": "={{ $('Webhook Appointment Request').first().json.propertyId }}",
+            "date": "={{ $('Webhook Appointment Request').first().json.appointmentDate }}",
+            "time": "={{ $('Webhook Appointment Request').first().json.appointmentTime }}"
+          }
+        }
+      },
+      "id": "log-appointment-crm",
+      "name": "Log Appointment in CRM",
+      "type": "n8n-nodes-base.twentyCrm",
+      "typeVersion": 1,
+      "position": [1250, 200],
+      "credentials": {
+        "twentyCrmApi": {
+          "id": "1",
+          "name": "Twenty CRM API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "nombre",
+              "value": "={{ $('Webhook Appointment Request').first().json.name }}"
+            },
+            {
+              "name": "propiedad",
+              "value": "={{ $('Get Property Details').first().json.name }}"
+            },
+            {
+              "name": "fecha",
+              "value": "={{ $('Webhook Appointment Request').first().json.appointmentDate }}"
+            },
+            {
+              "name": "hora",
+              "value": "={{ $('Webhook Appointment Request').first().json.appointmentTime }}"
+            },
+            {
+              "name": "ubicacion",
+              "value": "={{ $('Get Property Details').first().json.address }}"
+            }
+          ]
+        }
+      },
+      "id": "prepare-confirmation-data",
+      "name": "Prepare Confirmation Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [1450, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/whatsapp/send",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instanceName",
+              "value": "anclora-main"
+            },
+            {
+              "name": "number",
+              "value": "={{ $('Webhook Appointment Request').first().json.phone }}"
+            },
+            {
+              "name": "template",
+              "value": "appointmentConfirmation"
+            },
+            {
+              "name": "variables",
+              "value": "={{ $json }}"
+            },
+            {
+              "name": "language",
+              "value": "es"
+            }
+          ]
+        }
+      },
+      "id": "send-confirmation-whatsapp",
+      "name": "Send Confirmation WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1650, 200],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2",
+          "name": "WhatsApp API Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 10 * * *"
+            }
+          ]
+        }
+      },
+      "id": "schedule-reminder-check",
+      "name": "Schedule Daily Reminder Check",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 600]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT a.*, p.name as property_name, p.address FROM appointments a JOIN properties p ON a.property_id = p.id WHERE a.date = CURRENT_DATE + INTERVAL '1 day' AND a.status = 'confirmed'",
+        "options": {}
+      },
+      "id": "get-tomorrow-appointments",
+      "name": "Get Tomorrow's Appointments",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [450, 600],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "PostgreSQL - Properties DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "split-appointments",
+      "name": "Split Appointments",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [650, 600]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "propiedad",
+              "value": "={{ $json.property_name }}"
+            },
+            {
+              "name": "fecha",
+              "value": "mañana"
+            },
+            {
+              "name": "hora",
+              "value": "={{ $json.time }}"
+            },
+            {
+              "name": "ubicacion",
+              "value": "={{ $json.address }}"
+            }
+          ]
+        }
+      },
+      "id": "prepare-reminder-data",
+      "name": "Prepare Reminder Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [850, 600]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/whatsapp/send",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instanceName",
+              "value": "anclora-main"
+            },
+            {
+              "name": "number",
+              "value": "={{ $('Split Appointments').item.json.contact_phone }}"
+            },
+            {
+              "name": "template",
+              "value": "appointmentReminder"
+            },
+            {
+              "name": "variables",
+              "value": "={{ $json }}"
+            },
+            {
+              "name": "language",
+              "value": "es"
+            }
+          ]
+        }
+      },
+      "id": "send-reminder-whatsapp",
+      "name": "Send Reminder WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1050, 600]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE appointments SET reminder_sent = true WHERE id = '{{ $('Split Appointments').item.json.id }}'",
+        "options": {}
+      },
+      "id": "mark-reminder-sent",
+      "name": "Mark Reminder Sent",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [1250, 600],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "PostgreSQL - Properties DB"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "loop-back-appointments",
+      "name": "Loop Back",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [1450, 600]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/whatsapp/send",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instanceName",
+              "value": "anclora-main"
+            },
+            {
+              "name": "number",
+              "value": "={{ $('Webhook Appointment Request').first().json.phone }}"
+            },
+            {
+              "name": "text",
+              "value": "Lo siento, esa fecha y hora ya está reservada. ¿Podrías elegir otro horario? 📅"
+            }
+          ]
+        }
+      },
+      "id": "send-unavailable-message",
+      "name": "Send Time Unavailable Message",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1050, 400]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: false, message: 'Time slot not available', date: $('Webhook Appointment Request').first().json.appointmentDate, time: $('Webhook Appointment Request').first().json.appointmentTime } }}"
+      },
+      "id": "webhook-response-unavailable",
+      "name": "Webhook Response Unavailable",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1250, 400]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, appointmentId: $('Create Appointment').first().json.id, date: $('Webhook Appointment Request').first().json.appointmentDate, time: $('Webhook Appointment Request').first().json.appointmentTime } }}"
+      },
+      "id": "webhook-response-success",
+      "name": "Webhook Response Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1850, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/google-calendar/create-event",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "summary",
+              "value": "Visita: {{ $('Get Property Details').first().json.name }}"
+            },
+            {
+              "name": "description",
+              "value": "Cliente: {{ $('Webhook Appointment Request').first().json.name }}\nTeléfono: {{ $('Webhook Appointment Request').first().json.phone }}\nPropiedad: {{ $('Get Property Details').first().json.name }}"
+            },
+            {
+              "name": "location",
+              "value": "={{ $('Get Property Details').first().json.address }}"
+            },
+            {
+              "name": "start",
+              "value": "={{ $('Webhook Appointment Request').first().json.appointmentDate }}T{{ $('Webhook Appointment Request').first().json.appointmentTime }}:00"
+            },
+            {
+              "name": "end",
+              "value": "={{ $moment($('Webhook Appointment Request').first().json.appointmentDate + 'T' + $('Webhook Appointment Request').first().json.appointmentTime).add(1, 'hour').format() }}"
+            }
+          ]
+        }
+      },
+      "id": "add-to-google-calendar",
+      "name": "Add to Google Calendar",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1850, 100]
+    }
+  ],
+  "connections": {
+    "Webhook Appointment Request": {
+      "main": [
+        [
+          {
+            "node": "Get Property Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Property Details": {
+      "main": [
+        [
+          {
+            "node": "Check Availability",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Availability": {
+      "main": [
+        [
+          {
+            "node": "Check Time Available",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Time Available": {
+      "main": [
+        [
+          {
+            "node": "Create Appointment",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Time Unavailable Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Appointment": {
+      "main": [
+        [
+          {
+            "node": "Log Appointment in CRM",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Add to Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Appointment in CRM": {
+      "main": [
+        [
+          {
+            "node": "Prepare Confirmation Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Confirmation Data": {
+      "main": [
+        [
+          {
+            "node": "Send Confirmation WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Confirmation WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Daily Reminder Check": {
+      "main": [
+        [
+          {
+            "node": "Get Tomorrow's Appointments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Tomorrow's Appointments": {
+      "main": [
+        [
+          {
+            "node": "Split Appointments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Appointments": {
+      "main": [
+        [
+          {
+            "node": "Prepare Reminder Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Reminder Data": {
+      "main": [
+        [
+          {
+            "node": "Send Reminder WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Reminder WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Mark Reminder Sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Reminder Sent": {
+      "main": [
+        [
+          {
+            "node": "Loop Back",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Back": {
+      "main": [
+        null,
+        [
+          {
+            "node": "Split Appointments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Time Unavailable Message": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response Unavailable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "id": "appointment-booking-whatsapp-3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "anclora-n8n"
+  },
+  "tags": [
+    {
+      "name": "whatsapp",
+      "id": "1"
+    },
+    {
+      "name": "appointments",
+      "id": "5"
+    },
+    {
+      "name": "automation",
+      "id": "3"
+    }
+  ]
+}

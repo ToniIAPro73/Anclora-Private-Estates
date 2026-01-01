@@ -1,0 +1,179 @@
+{
+  "dashboard": {
+    "title": "Anclora Queue Manager",
+    "tags": ["anclora", "queue", "whatsapp"],
+    "timezone": "browser",
+    "editable": true,
+    "panels": [
+      {
+        "id": 1,
+        "title": "Queue Throughput (req/s)",
+        "type": "graph",
+        "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+        "targets": [
+          {
+            "expr": "rate(anclora_queue_messages_total[5m])",
+            "legendFormat": "{{priority}} - {{message_type}}"
+          }
+        ],
+        "yaxes": [
+          { "label": "req/s", "format": "short" },
+          { "show": false }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Queue Processing Latency (P95)",
+        "type": "graph",
+        "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 },
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(anclora_queue_processing_duration_seconds_bucket[5m]))",
+            "legendFormat": "{{message_type}}"
+          }
+        ],
+        "yaxes": [
+          { "label": "seconds", "format": "s" },
+          { "show": false }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Queue Depth",
+        "type": "graph",
+        "gridPos": { "x": 0, "y": 8, "w": 8, "h": 8 },
+        "targets": [
+          {
+            "expr": "anclora_queue_waiting_messages",
+            "legendFormat": "Waiting - {{priority}}"
+          },
+          {
+            "expr": "anclora_queue_active_messages",
+            "legendFormat": "Active"
+          },
+          {
+            "expr": "anclora_queue_dlq_messages",
+            "legendFormat": "DLQ"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Success vs Failed Messages",
+        "type": "graph",
+        "gridPos": { "x": 8, "y": 8, "w": 8, "h": 8 },
+        "targets": [
+          {
+            "expr": "rate(anclora_queue_messages_processed_total[5m])",
+            "legendFormat": "Processed - {{message_type}}"
+          },
+          {
+            "expr": "rate(anclora_queue_messages_failed_total[5m])",
+            "legendFormat": "Failed - {{message_type}}"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Error Rate (%)",
+        "type": "graph",
+        "gridPos": { "x": 16, "y": 8, "w": 8, "h": 8 },
+        "targets": [
+          {
+            "expr": "100 * rate(anclora_queue_messages_failed_total[5m]) / (rate(anclora_queue_messages_processed_total[5m]) + rate(anclora_queue_messages_failed_total[5m]))",
+            "legendFormat": "Error Rate"
+          }
+        ],
+        "thresholds": [
+          { "value": 1, "colorMode": "critical" },
+          { "value": 0.5, "colorMode": "warning" }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Processing Duration Heatmap",
+        "type": "heatmap",
+        "gridPos": { "x": 0, "y": 16, "w": 24, "h": 8 },
+        "targets": [
+          {
+            "expr": "rate(anclora_queue_processing_duration_seconds_bucket[5m])",
+            "format": "heatmap"
+          }
+        ],
+        "dataFormat": "tsbuckets"
+      },
+      {
+        "id": 7,
+        "title": "Bulk Operations",
+        "type": "stat",
+        "gridPos": { "x": 0, "y": 24, "w": 6, "h": 4 },
+        "targets": [
+          {
+            "expr": "sum(rate(anclora_queue_bulk_operations_total[5m]))"
+          }
+        ],
+        "options": {
+          "graphMode": "area",
+          "colorMode": "value"
+        }
+      },
+      {
+        "id": 8,
+        "title": "Messages in DLQ",
+        "type": "stat",
+        "gridPos": { "x": 6, "y": 24, "w": 6, "h": 4 },
+        "targets": [
+          {
+            "expr": "anclora_queue_dlq_messages"
+          }
+        ],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none"
+        },
+        "thresholds": {
+          "steps": [
+            { "value": 0, "color": "green" },
+            { "value": 100, "color": "yellow" },
+            { "value": 1000, "color": "red" }
+          ]
+        }
+      },
+      {
+        "id": 9,
+        "title": "Avg Processing Time (ms)",
+        "type": "stat",
+        "gridPos": { "x": 12, "y": 24, "w": 6, "h": 4 },
+        "targets": [
+          {
+            "expr": "1000 * rate(anclora_queue_processing_duration_seconds_sum[5m]) / rate(anclora_queue_processing_duration_seconds_count[5m])"
+          }
+        ],
+        "options": {
+          "graphMode": "area",
+          "unit": "ms"
+        }
+      },
+      {
+        "id": 10,
+        "title": "Total Messages Today",
+        "type": "stat",
+        "gridPos": { "x": 18, "y": 24, "w": 6, "h": 4 },
+        "targets": [
+          {
+            "expr": "sum(increase(anclora_queue_messages_total[24h]))"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area"
+        }
+      }
+    ],
+    "refresh": "10s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    }
+  }
+}

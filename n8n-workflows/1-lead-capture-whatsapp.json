@@ -1,0 +1,394 @@
+{
+  "name": "WhatsApp Lead Capture Auto-Reply",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "lead-capture",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-lead-capture",
+      "name": "Webhook Lead Capture",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "lead-capture-webhook"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.source }}",
+              "operation": "equals",
+              "value2": "whatsapp"
+            }
+          ]
+        }
+      },
+      "id": "filter-whatsapp",
+      "name": "Filter WhatsApp Leads",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "resource": "contact",
+        "additionalFields": {
+          "phone": "={{ $json.phone }}",
+          "name": "={{ $json.name }}",
+          "email": "={{ $json.email }}",
+          "source": "whatsapp_lead_capture",
+          "customFields": {
+            "propertyType": "={{ $json.propertyType }}",
+            "budget": "={{ $json.budget }}",
+            "location": "={{ $json.location }}",
+            "leadCaptureDate": "={{ $now.toISO() }}"
+          }
+        }
+      },
+      "id": "create-crm-contact",
+      "name": "Create Contact in Twenty CRM",
+      "type": "n8n-nodes-base.twentyCrm",
+      "typeVersion": 1,
+      "position": [650, 200],
+      "credentials": {
+        "twentyCrmApi": {
+          "id": "1",
+          "name": "Twenty CRM API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "nombre",
+              "value": "={{ $json.name }}"
+            },
+            {
+              "name": "tipoPropiedad",
+              "value": "={{ $json.propertyType }}"
+            }
+          ]
+        }
+      },
+      "id": "prepare-template-vars",
+      "name": "Prepare Template Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [850, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/whatsapp/send",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instanceName",
+              "value": "anclora-main"
+            },
+            {
+              "name": "number",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "template",
+              "value": "welcomeWithPropertyType"
+            },
+            {
+              "name": "variables",
+              "value": "={{ { nombre: $json.nombre, tipoPropiedad: $json.tipoPropiedad } }}"
+            },
+            {
+              "name": "language",
+              "value": "es"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "send-whatsapp-welcome",
+      "name": "Send WhatsApp Welcome Message",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1050, 200],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2",
+          "name": "WhatsApp API Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "id": "wait-3-seconds",
+      "name": "Wait 3 Seconds",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [1250, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/whatsapp/send",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instanceName",
+              "value": "anclora-main"
+            },
+            {
+              "name": "number",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "template",
+              "value": "budgetInquiry"
+            },
+            {
+              "name": "variables",
+              "value": "={{ { nombre: $json.nombre } }}"
+            },
+            {
+              "name": "language",
+              "value": "es"
+            }
+          ]
+        }
+      },
+      "id": "send-budget-inquiry",
+      "name": "Send Budget Inquiry",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1450, 200]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "resource": "activity",
+        "additionalFields": {
+          "contactId": "={{ $json.id }}",
+          "type": "whatsapp_welcome_sent",
+          "description": "Welcome message sent via WhatsApp",
+          "timestamp": "={{ $now.toISO() }}"
+        }
+      },
+      "id": "log-activity-crm",
+      "name": "Log Activity in CRM",
+      "type": "n8n-nodes-base.twentyCrm",
+      "typeVersion": 1,
+      "position": [1650, 200],
+      "credentials": {
+        "twentyCrmApi": {
+          "id": "1",
+          "name": "Twenty CRM API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/analytics/track",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "event",
+              "value": "lead_captured"
+            },
+            {
+              "name": "source",
+              "value": "whatsapp"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "propertyType",
+              "value": "={{ $json.propertyType }}"
+            },
+            {
+              "name": "timestamp",
+              "value": "={{ $now.toISO() }}"
+            }
+          ]
+        }
+      },
+      "id": "track-analytics",
+      "name": "Track Analytics",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1850, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, message: 'Lead captured and WhatsApp sent', leadId: $json.id } }}"
+      },
+      "id": "webhook-response",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [2050, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: false, message: 'Not a WhatsApp lead', source: $json.source } }}"
+      },
+      "id": "webhook-response-skip",
+      "name": "Webhook Response (Skip)",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [650, 400]
+    }
+  ],
+  "connections": {
+    "Webhook Lead Capture": {
+      "main": [
+        [
+          {
+            "node": "Filter WhatsApp Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter WhatsApp Leads": {
+      "main": [
+        [
+          {
+            "node": "Create Contact in Twenty CRM",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Webhook Response (Skip)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Contact in Twenty CRM": {
+      "main": [
+        [
+          {
+            "node": "Prepare Template Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Template Variables": {
+      "main": [
+        [
+          {
+            "node": "Send WhatsApp Welcome Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send WhatsApp Welcome Message": {
+      "main": [
+        [
+          {
+            "node": "Wait 3 Seconds",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 3 Seconds": {
+      "main": [
+        [
+          {
+            "node": "Send Budget Inquiry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Budget Inquiry": {
+      "main": [
+        [
+          {
+            "node": "Log Activity in CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Activity in CRM": {
+      "main": [
+        [
+          {
+            "node": "Track Analytics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Track Analytics": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "id": "whatsapp-lead-capture-1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "anclora-n8n"
+  },
+  "tags": [
+    {
+      "name": "whatsapp",
+      "id": "1"
+    },
+    {
+      "name": "lead-capture",
+      "id": "2"
+    },
+    {
+      "name": "automation",
+      "id": "3"
+    }
+  ]
+}

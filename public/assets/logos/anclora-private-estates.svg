@@ -1,0 +1,26 @@
+<svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo Mark - A estilizada con ancla -->
+  <g id="logomark">
+    <!-- Ancla base -->
+    <path d="M30 8L30 38" stroke="#C5A059" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M30 38C30 38 24 40 24 46C24 50 26.5 52 30 52C33.5 52 36 50 36 46C36 40 30 38 30 38Z" stroke="#C5A059" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+    <path d="M22 20L38 20" stroke="#C5A059" stroke-width="2.5" stroke-linecap="round"/>
+    
+    <!-- A integrada -->
+    <path d="M20 35L30 8L40 35" stroke="#C5A059" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+    <path d="M24 26H36" stroke="#C5A059" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Texto Principal: ANCLORA -->
+  <g id="wordmark" fill="#000000">
+    <text x="55" y="28" font-family="Montserrat, sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">
+      ANCLORA
+    </text>
+    <text x="55" y="44" font-family="Playfair Display, serif" font-size="11" font-weight="400" letter-spacing="2" fill="#C5A059">
+      PRIVATE ESTATES
+    </text>
+  </g>
+  
+  <!-- Línea decorativa -->
+  <line x1="55" y1="48" x2="165" y2="48" stroke="#C5A059" stroke-width="0.5"/>
+</svg>

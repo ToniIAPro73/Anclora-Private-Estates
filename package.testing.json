@@ -1,0 +1,32 @@
+{
+  "name": "anclora-whatsapp-tests",
+  "version": "1.0.0",
+  "description": "Test suite for Anclora WhatsApp Integration",
+  "scripts": {
+    "test": "jest",
+    "test:unit": "jest --testPathPattern=unit",
+    "test:integration": "jest --testPathPattern=integration",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:coverage:open": "jest --coverage && open coverage/lcov-report/index.html",
+    "test:unit:queue": "jest --testPathPattern=whatsapp-queue",
+    "test:unit:analytics": "jest --testPathPattern=whatsapp-analytics",
+    "test:unit:client": "jest --testPathPattern=whatsapp-client",
+    "test:unit:templates": "jest --testPathPattern=whatsapp-templates",
+    "test:unit:bot": "jest --testPathPattern=whatsapp-bot",
+    "test:ci": "jest --ci --coverage --maxWorkers=2",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.11.0",
+    "@testing-library/jest-dom": "^6.1.5",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  }
+}

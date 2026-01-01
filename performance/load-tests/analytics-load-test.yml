@@ -1,0 +1,129 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 60
+      arrivalRate: 20
+      name: "Warm-up"
+    
+    - duration: 180
+      arrivalRate: 20
+      rampTo: 100
+      name: "Ramp-up to 100 events/s"
+    
+    - duration: 300
+      arrivalRate: 100
+      name: "Sustained 100 events/s"
+    
+    - duration: 120
+      arrivalRate: 100
+      rampTo: 200
+      name: "Peak 200 events/s"
+    
+    - duration: 60
+      arrivalRate: 200
+      rampTo: 20
+      name: "Cool down"
+
+  plugins:
+    expect: {}
+    metrics-by-endpoint:
+      stripQueryString: true
+
+  processor: "./analytics-load-processor.js"
+
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "Track Message Sent"
+    weight: 30
+    flow:
+      - function: "generatePhone"
+      - post:
+          url: "/api/analytics/track/message-sent"
+          json:
+            phone: "{{ phone }}"
+            messageType: "{{ messageType }}"
+            metadata:
+              campaignId: "campaign-{{ $randomNumber(1, 10) }}"
+              templateId: "template-{{ $randomNumber(1, 5) }}"
+          expect:
+            - statusCode: 200
+
+  - name: "Track Message Received"
+    weight: 25
+    flow:
+      - function: "generatePhone"
+      - post:
+          url: "/api/analytics/track/message-received"
+          json:
+            phone: "{{ phone }}"
+            messageType: "text"
+          expect:
+            - statusCode: 200
+
+  - name: "Track Message Delivered"
+    weight: 20
+    flow:
+      - function: "generatePhone"
+      - post:
+          url: "/api/analytics/track/message-delivered"
+          json:
+            phone: "{{ phone }}"
+            messageId: "msg-{{ $randomString(10) }}"
+          expect:
+            - statusCode: 200
+
+  - name: "Track Message Read"
+    weight: 15
+    flow:
+      - function: "generatePhone"
+      - post:
+          url: "/api/analytics/track/message-read"
+          json:
+            phone: "{{ phone }}"
+            messageId: "msg-{{ $randomString(10) }}"
+          expect:
+            - statusCode: 200
+
+  - name: "Track Conversion"
+    weight: 5
+    flow:
+      - function: "generatePhone"
+      - post:
+          url: "/api/analytics/track/conversion"
+          json:
+            phone: "{{ phone }}"
+            type: "{{ conversionType }}"
+            value: "{{ conversionValue }}"
+          expect:
+            - statusCode: 200
+
+  - name: "Get Message Metrics"
+    weight: 3
+    flow:
+      - get:
+          url: "/api/analytics/metrics/messages"
+          expect:
+            - statusCode: 200
+            - hasProperty: "sent"
+            - hasProperty: "received"
+
+  - name: "Get Conversation Metrics"
+    weight: 1
+    flow:
+      - get:
+          url: "/api/analytics/metrics/conversations"
+          expect:
+            - statusCode: 200
+            - hasProperty: "activeConversations"
+
+  - name: "Get Performance Metrics"
+    weight: 1
+    flow:
+      - get:
+          url: "/api/analytics/metrics/performance"
+          expect:
+            - statusCode: 200
+            - hasProperty: "messagesSentPerHour"

@@ -1,0 +1,293 @@
+{
+  "dashboard": {
+    "title": "Anclora WhatsApp - System Overview",
+    "tags": ["anclora", "whatsapp", "overview"],
+    "timezone": "browser",
+    "schemaVersion": 16,
+    "version": 1,
+    "refresh": "30s",
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Queue Messages - Total Rate",
+        "type": "graph",
+        "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+        "targets": [
+          {
+            "expr": "rate(anclora_queue_messages_total[5m])",
+            "legendFormat": "{{priority}} - {{message_type}}",
+            "refId": "A"
+          }
+        ],
+        "yaxes": [
+          { "format": "ops", "label": "Messages/sec" },
+          { "format": "short" }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Queue Processing Duration (P99)",
+        "type": "graph",
+        "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 },
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.99, rate(anclora_queue_processing_duration_seconds_bucket[5m]))",
+            "legendFormat": "P99 - {{message_type}}",
+            "refId": "A"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(anclora_queue_processing_duration_seconds_bucket[5m]))",
+            "legendFormat": "P95 - {{message_type}}",
+            "refId": "B"
+          },
+          {
+            "expr": "histogram_quantile(0.50, rate(anclora_queue_processing_duration_seconds_bucket[5m]))",
+            "legendFormat": "P50 - {{message_type}}",
+            "refId": "C"
+          }
+        ],
+        "yaxes": [
+          { "format": "s", "label": "Duration" },
+          { "format": "short" }
+        ],
+        "alert": {
+          "conditions": [
+            {
+              "evaluator": { "params": [0.1], "type": "gt" },
+              "operator": { "type": "and" },
+              "query": { "params": ["A", "5m", "now"] },
+              "reducer": { "params": [], "type": "avg" },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "alerting",
+          "frequency": "1m",
+          "handler": 1,
+          "message": "Queue P99 latency above 100ms",
+          "name": "High Queue Latency"
+        }
+      },
+      {
+        "id": 3,
+        "title": "Queue Status",
+        "type": "stat",
+        "gridPos": { "x": 0, "y": 8, "w": 6, "h": 4 },
+        "targets": [
+          {
+            "expr": "anclora_queue_waiting_messages",
+            "legendFormat": "Waiting",
+            "refId": "A"
+          },
+          {
+            "expr": "anclora_queue_active_messages",
+            "legendFormat": "Active",
+            "refId": "B"
+          },
+          {
+            "expr": "anclora_queue_dlq_messages",
+            "legendFormat": "DLQ",
+            "refId": "C"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "orientation": "auto",
+          "textMode": "auto"
+        }
+      },
+      {
+        "id": 4,
+        "title": "Error Rate",
+        "type": "graph",
+        "gridPos": { "x": 6, "y": 8, "w": 6, "h": 4 },
+        "targets": [
+          {
+            "expr": "rate(anclora_queue_messages_failed_total[5m]) / rate(anclora_queue_messages_total[5m]) * 100",
+            "legendFormat": "Error Rate %",
+            "refId": "A"
+          }
+        ],
+        "yaxes": [
+          { "format": "percent", "label": "Error %" },
+          { "format": "short" }
+        ],
+        "thresholds": [
+          { "value": 1, "colorMode": "critical" },
+          { "value": 0.5, "colorMode": "warning" }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Analytics - Messages",
+        "type": "graph",
+        "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 },
+        "targets": [
+          {
+            "expr": "rate(anclora_analytics_messages_sent_total[5m])",
+            "legendFormat": "Sent - {{message_type}}",
+            "refId": "A"
+          },
+          {
+            "expr": "rate(anclora_analytics_messages_received_total[5m])",
+            "legendFormat": "Received - {{message_type}}",
+            "refId": "B"
+          },
+          {
+            "expr": "rate(anclora_analytics_messages_delivered_total[5m])",
+            "legendFormat": "Delivered",
+            "refId": "C"
+          },
+          {
+            "expr": "rate(anclora_analytics_messages_read_total[5m])",
+            "legendFormat": "Read",
+            "refId": "D"
+          }
+        ],
+        "yaxes": [
+          { "format": "ops", "label": "Messages/sec" },
+          { "format": "short" }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Conversions",
+        "type": "graph",
+        "gridPos": { "x": 0, "y": 16, "w": 12, "h": 8 },
+        "targets": [
+          {
+            "expr": "rate(anclora_analytics_conversions_total[1h])",
+            "legendFormat": "{{conversion_type}}",
+            "refId": "A"
+          }
+        ],
+        "yaxes": [
+          { "format": "ops", "label": "Conversions/hour" },
+          { "format": "short" }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "WhatsApp API - Latency",
+        "type": "graph",
+        "gridPos": { "x": 12, "y": 16, "w": 12, "h": 8 },
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.99, rate(anclora_whatsapp_api_latency_seconds_bucket[5m]))",
+            "legendFormat": "P99 - {{endpoint}}",
+            "refId": "A"
+          },
+          {
+            "expr": "histogram_quantile(0.50, rate(anclora_whatsapp_api_latency_seconds_bucket[5m]))",
+            "legendFormat": "P50 - {{endpoint}}",
+            "refId": "B"
+          }
+        ],
+        "yaxes": [
+          { "format": "s", "label": "Latency" },
+          { "format": "short" }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Memory Usage",
+        "type": "graph",
+        "gridPos": { "x": 0, "y": 24, "w": 12, "h": 8 },
+        "targets": [
+          {
+            "expr": "anclora_nodejs_heap_size_used_bytes / 1024 / 1024",
+            "legendFormat": "Heap Used (MB)",
+            "refId": "A"
+          },
+          {
+            "expr": "anclora_nodejs_heap_size_total_bytes / 1024 / 1024",
+            "legendFormat": "Heap Total (MB)",
+            "refId": "B"
+          },
+          {
+            "expr": "anclora_process_resident_memory_bytes / 1024 / 1024",
+            "legendFormat": "RSS (MB)",
+            "refId": "C"
+          }
+        ],
+        "yaxes": [
+          { "format": "mbytes", "label": "Memory" },
+          { "format": "short" }
+        ],
+        "thresholds": [
+          { "value": 1024, "colorMode": "critical" },
+          { "value": 768, "colorMode": "warning" }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Event Loop Lag",
+        "type": "graph",
+        "gridPos": { "x": 12, "y": 24, "w": 12, "h": 8 },
+        "targets": [
+          {
+            "expr": "anclora_nodejs_eventloop_lag_seconds * 1000",
+            "legendFormat": "Event Loop Lag (ms)",
+            "refId": "A"
+          }
+        ],
+        "yaxes": [
+          { "format": "ms", "label": "Lag" },
+          { "format": "short" }
+        ],
+        "thresholds": [
+          { "value": 100, "colorMode": "critical" },
+          { "value": 50, "colorMode": "warning" }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Active Conversations",
+        "type": "stat",
+        "gridPos": { "x": 0, "y": 32, "w": 6, "h": 4 },
+        "targets": [
+          {
+            "expr": "anclora_analytics_active_conversations",
+            "refId": "A"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area"
+        }
+      },
+      {
+        "id": 11,
+        "title": "WhatsApp Instances",
+        "type": "stat",
+        "gridPos": { "x": 6, "y": 32, "w": 6, "h": 4 },
+        "targets": [
+          {
+            "expr": "anclora_whatsapp_active_instances",
+            "refId": "A"
+          }
+        ],
+        "options": {
+          "colorMode": "value"
+        }
+      },
+      {
+        "id": 12,
+        "title": "Bot Intents - Top 10",
+        "type": "piechart",
+        "gridPos": { "x": 12, "y": 32, "w": 12, "h": 8 },
+        "targets": [
+          {
+            "expr": "topk(10, sum by (intent) (anclora_bot_intents_detected_total))",
+            "legendFormat": "{{intent}}",
+            "refId": "A"
+          }
+        ]
+      }
+    ]
+  }
+}

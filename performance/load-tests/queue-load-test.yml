@@ -1,0 +1,159 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    # Warm-up phase
+    - duration: 60
+      arrivalRate: 10
+      name: "Warm-up"
+    
+    # Ramp-up phase
+    - duration: 120
+      arrivalRate: 10
+      rampTo: 50
+      name: "Ramp-up to 50 msg/s"
+    
+    # Sustained load
+    - duration: 300
+      arrivalRate: 50
+      name: "Sustained 50 msg/s"
+    
+    # Peak load
+    - duration: 120
+      arrivalRate: 50
+      rampTo: 100
+      name: "Ramp to peak 100 msg/s"
+    
+    # Stress test
+    - duration: 60
+      arrivalRate: 100
+      name: "Stress test 100 msg/s"
+    
+    # Cool down
+    - duration: 60
+      arrivalRate: 100
+      rampTo: 10
+      name: "Cool down"
+
+  plugins:
+    expect: {}
+    metrics-by-endpoint: {}
+  
+  processor: "./queue-load-processor.js"
+  
+  variables:
+    instanceName: "anclora-main"
+    
+  defaults:
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer test-token"
+
+scenarios:
+  - name: "Queue Message - Text"
+    weight: 60
+    flow:
+      - post:
+          url: "/api/whatsapp/queue/add"
+          json:
+            instanceName: "{{ instanceName }}"
+            recipientPhone: "34600{{ $randomNumber(100000, 999999) }}"
+            messageType: "text"
+            content:
+              text: "{{ $randomString(50) }}"
+            metadata:
+              priority: "{{ priority }}"
+              source: "load-test"
+          expect:
+            - statusCode: 200
+            - hasProperty: "jobId"
+          capture:
+            - json: "$.jobId"
+              as: "jobId"
+
+  - name: "Queue Message - Media"
+    weight: 20
+    flow:
+      - post:
+          url: "/api/whatsapp/queue/add"
+          json:
+            instanceName: "{{ instanceName }}"
+            recipientPhone: "34600{{ $randomNumber(100000, 999999) }}"
+            messageType: "image"
+            content:
+              mediaUrl: "https://example.com/image.jpg"
+              caption: "Test image"
+            metadata:
+              priority: "normal"
+              source: "load-test"
+          expect:
+            - statusCode: 200
+
+  - name: "Queue Bulk Messages"
+    weight: 10
+    flow:
+      - post:
+          url: "/api/whatsapp/queue/bulk"
+          json:
+            messages:
+              - instanceName: "{{ instanceName }}"
+                recipientPhone: "34600{{ $randomNumber(100000, 999999) }}"
+                messageType: "text"
+                content:
+                  text: "Bulk message 1"
+              - instanceName: "{{ instanceName }}"
+                recipientPhone: "34600{{ $randomNumber(100000, 999999) }}"
+                messageType: "text"
+                content:
+                  text: "Bulk message 2"
+              - instanceName: "{{ instanceName }}"
+                recipientPhone: "34600{{ $randomNumber(100000, 999999) }}"
+                messageType: "text"
+                content:
+                  text: "Bulk message 3"
+          expect:
+            - statusCode: 200
+
+  - name: "Get Queue Metrics"
+    weight: 10
+    flow:
+      - get:
+          url: "/api/whatsapp/queue/metrics"
+          expect:
+            - statusCode: 200
+            - hasProperty: "waiting"
+            - hasProperty: "active"
+            - hasProperty: "completed"
+            - hasProperty: "failed"
+
+  - name: "Priority Queue - Critical"
+    weight: 5
+    flow:
+      - post:
+          url: "/api/whatsapp/queue/add"
+          json:
+            instanceName: "{{ instanceName }}"
+            recipientPhone: "34600{{ $randomNumber(100000, 999999) }}"
+            messageType: "text"
+            content:
+              text: "Critical message"
+            metadata:
+              priority: "critical"
+              source: "load-test"
+          expect:
+            - statusCode: 200
+
+  - name: "Scheduled Message"
+    weight: 5
+    flow:
+      - function: "generateFutureTimestamp"
+      - post:
+          url: "/api/whatsapp/queue/schedule"
+          json:
+            instanceName: "{{ instanceName }}"
+            recipientPhone: "34600{{ $randomNumber(100000, 999999) }}"
+            messageType: "text"
+            content:
+              text: "Scheduled message"
+            scheduledAt: "{{ futureTimestamp }}"
+          expect:
+            - statusCode: 200

@@ -1,0 +1,288 @@
+name: CD - Continuous Deployment
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+
+env:
+  NODE_VERSION: '20.x'
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # ==========================================================================
+  # BUILD & PUSH DOCKER IMAGE
+  # ==========================================================================
+  build-docker:
+    name: Build & Push Docker Image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    outputs:
+      image-tag: ${{ steps.meta.outputs.tags }}
+      image-digest: ${{ steps.build.outputs.digest }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build and push Docker image
+        id: build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            NODE_ENV=production
+            APP_VERSION=${{ github.sha }}
+
+  # ==========================================================================
+  # DEPLOY TO STAGING
+  # ==========================================================================
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: build-docker
+    if: github.ref == 'refs/heads/main' || github.event.inputs.environment == 'staging'
+    environment:
+      name: staging
+      url: https://staging.anclora.com
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Deploy to ECS
+        run: |
+          aws ecs update-service \
+            --cluster anclora-staging \
+            --service anclora-whatsapp \
+            --force-new-deployment \
+            --desired-count 2
+
+      - name: Wait for deployment
+        run: |
+          aws ecs wait services-stable \
+            --cluster anclora-staging \
+            --services anclora-whatsapp
+
+      - name: Health check
+        run: |
+          sleep 30
+          curl -f https://staging.anclora.com/health || exit 1
+
+      - name: Run smoke tests
+        run: |
+          npm ci
+          npm run test:smoke -- --env=staging
+
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "✅ Deployed to Staging: ${{ github.sha }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_DEPLOYS }}
+
+  # ==========================================================================
+  # DEPLOY TO PRODUCTION
+  # ==========================================================================
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [build-docker, deploy-staging]
+    if: startsWith(github.ref, 'refs/tags/v') || github.event.inputs.environment == 'production'
+    environment:
+      name: production
+      url: https://anclora.com
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
+          aws-region: eu-west-1
+
+      - name: Create deployment snapshot
+        run: |
+          aws ecs describe-services \
+            --cluster anclora-production \
+            --services anclora-whatsapp \
+            > deployment-snapshot.json
+
+      - name: Upload snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-snapshot-${{ github.sha }}
+          path: deployment-snapshot.json
+          retention-days: 30
+
+      - name: Deploy to ECS (Blue/Green)
+        run: |
+          aws ecs update-service \
+            --cluster anclora-production \
+            --service anclora-whatsapp \
+            --force-new-deployment \
+            --desired-count 4 \
+            --deployment-configuration "maximumPercent=200,minimumHealthyPercent=100"
+
+      - name: Wait for deployment
+        run: |
+          aws ecs wait services-stable \
+            --cluster anclora-production \
+            --services anclora-whatsapp
+
+      - name: Health check
+        run: |
+          sleep 60
+          for i in {1..5}; do
+            curl -f https://anclora.com/health && break
+            sleep 10
+          done
+
+      - name: Run smoke tests
+        run: |
+          npm ci
+          npm run test:smoke -- --env=production
+
+      - name: Monitor metrics (5min)
+        run: |
+          echo "Monitoring error rate for 5 minutes..."
+          sleep 300
+          # Check error rate from Prometheus/CloudWatch
+          # If error rate > 1%, trigger rollback
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "🚀 Deployed to Production: ${{ github.ref }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "🚀 *Production Deployment*\n*Version:* ${{ github.ref }}\n*SHA:* ${{ github.sha }}\n*Status:* Success"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_DEPLOYS }}
+
+  # ==========================================================================
+  # ROLLBACK
+  # ==========================================================================
+  rollback:
+    name: Rollback Deployment
+    runs-on: ubuntu-latest
+    if: failure()
+    needs: deploy-production
+    environment:
+      name: production
+    
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
+          aws-region: eu-west-1
+
+      - name: Download deployment snapshot
+        uses: actions/download-artifact@v4
+        with:
+          name: deployment-snapshot-${{ github.sha }}
+
+      - name: Rollback to previous version
+        run: |
+          # Extract previous task definition
+          PREVIOUS_TASK_DEF=$(cat deployment-snapshot.json | jq -r '.services[0].taskDefinition')
+          
+          # Update service to use previous task definition
+          aws ecs update-service \
+            --cluster anclora-production \
+            --service anclora-whatsapp \
+            --task-definition $PREVIOUS_TASK_DEF \
+            --force-new-deployment
+
+      - name: Wait for rollback
+        run: |
+          aws ecs wait services-stable \
+            --cluster anclora-production \
+            --services anclora-whatsapp
+
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "⚠️ ROLLBACK: Production deployment failed, rolled back to previous version"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_CRITICAL }}

@@ -1,0 +1,163 @@
+<!-- TEMPLATE: Internal Notification - Property Inquiry -->
+<!-- Variables: {{NAME}}, {{EMAIL}}, {{PHONE}}, {{PROPERTY_ID}}, {{PROPERTY_TITLE}}, {{MESSAGE}}, {{BUDGET}}, {{TIMELINE}}, {{LEAD_SCORE}}, {{LEAD_CLASS}}, {{CONTACT_ID}}, {{DEAL_ID}}, {{TIMESTAMP}} -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+    .container { max-width: 650px; margin: 20px auto; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    
+    /* Lead Score Header */
+    .score-header { text-align: center; padding: 30px; color: white; }
+    .score-header.hot { background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); }
+    .score-header.warm { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); }
+    .score-header.cold { background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%); }
+    
+    .score-number { font-size: 72px; font-weight: bold; line-height: 1; margin: 10px 0; }
+    .score-label { font-size: 18px; text-transform: uppercase; letter-spacing: 2px; }
+    .priority-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; margin-top: 10px; font-size: 14px; }
+    
+    /* Content */
+    .content { padding: 30px; }
+    .info-grid { display: grid; grid-template-columns: 120px 1fr; gap: 12px; margin: 20px 0; }
+    .label { font-weight: bold; color: #666; }
+    .value { color: #333; }
+    .value a { color: #C5A059; text-decoration: none; }
+    .value a:hover { text-decoration: underline; }
+    
+    /* Message Box */
+    .message-box { background: #f9fafb; border-left: 4px solid #C5A059; padding: 20px; margin: 20px 0; }
+    .message-box h3 { margin: 0 0 10px 0; color: #1a1a1a; }
+    
+    /* Scoring Breakdown */
+    .scoring { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 20px; margin: 20px 0; }
+    .scoring h3 { margin: 0 0 15px 0; color: #1e40af; }
+    .score-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #dbeafe; }
+    .score-item:last-child { border-bottom: none; }
+    .score-name { color: #374151; }
+    .score-points { font-weight: bold; color: #1e40af; }
+    
+    /* Actions */
+    .actions { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 20px; margin: 20px 0; }
+    .actions h3 { margin: 0 0 10px 0; color: #92400e; }
+    .actions ul { margin: 10px 0; padding-left: 20px; }
+    .actions li { margin: 5px 0; color: #78350f; }
+    
+    /* CRM Links */
+    .crm-links { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 15px; margin: 20px 0; }
+    .crm-links a { display: inline-block; background: #10b981; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin: 5px 5px 5px 0; font-size: 14px; }
+    .crm-links a:hover { background: #059669; }
+    
+    /* Footer */
+    .footer { background: #f9fafb; padding: 20px; text-align: center; color: #6b7280; font-size: 12px; border-top: 1px solid #e5e7eb; }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .score-number { font-size: 56px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Lead Score Header -->
+    <div class="score-header {{LEAD_CLASS}}">
+      <div class="score-label">🔥 {{LEAD_CLASS_UPPER}} LEAD</div>
+      <div class="score-number">{{LEAD_SCORE}}</div>
+      <div style="font-size: 24px; opacity: 0.9;">/ 100</div>
+      <div class="priority-badge">{{PRIORITY_TIME}}</div>
+    </div>
+    
+    <!-- Contact Info -->
+    <div class="content">
+      <h2 style="margin: 0 0 20px 0; color: #1a1a1a;">📋 Nueva Consulta de Propiedad</h2>
+      
+      <div class="info-grid">
+        <div class="label">Nombre:</div>
+        <div class="value">{{NAME}}</div>
+        
+        <div class="label">Email:</div>
+        <div class="value"><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></div>
+        
+        <div class="label">Teléfono:</div>
+        <div class="value"><a href="tel:{{PHONE}}">{{PHONE}}</a></div>
+        
+        <div class="label">Propiedad:</div>
+        <div class="value">
+          <strong>{{PROPERTY_ID}}</strong><br>
+          {{PROPERTY_TITLE}}
+        </div>
+        
+        <div class="label">Presupuesto:</div>
+        <div class="value">{{BUDGET}}</div>
+        
+        <div class="label">Timeline:</div>
+        <div class="value">{{TIMELINE}}</div>
+        
+        <div class="label">Recibido:</div>
+        <div class="value">{{TIMESTAMP}}</div>
+      </div>
+      
+      <!-- Message -->
+      <div class="message-box">
+        <h3>💬 Mensaje del Cliente:</h3>
+        <p>{{MESSAGE}}</p>
+      </div>
+      
+      <!-- Lead Scoring Breakdown -->
+      <div class="scoring">
+        <h3>📊 Desglose de Lead Scoring</h3>
+        <div class="score-item">
+          <span class="score-name">Presupuesto</span>
+          <span class="score-points">{{SCORE_BUDGET}}/30</span>
+        </div>
+        <div class="score-item">
+          <span class="score-name">Timeline</span>
+          <span class="score-points">{{SCORE_TIMELINE}}/25</span>
+        </div>
+        <div class="score-item">
+          <span class="score-name">Interés en Propiedad</span>
+          <span class="score-points">{{SCORE_INTEREST}}/20</span>
+        </div>
+        <div class="score-item">
+          <span class="score-name">Completitud de Datos</span>
+          <span class="score-points">{{SCORE_COMPLETENESS}}/15</span>
+        </div>
+        <div class="score-item">
+          <span class="score-name">Formulario Completo</span>
+          <span class="score-points">{{SCORE_FORM}}/10</span>
+        </div>
+      </div>
+      
+      <!-- Recommended Actions -->
+      <div class="actions">
+        <h3>⚡ Acciones Recomendadas ({{PRIORITY_TIME}}):</h3>
+        <ul>
+          <li>Revisar disponibilidad y condiciones actuales de la propiedad</li>
+          <li>Preparar dossier técnico y legal</li>
+          <li>Contactar al cliente por teléfono (preferiblemente)</li>
+          <li>Enviar información adicional + propiedades similares</li>
+          <li>Agendar visita privada</li>
+        </ul>
+      </div>
+      
+      <!-- CRM Quick Links -->
+      <div class="crm-links">
+        <h3 style="margin: 0 0 10px 0; font-size: 14px; color: #065f46;">🔗 Acceso Rápido al CRM:</h3>
+        <a href="https://twenty.ancloraprivateestates.com/contacts/{{CONTACT_ID}}" target="_blank">Ver Contacto</a>
+        <a href="https://twenty.ancloraprivateestates.com/deals/{{DEAL_ID}}" target="_blank">Ver Deal</a>
+        <a href="https://twenty.ancloraprivateestates.com/contacts/{{CONTACT_ID}}/activity" target="_blank">Registrar Actividad</a>
+      </div>
+      
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+      <p>Generado automáticamente por Anclora Cognitive Solutions<br>
+      n8n Workflow: Property Inquiry Lead Capture</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,228 @@
+{
+  "site": {
+    "name": "Anclora Private Estates",
+    "tagline": "El privilegio de la privacidad en el Mediterráneo",
+    "description": "Agencia inmobiliaria de lujo en Mallorca. Propiedades exclusivas, confidencialidad absoluta y asesoría integral para inversores de alto patrimonio."
+  },
+  "hero": {
+    "headline": "Cimentando el futuro, codificando el valor",
+    "subheadline": "El ecosistema donde la excelencia inmobiliaria del Mediterráneo y la inteligencia artificial de vanguardia convergen para crear resultados sin precedentes",
+    "cta_properties": "Descubrir Propiedades Exclusivas",
+    "cta_ai": "Optimizar mi Agencia con IA",
+    "scroll_hint": "Explorar"
+  },
+  "problem": {
+    "title": "Dos mundos, una solución integral",
+    "investor": {
+      "title": "Para el Inversor",
+      "description": "Encontrar una propiedad que trascienda el ladrillo y el mortero, que represente un verdadero legado y privacidad, es un desafío que requiere conocimiento local y un acceso exclusivo."
+    },
+    "agent": {
+      "title": "Para el Agente",
+      "description": "Maximizar el potencial de cada lead, operar con eficiencia 24/7 y superar a la competencia en un mercado saturado, exige una transformación tecnológica que la mayoría de las agencias aún no han abordado."
+    }
+  },
+  "privateEstates": {
+    "title": "Anclora Private Estates",
+    "tagline": "El privilegio de la privacidad en el Mediterráneo",
+    "description": "No somos una agencia más. Somos curadores de estilos de vida. Ofrecemos acceso a una colección de propiedades únicas y off-market en Mallorca, con un servicio discreto y personalizado que protege su privacidad por encima de todo.",
+    "features": {
+      "curation": {
+        "title": "Curación de Activos",
+        "description": "Selección manual de propiedades con potencial de legado"
+      },
+      "confidentiality": {
+        "title": "Confidencialidad Absoluta",
+        "description": "Su privacidad es la base de nuestra relación"
+      },
+      "advisory": {
+        "title": "Asesoría Integral",
+        "description": "Desde la búsqueda hasta la gestión post-compra"
+      }
+    },
+    "cta": "Solicitar Consulta Privada",
+    "compliance": "Una marca de Anclora Nexus Group | Brokered by eXp Realty Spain"
+  },
+  "cognitiveSolutions": {
+    "title": "Anclora Cognitive Solutions",
+    "tagline": "Inteligencia que transforma negocios",
+    "description": "Transformamos su agencia inmobiliaria en un sistema operativo autónomo. Implementamos 'empleados digitales' de IA que captan, califican y nutren leads 24/7, liberando a su equipo para que se centre en cerrar tratos.",
+    "features": {
+      "agent": {
+        "title": "Agente IA 24/7",
+        "description": "Respuesta instantánea a leads de portales como Idealista"
+      },
+      "automation": {
+        "title": "Automatización de Seguimiento",
+        "description": "Nutrición persistente que convierte leads fríos en clientes"
+      },
+      "dashboard": {
+        "title": "Dashboard de ROI",
+        "description": "Tome decisiones basadas en datos, no en intuiciones"
+      }
+    },
+    "cta": "Realizar mi Auditoría IA Gratuita"
+  },
+  "socialProof": {
+    "title": "Alianzas estratégicas y tecnología de vanguardia",
+    "subtitle": "Confianza respaldada por líderes de la industria"
+  },
+  "properties": {
+    "title": "Propiedades Destacadas",
+    "subtitle": "Selección exclusiva de propiedades en Mallorca",
+    "viewAll": "Ver Todas las Propiedades",
+    "filters": {
+      "type": "Tipo de Propiedad",
+      "location": "Ubicación",
+      "priceRange": "Rango de Precio",
+      "bedrooms": "Dormitorios",
+      "all": "Todas"
+    },
+    "types": {
+      "villa": "Villa",
+      "apartment": "Apartamento",
+      "penthouse": "Ático",
+      "estate": "Finca",
+      "land": "Terreno"
+    },
+    "status": {
+      "available": "Disponible",
+      "reserved": "Reservada",
+      "sold": "Vendida",
+      "offMarket": "Off-Market"
+    },
+    "details": {
+      "bedrooms": "Dormitorios",
+      "bathrooms": "Baños",
+      "area": "m² construidos",
+      "plotSize": "m² parcela",
+      "yearBuilt": "Año de construcción",
+      "priceOnRequest": "Precio bajo consulta"
+    },
+    "cta": {
+      "viewDetails": "Ver Detalles",
+      "requestInfo": "Solicitar Información",
+      "scheduleVisit": "Agendar Visita"
+    }
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Asesoría integral en cada paso del camino",
+    "buy": {
+      "title": "Compra",
+      "description": "Acceso exclusivo a propiedades off-market y asesoría personalizada para encontrar su hogar ideal o inversión perfecta"
+    },
+    "sell": {
+      "title": "Venta",
+      "description": "Estrategia de marketing premium, valoración precisa y negociación experta para maximizar el valor de su propiedad"
+    },
+    "valuation": {
+      "title": "Valoración",
+      "description": "Análisis detallado del mercado y valoración profesional de su propiedad sin compromiso"
+    },
+    "management": {
+      "title": "Gestión",
+      "description": "Servicios post-compra: gestión de reformas, administración y mantenimiento de su propiedad"
+    }
+  },
+  "contact": {
+    "title": "Hablemos de su Proyecto",
+    "subtitle": "Complete el formulario y nos pondremos en contacto en menos de 24 horas",
+    "form": {
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "message": "Mensaje",
+      "propertyType": "Tipo de propiedad de interés",
+      "budget": "Presupuesto",
+      "timeline": "Plazo de decisión",
+      "newsletter": "Deseo recibir novedades y propiedades exclusivas",
+      "privacy": "Acepto la política de privacidad",
+      "submit": "Enviar Consulta",
+      "sending": "Enviando..."
+    },
+    "budgetRanges": {
+      "under500k": "Menos de 500.000€",
+      "500k1m": "500.000€ - 1M€",
+      "1m2m": "1M€ - 2M€",
+      "2m5m": "2M€ - 5M€",
+      "over5m": "Más de 5M€"
+    },
+    "timelines": {
+      "immediate": "Inmediato",
+      "1-3months": "1-3 meses",
+      "3-6months": "3-6 meses",
+      "6-12months": "6-12 meses",
+      "noRush": "Sin prisa"
+    },
+    "success": "¡Gracias! Hemos recibido su mensaje y nos pondremos en contacto pronto.",
+    "error": "Hubo un error al enviar el formulario. Por favor, inténtelo de nuevo."
+  },
+  "about": {
+    "title": "Sobre Anclora Private Estates",
+    "subtitle": "Excelencia inmobiliaria impulsada por tecnología",
+    "story": {
+      "title": "Nuestra Historia",
+      "content": "Anclora Private Estates nace de la convergencia entre la experiencia inmobiliaria mediterránea y la innovación tecnológica. Bajo el paraguas de eXp Realty España, combinamos la escala de una red global con la agilidad de una boutique de lujo."
+    },
+    "philosophy": {
+      "title": "Nuestra Filosofía",
+      "content": "Creemos que el lujo verdadero reside en la privacidad, el acceso exclusivo y el servicio personalizado. No listamos propiedades; curamos legados."
+    },
+    "values": {
+      "title": "Nuestros Valores",
+      "discretion": "Discreción",
+      "excellence": "Excelencia",
+      "innovation": "Innovación",
+      "integrity": "Integridad"
+    }
+  },
+  "blog": {
+    "title": "Insights del Mercado",
+    "subtitle": "Análisis, tendencias y perspectivas del sector inmobiliario de lujo",
+    "readMore": "Leer más",
+    "readingTime": "min de lectura",
+    "categories": {
+      "marketInsights": "Análisis de Mercado",
+      "propertySpotlight": "Propiedades Destacadas",
+      "lifestyle": "Estilo de Vida",
+      "investment": "Inversión",
+      "news": "Noticias"
+    },
+    "latest": "Últimas Publicaciones",
+    "featured": "Destacado"
+  },
+  "footer": {
+    "description": "Agencia inmobiliaria de lujo en Mallorca especializada en propiedades exclusivas para inversores de alto patrimonio.",
+    "contact": {
+      "title": "Contacto",
+      "email": "info@ancloraprivateestates.com",
+      "phone": "+34 XXX XXX XXX",
+      "address": "Mallorca, Islas Baleares, España"
+    },
+    "hours": {
+      "title": "Horario",
+      "weekdays": "Lunes - Viernes: 9:00 - 19:00",
+      "saturday": "Sábado: 10:00 - 14:00",
+      "sunday": "Domingo: Cerrado"
+    },
+    "copyright": "© {{year}} Anclora Private Estates. Todos los derechos reservados.",
+    "brokeredBy": "Brokered by eXp Realty Spain"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "close": "Cerrar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "showMore": "Ver más",
+    "showLess": "Ver menos",
+    "learnMore": "Saber más",
+    "contactUs": "Contáctenos",
+    "backToTop": "Volver arriba"
+  }
+}

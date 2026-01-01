@@ -1,0 +1,131 @@
+{
+  "name": "Anclora - Contact Form Consultation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "contact-consultation",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "https://ancloraprivateestates.com,http://localhost:3000"
+        }
+      },
+      "id": "webhook-consultation",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const formData = $input.first().json.body;\nconst requiredFields = ['name', 'email', 'message', 'acceptPrivacy'];\nconst missingFields = requiredFields.filter(field => !formData[field]);\n\nif (missingFields.length > 0) {\n  return { json: { success: false, error: `Missing: ${missingFields.join(', ')}`, code: 'VALIDATION_ERROR' } };\n}\n\nconst emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\nif (!emailRegex.test(formData.email)) {\n  return { json: { success: false, error: 'Invalid email', code: 'INVALID_EMAIL' } };\n}\n\nreturn {\n  json: {\n    name: formData.name.trim(),\n    email: formData.email.trim().toLowerCase(),\n    phone: formData.phone?.trim() || null,\n    message: formData.message.trim(),\n    type: 'consultation',\n    timestamp: new Date().toISOString(),\n    source: 'website',\n    metadata: {\n      userAgent: $input.first().json.headers['user-agent'],\n      ip: $input.first().json.headers['x-forwarded-for']\n    }\n  }\n};"
+      },
+      "id": "validate-sanitize",
+      "name": "Validate & Sanitize",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [{"value1": "={{ $json.success }}", "operation": "notEqual", "value2": "false"}]
+        }
+      },
+      "id": "check-validation",
+      "name": "Check Validation",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.TWENTY_CRM_API_URL }}/contacts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{"name": "Authorization", "value": "Bearer ={{ $env.TWENTY_CRM_API_KEY }}"}]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "firstName", "value": "={{ $json.name.split(' ')[0] }}"},
+            {"name": "lastName", "value": "={{ $json.name.split(' ').slice(1).join(' ') }}"},
+            {"name": "email", "value": "={{ $json.email }}"},
+            {"name": "phone", "value": "={{ $json.phone }}"},
+            {"name": "source", "value": "Website - Consultation Request"},
+            {"name": "leadScore", "value": "50"},
+            {"name": "leadStatus", "value": "warm"},
+            {"name": "requestType", "value": "consultation"},
+            {"name": "notes", "value": "={{ $json.message }}"}
+          ]
+        }
+      },
+      "id": "create-crm-contact",
+      "name": "Create CRM Contact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [850, 200]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $env.SMTP_FROM_EMAIL }}",
+        "toEmail": "={{ $json.email }}",
+        "subject": "Consulta Recibida - Anclora Private Estates",
+        "emailType": "html",
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }\n    .container { max-width: 600px; margin: 0 auto; padding: 20px; }\n    .header { background: #C5A059; color: white; padding: 30px; text-align: center; }\n    .content { background: #f9f9f9; padding: 30px; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"header\"><h1>Consultoría Inmobiliaria</h1></div>\n    <div class=\"content\">\n      <h2>Hola {{ $json.name }},</h2>\n      <p>Gracias por tu interés en nuestros servicios de consultoría. Un asesor especializado revisará tu consulta y te contactará en las próximas 48 horas.</p>\n      <p><strong>Tu mensaje:</strong></p>\n      <p style=\"background: white; padding: 15px; border-left: 3px solid #C5A059;\">{{ $json.message }}</p>\n      <p>Mientras tanto, explora nuestros servicios:</p>\n      <ul>\n        <li><a href=\"https://ancloraprivateestates.com/servicios/compra\">Asesoría de Compra</a></li>\n        <li><a href=\"https://ancloraprivateestates.com/servicios/venta\">Marketing de Venta</a></li>\n        <li><a href=\"https://ancloraprivateestates.com/servicios/gestion\">Gestión Integral</a></li>\n      </ul>\n      <p>Saludos,<br><strong>Equipo Anclora</strong></p>\n    </div>\n  </div>\n</body>\n</html>"
+      },
+      "id": "send-confirmation",
+      "name": "Send Confirmation",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [850, 350],
+      "credentials": {"smtp": {"id": "smtp-credentials"}}
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $env.SMTP_FROM_EMAIL }}",
+        "toEmail": "={{ $env.SALES_TEAM_EMAIL }}",
+        "subject": "📋 Nueva Consulta - {{ $json.name }}",
+        "emailType": "html",
+        "html": "<!DOCTYPE html>\n<html>\n<body style=\"font-family: Arial;\">\n  <div style=\"max-width: 600px; margin: 0 auto;\">\n    <div style=\"background: #6b7280; color: white; padding: 20px; text-align: center;\">\n      <h2>📋 SOLICITUD DE CONSULTORÍA</h2>\n    </div>\n    <div style=\"padding: 20px; background: #f9f9f9;\">\n      <p><strong>Nombre:</strong> {{ $json.name }}</p>\n      <p><strong>Email:</strong> <a href=\"mailto:{{ $json.email }}\">{{ $json.email }}</a></p>\n      <p><strong>Teléfono:</strong> {{ $json.phone || 'No proporcionado' }}</p>\n      <hr>\n      <p><strong>Mensaje:</strong></p>\n      <p style=\"background: white; padding: 15px;\">{{ $json.message }}</p>\n      <hr>\n      <p><em>Contactar en 48h</em></p>\n    </div>\n  </div>\n</body>\n</html>"
+      },
+      "id": "notify-sales",
+      "name": "Notify Sales",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [850, 500],
+      "credentials": {"smtp": {"id": "smtp-credentials"}}
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, message: 'Consulta recibida. Te contactaremos en 48h.', contactId: $('Create CRM Contact').item.json.id } }}"
+      },
+      "id": "success-response",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {"responseCode": 400}
+      },
+      "id": "error-response",
+      "name": "Error Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [850, 650]
+    }
+  ],
+  "connections": {
+    "Webhook": {"main": [[{"node": "Validate & Sanitize"}]]},
+    "Validate & Sanitize": {"main": [[{"node": "Check Validation"}]]},
+    "Check Validation": {"main": [[{"node": "Create CRM Contact"}, {"node": "Send Confirmation"}, {"node": "Notify Sales"}], [{"node": "Error Response"}]]},
+    "Create CRM Contact": {"main": [[{"node": "Success Response"}]]}
+  },
+  "tags": [{"id": "anclora", "name": "Anclora"}, {"id": "consultation", "name": "Consultation"}]
+}

@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Montserrat', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  /* Typography Utilities */
+  .heading-display {
+    @apply font-serif text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight;
+  }
+  
+  .heading-1 {
+    @apply font-serif text-4xl md:text-5xl font-bold tracking-tight;
+  }
+  
+  .heading-2 {
+    @apply font-serif text-3xl md:text-4xl font-semibold tracking-tight;
+  }
+  
+  .heading-3 {
+    @apply font-serif text-2xl md:text-3xl font-semibold;
+  }
+  
+  .heading-4 {
+    @apply font-sans text-xl md:text-2xl font-semibold;
+  }
+  
+  .heading-5 {
+    @apply font-sans text-lg md:text-xl font-semibold;
+  }
+  
+  .body-large {
+    @apply font-sans text-lg md:text-xl leading-relaxed;
+  }
+  
+  .body-normal {
+    @apply font-sans text-base leading-relaxed;
+  }
+  
+  .body-small {
+    @apply font-sans text-sm leading-relaxed;
+  }
+  
+  .label {
+    @apply font-sans text-sm font-medium uppercase tracking-wider;
+  }
+  
+  .caption {
+    @apply font-sans text-xs text-gray-600;
+  }
+
+  /* Luxury Typography */
+  .luxury-heading {
+    @apply font-serif text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-anclora-gold;
+  }
+  
+  .luxury-subheading {
+    @apply font-serif text-xl md:text-2xl font-medium italic text-gray-700;
+  }
+}
+
+@layer base {
+  :root {
+    /* Colores Anclora */
+    --color-gold: #c5a059;
+    --color-gold-light: #d4b575;
+    --color-gold-dark: #a6834a;
+    --color-black: #000000;
+    --color-gray-dark: #1a1a1a;
+    --color-gray-medium: #4a4a4a;
+    --color-gray-light: #e5e5e5;
+    --color-beige: #f5f5dc;
+    --color-beige-light: #faf9f6;
+    --color-white: #ffffff;
+
+    /* Fuentes */
+    --font-sans: var(--font-montserrat), system-ui, sans-serif;
+    --font-serif: var(--font-playfair), Georgia, serif;
+
+    /* Sombras */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --shadow-gold: 0 10px 30px -5px rgba(197, 160, 89, 0.3);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-white text-anclora-gray-dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Botón primario con estilo Anclora */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md bg-anclora-gold px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-anclora-gold-dark hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-anclora-gold focus:ring-offset-2;
+  }
+
+  /* Botón secundario */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-md border-2 border-anclora-gold px-6 py-3 text-sm font-semibold text-anclora-gold transition-all duration-300 hover:bg-anclora-gold hover:text-white focus:outline-none focus:ring-2 focus:ring-anclora-gold focus:ring-offset-2;
+  }
+
+  /* Heading con estilo serif */
+  .heading-serif {
+    @apply font-serif text-anclora-gray-dark;
+  }
+
+  /* Contenedor con padding estándar */
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Sección con espaciado estándar */
+  .section-spacing {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  /* Divider dorado */
+  .divider-gold {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-anclora-gold to-transparent;
+  }
+
+  /* Card con estilo Anclora */
+  .card-anclora {
+    @apply rounded-lg bg-white p-6 shadow-md transition-all duration-300 hover:shadow-xl;
+  }
+
+  /* Input con estilo Anclora */
+  .input-anclora {
+    @apply w-full rounded-md border border-anclora-gray-light px-4 py-3 text-sm transition-colors focus:border-anclora-gold focus:outline-none focus:ring-2 focus:ring-anclora-gold focus:ring-offset-2;
+  }
+
+  /* Animación fade-in */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  /* Animación slide-up */
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+}
+
+@layer utilities {
+  /* Gradient text dorado */
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-anclora-gold to-anclora-gold-light bg-clip-text text-transparent;
+  }
+
+  /* Box shadow dorado */
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  /* Scrollbar personalizado */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Aspect ratios personalizados */
+  .aspect-property-card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .aspect-hero {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Smooth scroll */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    @apply text-black;
+  }
+}

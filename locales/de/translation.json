@@ -1,0 +1,156 @@
+{
+  "welcome": {
+    "greeting": "Hallo! Ich bin der virtuelle Assistent von Anclora Private Estates.",
+    "intro": "Ich helfe Ihnen, die perfekte Immobilie in Mallorca zu finden.",
+    "ask_name": "Wie ist Ihr Name?"
+  },
+  "menu": {
+    "main": "Wie kann ich Ihnen heute helfen?",
+    "options": {
+      "search": "🔍 Immobilien suchen",
+      "appointment": "📅 Besichtigung vereinbaren",
+      "info": "ℹ️ Informationen zur Immobilie",
+      "agent": "👤 Mit einem Berater sprechen",
+      "language": "🌍 Sprache ändern"
+    }
+  },
+  "search": {
+    "property_type": "Welche Art von Immobilie suchen Sie?",
+    "types": {
+      "villa": "Villa",
+      "apartment": "Wohnung",
+      "land": "Grundstück",
+      "commercial": "Gewerbe"
+    },
+    "location": "In welcher Gegend von Mallorca möchten Sie suchen?",
+    "locations": {
+      "palma": "Palma de Mallorca",
+      "southwest": "Südwesten (Calvià, Andratx)",
+      "north": "Norden (Pollença, Alcúdia)",
+      "east": "Osten (Manacor, Artà)",
+      "center": "Zentrum (Inca, Binissalem)"
+    },
+    "budget": "Was ist Ihr ungefähres Budget?",
+    "budget_ranges": {
+      "under_500k": "Unter 500.000€",
+      "500k_1m": "500.000€ - 1.000.000€",
+      "1m_2m": "1.000.000€ - 2.000.000€",
+      "2m_5m": "2.000.000€ - 5.000.000€",
+      "over_5m": "Über 5.000.000€"
+    },
+    "timeline": "Wann möchten Sie kaufen?",
+    "timelines": {
+      "immediate": "So bald wie möglich",
+      "1_3_months": "In 1-3 Monaten",
+      "3_6_months": "In 3-6 Monaten",
+      "6_12_months": "In 6-12 Monaten",
+      "exploring": "Ich schaue mich nur um"
+    },
+    "results": "Ich habe {{count}} Immobilien gefunden, die Ihren Kriterien entsprechen:",
+    "no_results": "Entschuldigung, ich habe keine Immobilien mit diesen Kriterien gefunden. Möchten Sie Ihre Suche anpassen?"
+  },
+  "property": {
+    "details": "📍 **{{title}}**\n\n💰 Preis: {{price}}€\n📐 Fläche: {{size}}m²\n🛏️ Schlafzimmer: {{bedrooms}}\n🚿 Badezimmer: {{bathrooms}}\n📍 Lage: {{location}}\n\n{{description}}",
+    "schedule_visit": "Möchten Sie eine Besichtigung vereinbaren?",
+    "request_info": "Benötigen Sie weitere Informationen?",
+    "similar": "Ähnliche Immobilien ansehen"
+  },
+  "appointment": {
+    "request": "Welche Immobilie möchten Sie besichtigen?",
+    "date": "Welches Datum passt Ihnen?",
+    "time": "Welche Uhrzeit bevorzugen Sie?",
+    "times": {
+      "morning": "Vormittag (10:00-12:00)",
+      "afternoon": "Nachmittag (15:00-17:00)",
+      "evening": "Abend (17:00-19:00)"
+    },
+    "contact": "Wie sollen wir Sie am besten kontaktieren?",
+    "contact_methods": {
+      "whatsapp": "WhatsApp",
+      "phone": "Telefonanruf",
+      "email": "E-Mail"
+    },
+    "confirmation": "✅ **Besichtigung vereinbart**\n\n📅 Datum: {{date}}\n🕐 Uhrzeit: {{time}}\n📍 Immobilie: {{property}}\n\nEin Berater wird sich mit Ihnen in Verbindung setzen, um die Details zu bestätigen.",
+    "notes": "Gibt es noch etwas, das wir wissen sollten?"
+  },
+  "handoff": {
+    "agent_requested": "Verstanden, ich verbinde Sie mit einem menschlichen Berater.",
+    "transferring": "🔄 Verbindung zu einem Berater wird hergestellt...",
+    "wait_time": "Geschätzte Wartezeit: {{minutes}} Minuten",
+    "agent_connected": "✅ Verbunden mit {{agent_name}}",
+    "agent_unavailable": "Entschuldigung, alle unsere Berater sind derzeit beschäftigt. Möchten Sie eine Nachricht hinterlassen?",
+    "leave_message": "Bitte schreiben Sie Ihre Nachricht und wir werden uns so schnell wie möglich bei Ihnen melden.",
+    "message_received": "✅ Nachricht erhalten. Wir werden uns innerhalb von {{hours}} Stunden bei Ihnen melden.",
+    "business_hours": "Unsere Geschäftszeiten sind Montag bis Freitag, 9:00-18:00 MEZ."
+  },
+  "buyer_qualification": {
+    "buyer_type": "Sind Sie ein Investor oder Endkäufer?",
+    "types": {
+      "investor": "Investor",
+      "end_user": "Endkäufer (Eigennutzung)",
+      "relocating": "Umzug nach Mallorca",
+      "vacation": "Zweitwohnsitz/Urlaub"
+    },
+    "financing": "Wie planen Sie die Finanzierung des Kaufs?",
+    "financing_options": {
+      "cash": "Barzahlung",
+      "mortgage_approved": "Vorab genehmigte Hypothek",
+      "mortgage_needed": "Hypothek benötigt",
+      "other": "Andere"
+    },
+    "investment_goals": "Was sind Ihre Investitionsziele?",
+    "goals": {
+      "rental_income": "Mieteinnahmen",
+      "capital_appreciation": "Wertsteigerung",
+      "personal_use": "Eigennutzung",
+      "diversification": "Portfolio-Diversifizierung"
+    }
+  },
+  "errors": {
+    "generic": "Entschuldigung, es ist ein Fehler aufgetreten. Könnten Sie es erneut versuchen?",
+    "invalid_input": "Ich habe Ihre Antwort nicht verstanden. Könnten Sie sie anders formulieren?",
+    "property_not_found": "Ich konnte diese Immobilie nicht finden. Könnten Sie mehr Details angeben?",
+    "system_error": "Wir haben technische Probleme. Ein Berater wird sich bald bei Ihnen melden.",
+    "timeout": "Ich habe keine Antwort erhalten. Sind Sie noch da?",
+    "rate_limit": "Sie haben zu viele Nachrichten gesendet. Bitte warten Sie einen Moment."
+  },
+  "confirmation": {
+    "yes": "Ja",
+    "no": "Nein",
+    "maybe": "Vielleicht",
+    "back": "Zurück",
+    "cancel": "Abbrechen",
+    "continue": "Weiter"
+  },
+  "system": {
+    "typing": "Schreibt...",
+    "processing": "Wird verarbeitet...",
+    "searching": "Sucht...",
+    "loading": "Lädt..."
+  },
+  "feedback": {
+    "rate_experience": "Wie würden Sie Ihre Erfahrung bewerten?",
+    "comments": "Haben Sie weitere Kommentare?",
+    "thank_you": "Vielen Dank für Ihr Feedback!"
+  },
+  "language": {
+    "current": "Aktuelle Sprache: Deutsch",
+    "change": "Sprache ändern",
+    "options": {
+      "es": "🇪🇸 Español",
+      "en": "🇬🇧 English",
+      "de": "🇩🇪 Deutsch"
+    },
+    "changed": "Sprache auf Deutsch geändert"
+  },
+  "marketing": {
+    "newsletter": "Möchten Sie unseren Newsletter mit den besten Immobilien erhalten?",
+    "alerts": "Möchten Sie Benachrichtigungen erhalten, wenn neue Immobilien Ihren Kriterien entsprechen?",
+    "subscribed": "✅ Erfolgreich abonniert"
+  },
+  "legal": {
+    "privacy": "Durch die Nutzung dieses Dienstes akzeptieren Sie unsere Datenschutzrichtlinie.",
+    "terms": "Allgemeine Geschäftsbedingungen ansehen",
+    "gdpr": "Ihre Daten sind gemäß DSGVO geschützt."
+  }
+}

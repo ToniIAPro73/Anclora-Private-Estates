@@ -1,0 +1,68 @@
+<!-- TEMPLATE: Internal Notification - General Contact -->
+<!-- Variables: {{NAME}}, {{EMAIL}}, {{PHONE}}, {{MESSAGE}}, {{CONTACT_ID}}, {{TIMESTAMP}} -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial, sans-serif; color: #333; background: #f5f5f5; }
+    .container { max-width: 600px; margin: 20px auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .header { background: linear-gradient(135deg, #4b5563 0%, #374151 100%); color: white; padding: 25px; text-align: center; }
+    .header h1 { margin: 0; font-size: 24px; }
+    .content { padding: 25px; }
+    .info-row { display: flex; margin: 12px 0; }
+    .label { min-width: 100px; font-weight: bold; color: #666; }
+    .value { color: #333; }
+    .value a { color: #C5A059; text-decoration: none; }
+    .message-box { background: #f9fafb; border-left: 4px solid #C5A059; padding: 15px; margin: 20px 0; }
+    .crm-link { display: inline-block; background: #C5A059; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 15px; }
+    .footer { background: #f9fafb; padding: 15px; text-align: center; color: #6b7280; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📧 Nuevo Contacto General</h1>
+    </div>
+    
+    <div class="content">
+      <div class="info-row">
+        <div class="label">Nombre:</div>
+        <div class="value">{{NAME}}</div>
+      </div>
+      <div class="info-row">
+        <div class="label">Email:</div>
+        <div class="value"><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></div>
+      </div>
+      <div class="info-row">
+        <div class="label">Teléfono:</div>
+        <div class="value">{{PHONE_DISPLAY}}</div>
+      </div>
+      <div class="info-row">
+        <div class="label">Recibido:</div>
+        <div class="value">{{TIMESTAMP}}</div>
+      </div>
+      
+      <div class="message-box">
+        <h3 style="margin: 0 0 10px 0;">Mensaje:</h3>
+        <p style="margin: 0;">{{MESSAGE}}</p>
+      </div>
+      
+      <p style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 4px; border-left: 4px solid #f59e0b;">
+        <strong>⏱️ SLA:</strong> Responder en menos de 24 horas
+      </p>
+      
+      <div style="text-align: center;">
+        <a href="https://twenty.ancloraprivateestates.com/contacts/{{CONTACT_ID}}" class="crm-link" target="_blank">
+          Ver en CRM
+        </a>
+      </div>
+    </div>
+    
+    <div class="footer">
+      Generado por n8n Workflow: General Contact
+    </div>
+  </div>
+</body>
+</html>

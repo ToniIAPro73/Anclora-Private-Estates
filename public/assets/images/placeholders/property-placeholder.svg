@@ -1,0 +1,38 @@
+<svg width="1600" height="1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="propGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FAF9F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E5E5E5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#propGrad)"/>
+  
+  <!-- Simple house icon -->
+  <path d="M800 400 L600 550 L600 800 L1000 800 L1000 550 Z" fill="#C5A059" opacity="0.2"/>
+  <rect x="720" y="650" width="160" height="150" fill="#A6834A" opacity="0.3"/>
+  
+  <!-- Text -->
+  <text
+    x="50%"
+    y="55%"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="Playfair Display, serif"
+    font-size="56"
+    font-weight="600"
+    fill="#1A1A1A"
+  >
+    Property Image
+  </text>
+  <text
+    x="50%"
+    y="63%"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="Montserrat, sans-serif"
+    font-size="28"
+    fill="#C5A059"
+  >
+    1600 × 1200
+  </text>
+</svg>

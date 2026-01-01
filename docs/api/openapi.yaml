@@ -1,0 +1,682 @@
+openapi: 3.0.3
+info:
+  title: Anclora WhatsApp Integration API
+  description: |
+    API completa para integración de WhatsApp en Anclora Private Estates.
+    
+    Sistema de automatización para agencia inmobiliaria de lujo en Mallorca con:
+    - Queue manager para mensajes WhatsApp
+    - Analytics y tracking de conversiones
+    - Bot conversacional con handoff
+    - Integración Evolution API
+    
+    **Características:**
+    - Rate limiting: 100 req/s
+    - Authentication: API Key
+    - Webhook support
+    - Real-time metrics
+  version: 1.0.0
+  contact:
+    name: Anclora Tech Team
+    email: tech@anclora.com
+  license:
+    name: Proprietary
+    url: https://anclora.com/license
+
+servers:
+  - url: https://api.anclora.com/v1
+    description: Production
+  - url: https://staging-api.anclora.com/v1
+    description: Staging
+  - url: http://localhost:3000/api
+    description: Local Development
+
+tags:
+  - name: Queue
+    description: Message queue operations
+  - name: Analytics
+    description: Analytics and metrics
+  - name: WhatsApp
+    description: WhatsApp messaging
+  - name: Bot
+    description: Conversational bot
+  - name: Health
+    description: Health checks and monitoring
+  - name: Webhooks
+    description: Webhook endpoints
+
+paths:
+  # ===========================================================================
+  # HEALTH ENDPOINTS
+  # ===========================================================================
+  /health:
+    get:
+      summary: Comprehensive health check
+      tags: [Health]
+      responses:
+        '200':
+          description: System healthy or degraded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+        '503':
+          description: System unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+
+  /health/live:
+    get:
+      summary: Liveness probe
+      tags: [Health]
+      responses:
+        '200':
+          description: Application is alive
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alive:
+                    type: boolean
+                    example: true
+        '503':
+          description: Application is not responding
+
+  /health/ready:
+    get:
+      summary: Readiness probe
+      tags: [Health]
+      responses:
+        '200':
+          description: Application ready for traffic
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ready:
+                    type: boolean
+                    example: true
+        '503':
+          description: Application not ready
+
+  /metrics:
+    get:
+      summary: Prometheus metrics
+      tags: [Health]
+      responses:
+        '200':
+          description: Prometheus metrics
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  # ===========================================================================
+  # QUEUE ENDPOINTS
+  # ===========================================================================
+  /queue/add:
+    post:
+      summary: Add message to queue
+      tags: [Queue]
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueueMessageRequest'
+            examples:
+              text:
+                summary: Text message
+                value:
+                  recipientPhone: "34600123456"
+                  messageType: "text"
+                  content: "Hola, ¿en qué puedo ayudarte?"
+                  priority: "normal"
+              media:
+                summary: Media message
+                value:
+                  recipientPhone: "34600123456"
+                  messageType: "media"
+                  mediaUrl: "https://example.com/image.jpg"
+                  caption: "Villa de lujo en Mallorca"
+                  priority: "high"
+      responses:
+        '200':
+          description: Message queued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueueMessageResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /queue/bulk:
+    post:
+      summary: Add multiple messages to queue
+      tags: [Queue]
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [messages]
+              properties:
+                messages:
+                  type: array
+                  maxItems: 100
+                  items:
+                    $ref: '#/components/schemas/QueueMessageRequest'
+      responses:
+        '200':
+          description: Messages queued successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  queued:
+                    type: integer
+                    example: 50
+                  messageIds:
+                    type: array
+                    items:
+                      type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /queue/schedule:
+    post:
+      summary: Schedule message for later delivery
+      tags: [Queue]
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/QueueMessageRequest'
+                - type: object
+                  required: [scheduledFor]
+                  properties:
+                    scheduledFor:
+                      type: string
+                      format: date-time
+                      example: "2026-01-15T10:00:00Z"
+      responses:
+        '200':
+          description: Message scheduled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueueMessageResponse'
+
+  /queue/metrics:
+    get:
+      summary: Get queue metrics
+      tags: [Queue]
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: Queue metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueueMetrics'
+
+  # ===========================================================================
+  # ANALYTICS ENDPOINTS
+  # ===========================================================================
+  /analytics/track/message-sent:
+    post:
+      summary: Track message sent event
+      tags: [Analytics]
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [phone, messageType]
+              properties:
+                phone:
+                  type: string
+                  example: "34600123456"
+                messageType:
+                  type: string
+                  enum: [text, media, template]
+                campaignId:
+                  type: string
+                  example: "campaign-2026-01"
+      responses:
+        '200':
+          description: Event tracked
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+
+  /analytics/track/conversion:
+    post:
+      summary: Track conversion event
+      tags: [Analytics]
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [phone, type]
+              properties:
+                phone:
+                  type: string
+                  example: "34600123456"
+                type:
+                  type: string
+                  enum: [lead, qualified_lead, appointment, sale]
+                value:
+                  type: number
+                  description: Value in EUR (for sales)
+                  example: 2500000
+                campaignId:
+                  type: string
+      responses:
+        '200':
+          description: Conversion tracked
+
+  /analytics/metrics/overview:
+    get:
+      summary: Get analytics overview
+      tags: [Analytics]
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Analytics overview
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsOverview'
+
+  # ===========================================================================
+  # WHATSAPP ENDPOINTS
+  # ===========================================================================
+  /whatsapp/send:
+    post:
+      summary: Send WhatsApp message directly
+      tags: [WhatsApp]
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhatsAppSendRequest'
+      responses:
+        '200':
+          description: Message sent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  messageId:
+                    type: string
+                  status:
+                    type: string
+
+  /whatsapp/instances:
+    get:
+      summary: List WhatsApp instances
+      tags: [WhatsApp]
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: List of instances
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  instances:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        status:
+                          type: string
+                          enum: [connected, disconnected, connecting]
+                        qrCode:
+                          type: string
+
+  # ===========================================================================
+  # BOT ENDPOINTS
+  # ===========================================================================
+  /bot/intents:
+    get:
+      summary: List available intents
+      tags: [Bot]
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: List of intents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  intents:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        examples:
+                          type: array
+                          items:
+                            type: string
+
+  /bot/handoff:
+    post:
+      summary: Request handoff to human agent
+      tags: [Bot]
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [phone, reason]
+              properties:
+                phone:
+                  type: string
+                reason:
+                  type: string
+                  enum: [complex_query, user_request, bot_confusion, high_value]
+                assignedAgent:
+                  type: string
+      responses:
+        '200':
+          description: Handoff initiated
+
+  # ===========================================================================
+  # WEBHOOK ENDPOINTS
+  # ===========================================================================
+  /webhooks/whatsapp:
+    post:
+      summary: WhatsApp webhook receiver
+      tags: [Webhooks]
+      description: Receives webhooks from Evolution API
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhatsAppWebhook'
+      responses:
+        '200':
+          description: Webhook processed
+        '400':
+          description: Invalid webhook data
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+  schemas:
+    # Health Schemas
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        timestamp:
+          type: string
+          format: date-time
+        uptime:
+          type: number
+        checks:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              status:
+                type: string
+                enum: [pass, warn, fail]
+              message:
+                type: string
+              duration:
+                type: number
+              details:
+                type: object
+
+    # Queue Schemas
+    QueueMessageRequest:
+      type: object
+      required: [recipientPhone, messageType, content]
+      properties:
+        recipientPhone:
+          type: string
+          pattern: '^\d{10,15}$'
+          example: "34600123456"
+        messageType:
+          type: string
+          enum: [text, media, template, location]
+        content:
+          type: string
+          maxLength: 4096
+        mediaUrl:
+          type: string
+          format: uri
+        caption:
+          type: string
+        priority:
+          type: string
+          enum: [critical, high, normal, low]
+          default: normal
+        metadata:
+          type: object
+
+    QueueMessageResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        messageId:
+          type: string
+          example: "msg_1234567890"
+        queuePosition:
+          type: integer
+        estimatedDelay:
+          type: integer
+          description: Estimated delay in seconds
+
+    QueueMetrics:
+      type: object
+      properties:
+        waiting:
+          type: integer
+        active:
+          type: integer
+        completed:
+          type: integer
+        failed:
+          type: integer
+        dlq:
+          type: integer
+
+    # Analytics Schemas
+    AnalyticsOverview:
+      type: object
+      properties:
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
+        messages:
+          type: object
+          properties:
+            sent:
+              type: integer
+            delivered:
+              type: integer
+            read:
+              type: integer
+            deliveryRate:
+              type: number
+              format: float
+            readRate:
+              type: number
+              format: float
+        conversions:
+          type: object
+          properties:
+            leads:
+              type: integer
+            qualifiedLeads:
+              type: integer
+            appointments:
+              type: integer
+            sales:
+              type: integer
+            totalValue:
+              type: number
+              format: float
+        conversations:
+          type: object
+          properties:
+            active:
+              type: integer
+            avgResponseTime:
+              type: number
+            handoffs:
+              type: integer
+
+    # WhatsApp Schemas
+    WhatsAppSendRequest:
+      type: object
+      required: [to, message]
+      properties:
+        to:
+          type: string
+        message:
+          type: object
+          properties:
+            text:
+              type: string
+            mediaUrl:
+              type: string
+            caption:
+              type: string
+
+    WhatsAppWebhook:
+      type: object
+      properties:
+        event:
+          type: string
+          enum: [message.received, message.sent, message.delivered, message.read]
+        instanceName:
+          type: string
+        data:
+          type: object
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Unauthorized"
+              message:
+                type: string
+                example: "Invalid or missing API key"
+
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Rate limit exceeded"
+              retryAfter:
+                type: integer
+                description: Seconds until next request allowed

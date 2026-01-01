@@ -1,0 +1,908 @@
+{
+  "name": "Follow-up Automation - Post Visit & Nurturing",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 18 * * *"
+            }
+          ]
+        }
+      },
+      "id": "schedule-daily-followup",
+      "name": "Schedule Daily Follow-up Check",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT a.*, p.name as property_name, p.price, p.location FROM appointments a JOIN properties p ON a.property_id = p.id WHERE a.date = CURRENT_DATE AND a.status = 'completed' AND a.followup_sent = false",
+        "options": {}
+      },
+      "id": "get-completed-appointments",
+      "name": "Get Today's Completed Appointments",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "PostgreSQL - Properties DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "split-completed-appointments",
+      "name": "Split Completed Appointments",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "propiedad",
+              "value": "={{ $json.property_name }}"
+            },
+            {
+              "name": "ubicacion",
+              "value": "={{ $json.location }}"
+            }
+          ]
+        }
+      },
+      "id": "prepare-followup-data",
+      "name": "Prepare Follow-up Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/whatsapp/send",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instanceName",
+              "value": "anclora-main"
+            },
+            {
+              "name": "number",
+              "value": "={{ $('Split Completed Appointments').item.json.contact_phone }}"
+            },
+            {
+              "name": "template",
+              "value": "followUpAfterViewing"
+            },
+            {
+              "name": "variables",
+              "value": "={{ $json }}"
+            },
+            {
+              "name": "language",
+              "value": "es"
+            }
+          ]
+        }
+      },
+      "id": "send-followup-whatsapp",
+      "name": "Send Follow-up WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1050, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2",
+          "name": "WhatsApp API Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE appointments SET followup_sent = true, followup_sent_at = NOW() WHERE id = '{{ $('Split Completed Appointments').item.json.id }}'",
+        "options": {}
+      },
+      "id": "mark-followup-sent",
+      "name": "Mark Follow-up Sent",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [1250, 300],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "PostgreSQL - Properties DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "resource": "activity",
+        "additionalFields": {
+          "contactPhone": "={{ $('Split Completed Appointments').item.json.contact_phone }}",
+          "type": "post_viewing_followup_sent",
+          "description": "Post-viewing follow-up sent for {{ $('Split Completed Appointments').item.json.property_name }}",
+          "timestamp": "={{ $now.toISO() }}"
+        }
+      },
+      "id": "log-followup-crm",
+      "name": "Log Follow-up in CRM",
+      "type": "n8n-nodes-base.twentyCrm",
+      "typeVersion": 1,
+      "position": [1450, 300],
+      "credentials": {
+        "twentyCrmApi": {
+          "id": "1",
+          "name": "Twenty CRM API"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "loop-appointments",
+      "name": "Loop Appointments",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [1650, 300]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 10 * * MON"
+            }
+          ]
+        }
+      },
+      "id": "schedule-weekly-nurturing",
+      "name": "Schedule Weekly Nurturing",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 600]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT DISTINCT c.phone, c.name, c.property_preferences FROM contacts c LEFT JOIN appointments a ON c.phone = a.contact_phone WHERE c.lead_status = 'warm' AND (a.date IS NULL OR a.date < CURRENT_DATE - INTERVAL '7 days') AND c.last_contact_date < CURRENT_DATE - INTERVAL '7 days' LIMIT 50",
+        "options": {}
+      },
+      "id": "get-warm-leads",
+      "name": "Get Warm Leads for Nurturing",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [450, 600],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "PostgreSQL - Properties DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT * FROM properties WHERE status = 'available' AND created_at > CURRENT_DATE - INTERVAL '7 days' ORDER BY created_at DESC LIMIT 3",
+        "options": {}
+      },
+      "id": "get-new-properties",
+      "name": "Get New Properties This Week",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [650, 600],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "PostgreSQL - Properties DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "split-warm-leads",
+      "name": "Split Warm Leads",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [850, 600]
+    },
+    {
+      "parameters": {
+        "jsCode": "const properties = $input.first().json;\nconst lead = $('Split Warm Leads').item.json;\n\n// Filtrar propiedades según preferencias del lead\nconst matchedProperties = properties.filter(p => {\n  const prefs = lead.property_preferences || {};\n  \n  if (prefs.propertyType && p.type !== prefs.propertyType) return false;\n  if (prefs.minBudget && p.price < prefs.minBudget) return false;\n  if (prefs.maxBudget && p.price > prefs.maxBudget) return false;\n  if (prefs.location && !p.location.includes(prefs.location)) return false;\n  \n  return true;\n});\n\n// Si hay coincidencias, usar esas; si no, usar las 3 más recientes\nconst propertiesToSend = matchedProperties.length > 0 \n  ? matchedProperties.slice(0, 3)\n  : properties.slice(0, 3);\n\nreturn {\n  phone: lead.phone,\n  name: lead.name,\n  properties: propertiesToSend,\n  hasMatches: matchedProperties.length > 0\n};"
+      },
+      "id": "match-properties-to-lead",
+      "name": "Match Properties to Lead",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1050, 600]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.properties.length }}",
+              "operation": "larger",
+              "value2": 0
+            }
+          ]
+        }
+      },
+      "id": "check-has-properties",
+      "name": "Check Has Properties to Send",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1250, 600]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/whatsapp/send",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instanceName",
+              "value": "anclora-main"
+            },
+            {
+              "name": "number",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "template",
+              "value": "newPropertyAlert"
+            },
+            {
+              "name": "variables",
+              "value": "={{ { nombre: $json.name, cantidad: $json.properties.length } }}"
+            },
+            {
+              "name": "language",
+              "value": "es"
+            }
+          ]
+        }
+      },
+      "id": "send-property-alert",
+      "name": "Send New Property Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1450, 500],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2",
+          "name": "WhatsApp API Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "id": "wait-2-seconds-nurturing",
+      "name": "Wait 2 Seconds",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [1650, 500]
+    },
+    {
+      "parameters": {
+        "jsCode": "const properties = $input.first().json.properties;\nconst messages = [];\n\nproperties.forEach((prop, index) => {\n  const message = `🏡 *${prop.name}*\\n📍 ${prop.location}\\n💰 ${prop.price.toLocaleString()}€\\n🛏️ ${prop.bedrooms} dormitorios | 🚿 ${prop.bathrooms} baños\\n📐 ${prop.surface_area}m²\\n\\n${prop.description.substring(0, 150)}...`;\n  \n  messages.push({\n    text: message,\n    imageUrl: prop.image_url\n  });\n});\n\nreturn messages;"
+      },
+      "id": "format-property-messages",
+      "name": "Format Property Messages",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1850, 500]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "split-property-messages",
+      "name": "Split Property Messages",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [2050, 500]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/whatsapp/send",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instanceName",
+              "value": "anclora-main"
+            },
+            {
+              "name": "number",
+              "value": "={{ $('Check Has Properties to Send').first().json.phone }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "send-property-details",
+      "name": "Send Property Details",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [2250, 500]
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "id": "wait-1-second-properties",
+      "name": "Wait 1 Second",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [2450, 500]
+    },
+    {
+      "parameters": {},
+      "id": "loop-property-messages",
+      "name": "Loop Property Messages",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [2650, 500]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE contacts SET last_contact_date = CURRENT_DATE WHERE phone = '{{ $('Check Has Properties to Send').first().json.phone }}'",
+        "options": {}
+      },
+      "id": "update-last-contact",
+      "name": "Update Last Contact Date",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [2850, 500],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "PostgreSQL - Properties DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "resource": "activity",
+        "additionalFields": {
+          "contactPhone": "={{ $('Check Has Properties to Send').first().json.phone }}",
+          "type": "nurturing_properties_sent",
+          "description": "{{ $('Check Has Properties to Send').first().json.properties.length }} new properties sent",
+          "timestamp": "={{ $now.toISO() }}"
+        }
+      },
+      "id": "log-nurturing-crm",
+      "name": "Log Nurturing in CRM",
+      "type": "n8n-nodes-base.twentyCrm",
+      "typeVersion": 1,
+      "position": [3050, 500],
+      "credentials": {
+        "twentyCrmApi": {
+          "id": "1",
+          "name": "Twenty CRM API"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "loop-warm-leads",
+      "name": "Loop Warm Leads",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [3250, 500]
+    },
+    {
+      "parameters": {
+        "path": "whatsapp-response",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-whatsapp-response",
+      "name": "Webhook - WhatsApp Response Received",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 900],
+      "webhookId": "whatsapp-response-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $input.first().json;\nconst keywords = ['si', 'sí', 'interesa', 'me gusta', 'quiero', 'agendar', 'visita', 'cita'];\n\nconst isPositive = keywords.some(keyword => \n  response.message.toLowerCase().includes(keyword)\n);\n\nreturn {\n  ...response,\n  isPositive,\n  sentiment: isPositive ? 'positive' : 'neutral'\n};"
+      },
+      "id": "detect-interest",
+      "name": "Detect Interest Level",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 900]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.isPositive }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "check-positive-response",
+      "name": "Check Positive Response",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 900]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "resource": "contact",
+        "additionalFields": {
+          "phone": "={{ $json.phone }}",
+          "leadStatus": "hot",
+          "leadScore": "={{ $json.currentScore ? $json.currentScore + 20 : 80 }}"
+        }
+      },
+      "id": "upgrade-to-hot-lead",
+      "name": "Upgrade to Hot Lead",
+      "type": "n8n-nodes-base.twentyCrm",
+      "typeVersion": 1,
+      "position": [850, 800],
+      "credentials": {
+        "twentyCrmApi": {
+          "id": "1",
+          "name": "Twenty CRM API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/notifications/slack",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "channel",
+              "value": "#hot-leads"
+            },
+            {
+              "name": "text",
+              "value": "🔥 *Hot Lead Alert!*\\n\\n*Cliente:* {{ $('Detect Interest').first().json.name }}\\n*Teléfono:* {{ $('Detect Interest').first().json.phone }}\\n*Respuesta:* {{ $('Detect Interest').first().json.message }}\\n*Acción:* Contactar en las próximas 2 horas"
+            }
+          ]
+        }
+      },
+      "id": "notify-sales-team",
+      "name": "Notify Sales Team",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1050, 800]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { received: true, leadUpgraded: true } }}"
+      },
+      "id": "webhook-response-positive",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1250, 800]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { received: true, leadUpgraded: false } }}"
+      },
+      "id": "webhook-response-neutral",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [850, 1000]
+    }
+  ],
+  "connections": {
+    "Schedule Daily Follow-up Check": {
+      "main": [
+        [
+          {
+            "node": "Get Today's Completed Appointments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Today's Completed Appointments": {
+      "main": [
+        [
+          {
+            "node": "Split Completed Appointments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Completed Appointments": {
+      "main": [
+        [
+          {
+            "node": "Prepare Follow-up Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Follow-up Data": {
+      "main": [
+        [
+          {
+            "node": "Send Follow-up WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Follow-up WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Mark Follow-up Sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Follow-up Sent": {
+      "main": [
+        [
+          {
+            "node": "Log Follow-up in CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Follow-up in CRM": {
+      "main": [
+        [
+          {
+            "node": "Loop Appointments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Appointments": {
+      "main": [
+        null,
+        [
+          {
+            "node": "Split Completed Appointments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Weekly Nurturing": {
+      "main": [
+        [
+          {
+            "node": "Get Warm Leads for Nurturing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Warm Leads for Nurturing": {
+      "main": [
+        [
+          {
+            "node": "Get New Properties This Week",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get New Properties This Week": {
+      "main": [
+        [
+          {
+            "node": "Split Warm Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Warm Leads": {
+      "main": [
+        [
+          {
+            "node": "Match Properties to Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Match Properties to Lead": {
+      "main": [
+        [
+          {
+            "node": "Check Has Properties to Send",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Has Properties to Send": {
+      "main": [
+        [
+          {
+            "node": "Send New Property Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Warm Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send New Property Alert": {
+      "main": [
+        [
+          {
+            "node": "Wait 2 Seconds",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 2 Seconds": {
+      "main": [
+        [
+          {
+            "node": "Format Property Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Property Messages": {
+      "main": [
+        [
+          {
+            "node": "Split Property Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Property Messages": {
+      "main": [
+        [
+          {
+            "node": "Send Property Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Property Details": {
+      "main": [
+        [
+          {
+            "node": "Wait 1 Second",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 1 Second": {
+      "main": [
+        [
+          {
+            "node": "Loop Property Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Property Messages": {
+      "main": [
+        null,
+        [
+          {
+            "node": "Split Property Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Property Messages": {
+      "main": [
+        [
+          {
+            "node": "Update Last Contact Date",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Last Contact Date": {
+      "main": [
+        [
+          {
+            "node": "Log Nurturing in CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Nurturing in CRM": {
+      "main": [
+        [
+          {
+            "node": "Loop Warm Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Warm Leads": {
+      "main": [
+        null,
+        [
+          {
+            "node": "Split Warm Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook - WhatsApp Response Received": {
+      "main": [
+        [
+          {
+            "node": "Detect Interest Level",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detect Interest Level": {
+      "main": [
+        [
+          {
+            "node": "Check Positive Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Positive Response": {
+      "main": [
+        [
+          {
+            "node": "Upgrade to Hot Lead",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upgrade to Hot Lead": {
+      "main": [
+        [
+          {
+            "node": "Notify Sales Team",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify Sales Team": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "id": "followup-automation-whatsapp-4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "anclora-n8n"
+  },
+  "tags": [
+    {
+      "name": "whatsapp",
+      "id": "1"
+    },
+    {
+      "name": "follow-up",
+      "id": "6"
+    },
+    {
+      "name": "nurturing",
+      "id": "7"
+    },
+    {
+      "name": "automation",
+      "id": "3"
+    }
+  ]
+}
