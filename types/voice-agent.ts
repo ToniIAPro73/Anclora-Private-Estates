@@ -92,7 +92,7 @@ export interface VocodeWebhookEvent {
     agentType: AgentType;
   };
   timestamp: Date;
-  data: Record<string, any>;
+  data: Record<string, unknown>;
 }
 
 /**
@@ -179,7 +179,7 @@ export interface SessionEvent {
     | 'data-extracted'
     | 'sentiment-changed'
     | 'error';
-  data: Record<string, any>;
+  data: Record<string, unknown>;
 }
 
 /**
@@ -519,7 +519,7 @@ export class VoiceAgentError extends Error {
   constructor(
     message: string,
     public code: string,
-    public details?: Record<string, any>
+    public details?: Record<string, unknown>
   ) {
     super(message);
     this.name = 'VoiceAgentError';
@@ -530,7 +530,7 @@ export class VocodeAPIError extends VoiceAgentError {
   constructor(
     message: string,
     public statusCode: number,
-    details?: Record<string, any>
+    details?: Record<string, unknown>
   ) {
     super(message, 'VOCODE_API_ERROR', details);
     this.name = 'VocodeAPIError';
@@ -541,7 +541,7 @@ export class EscalationError extends VoiceAgentError {
   constructor(
     message: string,
     public reason: string,
-    details?: Record<string, any>
+    details?: Record<string, unknown>
   ) {
     super(message, 'ESCALATION_ERROR', details);
     this.name = 'EscalationError';

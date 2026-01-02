@@ -541,7 +541,7 @@ export class LeadScoringEngine {
   /**
    * Get scores by category
    */
-  async getLeadsByCategory(category: 'hot' | 'warm' | 'cold'): Promise<LeadScore[]> {
+  async getLeadsByCategory(_category: 'hot' | 'warm' | 'cold'): Promise<LeadScore[]> {
     // This would typically query a database
     // For now, return empty array
     return [];

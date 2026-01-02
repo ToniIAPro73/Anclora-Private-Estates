@@ -237,7 +237,7 @@ export class I18nService {
     options?: {
       messageText?: string;
       language?: SupportedLanguage;
-      params?: Record<string, any>;
+      params?: Record<string, unknown>;
     }
   ): Promise<string> {
     try {
@@ -273,7 +273,7 @@ export class I18nService {
     options?: {
       messageText?: string;
       language?: SupportedLanguage;
-      params?: Record<string, Record<string, any>>;
+      params?: Record<string, Record<string, unknown>>;
     }
   ): Promise<Record<string, string>> {
     const language = options?.language || 

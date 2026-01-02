@@ -23,7 +23,7 @@ export function useTranslation() {
     try {
       // next-intl expects the key directly if no namespace is used in useTranslations()
       return t_intl(key);
-    } catch (e) {
+    } catch {
       console.warn(`Translation key not found: ${key}`);
       return key;
     }

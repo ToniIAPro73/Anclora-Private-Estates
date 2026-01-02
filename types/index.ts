@@ -240,7 +240,7 @@ export interface SiteSection {
   name: string;
   component: string;
   order: number;
-  content?: Record<string, any>;
+  content?: Record<string, unknown>;
 }
 
 export interface PageConfig {
