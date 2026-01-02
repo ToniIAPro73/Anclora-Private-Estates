@@ -21,8 +21,8 @@ const playfair = Playfair_Display({
   style: ['normal', 'italic'],
 });
 
-export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
-  const { locale } = params;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
   
   // Base metadata from lib/metadata, but potentially localized if we want to expand it
   return {
@@ -52,9 +52,9 @@ export default async function RootLayout({
   params
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = params;
+  const { locale } = await params;
 
   // Validate that the incoming `locale` parameter is valid
   if (!['es', 'en', 'de'].includes(locale)) {
