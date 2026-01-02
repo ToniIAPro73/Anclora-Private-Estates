@@ -635,7 +635,7 @@ export function getNextAvailableSlot(
   if (!config.businessHours.enabled) return fromDate;
   
   const maxDaysToCheck = 7;
-  let currentDate = new Date(fromDate);
+  const currentDate = new Date(fromDate);
   
   for (let i = 0; i < maxDaysToCheck; i++) {
     const day = currentDate.getDay();
@@ -656,7 +656,7 @@ export function getNextAvailableSlot(
   return null;
 }
 
-export default {
+const voiceAgentConfig = {
   COQUI_VOICES,
   DEFAULT_VOICE_CONFIGS,
   DEFAULT_STT_CONFIGS,
@@ -667,3 +667,5 @@ export default {
   isAgentAvailable,
   getNextAvailableSlot,
 };
+
+export default voiceAgentConfig;

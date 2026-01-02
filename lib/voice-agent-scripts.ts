@@ -653,7 +653,7 @@ export function buildConversationFlow(
   return flow;
 }
 
-export default {
+const voiceAgentScripts = {
   CONVERSATION_SCRIPTS,
   getScriptsByAgentType,
   getScript,
@@ -661,3 +661,5 @@ export default {
   replaceScriptVariables,
   buildConversationFlow,
 };
+
+export default voiceAgentScripts;

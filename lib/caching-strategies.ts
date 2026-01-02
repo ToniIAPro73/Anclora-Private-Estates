@@ -208,7 +208,7 @@ export async function revalidateByPath(path: string): Promise<void> {
  */
 export function generateCacheKey(
   base: string,
-  params?: Record<string, any>
+  params?: Record<string, unknown>
 ): string {
   if (!params) return base;
   
@@ -497,7 +497,7 @@ export const CACHE_BEST_PRACTICES = {
 /**
  * Export all
  */
-export default {
+const cachingStrategies = {
   CACHE_STRATEGIES,
   CDN_CACHE_CONFIG,
   SERVICE_WORKER_STRATEGIES,
@@ -512,3 +512,5 @@ export default {
   MemoryCache,
   CACHE_BEST_PRACTICES,
 };
+
+export default cachingStrategies;

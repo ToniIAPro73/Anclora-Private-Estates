@@ -4,6 +4,7 @@
  */
 
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { 
   generatePropertyMetadata, 
@@ -153,12 +154,13 @@ export default async function PropertyPage({
         {/* Image Gallery */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           {property.images.map((image, index) => (
-            <img
+            <Image
               key={index}
               src={image}
               alt={`${property.title} - Vista ${index + 1}`}
+              width={1200}
+              height={720}
               className="w-full h-96 object-cover rounded-lg"
-              loading={index === 0 ? 'eager' : 'lazy'}
             />
           ))}
         </div>
@@ -228,3 +230,4 @@ export default async function PropertyPage({
     </SEO>
   );
 }
+

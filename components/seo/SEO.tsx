@@ -5,8 +5,10 @@
 
 import Script from 'next/script';
 
+type JsonLdSchema = Record<string, unknown>;
+
 interface SEOProps {
-  jsonLd?: Record<string, any> | Record<string, any>[];
+  jsonLd?: JsonLdSchema | JsonLdSchema[];
   children?: React.ReactNode;
 }
 

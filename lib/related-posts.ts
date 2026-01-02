@@ -46,7 +46,7 @@ export function findRelatedPosts(
   } = options;
 
   // Filter posts
-  let posts = allPosts.filter(post => {
+  const posts = allPosts.filter(post => {
     if (post.status !== 'published') return false;
     if (excludeCurrentPost && post.id === currentPost.id) return false;
     return true;
@@ -121,7 +121,7 @@ export function getRelatedPostsWithScores(
     weightPopularity = 0.1,
   } = options;
 
-  let posts = allPosts.filter(post => {
+  const posts = allPosts.filter(post => {
     if (post.status !== 'published') return false;
     if (excludeCurrentPost && post.id === currentPost.id) return false;
     return true;

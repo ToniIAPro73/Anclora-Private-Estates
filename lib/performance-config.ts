@@ -8,8 +8,6 @@
 import type { MetricType, MetricValue } from './core-web-vitals';
 import { PERFORMANCE_BUDGET, reportWebVitals } from './core-web-vitals';
 import { CACHE_STRATEGIES } from './caching-strategies';
-import { BUNDLE_SIZE_TARGETS } from './bundle-optimization';
-import { IMAGE_SIZES } from './image-optimization';
 
 /**
  * Performance configuration
@@ -189,9 +187,6 @@ export class PerformanceMonitor {
   private analyzeResource(entry: PerformanceResourceTiming): void {
     const { name, duration, transferSize, decodedBodySize } = entry;
     
-    // Check against budgets
-    const budgets = this.config.resources.budgets;
-    
     // Warn on large resources
     if (transferSize > 500 * 1024) {
       console.warn(
@@ -244,7 +239,7 @@ export class PerformanceMonitor {
       total: entry.loadEventEnd - entry.fetchStart,
     };
     
-    console.log('[Performance] Navigation metrics:', metrics);
+    console.warn('[Performance] Navigation metrics:', metrics);
     
     // Report slow navigation
     if (metrics.total > 3000) {
@@ -301,7 +296,7 @@ export class PerformanceMonitor {
   /**
    * Report performance issue
    */
-  private reportIssue(type: string, data: any): void {
+  private reportIssue(type: string, data: Record<string, unknown>): void {
     console.warn(`[Performance] Issue detected: ${type}`, data);
     
     // Send to error tracking
@@ -543,7 +538,7 @@ export const ANCLORA_PERFORMANCE_TARGETS = {
 /**
  * Export all
  */
-export default {
+const performanceConfig = {
   DEFAULT_PERFORMANCE_CONFIG,
   ANCLORA_PERFORMANCE_TARGETS,
   PERFORMANCE_CHECKLIST,
@@ -551,3 +546,5 @@ export default {
   initPerformanceMonitoring,
   getPerformanceMonitor,
 };
+
+export default performanceConfig;

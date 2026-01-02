@@ -8,21 +8,12 @@ import { Metadata } from 'next';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
 import { SchemaRenderer } from '@/components/seo/SchemaRenderer';
 import { 
-  generateAIRobotsMeta, 
   generateGEOMetaTags,
   generateAIContext,
   optimizeForVoiceSearch,
-  calculateGEOScore,
 } from '@/lib/geo-optimization';
 import { generateFAQSchema, COMMON_FAQS, generateFAQHTML } from '@/lib/faq-schema';
-import { 
-  formatForLLM, 
-  addSemanticMarkers,
-  generateLLMSummary,
-  createConversationalContext,
-} from '@/lib/llm-content-formatter';
 import {
-  optimizeForCitation,
   generateCitationMarkup,
   optimizePageForCitations,
 } from '@/lib/ai-citation-optimizer';
@@ -188,7 +179,7 @@ export default function ComprarMallorcaGuiaPage() {
     { label: 'Financiación no residentes', value: '60-70%' },
   ];
 
-  const { optimizedHTML, citableBlocks } = optimizePageForCitations({
+  const { citableBlocks } = optimizePageForCitations({
     title: 'Guía Completa para Comprar en Mallorca',
     content: '',
     keyFacts,

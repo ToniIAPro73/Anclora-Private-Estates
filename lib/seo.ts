@@ -248,7 +248,7 @@ export function generateBlogMetadata({
 /**
  * Generate JSON-LD structured data
  */
-export function generateJsonLd(data: Record<string, any>) {
+export function generateJsonLd(data: Record<string, unknown>) {
   return {
     __html: JSON.stringify({
       '@context': 'https://schema.org',

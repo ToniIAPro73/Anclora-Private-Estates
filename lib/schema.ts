@@ -14,14 +14,7 @@ import { siteConfig } from './seo';
 interface BaseSchema {
   '@context': string;
   '@type': string;
-}
-
-interface ImageObject {
-  '@type': 'ImageObject';
-  url: string;
-  width?: number;
-  height?: number;
-  caption?: string;
+  '@id'?: string;
 }
 
 interface Address {
@@ -121,6 +114,7 @@ export function generateAccommodationSchema({
   const schema: AccommodationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Accommodation',
+    '@id': `${siteConfig.url}/propiedades/${id}`,
     name: title,
     description,
     image: images,

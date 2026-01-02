@@ -184,7 +184,7 @@ export class WhatsAppQueueManager {
       jobId: options.jobId,
     });
 
-    console.log(`[Queue] Message added: ${job.id} (Priority: ${priority})`);
+    console.warn(`[Queue] Message added: ${job.id} (Priority: ${priority})`);
     return job;
   }
 
@@ -199,7 +199,7 @@ export class WhatsAppQueueManager {
     }));
 
     const addedJobs = await this.queue.addBulk(jobs);
-    console.log(`[Queue] Bulk added: ${addedJobs.length} messages`);
+    console.warn(`[Queue] Bulk added: ${addedJobs.length} messages`);
     return addedJobs;
   }
 
@@ -220,7 +220,7 @@ export class WhatsAppQueueManager {
     const { instanceName, recipientPhone, messageType, content } = job.data;
 
     try {
-      console.log(`[Worker] Processing job ${job.id} (Attempt ${job.attemptsMade + 1}/${this.config.retry.attempts})`);
+      console.warn(`[Worker] Processing job ${job.id} (Attempt ${job.attemptsMade + 1}/${this.config.retry.attempts})`);
 
       let result;
 
@@ -259,18 +259,12 @@ export class WhatsAppQueueManager {
         attempts: job.attemptsMade + 1,
       };
 
-      console.log(`[Worker] Job ${job.id} completed successfully`);
+      console.warn(`[Worker] Job ${job.id} completed successfully`);
       return jobResult;
 
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       console.error(`[Worker] Job ${job.id} failed:`, errorMessage);
-
-      const jobResult: JobResult = {
-        success: false,
-        error: errorMessage,
-        attempts: job.attemptsMade + 1,
-      };
 
       if (job.attemptsMade + 1 >= this.config.retry.attempts) {
         await this.moveToDLQ(job, errorMessage);
@@ -292,10 +286,10 @@ export class WhatsAppQueueManager {
     };
 
     await this.redis.lpush(dlqKey, JSON.stringify(dlqEntry));
-    console.log(`[DLQ] Job ${job.id} moved to Dead Letter Queue`);
+    console.warn(`[DLQ] Job ${job.id} moved to Dead Letter Queue`);
   }
 
-  async getDLQMessages(limit: number = 100): Promise<any[]> {
+  async getDLQMessages(limit: number = 100): Promise<Array<Record<string, unknown>>> {
     const dlqKey = 'whatsapp:dlq';
     const messages = await this.redis.lrange(dlqKey, 0, limit - 1);
     return messages.map(msg => JSON.parse(msg));
@@ -319,28 +313,28 @@ export class WhatsAppQueueManager {
 
   async clearDLQ(): Promise<void> {
     await this.redis.del('whatsapp:dlq');
-    console.log('[DLQ] Cleared');
+    console.warn('[DLQ] Cleared');
   }
 
   async pause(): Promise<void> {
     await this.queue.pause();
-    console.log('[Queue] Paused');
+    console.warn('[Queue] Paused');
   }
 
   async resume(): Promise<void> {
     await this.queue.resume();
-    console.log('[Queue] Resumed');
+    console.warn('[Queue] Resumed');
   }
 
   async drain(): Promise<void> {
     await this.queue.drain();
-    console.log('[Queue] Drained');
+    console.warn('[Queue] Drained');
   }
 
   async clean(grace: number = 0, limit: number = 1000): Promise<void> {
     await this.queue.clean(grace, limit, 'completed');
     await this.queue.clean(grace, limit, 'failed');
-    console.log('[Queue] Cleaned');
+    console.warn('[Queue] Cleaned');
   }
 
   async getMetrics(): Promise<QueueMetrics> {
@@ -382,7 +376,7 @@ export class WhatsAppQueueManager {
 
   private setupEventListeners(): void {
     this.queueEvents.on('completed', ({ jobId, returnvalue }) => {
-      console.log(`[Event] Job ${jobId} completed:`, returnvalue);
+      console.warn(`[Event] Job ${jobId} completed:`, returnvalue);
     });
 
     this.queueEvents.on('failed', ({ jobId, failedReason }) => {
@@ -394,7 +388,7 @@ export class WhatsAppQueueManager {
     });
 
     this.worker.on('active', (job) => {
-      console.log(`[Worker] Processing job ${job.id}`);
+      console.warn(`[Worker] Processing job ${job.id}`);
     });
 
     this.queueEvents.on('stalled', ({ jobId }) => {
@@ -402,7 +396,7 @@ export class WhatsAppQueueManager {
     });
 
     this.queueEvents.on('progress', ({ jobId, data }) => {
-      console.log(`[Event] Job ${jobId} progress:`, data);
+      console.warn(`[Event] Job ${jobId} progress:`, data);
     });
   }
 
@@ -421,7 +415,7 @@ export class WhatsAppQueueManager {
     await this.queue.close();
     await this.queueEvents.close();
     await this.redis.quit();
-    console.log('[Queue] Closed');
+    console.warn('[Queue] Closed');
   }
 }
 

@@ -45,7 +45,7 @@ export function generateContextualLinks(context: LinkContext): InternalLink[] {
       links.push(...getServicePageLinks(context));
       break;
     case 'blog':
-      links.push(...getBlogPageLinks(context));
+      links.push(...getBlogPageLinks());
       break;
     case 'home':
       links.push(...getHomePageLinks());
@@ -227,7 +227,7 @@ function getServicePageLinks(context: LinkContext): InternalLink[] {
 /**
  * Get links for blog pages
  */
-function getBlogPageLinks(context: LinkContext): InternalLink[] {
+function getBlogPageLinks(): InternalLink[] {
   const links: InternalLink[] = [];
 
   // 1. Link to properties
@@ -315,7 +315,7 @@ function getHomePageLinks(): InternalLink[] {
  */
 export function generateAnchorVariations(
   baseAnchor: string,
-  context: string
+  _context: string
 ): string[] {
   const variations: Record<string, string[]> = {
     'propiedades': [
@@ -504,8 +504,6 @@ export function generateBreadcrumbs(
  * Get related content recommendations
  */
 export function getRelatedContent(context: LinkContext): InternalLink[] {
-  const related: InternalLink[] = [];
-
   // Get contextual links
   const contextualLinks = generateContextualLinks(context);
 

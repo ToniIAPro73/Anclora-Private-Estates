@@ -17,7 +17,7 @@ import { useParams } from 'next/navigation';
  * Displays filterable grid of properties with pagination
  */
 export default function PropertiesPage() {
-  const { t, tr } = useTranslation();
+  const { t } = useTranslation();
   const params = useParams();
   const locale = (params?.locale as Language) || 'es';
 
@@ -56,7 +56,7 @@ export default function PropertiesPage() {
 
       return true;
     });
-  }, [filters]);
+  }, [filters, locale]);
 
   // Pagination
   const totalPages = Math.ceil(filteredProperties.length / ITEMS_PER_PAGE.properties);

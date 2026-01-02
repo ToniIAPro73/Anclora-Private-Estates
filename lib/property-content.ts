@@ -85,8 +85,7 @@ export function generatePropertyDescription({
   };
 
   const title = `${typeIntros[propertyType]} en ${location}`;
-  
-  const subtitle = `${bedrooms} dormitorios, ${bathrooms} baños, ${size}m² ${plotSize ? `en ${plotSize}m² de parcela` : ''}`;
+  const subtitle = `${bedrooms} dormitorios, ${bathrooms} banos, ${size}m2 ${plotSize ? `en ${plotSize}m2 de parcela` : ''} | ${priceFormatted}`;
 
   const introduction = style && viewType
     ? `${typeIntros[propertyType]} de ${styleDescriptors[style]} situada en la exclusiva zona de ${location}. Esta propiedad única ofrece ${viewDescriptors[viewType]} y representa la perfecta combinación de lujo, privacidad y ubicación privilegiada en Mallorca.`
@@ -98,7 +97,6 @@ export function generatePropertyDescription({
     bedrooms,
     bathrooms,
     features,
-    style,
     yearBuilt,
   });
 
@@ -136,7 +134,6 @@ function generateMainDescription({
   bedrooms,
   bathrooms,
   features,
-  style,
   yearBuilt,
 }: {
   propertyType: string;
@@ -144,7 +141,6 @@ function generateMainDescription({
   bedrooms: number;
   bathrooms: number;
   features: string[];
-  style?: string;
   yearBuilt?: number;
 }): string {
   const hasPool = features.some(f => f.toLowerCase().includes('piscina'));
@@ -306,7 +302,7 @@ function generateFeaturesHighlight(features: string[], uniqueSellingPoints: stri
 /**
  * Generate lifestyle description
  */
-function generateLifestyleDescription(location: string, propertyType: string): string {
+function generateLifestyleDescription(location: string, _propertyType: string): string {
   const lifestyleTemplates: Record<string, string> = {
     'Son Vida': `Vivir en Son Vida significa despertar con vistas a la bahía de Palma, disfrutar de una ronda de golf en campos de prestigio internacional y regresar a la privacidad de su villa en solo minutos. Los fines de semana puede explorar el casco antiguo de Palma, disfrutar de la gastronomía de la isla o simplemente relajarse en su jardín mediterráneo. Es el equilibrio perfecto entre actividad y tranquilidad.`,
     
@@ -407,3 +403,4 @@ export function generatePropertyKeywords({
 
   return [...baseKeywords, ...featureKeywords.slice(0, 5)];
 }
+

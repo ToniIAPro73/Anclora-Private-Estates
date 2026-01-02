@@ -5,11 +5,12 @@
  */
 
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
 import { SchemaRenderer } from '@/components/seo/SchemaRenderer';
 import { getHomePageSchemas } from '@/lib/schema-examples';
 import { blogCategories } from '@/lib/blog-system';
-import type { BlogPost, Category } from '@/lib/blog-system';
+import type { BlogPost } from '@/lib/blog-system';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Blog Inmobiliario | Anclora Private Estates',
@@ -143,9 +144,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                 {featuredPosts[0] && (
                   <article className="lg:row-span-2 bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
                     <a href={`/blog/${featuredPosts[0].slug}`} className="block relative h-96">
-                      <img
+                      <Image
                         src={featuredPosts[0].featuredImage.url}
                         alt={featuredPosts[0].featuredImage.alt}
+                        width={1200}
+                        height={720}
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
@@ -174,9 +177,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                   {featuredPosts.slice(1, 3).map(post => (
                     <article key={post.id} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition flex">
                       <a href={`/blog/${post.slug}`} className="w-1/3">
-                        <img
+                        <Image
                           src={post.featuredImage.url}
                           alt={post.featuredImage.alt}
+                          width={600}
+                          height={400}
                           className="w-full h-full object-cover"
                         />
                       </a>
@@ -255,9 +260,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                     className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition"
                   >
                     <a href={`/blog/${post.slug}`} className="block">
-                      <img
+                      <Image
                         src={post.featuredImage.url}
                         alt={post.featuredImage.alt}
+                        width={800}
+                        height={480}
                         className="w-full h-48 object-cover"
                       />
                     </a>
@@ -287,9 +294,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <img
+                          <Image
                             src={post.author.avatar}
                             alt={post.author.name}
+                            width={32}
+                            height={32}
                             className="w-8 h-8 rounded-full"
                           />
                           <span className="text-sm text-gray-700">

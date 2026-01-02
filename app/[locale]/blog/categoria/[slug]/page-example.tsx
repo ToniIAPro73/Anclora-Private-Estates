@@ -4,10 +4,11 @@
  */
 
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
 import { SchemaRenderer } from '@/components/seo/SchemaRenderer';
-import { getCategoryBySlug, getPostsByCategory } from '@/lib/blog-system';
+import { blogCategories, getCategoryBySlug, getPostsByCategory } from '@/lib/blog-system';
 import { generateBreadcrumbs } from '@/lib/internal-linking';
 import type { BlogPost, Category } from '@/lib/blog-system';
 
@@ -153,9 +154,11 @@ export default async function CategoryPage({
                       className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition border border-gray-200"
                     >
                       <a href={`/blog/${post.slug}`} className="block">
-                        <img
+                        <Image
                           src={post.featuredImage.url}
                           alt={post.featuredImage.alt}
+                          width={800}
+                          height={480}
                           className="w-full h-48 object-cover"
                         />
                       </a>
@@ -191,9 +194,11 @@ export default async function CategoryPage({
 
                         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                           <div className="flex items-center gap-2">
-                            <img
+                            <Image
                               src={post.author.avatar}
                               alt={post.author.name}
+                              width={32}
+                              height={32}
                               className="w-8 h-8 rounded-full"
                             />
                             <span className="text-sm text-gray-700">
@@ -286,7 +291,6 @@ export default async function CategoryPage({
 
 // Helper functions
 function getRelatedCategories(currentCategory: Category): Category[] {
-  const { blogCategories } = require('@/lib/blog-system');
   return blogCategories
     .filter((cat: Category) => cat.id !== currentCategory.id)
     .slice(0, 4);

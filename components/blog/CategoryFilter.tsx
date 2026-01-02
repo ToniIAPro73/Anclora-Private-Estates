@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { Badge } from '@/components/ui';
 import { BLOG_CATEGORIES } from '@/lib/constants';
 import { useTranslation } from '@/hooks/useTranslation';
 

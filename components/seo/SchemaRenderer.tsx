@@ -5,8 +5,10 @@
 
 import Script from 'next/script';
 
+type JsonLdSchema = Record<string, unknown>;
+
 interface SchemaRendererProps {
-  schemas: Record<string, any> | Record<string, any>[];
+  schemas: JsonLdSchema | JsonLdSchema[];
 }
 
 /**
@@ -33,7 +35,7 @@ export function SchemaRenderer({ schemas }: SchemaRendererProps) {
             dangerouslySetInnerHTML={{
               __html: JSON.stringify(fullSchema, null, 0),
             }}
-            strategy="beforeInteractive"
+            strategy="afterInteractive"
           />
         );
       })}
@@ -45,7 +47,7 @@ export function SchemaRenderer({ schemas }: SchemaRendererProps) {
  * Page wrapper that includes schemas
  */
 interface PageWithSchemaProps {
-  schemas: Record<string, any> | Record<string, any>[];
+  schemas: JsonLdSchema | JsonLdSchema[];
   children: React.ReactNode;
 }
 
@@ -61,7 +63,7 @@ export function PageWithSchema({ schemas, children }: PageWithSchemaProps) {
 /**
  * Validate schema before rendering (development only)
  */
-export function validateSchema(schema: Record<string, any>): boolean {
+export function validateSchema(schema: JsonLdSchema): boolean {
   if (process.env.NODE_ENV !== 'development') {
     return true;
   }
@@ -69,7 +71,7 @@ export function validateSchema(schema: Record<string, any>): boolean {
   const requiredFields = ['@type'];
   
   for (const field of requiredFields) {
-    if (!schema[field]) {
+    if (!(schema as Record<string, unknown>)[field]) {
       console.warn(`Schema validation warning: Missing required field "${field}"`, schema);
       return false;
     }
@@ -81,7 +83,7 @@ export function validateSchema(schema: Record<string, any>): boolean {
 /**
  * Hook to generate schemas on client side if needed
  */
-export function useSchema(generateFn: () => Record<string, any> | Record<string, any>[]) {
+export function useSchema(generateFn: () => JsonLdSchema | JsonLdSchema[]) {
   const schemas = generateFn();
   
   if (process.env.NODE_ENV === 'development') {

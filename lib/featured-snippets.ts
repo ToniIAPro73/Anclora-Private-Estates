@@ -436,7 +436,7 @@ export function validateSnippetQuality(snippet: FeaturedSnippet): {
 /**
  * Generate schema for featured snippet
  */
-export function generateSnippetSchema(snippet: FeaturedSnippet): any {
+export function generateSnippetSchema(snippet: FeaturedSnippet): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -565,7 +565,7 @@ export const SNIPPET_BEST_PRACTICES = {
 /**
  * Export default
  */
-export default {
+const featuredSnippets = {
   generateParagraphSnippet,
   generateListSnippet,
   generateTableSnippet,
@@ -578,3 +578,5 @@ export default {
   QUESTION_PATTERNS,
   SNIPPET_BEST_PRACTICES,
 };
+
+export default featuredSnippets;

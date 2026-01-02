@@ -525,7 +525,7 @@ export const IMAGE_BEST_PRACTICES = {
 /**
  * Export all
  */
-export default {
+const imageOptimization = {
   QUALITY_PRESETS,
   RESPONSIVE_BREAKPOINTS,
   IMAGE_SIZES,
@@ -545,3 +545,5 @@ export default {
   nextImageConfig,
   IMAGE_BEST_PRACTICES,
 };
+
+export default imageOptimization;

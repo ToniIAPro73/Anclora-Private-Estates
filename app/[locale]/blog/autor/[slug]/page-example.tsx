@@ -4,6 +4,7 @@
  */
 
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
 import { SchemaRenderer } from '@/components/seo/SchemaRenderer';
@@ -13,7 +14,6 @@ import {
   generateAuthorPersonSchema,
   getAuthorRecentPosts,
   getAuthorMostReadPosts,
-  groupAuthorPostsByCategory,
 } from '@/lib/author-system';
 import type { BlogPost } from '@/lib/blog-system';
 
@@ -60,9 +60,6 @@ export default async function AuthorPage({
   const recentPosts = getAuthorRecentPosts(author, allPosts, 9);
   const mostReadPosts = getAuthorMostReadPosts(author, allPosts, 3);
 
-  // Group by category
-  const postsByCategory = groupAuthorPostsByCategory(recentPosts);
-
   // Generate schemas
   const authorSchema = generateAuthorPersonSchema(author, stats, 'https://anclora.com');
 
@@ -77,9 +74,11 @@ export default async function AuthorPage({
             <div className="max-w-5xl mx-auto">
               <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
                 {/* Avatar */}
-                <img
+                <Image
                   src={author.avatar}
                   alt={author.name}
+                  width={192}
+                  height={192}
                   className="w-48 h-48 rounded-full border-4 border-gold"
                 />
 
@@ -193,9 +192,11 @@ export default async function AuthorPage({
                       className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition"
                     >
                       <a href={`/blog/${post.slug}`} className="block relative">
-                        <img
+                        <Image
                           src={post.featuredImage.url}
                           alt={post.featuredImage.alt}
+                          width={800}
+                          height={480}
                           className="w-full h-48 object-cover"
                         />
                         <div className="absolute top-4 left-4 w-12 h-12 bg-gold rounded-full flex items-center justify-center text-white font-bold text-xl">
@@ -271,9 +272,11 @@ export default async function AuthorPage({
                     className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition border border-gray-200"
                   >
                     <a href={`/blog/${post.slug}`}>
-                      <img
+                      <Image
                         src={post.featuredImage.url}
                         alt={post.featuredImage.alt}
+                        width={800}
+                        height={400}
                         className="w-full h-40 object-cover"
                       />
                     </a>

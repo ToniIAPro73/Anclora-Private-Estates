@@ -5,7 +5,7 @@
  * @module faq-schema
  */
 
-import type { Thing, WithContext } from 'schema-dts';
+import type { WithContext } from 'schema-dts';
 
 /**
  * FAQ Item structure
@@ -135,7 +135,7 @@ export const COMMON_FAQS: Record<string, FAQItem[]> = {
 /**
  * Generate FAQ Schema.org markup
  */
-export function generateFAQSchema(faqs: FAQItem[]): WithContext<any> {
+export function generateFAQSchema(faqs: FAQItem[]): WithContext<Record<string, unknown>> {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -157,7 +157,7 @@ export function generateFAQSchema(faqs: FAQItem[]): WithContext<any> {
 /**
  * Generate single FAQ item schema
  */
-export function generateSingleFAQSchema(faq: FAQItem): any {
+export function generateSingleFAQSchema(faq: FAQItem): Record<string, unknown> {
   return {
     '@type': 'Question',
     name: faq.question,
@@ -416,7 +416,7 @@ export function validateFAQQuality(faq: FAQItem): {
 /**
  * Export default
  */
-export default {
+const faqSchema = {
   generateFAQSchema,
   generateSingleFAQSchema,
   generateFAQHTML,
@@ -432,3 +432,5 @@ export default {
   COMMON_FAQS,
   FAQ_TEMPLATES,
 };
+
+export default faqSchema;

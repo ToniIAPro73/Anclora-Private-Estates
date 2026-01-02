@@ -46,7 +46,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
           url,
         });
       } catch (error) {
-        console.log('Error sharing:', error);
+        console.warn('Error sharing:', error);
       }
     }
   };

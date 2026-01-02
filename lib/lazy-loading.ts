@@ -7,7 +7,14 @@
 
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  type MouseEventHandler,
+  type RefObject,
+} from 'react';
 
 /**
  * Intersection Observer options
@@ -50,8 +57,8 @@ export const EAGER_LAZY_OPTIONS: LazyLoadOptions = {
  */
 export function useLazyLoad(
   options: LazyLoadOptions = DEFAULT_LAZY_OPTIONS
-): [React.RefObject<any>, boolean] {
-  const ref = useRef<any>(null);
+): [RefObject<Element | null>, boolean] {
+  const ref = useRef<Element | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
@@ -249,8 +256,8 @@ export function useLazyScript(src: string, async: boolean = true) {
  * Preload resources when hovering
  */
 export function useHoverPreload(
-  importFunc: () => Promise<any>
-): React.MouseEventHandler {
+  importFunc: () => Promise<unknown>
+): MouseEventHandler {
   const hasPreloaded = useRef(false);
   
   const handleMouseEnter = useCallback(() => {
@@ -269,7 +276,7 @@ export function useHoverPreload(
 export function useLazyLoadWithTimeout(
   timeout: number = 5000,
   options: LazyLoadOptions = DEFAULT_LAZY_OPTIONS
-): [React.RefObject<any>, boolean] {
+): [RefObject<Element | null>, boolean] {
   const [ref, isVisible] = useLazyLoad(options);
   const [shouldLoad, setShouldLoad] = useState(false);
   
@@ -398,9 +405,11 @@ export function useBatchLazyLoad(
   );
   
   useEffect(() => {
+    const currentObservers = observers.current;
+
     return () => {
-      observers.current.forEach(observer => observer.disconnect());
-      observers.current.clear();
+      currentObservers.forEach(observer => observer.disconnect());
+      currentObservers.clear();
     };
   }, []);
   
@@ -416,7 +425,7 @@ export function useBatchLazyLoad(
  */
 export function useNetworkAwareLazyLoad(
   options: LazyLoadOptions = DEFAULT_LAZY_OPTIONS
-): [React.RefObject<any>, boolean] {
+): [RefObject<Element | null>, boolean] {
   const [shouldLoad, setShouldLoad] = useState(false);
   const [ref, isVisible] = useLazyLoad(options);
   
@@ -425,7 +434,7 @@ export function useNetworkAwareLazyLoad(
     
     // Check network connection
     if ('connection' in navigator) {
-      const connection = (navigator as any).connection;
+      const connection = (navigator as Navigator & { connection?: { effectiveType?: string } }).connection;
       const effectiveType = connection?.effectiveType;
       
       // Only load on fast connections
@@ -531,7 +540,7 @@ export const LAZY_LOADING_BEST_PRACTICES = {
 /**
  * Export all
  */
-export default {
+const lazyLoading = {
   DEFAULT_LAZY_OPTIONS,
   AGGRESSIVE_LAZY_OPTIONS,
   EAGER_LAZY_OPTIONS,
@@ -550,3 +559,5 @@ export default {
   LazyLoadQueue,
   LAZY_LOADING_BEST_PRACTICES,
 };
+
+export default lazyLoading;

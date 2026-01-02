@@ -7,7 +7,6 @@ import { Section } from '@/components/layout';
 import { Button, Badge, OptimizedImage } from '@/components/ui';
 import { useTranslation } from '@/hooks/useTranslation';
 import { featuredProperties } from '@/data';
-import { formatPrice } from '@/lib/utils';
 
 /**
  * FeaturedProperties Component - Homepage

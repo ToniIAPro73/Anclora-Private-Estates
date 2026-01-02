@@ -37,7 +37,7 @@ export type EventType =
 export interface WebhookEvent {
   event: EventType;
   instance: string;
-  data: any;
+  data: Record<string, unknown>;
   destination?: string;
   date_time?: string;
   sender?: string;
@@ -67,9 +67,9 @@ export interface MessageData {
       caption?: string;
       fileName?: string;
     };
-    audioMessage?: any;
-    locationMessage?: any;
-    contactMessage?: any;
+    audioMessage?: Record<string, unknown>;
+    locationMessage?: Record<string, unknown>;
+    contactMessage?: Record<string, unknown>;
   };
   messageTimestamp?: number;
   pushName?: string;
@@ -95,7 +95,7 @@ export interface ProcessResult {
   eventType: EventType;
   processed: boolean;
   error?: string;
-  details?: any;
+  details?: Record<string, unknown>;
 }
 
 // ============================================================================
@@ -187,7 +187,7 @@ class CRMIntegration {
   async createOrUpdateContact(
     phoneNumber: string,
     name?: string,
-    metadata?: Record<string, any>
+    metadata?: Record<string, unknown>
   ): Promise<void> {
     if (!this.crmApiKey) {
       console.warn('[CRM] API key not configured, skipping');
@@ -215,7 +215,7 @@ class CRMIntegration {
       if (!response.ok) {
         console.error('[CRM] Error creating/updating contact:', await response.text());
       } else {
-        console.log('[CRM] Contact created/updated:', phoneNumber);
+        console.warn('[CRM] Contact created/updated:', phoneNumber);
       }
     } catch (error) {
       console.error('[CRM] Error:', error);
@@ -225,7 +225,7 @@ class CRMIntegration {
   async createActivity(
     phoneNumber: string,
     activityType: 'message_received' | 'message_sent' | 'appointment_booked',
-    details: Record<string, any>
+    details: Record<string, unknown>
   ): Promise<void> {
     if (!this.crmApiKey) {
       return;
@@ -283,11 +283,11 @@ class ConversationLogger {
     messageId: string,
     direction: 'inbound' | 'outbound',
     content: string,
-    metadata?: Record<string, any>
+    metadata?: Record<string, unknown>
   ): Promise<void> {
     try {
       // En producción, guardar en base de datos
-      // Aquí simulamos con console.log
+      // Aquí simulamos con console.warn
       
       const logEntry = {
         phoneNumber,
@@ -298,7 +298,7 @@ class ConversationLogger {
         timestamp: new Date().toISOString(),
       };
 
-      console.log('[Logger] Message logged:', logEntry);
+      console.warn('[Logger] Message logged:', logEntry);
 
       // TODO: Guardar en PostgreSQL/MongoDB
       /*
@@ -313,7 +313,7 @@ class ConversationLogger {
 
   async logEvent(
     eventType: EventType,
-    data: any
+    data: Record<string, unknown>
   ): Promise<void> {
     try {
       const logEntry = {
@@ -322,7 +322,7 @@ class ConversationLogger {
         timestamp: new Date().toISOString(),
       };
 
-      console.log('[Logger] Event logged:', logEntry);
+      console.warn('[Logger] Event logged:', logEntry);
 
       // TODO: Guardar en base de datos
     } catch (error) {
@@ -345,7 +345,7 @@ class AnalyticsTracker {
       // Incrementar contador de mensajes
       // En producción, usar Redis o base de datos
       
-      console.log('[Analytics] Message tracked:', {
+      console.warn('[Analytics] Message tracked:', {
         phoneNumber,
         direction,
         messageType,
@@ -367,7 +367,7 @@ class AnalyticsTracker {
     instance: string
   ): Promise<void> {
     try {
-      console.log('[Analytics] Event tracked:', {
+      console.warn('[Analytics] Event tracked:', {
         eventType,
         instance,
         timestamp: new Date().toISOString(),
@@ -449,7 +449,7 @@ export class WebhookProcessor {
           break;
 
         default:
-          console.log(`[Webhook] Unhandled event type: ${event.event}`);
+          console.warn(`[Webhook] Unhandled event type: ${event.event}`);
           result.processed = false;
       }
 
@@ -468,13 +468,13 @@ export class WebhookProcessor {
   private async handleMessageUpsert(data: MessageData): Promise<void> {
     // Ignorar mensajes enviados por nosotros
     if (data.key.fromMe) {
-      console.log('[Webhook] Ignoring outbound message');
+      console.warn('[Webhook] Ignoring outbound message');
       return;
     }
 
     // Ignorar mensajes de grupos (por ahora)
     if (MessageExtractor.isGroup(data.key.remoteJid)) {
-      console.log('[Webhook] Ignoring group message');
+      console.warn('[Webhook] Ignoring group message');
       return;
     }
 
@@ -484,11 +484,11 @@ export class WebhookProcessor {
     const userName = data.pushName;
 
     if (!messageText) {
-      console.log('[Webhook] Message has no text content, skipping bot processing');
+      console.warn('[Webhook] Message has no text content, skipping bot processing');
       return;
     }
 
-    console.log('[Webhook] Processing message:', {
+    console.warn('[Webhook] Processing message:', {
       from: phoneNumber,
       name: userName,
       text: messageText.substring(0, 50) + '...',
@@ -537,19 +537,21 @@ export class WebhookProcessor {
   /**
    * Handler: Actualización de mensaje
    */
-  private async handleMessageUpdate(data: any): Promise<void> {
-    console.log('[Webhook] Message update:', data);
+  private async handleMessageUpdate(data: Record<string, unknown>): Promise<void> {
+    console.warn('[Webhook] Message update:', data);
     
     // Aquí se manejan estados de mensajes:
     // - Entregado
     // - Leído
     // - Error
     
-    const status = data.update?.status;
-    const messageId = data.key?.id;
+    const update = data.update as { status?: string } | undefined;
+    const key = data.key as { id?: string } | undefined;
+    const status = update?.status;
+    const messageId = key?.id;
 
     if (status && messageId) {
-      console.log(`[Webhook] Message ${messageId} status: ${status}`);
+      console.warn(`[Webhook] Message ${messageId} status: ${status}`);
       
       // TODO: Actualizar estado en base de datos
     }
@@ -558,17 +560,19 @@ export class WebhookProcessor {
   /**
    * Handler: Mensaje enviado
    */
-  private async handleSendMessage(data: any): Promise<void> {
-    const phoneNumber = MessageExtractor.extractPhoneNumber(data.key?.remoteJid || '');
+  private async handleSendMessage(data: Record<string, unknown>): Promise<void> {
+    const key = data.key as { remoteJid?: string; id?: string } | undefined;
+    const message = data.message as { conversation?: string } | undefined;
+    const phoneNumber = MessageExtractor.extractPhoneNumber(key?.remoteJid || '');
     
     if (phoneNumber) {
       await this.analytics.trackMessage(phoneNumber, 'outbound', 'text');
       
       await this.logger.logMessage(
         phoneNumber,
-        data.key?.id || 'unknown',
+        key?.id || 'unknown',
         'outbound',
-        data.message?.conversation || '[media]',
+        message?.conversation || '[media]',
         { timestamp: Date.now() }
       );
     }
@@ -578,7 +582,7 @@ export class WebhookProcessor {
    * Handler: Actualización de conexión
    */
   private async handleConnectionUpdate(data: ConnectionUpdateData): Promise<void> {
-    console.log('[Webhook] Connection update:', {
+    console.warn('[Webhook] Connection update:', {
       instance: data.instance,
       state: data.state,
       statusReason: data.statusReason,
@@ -593,7 +597,7 @@ export class WebhookProcessor {
     }
 
     if (data.state === 'open') {
-      console.log('[Webhook] WhatsApp connection established ✅');
+      console.warn('[Webhook] WhatsApp connection established ✅');
     }
   }
 
@@ -601,7 +605,7 @@ export class WebhookProcessor {
    * Handler: QR Code actualizado
    */
   private async handleQRCodeUpdate(data: QRCodeData): Promise<void> {
-    console.log('[Webhook] QR Code updated for instance:', data.instance);
+    console.warn('[Webhook] QR Code updated for instance:', data.instance);
     
     // El QR code está en data.qrcode.code o data.qrcode.base64
     // Aquí podrías:
@@ -610,7 +614,7 @@ export class WebhookProcessor {
     // 3. Mostrarlo en un dashboard
     
     if (data.qrcode.base64) {
-      console.log('[Webhook] QR Code available as base64');
+      console.warn('[Webhook] QR Code available as base64');
       // TODO: Guardar o enviar QR code
     }
   }
@@ -618,8 +622,8 @@ export class WebhookProcessor {
   /**
    * Handler: Actualización de chat
    */
-  private async handleChatUpdate(data: any): Promise<void> {
-    console.log('[Webhook] Chat update:', data);
+  private async handleChatUpdate(data: Record<string, unknown>): Promise<void> {
+    console.warn('[Webhook] Chat update:', data);
     
     // Aquí se manejan:
     // - Nuevos chats
@@ -631,18 +635,20 @@ export class WebhookProcessor {
   /**
    * Handler: Actualización de presencia
    */
-  private async handlePresenceUpdate(data: any): Promise<void> {
+  private async handlePresenceUpdate(data: Record<string, unknown>): Promise<void> {
     // Presencia del usuario:
     // - available (en línea)
     // - unavailable (desconectado)
     // - composing (escribiendo)
     // - recording (grabando audio)
     
-    const phoneNumber = MessageExtractor.extractPhoneNumber(data.id || '');
-    const presence = data.presences?.[data.id]?.lastKnownPresence;
+    const id = data.id as string | undefined;
+    const presences = data.presences as Record<string, { lastKnownPresence?: string }> | undefined;
+    const phoneNumber = MessageExtractor.extractPhoneNumber(id || '');
+    const presence = id ? presences?.[id]?.lastKnownPresence : undefined;
 
     if (phoneNumber && presence) {
-      console.log(`[Webhook] User ${phoneNumber} presence: ${presence}`);
+      console.warn(`[Webhook] User ${phoneNumber} presence: ${presence}`);
       
       // TODO: Actualizar estado en tiempo real en dashboard
     }

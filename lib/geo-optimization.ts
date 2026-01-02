@@ -445,7 +445,7 @@ export function validateGEOReadiness(content: {
 /**
  * Generate JSON-LD context for AI engines
  */
-export function generateJSONLDContext(data: any): string {
+export function generateJSONLDContext(data: Record<string, unknown>): string {
   return `
 <script type="application/ld+json">
 ${JSON.stringify(data, null, 2)}
@@ -588,7 +588,7 @@ export function calculateGEOScore(content: {
 /**
  * Export all functions
  */
-export default {
+const geoOptimization = {
   generateAIRobotsMeta,
   addCitationMarkers,
   generateCitationList,
@@ -606,3 +606,5 @@ export default {
   DEFAULT_GEO_CONFIG,
   GEO_BEST_PRACTICES,
 };
+
+export default geoOptimization;

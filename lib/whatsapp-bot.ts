@@ -8,7 +8,7 @@
  * @version 1.0.0
  */
 
-import { WhatsAppAPI, MessageResponse } from './whatsapp-api';
+import { WhatsAppAPI } from './whatsapp-api';
 import { TemplateManager, getMessage } from './whatsapp-templates';
 
 // ============================================================================
@@ -56,7 +56,7 @@ export interface ConversationContext {
     bedrooms?: number;
     appointmentDate?: string;
     leadScore?: number;
-    [key: string]: any;
+    [key: string]: unknown;
   };
   lastInteraction: Date;
   handoffRequested: boolean;
@@ -70,7 +70,7 @@ export interface IntentDetectionResult {
     location?: string;
     budget?: string;
     bedrooms?: number;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 
@@ -189,8 +189,8 @@ class IntentDetector {
     };
   }
 
-  private extractEntities(message: string): Record<string, any> {
-    const entities: Record<string, any> = {};
+  private extractEntities(message: string): Record<string, unknown> {
+    const entities: Record<string, unknown> = {};
 
     // Extract property type
     for (const type of this.keywords.propertyTypes) {
@@ -364,7 +364,7 @@ ${context.metadata.budget ? `- Presupuesto: ${context.metadata.budget}` : ''}`;
     return basePrompt;
   }
 
-  private async callLlamaAPI(prompt: string): Promise<string> {
+  private async callLlamaAPI(_prompt: string): Promise<string> {
     // Placeholder para integración real con Llama 3.1
     // Opciones:
     // 1. Ollama: http://localhost:11434/api/generate
@@ -372,7 +372,7 @@ ${context.metadata.budget ? `- Presupuesto: ${context.metadata.budget}` : ''}`;
     // 3. HuggingFace Inference API
     
     // Simulación de respuesta
-    console.log('[LLM] Generating response with Llama 3.1...');
+    console.warn('[LLM] Generating response with Llama 3.1...');
     
     // En producción, descomentar y configurar:
     /*
@@ -429,7 +429,7 @@ class ConversationFlows {
   // --------------------------------------------------------------------------
   async handlePropertyInquiry(
     context: ConversationContext,
-    userMessage: string
+    _userMessage: string
   ): Promise<string[]> {
     const responses: string[] = [];
 
@@ -474,7 +474,7 @@ class ConversationFlows {
   // --------------------------------------------------------------------------
   async handleAppointmentBooking(
     context: ConversationContext,
-    userMessage: string
+    _userMessage: string
   ): Promise<string[]> {
     const responses: string[] = [];
 
@@ -502,8 +502,8 @@ class ConversationFlows {
   // FLOW 3: GENERAL INQUIRY
   // --------------------------------------------------------------------------
   async handleGeneralInquiry(
-    context: ConversationContext,
-    userMessage: string
+    _context: ConversationContext,
+    _userMessage: string
   ): Promise<string[]> {
     const responses: string[] = [];
 
@@ -519,7 +519,7 @@ class ConversationFlows {
   // --------------------------------------------------------------------------
   async handlePropertyValuation(
     context: ConversationContext,
-    userMessage: string
+    _userMessage: string
   ): Promise<string[]> {
     const responses: string[] = [];
 
@@ -544,7 +544,7 @@ class ConversationFlows {
   // --------------------------------------------------------------------------
   async handleInvestorConsultation(
     context: ConversationContext,
-    userMessage: string
+    _userMessage: string
   ): Promise<string[]> {
     const responses: string[] = [];
 
@@ -757,7 +757,7 @@ export class WhatsAppBot {
     });
 
     // Notify team (integrar con CRM/notificaciones)
-    console.log(`[Bot] Handoff requested for ${phoneNumber}`);
+    console.warn(`[Bot] Handoff requested for ${phoneNumber}`);
     // TODO: Send notification to team via Twenty CRM or Slack
   }
 

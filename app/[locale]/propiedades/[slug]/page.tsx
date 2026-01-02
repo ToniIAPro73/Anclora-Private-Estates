@@ -2,7 +2,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { Bed, Bath, Square, MapPin, Calendar, Home, Check } from 'lucide-react';
 import { Header, Footer, Section, Container } from '@/components/layout';
-import { Badge, Button } from '@/components/ui';
+import { Badge } from '@/components/ui';
 import { PropertyGallery } from '@/components/properties/PropertyGallery';
 import { PropertyCard } from '@/components/properties/PropertyCard';
 import { ContactForm } from '@/components/shared/ContactForm';

@@ -17,6 +17,80 @@ import {
 } from '@/lib/schema';
 import { getBreadcrumbSchema, getOrganizationSchema } from '@/lib/seo';
 
+interface PropertySchemaSource {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  location: string;
+  address?: {
+    street?: string;
+    city?: string;
+    region?: string;
+    postalCode?: string;
+  };
+  latitude?: number;
+  longitude?: number;
+  bedrooms: number;
+  bathrooms: number;
+  totalRooms?: number;
+  size: number;
+  images: string[];
+  features?: string[];
+  amenities?: string[];
+  yearBuilt?: number;
+  createdAt?: string;
+  validThrough?: string;
+  videoTour?: {
+    uploadDate: string;
+    embedUrl: string;
+    duration: string;
+  };
+}
+
+interface TeamMember {
+  name: string;
+  position: string;
+  photo?: string;
+  email?: string;
+  phone?: string;
+  socialLinks?: string[];
+}
+
+interface BlogPostSchemaSource {
+  title: string;
+  excerpt: string;
+  coverImage: string;
+  readingTime: string;
+  steps?: Array<{ name: string; text: string; image?: string }>;
+  type?: string;
+  category: string;
+  slug: string;
+}
+
+interface Testimonial {
+  author: string;
+  rating: number;
+  text: string;
+  date: string;
+}
+
+interface OpenHouseEvent {
+  propertyTitle: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  location: string;
+  status?: string;
+}
+
+interface LocationSchemaSource {
+  name: string;
+  description: string;
+  latitude?: number;
+  longitude?: number;
+  slug: string;
+}
 // ==============================================
 // PROPERTY PAGE SCHEMAS
 // ==============================================
@@ -25,7 +99,7 @@ import { getBreadcrumbSchema, getOrganizationSchema } from '@/lib/seo';
  * Complete schema for property detail page
  * Combines multiple schemas for rich results
  */
-export function getPropertyPageSchemas(property: any) {
+export function getPropertyPageSchemas(property: PropertySchemaSource) {
   const schemas = [];
 
   // 1. Accommodation Schema (primary)
@@ -165,7 +239,7 @@ export function getServicePageSchemas(serviceType: string) {
 /**
  * Schema for properties listing page
  */
-export function getPropertiesListingSchemas(properties: any[]) {
+export function getPropertiesListingSchemas(properties: Array<{ id: string }>) {
   return [
     generateCollectionPageSchema({
       title: 'Propiedades Exclusivas en Mallorca',
@@ -187,7 +261,7 @@ export function getPropertiesListingSchemas(properties: any[]) {
 /**
  * Schema for about page with team members
  */
-export function getAboutPageSchemas(teamMembers: any[]) {
+export function getAboutPageSchemas(teamMembers: TeamMember[]) {
   const schemas = [];
 
   // Organization schema
@@ -225,7 +299,7 @@ export function getAboutPageSchemas(teamMembers: any[]) {
 /**
  * Complete schema for blog post page
  */
-export function getBlogPostSchemas(post: any) {
+export function getBlogPostSchemas(post: BlogPostSchemaSource) {
   const schemas = [];
 
   // Article schema (from seo.ts)
@@ -264,7 +338,7 @@ export function getBlogPostSchemas(post: any) {
 /**
  * Schema for testimonials/reviews page
  */
-export function getTestimonialsSchemas(testimonials: any[]) {
+export function getTestimonialsSchemas(testimonials: Testimonial[]) {
   const schemas = [];
 
   // Individual review schemas
@@ -297,7 +371,7 @@ export function getTestimonialsSchemas(testimonials: any[]) {
 /**
  * Schema for open house events
  */
-export function getOpenHouseSchemas(event: any) {
+export function getOpenHouseSchemas(event: OpenHouseEvent) {
   return [
     generateEventSchema({
       name: `Casa Abierta - ${event.propertyTitle}`,
@@ -323,7 +397,10 @@ export function getOpenHouseSchemas(event: any) {
 /**
  * Schema for location-specific pages (Son Vida, Port d'Andratx, etc)
  */
-export function getLocationPageSchemas(location: any, properties: any[]) {
+export function getLocationPageSchemas(
+  location: LocationSchemaSource,
+  properties: Array<{ id: string }>
+) {
   return [
     {
       '@context': 'https://schema.org',
@@ -387,7 +464,7 @@ export function getContactPageSchemas() {
 /**
  * Complete schema for homepage
  */
-export function getHomePageSchemas(featuredProperties: any[]) {
+export function getHomePageSchemas(featuredProperties: Array<{ id: string }>) {
   return [
     generateWebSiteSchema(),
     getOrganizationSchema(),

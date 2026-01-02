@@ -53,7 +53,7 @@ export interface CallRecord {
   sentiment: Sentiment;
   transcript: string;
   summary: string;
-  extractedData: Record<string, any>;
+  extractedData: Record<string, unknown>;
   escalated: boolean;
   escalationReason?: string;
   transferDestination?: string;
@@ -386,7 +386,7 @@ export function calculatePerformanceKPIs(
  */
 export async function extractConversationInsights(
   transcript: string,
-  extractedData: Record<string, any>
+  extractedData: Record<string, unknown>
 ): Promise<ConversationInsights> {
   // In production, use Llama 3.1 for actual NLP analysis
   // For now, mock implementation
@@ -446,7 +446,7 @@ export function generateRealTimeMetrics(
  */
 export async function trackCallEvent(
   event: string,
-  data: Record<string, any>
+  data: Record<string, unknown>
 ): Promise<void> {
   const analyticsEndpoint = process.env.ANALYTICS_ENDPOINT || 'http://localhost:8000/api/analytics/voice';
   
@@ -546,7 +546,7 @@ export function calculateROI(
   };
 }
 
-export default {
+const voiceAnalytics = {
   calculateCallMetrics,
   calculateOutcomeMetrics,
   calculateQualityMetrics,
@@ -561,3 +561,5 @@ export default {
   calculateMonthlyCosts,
   calculateROI,
 };
+
+export default voiceAnalytics;

@@ -531,7 +531,7 @@ export function generateLLMMetadata(content: {
   category?: string;
   location?: string;
   priceRange?: { min: number; max: number };
-}): Record<string, any> {
+}): Record<string, unknown> {
   const entities = extractEntities(content.content);
   const summary = generateLLMSummary(content.content);
   
@@ -556,7 +556,7 @@ export function generateLLMMetadata(content: {
 /**
  * Export default
  */
-export default {
+const llmContentFormatter = {
   formatForLLM,
   extractEntities,
   addSemanticMarkers,
@@ -565,3 +565,5 @@ export default {
   optimizeContentStructure,
   generateLLMMetadata,
 };
+
+export default llmContentFormatter;

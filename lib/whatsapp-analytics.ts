@@ -108,7 +108,7 @@ export class WhatsAppAnalyticsManager {
   async trackMessageSent(
     phone: string,
     messageType: string = 'text',
-    metadata?: Record<string, any>
+    metadata?: Record<string, unknown>
   ): Promise<void> {
     const timestamp = Date.now();
     const date = new Date().toISOString().split('T')[0];
@@ -135,7 +135,7 @@ export class WhatsAppAnalyticsManager {
   async trackMessageReceived(
     phone: string,
     messageType: string = 'text',
-    metadata?: Record<string, any>
+    metadata?: Record<string, unknown>
   ): Promise<void> {
     const timestamp = Date.now();
     const date = new Date().toISOString().split('T')[0];
@@ -163,7 +163,7 @@ export class WhatsAppAnalyticsManager {
   async trackMessageFailed(
     phone: string,
     error: string,
-    metadata?: Record<string, any>
+    metadata?: Record<string, unknown>
   ): Promise<void> {
     const timestamp = Date.now();
     const date = new Date().toISOString().split('T')[0];
@@ -184,7 +184,7 @@ export class WhatsAppAnalyticsManager {
     await pipeline.exec();
   }
 
-  async trackMessageDelivered(phone: string, messageId: string): Promise<void> {
+  async trackMessageDelivered(phone: string, _messageId: string): Promise<void> {
     const date = new Date().toISOString().split('T')[0];
 
     await this.redis.pipeline()
@@ -194,7 +194,7 @@ export class WhatsAppAnalyticsManager {
       .exec();
   }
 
-  async trackMessageRead(phone: string, messageId: string): Promise<void> {
+  async trackMessageRead(phone: string, _messageId: string): Promise<void> {
     const date = new Date().toISOString().split('T')[0];
 
     await this.redis.pipeline()
@@ -207,7 +207,7 @@ export class WhatsAppAnalyticsManager {
   async trackConversationStarted(
     phone: string,
     source: string = 'inbound',
-    metadata?: Record<string, any>
+    metadata?: Record<string, unknown>
   ): Promise<void> {
     const timestamp = Date.now();
 
@@ -264,7 +264,7 @@ export class WhatsAppAnalyticsManager {
     phone: string,
     type: 'lead' | 'qualified_lead' | 'appointment' | 'sale',
     value?: number,
-    metadata?: Record<string, any>
+    metadata?: Record<string, unknown>
   ): Promise<void> {
     const timestamp = Date.now();
     const date = new Date().toISOString().split('T')[0];
@@ -562,7 +562,7 @@ export class WhatsAppAnalyticsManager {
       .zremrangebyscore(`${this.prefix}:errors:timeline`, 0, cutoffTimestamp)
       .exec();
 
-    console.log(`[Analytics] Cleaned up data older than ${days} days`);
+    console.warn(`[Analytics] Cleaned up data older than ${days} days`);
   }
 
   async close(): Promise<void> {

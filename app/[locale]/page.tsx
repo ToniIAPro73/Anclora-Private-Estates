@@ -27,7 +27,7 @@ export default async function Home({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
+  const { locale: _locale } = await params;
   
   return (
     <>

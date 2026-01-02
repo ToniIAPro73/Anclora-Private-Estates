@@ -6,7 +6,6 @@ import { Logo } from '@/components/ui';
 import { Container } from './Container';
 import { footerNavigation, socialLinks } from '@/data';
 import { useTranslation } from '@/hooks/useTranslation';
-import siteConfig from '@/lib/config';
 import { Link } from '@/i18n/navigation';
 
 const socialIcons = {

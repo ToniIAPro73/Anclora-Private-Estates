@@ -15,16 +15,40 @@ import {
 } from '@/lib/image-optimization';
 
 // Lazy loading
-import { 
-  useLazyLoad,
-  DEFAULT_LAZY_OPTIONS,
-} from '@/lib/lazy-loading';
-
 // Caching
 import { getFetchOptions } from '@/lib/caching-strategies';
 
-// Bundle optimization
-import { DynamicComponents } from '@/lib/bundle-optimization';
+interface PropertyLocation {
+  name: string;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+}
+
+interface RelatedProperty {
+  id: string;
+  image: string;
+  title: string;
+  location: string;
+  price: number;
+}
+
+interface PropertyData {
+  id: string;
+  title: string;
+  location: PropertyLocation;
+  bedrooms: number;
+  surface: number;
+  price: number;
+  description: string;
+  features: string[];
+  images: {
+    hero: string;
+    gallery: string[];
+  };
+  relatedProperties: RelatedProperty[];
+}
 
 /**
  * Dynamic imports for heavy components
@@ -111,7 +135,7 @@ export async function generateMetadata(): Promise<Metadata> {
 /**
  * Fetch property data with caching
  */
-async function getPropertyData(id: string) {
+async function getPropertyData(id: string): Promise<PropertyData> {
   const res = await fetch(
     `https://api.anclora.com/properties/${id}`,
     getFetchOptions('propertyDetails')
@@ -130,9 +154,9 @@ async function getPropertyData(id: string) {
 export async function generateStaticParams() {
   // Fetch all property IDs
   const res = await fetch('https://api.anclora.com/properties?limit=100');
-  const properties = await res.json();
+  const properties: Array<{ id: string }> = await res.json();
   
-  return properties.map((property: any) => ({
+  return properties.map((property) => ({
     id: property.id,
   }));
 }
@@ -161,6 +185,7 @@ export default async function PropertyPage({
       <section className="relative h-screen">
         <Image
           {...heroImageProps}
+          alt={heroImageProps.alt ?? `${property.title} - Vista principal`}
           className="object-cover"
           fill
           priority
@@ -175,7 +200,7 @@ export default async function PropertyPage({
             {property.title}
           </h1>
           <p className="font-montserrat text-xl mb-6">
-            {property.location} · {property.bedrooms} dormitorios · {property.surface}m²
+            {property.location.name} · {property.bedrooms} dormitorios · {property.surface}m²
           </p>
           <div className="flex gap-4">
             <span className="text-3xl font-bold">
@@ -235,6 +260,7 @@ export default async function PropertyPage({
                 <div key={index} className="relative aspect-[4/3]">
                   <Image
                     {...cardProps}
+                    alt={cardProps.alt ?? `${property.title} - Vista ${index + 1}`}
                     className="object-cover rounded-lg"
                     fill
                     loading={index < 6 ? 'eager' : 'lazy'}
@@ -319,7 +345,7 @@ export default async function PropertyPage({
             </h2>
             
             <div className="grid md:grid-cols-3 gap-8">
-              {property.relatedProperties.map((related: any) => {
+              {property.relatedProperties.map((related) => {
                 const cardProps = getPropertyCardProps(
                   related.image,
                   related.title
@@ -330,6 +356,7 @@ export default async function PropertyPage({
                     <div className="relative aspect-[4/3]">
                       <Image
                         {...cardProps}
+                        alt={cardProps.alt ?? related.title}
                         className="object-cover"
                         fill
                         loading="lazy"
@@ -365,3 +392,4 @@ export default async function PropertyPage({
 export const revalidate = 3600; // Revalidate every hour
 export const dynamic = 'force-static'; // Static generation
 export const dynamicParams = true; // Allow new params
+

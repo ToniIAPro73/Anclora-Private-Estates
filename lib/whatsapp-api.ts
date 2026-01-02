@@ -36,7 +36,7 @@ export interface QuotedMessage {
     fromMe: boolean;
     id: string;
   };
-  message: any;
+  message: Record<string, unknown>;
 }
 
 export interface WhatsAppMediaMessage {
@@ -87,7 +87,7 @@ export interface MessageResponse {
     fromMe: boolean;
     id: string;
   };
-  message: any;
+  message: Record<string, unknown>;
   messageTimestamp: string;
   status?: 'PENDING' | 'SERVER_ACK' | 'DELIVERY_ACK' | 'READ' | 'PLAYED';
 }
@@ -159,7 +159,7 @@ export class WhatsAppAPI {
     // Request interceptor
     this.client.interceptors.request.use(
       (config) => {
-        console.log(`[WhatsApp API] ${config.method?.toUpperCase()} ${config.url}`);
+        console.warn(`[WhatsApp API] ${config.method?.toUpperCase()} ${config.url}`);
         return config;
       },
       (error) => {
@@ -171,7 +171,7 @@ export class WhatsAppAPI {
     // Response interceptor
     this.client.interceptors.response.use(
       (response) => {
-        console.log(`[WhatsApp API] Response ${response.status}:`, response.data);
+        console.warn(`[WhatsApp API] Response ${response.status}:`, response.data);
         return response;
       },
       async (error: AxiosError) => {
@@ -180,8 +180,8 @@ export class WhatsAppAPI {
     );
   }
 
-  private async handleError(error: AxiosError): Promise<any> {
-    const config = error.config as any;
+  private async handleError(error: AxiosError): Promise<unknown> {
+    const config = error.config as (AxiosError['config'] & { retry?: number });
 
     // Retry logic
     if (!config || !config.retry) {
@@ -201,7 +201,7 @@ export class WhatsAppAPI {
       config.retry += 1;
       const delay = this.config.retryDelay * Math.pow(2, config.retry - 1);
       
-      console.log(`[WhatsApp API] Retry ${config.retry}/${this.config.retries} in ${delay}ms`);
+      console.warn(`[WhatsApp API] Retry ${config.retry}/${this.config.retries} in ${delay}ms`);
       
       await this.sleep(delay);
       return this.client(config);
@@ -214,7 +214,9 @@ export class WhatsAppAPI {
     const response = error.response;
     
     if (response) {
-      const message = (response.data as any)?.message || response.statusText;
+      const message =
+        (response.data as Record<string, unknown> | undefined)?.message ||
+        response.statusText;
       return new Error(`WhatsApp API Error (${response.status}): ${message}`);
     }
     
@@ -288,8 +290,16 @@ export class WhatsAppAPI {
       `/instance/fetchInstances?instanceName=${this.config.instanceName}`
     );
 
-    const instances = response.data;
-    return instances.find((i: any) => i.instance.instanceName === this.config.instanceName);
+    const instances = response.data as InstanceInfo[];
+    const match = instances.find(
+      (instance) => instance.instance.instanceName === this.config.instanceName
+    );
+
+    if (!match) {
+      throw new Error(`Instance not found: ${this.config.instanceName}`);
+    }
+
+    return match;
   }
 
   /**
@@ -800,7 +810,7 @@ export class WhatsAppAPI {
    * Configurar webhook
    */
   async setWebhook(webhookUrl: string, events?: string[]): Promise<void> {
-    const payload: any = {
+    const payload: Record<string, unknown> = {
       url: webhookUrl,
       enabled: true,
       webhookByEvents: true,
@@ -819,7 +829,7 @@ export class WhatsAppAPI {
   /**
    * Obtener configuración webhook
    */
-  async getWebhook(): Promise<any> {
+  async getWebhook(): Promise<Record<string, unknown>> {
     const response = await this.client.get(
       `/webhook/find/${this.config.instanceName}`
     );
@@ -886,7 +896,7 @@ export class WhatsAppAPI {
     try {
       const state = await this.getConnectionState();
       return state.state === 'open';
-    } catch (error) {
+    } catch {
       return false;
     }
   }

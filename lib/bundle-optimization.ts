@@ -5,7 +5,7 @@
  * @module bundle-optimization
  */
 
-import { lazy } from 'react';
+import { lazy, createElement, type ComponentType, type ReactNode } from 'react';
 
 /**
  * Bundle size targets
@@ -43,9 +43,9 @@ export const BUNDLE_SIZE_TARGETS = {
 /**
  * Lazy load component with error boundary
  */
-export function lazyLoadComponent<T extends React.ComponentType<any>>(
+export function lazyLoadComponent<T extends ComponentType<unknown>>(
   importFunc: () => Promise<{ default: T }>,
-  fallback?: React.ReactNode
+  fallback?: ReactNode
 ) {
   const LazyComponent = lazy(importFunc);
   
@@ -59,7 +59,7 @@ export function lazyLoadComponent<T extends React.ComponentType<any>>(
  * Preload component for faster subsequent loads
  */
 export function preloadComponent(
-  importFunc: () => Promise<{ default: React.ComponentType<any> }>
+  importFunc: () => Promise<{ default: ComponentType<unknown> }>
 ): void {
   // Start loading the component
   importFunc();
@@ -72,49 +72,49 @@ export const DynamicComponents = {
   // Property Map (heavy: Mapbox GL)
   PropertyMap: () => lazyLoadComponent(
     () => import('@/components/property/PropertyMap'),
-    <div className="h-96 bg-gray-100 animate-pulse rounded-lg" />
+    createElement('div', { className: 'h-96 bg-gray-100 animate-pulse rounded-lg' })
   ),
   
   // Property Gallery (heavy: image viewer)
   PropertyGallery: () => lazyLoadComponent(
     () => import('@/components/property/PropertyGallery'),
-    <div className="h-96 bg-gray-100 animate-pulse rounded-lg" />
+    createElement('div', { className: 'h-96 bg-gray-100 animate-pulse rounded-lg' })
   ),
   
   // Contact Form (heavy: validation)
   ContactForm: () => lazyLoadComponent(
     () => import('@/components/forms/ContactForm'),
-    <div className="h-64 bg-gray-100 animate-pulse rounded-lg" />
+    createElement('div', { className: 'h-64 bg-gray-100 animate-pulse rounded-lg' })
   ),
   
   // Virtual Tour (heavy: 360 viewer)
   VirtualTour: () => lazyLoadComponent(
     () => import('@/components/property/VirtualTour'),
-    <div className="h-96 bg-gray-100 animate-pulse rounded-lg" />
+    createElement('div', { className: 'h-96 bg-gray-100 animate-pulse rounded-lg' })
   ),
   
   // Mortgage Calculator (heavy: calculations)
   MortgageCalculator: () => lazyLoadComponent(
     () => import('@/components/calculators/MortgageCalculator'),
-    <div className="h-80 bg-gray-100 animate-pulse rounded-lg" />
+    createElement('div', { className: 'h-80 bg-gray-100 animate-pulse rounded-lg' })
   ),
   
   // Search Filters (heavy: UI components)
   SearchFilters: () => lazyLoadComponent(
     () => import('@/components/search/SearchFilters'),
-    <div className="h-64 bg-gray-100 animate-pulse rounded-lg" />
+    createElement('div', { className: 'h-64 bg-gray-100 animate-pulse rounded-lg' })
   ),
   
   // Blog Editor (heavy: rich text editor)
   BlogEditor: () => lazyLoadComponent(
     () => import('@/components/blog/BlogEditor'),
-    <div className="h-96 bg-gray-100 animate-pulse rounded-lg" />
+    createElement('div', { className: 'h-96 bg-gray-100 animate-pulse rounded-lg' })
   ),
   
   // Analytics Dashboard (heavy: charts)
   AnalyticsDashboard: () => lazyLoadComponent(
     () => import('@/components/analytics/Dashboard'),
-    <div className="h-screen bg-gray-100 animate-pulse" />
+    createElement('div', { className: 'h-screen bg-gray-100 animate-pulse' })
   ),
 };
 
@@ -514,7 +514,7 @@ export const BUNDLE_OPTIMIZATION_TIPS = {
 /**
  * Export all
  */
-export default {
+const bundleOptimization = {
   BUNDLE_SIZE_TARGETS,
   ROUTE_CHUNKS,
   VENDOR_CHUNKS,
@@ -531,3 +531,5 @@ export default {
   validatePerformanceBudget,
   BUNDLE_OPTIMIZATION_TIPS,
 };
+
+export default bundleOptimization;

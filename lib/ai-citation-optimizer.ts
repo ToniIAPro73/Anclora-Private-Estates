@@ -343,7 +343,7 @@ export function optimizePageForCitations(page: {
   const citableBlocks: CitableContent[] = [];
   
   // Create citable blocks for key facts
-  page.keyFacts.forEach((fact, index) => {
+  page.keyFacts.forEach((fact) => {
     citableBlocks.push(
       optimizeForCitation({
         text: fact,
@@ -547,7 +547,7 @@ export const CITATION_BEST_PRACTICES = {
 /**
  * Export default
  */
-export default {
+const aiCitationOptimizer = {
   optimizeForCitation,
   generateCitationMarkup,
   generateCitationMetadata,
@@ -559,3 +559,5 @@ export default {
   CITATION_FORMATS,
   CITATION_BEST_PRACTICES,
 };
+
+export default aiCitationOptimizer;

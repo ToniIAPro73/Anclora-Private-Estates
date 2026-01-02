@@ -37,6 +37,10 @@ interface SubmissionResponse {
   leadScore?: number;
 }
 
+type FieldValue = string | boolean;
+
+type DataLayerEvent = Record<string, unknown>;
+
 /**
  * ContactForm Component
  * 
@@ -83,7 +87,7 @@ export function ContactForm({ type = 'general', propertyId, propertyUrl }: Conta
     return phoneRegex.test(phone.trim());
   };
 
-  const validateField = (name: string, value: any): string => {
+  const validateField = (name: string, value: FieldValue): string => {
     // Required fields validation
     if (['name', 'email', 'message'].includes(name) && !value) {
       return 'Este campo es obligatorio';
@@ -159,9 +163,9 @@ export function ContactForm({ type = 'general', propertyId, propertyUrl }: Conta
   };
 
   // Track analytics event
-  const trackEvent = (eventName: string, data?: any) => {
-    if (typeof window !== 'undefined' && (window as any).dataLayer) {
-      (window as any).dataLayer.push({
+  const trackEvent = (eventName: string, data?: DataLayerEvent) => {
+    if (typeof window !== 'undefined' && (window as Window & { dataLayer?: DataLayerEvent[] }).dataLayer) {
+      (window as Window & { dataLayer: DataLayerEvent[] }).dataLayer.push({
         event: eventName,
         formType: type,
         ...data,
@@ -189,7 +193,7 @@ export function ContactForm({ type = 'general', propertyId, propertyUrl }: Conta
     
     try {
       // Prepare payload
-      const payload: any = {
+      const payload: Record<string, unknown> = {
         name: formData.name.trim(),
         email: formData.email.trim().toLowerCase(),
         phone: formData.phone.trim() || undefined,
@@ -248,13 +252,14 @@ export function ContactForm({ type = 'general', propertyId, propertyUrl }: Conta
         throw new Error(result.error || 'Error al enviar el formulario');
       }
       
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
-      setSubmitMessage(error.message || 'Error al enviar. Intenta de nuevo.');
+      const errorMessage = error instanceof Error ? error.message : 'Error al enviar. Intenta de nuevo.';
+      setSubmitMessage(errorMessage);
       
       trackEvent('form_submit_error', {
-        error: error.message,
+        error: errorMessage,
       });
     } finally {
       setIsSubmitting(false);

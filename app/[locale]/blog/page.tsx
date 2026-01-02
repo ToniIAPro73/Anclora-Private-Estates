@@ -19,7 +19,7 @@ import { useParams } from 'next/navigation';
  * Displays filterable grid of blog posts with featured posts and pagination
  */
 export default function BlogPage() {
-  const { t, tr } = useTranslation();
+  const { t } = useTranslation();
   const params = useParams();
   const locale = (params?.locale as Language) || 'es';
 
@@ -51,7 +51,7 @@ export default function BlogPage() {
 
       return true;
     });
-  }, [searchQuery, selectedCategory, featuredPosts]);
+  }, [searchQuery, selectedCategory, featuredPosts, locale]);
 
   // Pagination
   const totalPages = Math.ceil(filteredPosts.length / ITEMS_PER_PAGE.blog);

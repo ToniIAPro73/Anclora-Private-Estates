@@ -10,7 +10,6 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getWhatsAppBot } from '@/lib/whatsapp-bot';
 import { 
   WebhookProcessor, 
   validateWebhookSignature,
@@ -104,7 +103,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 4. Log evento recibido
-    console.log('[Webhook] Event received:', {
+    console.warn('[Webhook] Event received:', {
       event: body.event,
       instance: body.instance,
       timestamp: new Date().toISOString(),
@@ -149,7 +148,7 @@ export async function GET(request: NextRequest) {
 
   // Verificación de webhook (estilo Facebook/WhatsApp)
   if (challenge && verifyToken === WEBHOOK_SECRET) {
-    console.log('[Webhook] Verification successful');
+    console.warn('[Webhook] Verification successful');
     return new NextResponse(challenge, { status: 200 });
   }
 
@@ -166,7 +165,7 @@ export async function GET(request: NextRequest) {
 // OPCIONES CORS (si se necesita)
 // ============================================================================
 
-export async function OPTIONS(request: NextRequest) {
+export async function OPTIONS(_request: NextRequest) {
   return new NextResponse(null, {
     status: 200,
     headers: {

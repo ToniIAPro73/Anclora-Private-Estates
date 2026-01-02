@@ -5,7 +5,7 @@
  * @module voice-agent-routing
  */
 
-import type { AgentType, VoiceAgentConfig } from './voice-agent-config';
+import type { AgentType } from './voice-agent-config';
 
 /**
  * Escalation priority levels
@@ -50,7 +50,7 @@ export interface RoutingRule {
   conditions: Array<{
     field: string;
     operator: 'eq' | 'ne' | 'gt' | 'lt' | 'gte' | 'lte' | 'contains';
-    value: any;
+    value: string | number | boolean;
   }>;
   destination: AgentType;
   priority: number;
@@ -359,7 +359,7 @@ export function evaluateEscalationTriggers(
  * Determine routing destination
  */
 export function determineRoutingDestination(
-  context: Record<string, any>
+  context: Record<string, string | number | boolean | undefined>
 ): AgentType {
   // Sort rules by priority (highest first)
   const sortedRules = [...ROUTING_RULES].sort((a, b) => b.priority - a.priority);
@@ -474,7 +474,7 @@ export function checkTeamAvailability(
  */
 function getNextAvailableTime(config: TransferConfig, fromDate: Date): Date | null {
   const maxDaysToCheck = 7;
-  let currentDate = new Date(fromDate);
+  const currentDate = new Date(fromDate);
   
   for (let i = 0; i < maxDaysToCheck; i++) {
     const day = currentDate.getDay();
@@ -528,7 +528,7 @@ export async function executeTransfer(
   }
   
   // In production, execute actual transfer via Vocode/Twilio
-  console.log(`[TRANSFER] Call ${callId} transferring to ${destination} (${config.phoneNumber}) - Reason: ${reason}`);
+  console.warn(`[TRANSFER] Call ${callId} transferring to ${destination} (${config.phoneNumber}) - Reason: ${reason}`);
   
   return {
     success: true,
@@ -545,8 +545,8 @@ export async function handleVoicemail(
   phoneNumber: string,
   transcription: string
 ): Promise<{ success: boolean; message: string }> {
-  console.log(`[VOICEMAIL] Call ${callId} from ${phoneNumber}`);
-  console.log(`[VOICEMAIL] Transcription: ${transcription}`);
+  console.warn(`[VOICEMAIL] Call ${callId} from ${phoneNumber}`);
+  console.warn(`[VOICEMAIL] Transcription: ${transcription}`);
   
   // In production:
   // 1. Save voicemail recording
@@ -577,8 +577,8 @@ export async function scheduleCallback(
     scheduledTime = availability.nextAvailable;
   }
   
-  console.log(`[CALLBACK] Scheduled for ${phoneNumber} at ${scheduledTime.toISOString()}`);
-  console.log(`[CALLBACK] Notes: ${notes}`);
+  console.warn(`[CALLBACK] Scheduled for ${phoneNumber} at ${scheduledTime.toISOString()}`);
+  console.warn(`[CALLBACK] Notes: ${notes}`);
   
   // In production:
   // 1. Create task in CRM
@@ -593,7 +593,7 @@ export async function scheduleCallback(
   };
 }
 
-export default {
+const voiceAgentRouting = {
   ESCALATION_RULES,
   ROUTING_RULES,
   TRANSFER_DESTINATIONS,
@@ -605,3 +605,5 @@ export default {
   handleVoicemail,
   scheduleCallback,
 };
+
+export default voiceAgentRouting;

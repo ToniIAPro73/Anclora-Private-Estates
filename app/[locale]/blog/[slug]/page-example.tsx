@@ -5,12 +5,12 @@
  */
 
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
 import { getBlogPostSchemas } from '@/lib/schema-examples';
 import { SchemaRenderer } from '@/components/seo/SchemaRenderer';
 import { findRelatedPosts } from '@/lib/related-posts';
-import { calculateReadingTime } from '@/lib/blog-system';
 import { generateContextualLinks } from '@/lib/internal-linking';
 import { BlogPost } from '@/lib/blog-system';
 
@@ -87,11 +87,13 @@ export default async function BlogPostPage({
       <article className="bg-white">
         {/* Hero Section */}
         <header className="relative h-[50vh] min-h-[400px]">
-          <img
+          <Image
             src={post.featuredImage.url}
             alt={post.featuredImage.alt}
+            width={1400}
+            height={800}
             className="w-full h-full object-cover"
-            loading="eager"
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
           
@@ -118,9 +120,11 @@ export default async function BlogPostPage({
               {/* Meta */}
               <div className="flex flex-wrap items-center gap-4 text-white/90">
                 <div className="flex items-center gap-2">
-                  <img
+                  <Image
                     src={post.author.avatar}
                     alt={post.author.name}
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-full"
                   />
                   <a 
@@ -180,9 +184,11 @@ export default async function BlogPostPage({
               {/* Author Bio */}
               <div className="mt-12 p-8 bg-gray-50 rounded-lg">
                 <div className="flex items-start gap-6">
-                  <img
+                  <Image
                     src={post.author.avatar}
                     alt={post.author.name}
+                    width={96}
+                    height={96}
                     className="w-24 h-24 rounded-full"
                   />
                   <div>
@@ -312,9 +318,11 @@ export default async function BlogPostPage({
                 {relatedPosts.map((relatedPost) => (
                   <article key={relatedPost.id} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
                     <a href={`/blog/${relatedPost.slug}`}>
-                      <img
+                      <Image
                         src={relatedPost.featuredImage.url}
                         alt={relatedPost.featuredImage.alt}
+                        width={800}
+                        height={480}
                         className="w-full h-48 object-cover"
                       />
                     </a>
@@ -389,7 +397,7 @@ export default async function BlogPostPage({
 }
 
 // Mock data fetching functions (replace with actual database queries)
-async function getBlogPost(slug: string): Promise<BlogPost | null> {
+async function getBlogPost(_slug: string): Promise<BlogPost | null> {
   // TODO: Replace with actual database query
   return null;
 }

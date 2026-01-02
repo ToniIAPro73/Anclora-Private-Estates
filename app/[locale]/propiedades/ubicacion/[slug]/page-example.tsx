@@ -5,13 +5,13 @@
  */
 
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getLocationGuide } from '@/data/location-guides';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
 import { getLocationPageSchemas } from '@/lib/schema-examples';
 import { SchemaRenderer } from '@/components/seo/SchemaRenderer';
 import { generateContextualLinks, generateBreadcrumbs } from '@/lib/internal-linking';
-import { generateImageMetadata } from '@/lib/image-alt-text';
 
 // Generate metadata for SEO
 export async function generateMetadata({ 
@@ -75,11 +75,13 @@ export default async function LocationPage({
       <div className="bg-white">
         {/* Hero Section */}
         <section className="relative h-[60vh] min-h-[500px]">
-          <img
+          <Image
             src={location.images[0]}
-            alt={`Vista panorámica de ${location.name} Mallorca - Zona residencial exclusiva`}
+            alt={`Vista panoramica de ${location.name} Mallorca - Zona residencial exclusiva`}
+            width={1600}
+            height={900}
             className="w-full h-full object-cover"
-            loading="eager"
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           
@@ -354,3 +356,4 @@ export default async function LocationPage({
     </>
   );
 }
+

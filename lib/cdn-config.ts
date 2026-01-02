@@ -99,7 +99,7 @@ export const CDN_CONFIGS = {
 export function buildAssetURL(
   path: string,
   provider: CDNProvider = 'vercel',
-  transformations?: Record<string, any>
+  transformations?: Record<string, unknown>
 ): string {
   const config = CDN_CONFIGS[provider];
   
@@ -506,7 +506,7 @@ export const CDN_BEST_PRACTICES = {
 /**
  * Export all
  */
-export default {
+const cdnConfig = {
   CDN_CONFIGS,
   FONT_PRELOAD_CONFIG,
   RESOURCE_HINTS,
@@ -523,3 +523,5 @@ export default {
   trackCDNPerformance,
   CDN_BEST_PRACTICES,
 };
+
+export default cdnConfig;
