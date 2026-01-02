@@ -1,0 +1,9 @@
+{
+  "name": "Anclora Private Estates",
+  "short_name": "Anclora",
+  "start_url": "/es",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "lang": "es"
+}
