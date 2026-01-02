@@ -10,9 +10,10 @@ import { sampleProperties } from '@/data';
 import type { Property } from '@/types';
 
 interface PropertyDetailPageProps {
-  params: {
+  params: Promise<{
+    locale: string;
     slug: string;
-  };
+  }>;
 }
 
 /**
@@ -20,12 +21,16 @@ interface PropertyDetailPageProps {
  * 
  * Displays complete information about a single property
  */
-export default function PropertyDetailPage({ params }: PropertyDetailPageProps) {
-  const property = sampleProperties.find((p: Property) => p.slug === params.slug);
+export default async function PropertyDetailPage({ params }: PropertyDetailPageProps) {
+  const { locale, slug } = await params;
+  const property = sampleProperties.find((p: Property) => p.slug === slug);
 
   if (!property) {
     notFound();
   }
+
+  // Cast locale to valid Language
+  const lang = locale as keyof typeof property.title;
 
   // Get related properties (same type, different property)
   const relatedProperties = sampleProperties
@@ -42,6 +47,16 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
     }
   };
 
+  const getStatusLabel = (status: string, locale: string) => {
+    const labels: Record<string, Record<string, string>> = {
+      available: { es: 'Disponible', en: 'Available', de: 'Verfügbar' },
+      reserved: { es: 'Reservado', en: 'Reserved', de: 'Reserviert' },
+      sold: { es: 'Vendido', en: 'Sold', de: 'Verkauft' },
+      'off-market': { es: 'Off-Market', en: 'Off-Market', de: 'Off-Market' },
+    };
+    return labels[status]?.[locale] || labels[status]?.es || status;
+  };
+
   return (
     <>
       <Header />
@@ -53,8 +68,8 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
               {/* Gallery - 2 columns */}
               <div className="lg:col-span-2">
                 <PropertyGallery
-                  images={property.images}
-                  title={property.title.es}
+                  images={property.images.map(img => img.url)}
+                  title={property.title[lang]}
                 />
               </div>
 
@@ -69,31 +84,28 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
                     <Badge variant="success">Destacado</Badge>
                   )}
                   <Badge variant={getStatusColor(property.status)}>
-                    {property.status === 'available' && 'Disponible'}
-                    {property.status === 'reserved' && 'Reservado'}
-                    {property.status === 'sold' && 'Vendido'}
-                    {property.status === 'off-market' && 'Off-Market'}
+                    {getStatusLabel(property.status, locale)}
                   </Badge>
                 </div>
 
                 {/* Title */}
                 <h1 className="font-serif text-4xl font-bold text-gray-dark">
-                  {property.title.es}
+                  {property.title[lang]}
                 </h1>
 
                 {/* Location */}
                 <div className="flex items-center text-gray-600">
                   <MapPin className="w-5 h-5 mr-2" />
                   <span className="text-lg">
-                    {property.location.zone}, {property.location.region}
+                    {property.location.address}, {property.location.region}
                   </span>
                 </div>
 
                 {/* Price */}
                 <div className="text-5xl font-bold text-anclora-gold">
-                  {new Intl.NumberFormat('es-ES', {
+                  {new Intl.NumberFormat(locale === 'es' ? 'es-ES' : locale === 'de' ? 'de-DE' : 'en-GB', {
                     style: 'currency',
-                    currency: 'EUR',
+                    currency: property.currency || 'EUR',
                     maximumFractionDigits: 0,
                   }).format(property.price)}
                 </div>
@@ -166,7 +178,7 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
                     Descripción
                   </h2>
                   <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                    <p>{property.description.es}</p>
+                    <p>{property.description[lang]}</p>
                   </div>
                 </div>
 
@@ -180,7 +192,7 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
                       {property.features.map((feature, index) => (
                         <div key={index} className="flex items-center gap-2">
                           <Check className="w-5 h-5 text-anclora-gold flex-shrink-0" />
-                          <span className="text-gray-700">{feature}</span>
+                          <span className="text-gray-700">{feature.name[lang]}</span>
                         </div>
                       ))}
                     </div>
@@ -196,10 +208,12 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
                     <div className="text-center text-gray-500">
                       <MapPin className="w-12 h-12 mx-auto mb-2" />
                       <p>Mapa interactivo</p>
-                      <p className="text-sm">
-                        Lat: {property.location.coordinates.lat}, 
-                        Lng: {property.location.coordinates.lng}
-                      </p>
+                      {property.location.coordinates && (
+                        <p className="text-sm">
+                          Lat: {property.location.coordinates.lat}, 
+                          Lng: {property.location.coordinates.lng}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -214,7 +228,6 @@ export default function PropertyDetailPage({ params }: PropertyDetailPageProps) 
                   <ContactForm
                     type="property-inquiry"
                     propertyId={property.id}
-                    propertyTitle={property.title.es}
                   />
                 </div>
               </div>

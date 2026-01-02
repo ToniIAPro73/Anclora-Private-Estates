@@ -4,6 +4,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   helperText?: string;
+  leftIcon?: React.ReactNode;
 }
 
 interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -39,10 +40,11 @@ export function Input({
   label,
   error,
   helperText,
+  leftIcon,
   className = '',
   ...props
 }: InputProps) {
-  const inputClasses = `${baseInputClasses} ${error ? errorInputClasses : normalInputClasses} ${className}`;
+  const inputClasses = `${baseInputClasses} ${error ? errorInputClasses : normalInputClasses} ${leftIcon ? 'pl-11' : ''} ${className}`;
 
   return (
     <div className="w-full">
@@ -52,7 +54,14 @@ export function Input({
           {props.required && <span className="text-red-500 ml-1">*</span>}
         </label>
       )}
-      <input className={inputClasses} {...props} />
+      <div className="relative">
+        {leftIcon && (
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+            {leftIcon}
+          </div>
+        )}
+        <input className={inputClasses} {...props} />
+      </div>
       {error && (
         <p className="mt-1 text-sm text-red-600">{error}</p>
       )}

@@ -9,7 +9,9 @@ import { CategoryFilter } from '@/components/blog/CategoryFilter';
 import { Pagination } from '@/components/shared/Pagination';
 import { sampleBlogPosts } from '@/data';
 import { ITEMS_PER_PAGE } from '@/lib/constants';
-import type { BlogPost } from '@/types';
+import type { BlogPost, Language } from '@/types';
+import { useTranslation } from '@/hooks/useTranslation';
+import { useParams } from 'next/navigation';
 
 /**
  * Blog Listing Page
@@ -17,6 +19,10 @@ import type { BlogPost } from '@/types';
  * Displays filterable grid of blog posts with featured posts and pagination
  */
 export default function BlogPage() {
+  const { t, tr } = useTranslation();
+  const params = useParams();
+  const locale = (params?.locale as Language) || 'es';
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,10 +38,8 @@ export default function BlogPage() {
       // Search filter
       if (searchQuery) {
         const searchLower = searchQuery.toLowerCase();
-        const titleMatch = post.title.es.toLowerCase().includes(searchLower) ||
-                          post.title.en.toLowerCase().includes(searchLower);
-        const excerptMatch = post.excerpt.es.toLowerCase().includes(searchLower) ||
-                            post.excerpt.en.toLowerCase().includes(searchLower);
+        const titleMatch = post.title[locale].toLowerCase().includes(searchLower);
+        const excerptMatch = post.excerpt[locale].toLowerCase().includes(searchLower);
         if (!titleMatch && !excerptMatch) return false;
       }
 
@@ -69,11 +73,10 @@ export default function BlogPage() {
         <Section background="dark" padding="xl">
           <Container size="lg" className="text-center">
             <h1 className="font-serif text-5xl md:text-6xl font-bold mb-6">
-              Blog
+              {t('blog.title')}
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Insights, tendencias y consejos sobre el mercado inmobiliario 
-              de lujo en Mallorca
+              {t('blog.subtitle')}
             </p>
           </Container>
         </Section>
@@ -83,7 +86,7 @@ export default function BlogPage() {
           <Section background="beige" padding="lg">
             <Container size="xl">
               <h2 className="font-serif text-3xl font-bold text-gray-dark mb-8">
-                Destacados
+                {t('blog.featured')}
               </h2>
               <div className="space-y-6">
                 {featuredPosts.map((post) => (
@@ -102,7 +105,7 @@ export default function BlogPage() {
               {/* Search */}
               <div className="max-w-xl">
                 <Input
-                  placeholder="Buscar artículos..."
+                  placeholder={t('common.search')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   leftIcon={<Search className="w-4 h-4 text-gray-400" />}
@@ -112,7 +115,7 @@ export default function BlogPage() {
               {/* Category Filter */}
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
-                  Categorías
+                  {t('blog.categories.title') || 'Categorías'}
                 </h3>
                 <CategoryFilter
                   selectedCategory={selectedCategory}
@@ -124,7 +127,7 @@ export default function BlogPage() {
             {/* Results count */}
             <div className="mb-6">
               <p className="text-gray-600">
-                {filteredPosts.length} {filteredPosts.length === 1 ? 'artículo encontrado' : 'artículos encontrados'}
+                {filteredPosts.length} {filteredPosts.length === 1 ? t('blog.results.single') : t('blog.results.plural')}
               </p>
             </div>
 
@@ -169,10 +172,10 @@ export default function BlogPage() {
         <Section background="gradient" padding="lg">
           <Container size="md" className="text-center">
             <h2 className="font-serif text-4xl font-bold text-gray-dark mb-6">
-              Suscríbete a Nuestro Newsletter
+              {t('blog.newsletter.title') || 'Suscríbete a Nuestro Newsletter'}
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              Recibe los mejores insights del mercado inmobiliario directamente en tu inbox
+              {t('blog.newsletter.subtitle') || 'Recibe los mejores insights del mercado inmobiliario directamente en tu inbox'}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input

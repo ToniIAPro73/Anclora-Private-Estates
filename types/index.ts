@@ -205,6 +205,7 @@ export interface BlogPost {
   tags: string[];
   readingTime: number; // minutes
   isPublished: boolean;
+  isFeatured?: boolean;
   publishedAt: Date;
   updatedAt: Date;
 }

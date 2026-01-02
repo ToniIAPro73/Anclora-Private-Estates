@@ -381,16 +381,31 @@ export const componentLoadPriority = {
  */
 export const pageSeoData = {
   homepage: {
-    title: 'Anclora Private Estates | Luxury Real Estate in Mallorca',
-    description: 'Discover exclusive luxury properties in Mallorca. Anclora Private Estates offers curated selection of premium villas and estates with absolute confidentiality.',
+    title: {
+      es: 'Anclora Private Estates | Real Estate de Lujo en Mallorca',
+      en: 'Anclora Private Estates | Luxury Real Estate in Mallorca',
+      de: 'Anclora Private Estates | Luxusimmobilien auf Mallorca',
+    },
+    description: {
+      es: 'Descubra propiedades de lujo exclusivas en Mallorca. Selección curada de villas y fincas premium con confidencialidad absoluta.',
+      en: 'Discover exclusive luxury properties in Mallorca. Curated selection of premium villas and estates with absolute confidentiality.',
+      de: 'Entdecken Sie exklusive Luxusimmobilien auf Mallorca. Kuratierte Auswahl an Premium-Villen und Anwesen mit absoluter Vertraulichkeit.',
+    },
     keywords: ['luxury real estate', 'Mallorca properties', 'exclusive villas', 'private estates'],
     ogImage: '/assets/images/og-homepage.jpg'
   },
   properties: {
-    title: 'Exclusive Properties | Anclora Private Estates',
-    description: 'Browse our exclusive collection of luxury properties in Mallorca',
+    title: {
+      es: 'Propiedades Exclusivas | Anclora Private Estates',
+      en: 'Exclusive Properties | Anclora Private Estates',
+      de: 'Exklusive Immobilien | Anclora Private Estates',
+    },
+    description: {
+      es: 'Explore nuestra colección exclusiva de propiedades de lujo en Mallorca.',
+      en: 'Browse our exclusive collection of luxury properties in Mallorca.',
+      de: 'Durchsuchen Sie unsere exklusive Kollektion von Luxusimmobilien auf Mallorca.',
+    },
     keywords: ['properties Mallorca', 'luxury villas', 'real estate Mallorca'],
     ogImage: '/assets/images/og-properties.jpg'
   },
-  // ... más páginas
 };

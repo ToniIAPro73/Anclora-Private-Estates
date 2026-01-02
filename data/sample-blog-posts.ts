@@ -10,11 +10,13 @@ export const blogAuthors: BlogAuthor[] = [
     title: {
       es: 'Director Anclora Private Estates',
       en: 'Director Anclora Private Estates',
+      de: 'Direktor Anclora Private Estates',
     },
     avatar: '/assets/images/team/antonio-garcia.jpg',
     bio: {
       es: 'Experto en real estate de lujo con más de 15 años de experiencia en el mercado mediterráneo.',
       en: 'Luxury real estate expert with over 15 years of experience in the Mediterranean market.',
+      de: 'Experte für Luxusimmobilien mit über 15 Jahren Erfahrung auf dem mediterranen Markt.',
     },
   },
   {
@@ -23,11 +25,13 @@ export const blogAuthors: BlogAuthor[] = [
     title: {
       es: 'Analista de Mercado Inmobiliario',
       en: 'Real Estate Market Analyst',
+      de: 'Immobilienmarkt-Analystin',
     },
     avatar: '/assets/images/team/maria-sanchez.jpg',
     bio: {
       es: 'Especialista en análisis de datos y tendencias del mercado inmobiliario en Mallorca.',
       en: 'Specialist in data analysis and real estate market trends in Mallorca.',
+      de: 'Spezialistin für Datenanalyse und Immobilienmarkttrends auf Mallorca.',
     },
   },
 ];
@@ -42,10 +46,12 @@ export const sampleBlogPosts: BlogPost[] = [
     title: {
       es: 'El Mercado Inmobiliario de Lujo en Mallorca 2025: Análisis y Proyecciones',
       en: 'Luxury Real Estate Market in Mallorca 2025: Analysis and Projections',
+      de: 'Der Luxusimmobilienmarkt auf Mallorca 2025: Analyse und Prognosen',
     },
     excerpt: {
       es: 'Un análisis exhaustivo de las tendencias del mercado inmobiliario de lujo en Mallorca, con proyecciones para 2025 basadas en datos demográficos, económicos y de inversión.',
       en: 'A comprehensive analysis of luxury real estate market trends in Mallorca, with projections for 2025 based on demographic, economic and investment data.',
+      de: 'Eine umfassende Analyse der Trends am Luxusimmobilienmarkt auf Mallorca, mit Prognosen für 2025 basierend auf demografischen, wirtschaftlichen und Investitionsdaten.',
     },
     content: {
       es: `El mercado inmobiliario de lujo en Mallorca continúa mostrando una resiliencia notable en 2025, impulsado por una demanda internacional sostenida y un inventario limitado de propiedades premium.
@@ -74,6 +80,19 @@ Esperamos un crecimiento moderado del 4-6% en valores de propiedades premium, co
 ## 2025 Projections
 
 We expect moderate growth of 4-6% in premium property values, with particular strength in rehabilitated historic estates and properties with sustainability certification.`,
+      de: `Der Luxusimmobilienmarkt auf Mallorca zeigt auch im Jahr 2025 eine bemerkenswerte Resilienz, angetrieben durch eine anhaltende internationale Nachfrage und ein begrenztes Inventar an Premiumimmobilien.
+
+## Haupttrends
+
+**Mangel an Premium-Inventar**: Bei Ultra-Luxusimmobilien (>5 Mio. €) sank das verfügbare Inventar im Jahr 2024 um 23 %, was in exklusiven Gegenden wie Son Vida und Port d'Andratx zu einem Aufwärtspreisdruck führte.
+
+**Internationale Käufer**: Käufer aus Lateinamerika, insbesondere aus Mexiko und Argentinien, machen 31 % der Transaktionen mit hohem Wert aus, gefolgt von deutschen (24 %) und britischen (18 %) Käufern.
+
+**Off-Market als Norm**: Immer mehr wohlhabende Immobilienbesitzer bevorzugen die Diskretion von Off-Market-Transaktionen, wobei 47 % der Verkäufe >2 Mio. € außerhalb öffentlicher Portale stattfinden.
+
+## Prognosen für 2025
+
+Wir erwarten ein moderates Wachstum von 4-6 % bei den Premiumimmobilienwerten, mit besonderer Stärke bei sanierten historischen Anwesen und Immobilien mit Nachhaltigkeitszertifizierung.`,
     },
     category: 'market-insights',
     author: blogAuthors[1],
@@ -90,10 +109,12 @@ We expect moderate growth of 4-6% in premium property values, with particular st
     title: {
       es: 'Inversión Inmobiliaria con IA Predictiva: El Futuro Ya Está Aquí',
       en: 'Real Estate Investment with Predictive AI: The Future is Here',
+      de: 'Immobilieninvestitionen mit prädiktiver KI: Die Zukunft ist da',
     },
     excerpt: {
       es: 'Cómo la inteligencia artificial está revolucionando la forma en que identificamos oportunidades de inversión antes que la competencia.',
       en: 'How artificial intelligence is revolutionizing the way we identify investment opportunities before the competition.',
+      de: 'Wie künstliche Intelligenz die Art und Weise revolutioniert, wie wir Investitionsmöglichkeiten vor der Konkurrenz identifizieren.',
     },
     content: {
       es: `La inteligencia artificial predictiva está transformando radicalmente el sector inmobiliario, permitiendo identificar propiedades con alto potencial de revalorización meses antes de que salgan al mercado.
@@ -122,6 +143,19 @@ At Anclora Private Estates, we use machine learning algorithms that analyze demo
 ## Success Stories
 
 An international client was able to acquire a historic estate in Valldemossa 4 months before its public listing, thanks to our system identifying early signals of the owner's intention to sell.`,
+      de: `Vorausschauende künstliche Intelligenz verändert den Immobiliensektor radikal und ermöglicht die Identifizierung von Immobilien mit hohem Wertsteigerungspotenzial Monate bevor sie auf den Markt kommen.
+
+## Der Wettbewerbsvorteil durch Daten
+
+Bei Anclora Private Estates nutzen wir Algorithmen für maschinelles Lernen, die demografische, wirtschaftliche und verhaltensbezogene Muster analysieren, um „Verkaufsneigungswerte“ für bestimmte Immobilien zu generieren.
+
+**Datenquellen**: Kataster, statistische Ämter, offizielle Bekanntmachungen (Auktionen und Erbschaften), historische Kauf-/Verkaufsmuster und öffentliche Signale in sozialen Medien.
+
+**Genauigkeit**: Unsere Modelle haben eine Erfolgsquote von 67 % bei der Vorhersage von Verkäufen innerhalb der nächsten 6 Monate gezeigt.
+
+## Erfolgsgeschichten
+
+Ein internationaler Kunde konnte ein historisches Anwesen in Valldemossa 4 Monate vor seiner öffentlichen Listung erwerben, da unser System frühzeitige Anzeichen für die Verkaufsabsicht des Eigentümers identifizierte.`,
     },
     category: 'investment',
     author: blogAuthors[0],
@@ -138,10 +172,12 @@ An international client was able to acquire a historic estate in Valldemossa 4 m
     title: {
       es: 'Vivir en Mallorca: Guía Completa para Expatriados de Alto Patrimonio',
       en: 'Living in Mallorca: Complete Guide for High-Net-Worth Expats',
+      de: 'Leben auf Mallorca: Vollständiger Leitfaden für vermögende Expats',
     },
     excerpt: {
       es: 'Todo lo que necesitas saber sobre residencia fiscal, educación internacional, healthcare premium y estilo de vida mediterráneo.',
       en: 'Everything you need to know about tax residency, international education, premium healthcare, and Mediterranean lifestyle.',
+      de: 'Alles, was Sie über steuerlichen Wohnsitz, internationale Bildung, erstklassige Gesundheitsversorgung und mediterranen Lebensstil wissen müssen.',
     },
     content: {
       es: `Mallorca se ha consolidado como uno de los destinos preferidos para familias de alto patrimonio que buscan calidad de vida, seguridad y ventajas fiscales en Europa.
@@ -190,6 +226,29 @@ Medical centers like Clínica Juaneda and Hospital Quirónsalud offer world-clas
 ## Connectivity
 
 Palma Airport (PMI) connects to over 180 destinations, with direct flights to all major European cities and intercontinental connections via Madrid and Barcelona.`,
+      de: `Mallorca hat sich als eines der beliebtesten Ziele für vermögende Familien etabliert, die Lebensqualität, Sicherheit und Steuervorteile in Europa suchen.
+
+## Steuerlicher Wohnsitz
+
+Spanien bietet die **Beckham-Law**-Regelung für neue Einwohner an, die unter bestimmten Bedingungen eine Besteuerung als Nichtansässiger für 6 Jahre ermöglicht. Ideal für Führungskräfte und Sportler.
+
+**Anforderungen**: Aufenthalt von mehr als 183 Tagen pro Jahr in Spanien, kein steuerlicher Wohnsitz in den letzten 10 Jahren.
+
+## Internationale Bildung
+
+Mallorca verfügt über erstklassige internationale Schulen:
+
+- **Bellver International College**: Britischer Lehrplan, IB-Diplom
+- **Agora Portals International School**: International Baccalaureate
+- **Lycée Français de Palma**: Französisches Bildungssystem
+
+## Erstklassige Gesundheitsversorgung
+
+Medizinische Zentren wie die Clínica Juaneda und das Hospital Quirónsalud bieten erstklassige Versorgung mit modernster Ausstattung.
+
+## Konnektivität
+
+Der Flughafen Palma (PMI) bietet Verbindungen zu über 180 Zielen mit Direktflügen zu allen europäischen Großstädten und Interkontinentalverbindungen über Madrid und Barcelona.`,
     },
     category: 'lifestyle',
     author: blogAuthors[0],
@@ -206,10 +265,12 @@ Palma Airport (PMI) connects to over 180 destinations, with direct flights to al
     title: {
       es: 'Son Vida: Donde la Exclusividad se Encuentra con el Privilegio',
       en: 'Son Vida: Where Exclusivity Meets Privilege',
+      de: 'Son Vida: Wo Exklusivität auf Privilegien trifft',
     },
     excerpt: {
       es: 'Un recorrido por la zona residencial más prestigiosa de Mallorca, hogar de campos de golf de campeonato y villas de ensueño.',
       en: 'A tour through Mallorca\'s most prestigious residential area, home to championship golf courses and dream villas.',
+      de: 'Ein Rundgang durch das prestigeträchtigste Wohngebiet Mallorcas, Heimat von Meisterschafts-Golfplätzen und Traumvillen.',
     },
     content: {
       es: `Son Vida representa el pináculo del real estate de lujo en Mallorca. Esta urbanización exclusiva, situada en las colinas sobre Palma, combina privacidad absoluta con proximidad a los servicios de la capital.
@@ -258,6 +319,29 @@ Villas in Son Vida are characterized by contemporary Mediterranean architecture,
 
 **Price range**: €2M - €15M
 **Average built area**: 500-1,200 m²`,
+      de: `Son Vida ist der Inbegriff von Luxusimmobilien auf Mallorca. Diese exklusive Urbanisation in den Hügeln über Palma verbindet absolute Privatsphäre mit der Nähe zu den Dienstleistungen der Hauptstadt.
+
+## Das Gebiet
+
+Nur 5 km vom Zentrum Palmas und 15 Minuten vom Flughafen entfernt bietet Son Vida einen Panoramablick auf die Bucht und die Stadt.
+
+**Fläche**: Ca. 3,5 km²
+**Höhe**: 100-130 Meter über dem Meeresspiegel
+**Einwohner**: Weniger als 1.000 ständige Einwohner
+
+## Weltklasse-Golf
+
+Drei Meisterschafts-Golfplätze:
+- **Son Vida Golf**: Entworfen von F.W. Hawtree, Mallorcas ältester Platz (1964)
+- **Son Muntaner Golf**: Par 72, Entwurf von Kurt Rossknecht
+- **Son Quint Golf**: Par 67, ideal für Spieler aller Stärken
+
+## Architektur und Immobilien
+
+Villen in Son Vida zeichnen sich durch zeitgenössische mediterrane Architektur, großzügige Grundstücke (1.000-5.000 m²) und hochwertigste Ausstattungen aus.
+
+**Preisspanne**: 2 Mio. € - 15 Mio. €
+**Durchschnittliche bebaute Fläche**: 500-1.200 m²`,
     },
     category: 'property-spotlight',
     author: blogAuthors[0],
@@ -274,10 +358,12 @@ Villas in Son Vida are characterized by contemporary Mediterranean architecture,
     title: {
       es: 'Sostenibilidad en el Real Estate de Lujo: Más que una Tendencia',
       en: 'Sustainability in Luxury Real Estate: More Than a Trend',
+      de: 'Nachhaltigkeit in Luxusimmobilien: Mehr als ein Trend',
     },
     excerpt: {
       es: 'Las certificaciones de sostenibilidad están agregando valor tangible a las propiedades de lujo. Descubre por qué.',
       en: 'Sustainability certifications are adding tangible value to luxury properties. Discover why.',
+      de: 'Nachhaltigkeitszertifizierungen verleihen Luxusimmobilien einen greifbaren Wert. Erfahren Sie warum.',
     },
     content: {
       es: `La sostenibilidad ha dejado de ser un "nice to have" para convertirse en un factor determinante del valor inmobiliario en el segmento de lujo.
@@ -330,6 +416,31 @@ Properties with premium certifications show:
 ## 2025 Trends
 
 Aerothermal energy, architecturally integrated solar panels, rainwater collection systems, and xerophytic gardens are the new standard in luxury new builds.`,
+      de: `Nachhaltigkeit ist kein „Nice-to-have“ mehr, sondern ein entscheidender Faktor für den Immobilienwert im Luxussegment.
+
+## Der bewusste Käufer
+
+Wohlhabende Käufer, insbesondere Erben der Millennials und der Gen Z, legen zunehmend Wert auf Energieeffizienz und Umweltauswirkungen.
+
+**Daten**: 73 % der Käufer von Immobilien >2 Mio. € betrachten Nachhaltigkeitszertifizierungen als entscheidenden Kauffaktor (Savills-Studie 2024).
+
+## Relevante Zertifizierungen
+
+- **BREEAM**: Building Research Establishment Environmental Assessment Method
+- **LEED**: Leadership in Energy and Environmental Design
+- **Passivhaus**: Deutscher Standard für extreme Energieeffizienz
+- **VERDE**: Spanische Zertifizierung für nachhaltiges Bauen
+
+## Kapitalrendite
+
+Immobilien mit Premium-Zertifizierungen weisen auf:
+- **+12 % Marktwert** gegenüber vergleichbaren Immobilien ohne Zertifizierung
+- **-40 % betriebliche Energiekosten**
+- **+25 % Verkaufsgeschwindigkeit** in wettbewerbsintensiven Märkten
+
+## Trends 2025
+
+Luftwärmepumpen, architektonisch integrierte Sonnenkollektoren, Regenwasser-Auffangsysteme und xerophytische Gärten sind der neue Standard bei luxuriösen Neubauten.`,
     },
     category: 'investment',
     author: blogAuthors[1],

@@ -313,22 +313,65 @@
     "error": "Hubo un error al enviar el formulario. Por favor, inténtelo de nuevo."
   },
   "about": {
-    "title": "Sobre Anclora Private Estates",
-    "subtitle": "Excelencia inmobiliaria impulsada por tecnología",
+    "title": "Sobre Anclora",
+    "subtitle": "Redefiniendo el real estate de lujo en Mallorca a través de tecnología, expertise y servicio excepcional.",
     "story": {
       "title": "Nuestra Historia",
-      "content": "Anclora Private Estates nace de la convergencia entre la experiencia inmobiliaria mediterránea y la innovación tecnológica. Bajo el paraguas de eXp Realty España, combinamos la escala de una red global con la agilidad de una boutique de lujo."
+      "p1": "Anclora Private Estates nació de una visión clara: transformar la experiencia de compra y venta de propiedades de lujo en Mallorca combinando el conocimiento local profundo con tecnología de vanguardia.",
+      "p2": "En 2020, identificamos una oportunidad única en el mercado inmobiliario mallorquín. Mientras las agencias tradicionales dependían de métodos convencionales, nosotros apostamos por la innovación: segmentación algorítmica, automatización inteligente y una red internacional de compradores HNWI.",
+      "p3": "Hoy, Anclora no es solo una agencia inmobiliaria. Somos un grupo empresarial con dos verticales: Anclora Private Estates (B2C) y Anclora Cognitive Solutions (B2B), ofreciendo servicios de IA a otras agencias del sector."
     },
     "philosophy": {
       "title": "Nuestra Filosofía",
-      "content": "Creemos que el lujo verdadero reside en la privacidad, el acceso exclusivo y el servicio personalizado. No listamos propiedades; curamos legados."
+      "content": "Creemos que el real estate de lujo requiere un equilibrio perfecto entre tecnología avanzada y toque humano. Nuestros algoritmos encuentran a los compradores ideales, pero son nuestras relaciones personales las que cierran las operaciones."
     },
     "values": {
       "title": "Nuestros Valores",
-      "discretion": "Discreción",
-      "excellence": "Excelencia",
-      "innovation": "Innovación",
-      "integrity": "Integridad"
+      "excellence": {
+        "title": "Excelencia",
+        "description": "Estándares de servicio excepcionales en cada interacción y transacción."
+      },
+      "integrity": {
+        "title": "Integridad",
+        "description": "Transparencia total y honestidad en todas nuestras relaciones comerciales."
+      },
+      "results": {
+        "title": "Resultados",
+        "description": "Enfoque orientado a objetivos medibles y resultados concretos para nuestros clientes."
+      },
+      "innovation": {
+        "title": "Innovación",
+        "description": "Adopción de tecnología y metodologías avanzadas en el sector inmobiliario."
+      }
+    },
+    "milestones": {
+      "title": "Nuestro Camino",
+      "m1": { "year": "2020", "event": "Fundación de Anclora Private Estates" },
+      "m2": { "year": "2021", "event": "+50M€ en transacciones cerradas" },
+      "m3": { "year": "2022", "event": "Lanzamiento de Anclora Cognitive Solutions" },
+      "m4": { "year": "2023", "event": "Expansión a mercados internacionales" },
+      "m5": { "year": "2024", "event": "+100 propiedades gestionadas" }
+    },
+    "team": {
+      "title": "Nuestro Equipo",
+      "subtitle": "Profesionales apasionados por el real estate y la tecnología",
+      "member1": {
+        "role": "Founder & CEO",
+        "bio": "Experto en real estate de lujo con 15+ años de experiencia en Mallorca."
+      },
+      "member2": {
+        "role": "Head of Sales",
+        "bio": "Especialista en ventas internacionales con dominio de 5 idiomas."
+      },
+      "member3": {
+        "role": "Technology Director",
+        "bio": "Arquitecto de soluciones AI con expertise en automatización inmobiliaria."
+      }
+    },
+    "cta": {
+      "title": "¿Listo para comenzar?",
+      "subtitle": "Descubre cómo podemos ayudarte con tus objetivos inmobiliarios",
+      "button": "Contactar"
     }
   },
   "blog": {

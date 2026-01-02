@@ -4,6 +4,68 @@
     "intro": "Ich helfe Ihnen, die perfekte Immobilie in Mallorca zu finden.",
     "ask_name": "Wie ist Ihr Name?"
   },
+  "about": {
+    "title": "Über Anclora",
+    "subtitle": "Wir definieren Luxusimmobilien auf Mallorca durch Technologie, Expertise und außergewöhnlichen Service neu.",
+    "story": {
+      "title": "Unsere Geschichte",
+      "p1": "Anclora Private Estates entstand aus einer klaren Vision: das Kauf- und Verkaufserlebnis von Luxusimmobilien auf Mallorca zu transformieren, indem tiefes lokales Wissen mit modernster Technologie kombiniert wird.",
+      "p2": "Im Jahr 2020 identifizierten wir eine einzigartige Gelegenheit auf dem mallorquinischen Immobilienmarkt. Während traditionelle Agenturen auf konventionelle Methoden setzten, wir haben auf Innovation gesetzt: algorithmische Segmentierung, intelligente Automatisierung und ein internationales Netzwerk von HNWI-Käufern.",
+      "p3": "Heute ist Anclora nicht nur eine Immobilienagentur. Wir sind eine Unternehmensgruppe mit zwei vertikalen Bereichen: Anclora Private Estates (B2C) und Anclora Cognitive Solutions (B2B), die KI-Dienstleistungen für andere Agenturen in der Branche anbietet."
+    },
+    "philosophy": {
+      "title": "Unsere Philosophie",
+      "content": "Wir glauben, dass Luxusimmobilien ein perfektes Gleichgewicht zwischen fortschrittlicher Technologie und menschlicher Note erfordern. Unsere Algorithmen finden die idealen Käufer, aber es sind unsere persönlichen Beziehungen, die die Geschäfte abschließen."
+    },
+    "values": {
+      "title": "Unsere Werte",
+      "excellence": {
+        "title": "Exzellenz",
+        "description": "Außergewöhnliche Servicestandards bei jeder Interaktion und Transaktion."
+      },
+      "integrity": {
+        "title": "Integrität",
+        "description": "Vollständige Transparenz und Ehrlichkeit in all unseren Geschäftsbeziehungen."
+      },
+      "results": {
+        "title": "Ergebnisse",
+        "description": "Messbarer zielorientierter Ansatz und konkrete Ergebnisse für unsere Kunden."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Einführung fortschrittlicher Technologien und Methoden im Immobiliensektor."
+      }
+    },
+    "milestones": {
+      "title": "Unser Weg",
+      "m1": { "year": "2020", "event": "Gründung von Anclora Private Estates" },
+      "m2": { "year": "2021", "event": "+50 Mio. € abgeschlossene Transaktionen" },
+      "m3": { "year": "2022", "event": "Einführung von Anclora Cognitive Solutions" },
+      "m4": { "year": "2023", "event": "Expansion in internationale Märkte" },
+      "m5": { "year": "2024", "event": "+100 verwaltete Immobilien" }
+    },
+    "team": {
+      "title": "Unser Team",
+      "subtitle": "Profis mit Leidenschaft für Immobilien und Technologie",
+      "member1": {
+        "role": "Gründer & CEO",
+        "bio": "Experte für Luxusimmobilien mit über 15 Jahren Erfahrung auf Mallorca."
+      },
+      "member2": {
+        "role": "Vertriebsleiterin",
+        "bio": "Spezialistin für den internationalen Vertrieb mit Beherrschung von 5 Sprachen."
+      },
+      "member3": {
+        "role": "Technologie-Direktor",
+        "bio": "Architekt für KI-Lösungen mit Expertise in der Immobilienautomatisierung."
+      }
+    },
+    "cta": {
+      "title": "Bereit zu beginnen?",
+      "subtitle": "Entdecken Sie, wie wir Ihnen bei Ihren Immobilienzielen helfen können",
+      "button": "Kontakt"
+    }
+  },
   "menu": {
     "main": "Wie kann ich Ihnen heute helfen?",
     "options": {

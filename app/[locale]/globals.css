@@ -91,14 +91,6 @@
     --shadow-gold: 0 10px 30px -5px rgba(197, 160, 89, 0.3);
   }
 
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-white text-anclora-gray-dark;
-  }
-
   html {
     scroll-behavior: smooth;
   }

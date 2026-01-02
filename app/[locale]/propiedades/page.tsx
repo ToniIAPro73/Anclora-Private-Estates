@@ -7,7 +7,9 @@ import { PropertyCard } from '@/components/properties/PropertyCard';
 import { Pagination } from '@/components/shared/Pagination';
 import { sampleProperties } from '@/data';
 import { ITEMS_PER_PAGE } from '@/lib/constants';
-import type { Property } from '@/types';
+import type { Property, Language } from '@/types';
+import { useTranslation } from '@/hooks/useTranslation';
+import { useParams } from 'next/navigation';
 
 /**
  * Properties Listing Page
@@ -15,6 +17,10 @@ import type { Property } from '@/types';
  * Displays filterable grid of properties with pagination
  */
 export default function PropertiesPage() {
+  const { t, tr } = useTranslation();
+  const params = useParams();
+  const locale = (params?.locale as Language) || 'es';
+
   const [filters, setFilters] = useState<PropertyFilterState>({
     search: '',
     type: '',
@@ -31,9 +37,8 @@ export default function PropertiesPage() {
       // Search filter
       if (filters.search) {
         const searchLower = filters.search.toLowerCase();
-        const titleMatch = property.title.es.toLowerCase().includes(searchLower) ||
-                          property.title.en.toLowerCase().includes(searchLower);
-        const zoneMatch = property.location.zone.toLowerCase().includes(searchLower);
+        const titleMatch = property.title[locale].toLowerCase().includes(searchLower);
+        const zoneMatch = property.location.address.toLowerCase().includes(searchLower);
         if (!titleMatch && !zoneMatch) return false;
       }
 
@@ -73,10 +78,10 @@ export default function PropertiesPage() {
         <Section background="dark" padding="lg">
           <div className="text-center">
             <h1 className="font-serif text-5xl md:text-6xl font-bold mb-6">
-              Propiedades Exclusivas
+              {t('properties.title')}
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Descubre nuestra selección curada de propiedades de lujo en Mallorca
+              {t('properties.subtitle')}
             </p>
           </div>
         </Section>

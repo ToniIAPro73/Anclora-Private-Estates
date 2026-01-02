@@ -1,64 +1,69 @@
+'use client';
+
 import React from 'react';
-import { Award, Target, Heart, Users, Sparkles, TrendingUp } from 'lucide-react';
+import { Award, Target, Heart, Sparkles } from 'lucide-react';
 import { Header, Footer, Section, Container } from '@/components/layout';
 import { OptimizedImage } from '@/components/ui';
-
-const values = [
-  {
-    icon: Award,
-    title: 'Excelencia',
-    description: 'Estándares de servicio excepcionales en cada interacción y transacción.',
-  },
-  {
-    icon: Heart,
-    title: 'Integridad',
-    description: 'Transparencia total y honestidad en todas nuestras relaciones comerciales.',
-  },
-  {
-    icon: Target,
-    title: 'Resultados',
-    description: 'Enfoque orientado a objetivos medibles y resultados concretos para nuestros clientes.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Innovación',
-    description: 'Adopción de tecnología y metodologías avanzadas en el sector inmobiliario.',
-  },
-];
-
-const team = [
-  {
-    name: 'Antonio García',
-    role: 'Founder & CEO',
-    bio: 'Experto en real estate de lujo con 15+ años de experiencia en Mallorca.',
-    image: '/assets/images/placeholders/property-placeholder.svg',
-  },
-  {
-    name: 'María Sánchez',
-    role: 'Head of Sales',
-    bio: 'Especialista en ventas internacionales con dominio de 5 idiomas.',
-    image: '/assets/images/placeholders/property-placeholder.svg',
-  },
-  {
-    name: 'Javier Ruiz',
-    role: 'Technology Director',
-    bio: 'Arquitecto de soluciones AI con expertise en automatización inmobiliaria.',
-    image: '/assets/images/placeholders/property-placeholder.svg',
-  },
-];
-
-const milestones = [
-  { year: '2020', event: 'Fundación de Anclora Private Estates' },
-  { year: '2021', event: '+50M€ en transacciones cerradas' },
-  { year: '2022', event: 'Lanzamiento de Anclora Cognitive Solutions' },
-  { year: '2023', event: 'Expansión a mercados internacionales' },
-  { year: '2024', event: '+100 propiedades gestionadas' },
-];
+import { useTranslation } from '@/hooks/useTranslation';
 
 /**
  * About Page
  */
 export default function AboutPage() {
+  const { t } = useTranslation();
+
+  const values = [
+    {
+      icon: Award,
+      title: t('about.values.excellence.title'),
+      description: t('about.values.excellence.description'),
+    },
+    {
+      icon: Heart,
+      title: t('about.values.integrity.title'),
+      description: t('about.values.integrity.description'),
+    },
+    {
+      icon: Target,
+      title: t('about.values.results.title'),
+      description: t('about.values.results.description'),
+    },
+    {
+      icon: Sparkles,
+      title: t('about.values.innovation.title'),
+      description: t('about.values.innovation.description'),
+    },
+  ];
+
+  const milestones = [
+    { year: '2020', event: t('about.milestones.m1.event') },
+    { year: '2021', event: t('about.milestones.m2.event') },
+    { year: '2022', event: t('about.milestones.m3.event') },
+    { year: '2023', event: t('about.milestones.m4.event') },
+    { year: '2024', event: t('about.milestones.m5.event') },
+  ];
+
+  const team = [
+    {
+      name: 'Antonio García',
+      role: t('about.team.member1.role'),
+      bio: t('about.team.member1.bio'),
+      image: '/assets/images/placeholders/property-placeholder.svg',
+    },
+    {
+      name: 'María Sánchez',
+      role: t('about.team.member2.role'),
+      bio: t('about.team.member2.bio'),
+      image: '/assets/images/placeholders/property-placeholder.svg',
+    },
+    {
+      name: 'Javier Ruiz',
+      role: t('about.team.member3.role'),
+      bio: t('about.team.member3.bio'),
+      image: '/assets/images/placeholders/property-placeholder.svg',
+    },
+  ];
+
   return (
     <>
       <Header />
@@ -67,11 +72,10 @@ export default function AboutPage() {
         <Section background="dark" padding="xl">
           <Container size="lg" className="text-center">
             <h1 className="font-serif text-5xl md:text-6xl font-bold mb-6">
-              Sobre Anclora
+              {t('about.title')}
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Redefiniendo el real estate de lujo en Mallorca a través de 
-              tecnología, expertise y servicio excepcional.
+              {t('about.subtitle')}
             </p>
           </Container>
         </Section>
@@ -82,27 +86,12 @@ export default function AboutPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="font-serif text-4xl font-bold text-gray-dark mb-6">
-                  Nuestra Historia
+                  {t('about.story.title')}
                 </h2>
                 <div className="space-y-4 text-lg text-gray-700 leading-relaxed">
-                  <p>
-                    Anclora Private Estates nació de una visión clara: transformar 
-                    la experiencia de compra y venta de propiedades de lujo en Mallorca 
-                    combinando el conocimiento local profundo con tecnología de vanguardia.
-                  </p>
-                  <p>
-                    En 2020, identificamos una oportunidad única en el mercado inmobiliario 
-                    mallorquín. Mientras las agencias tradicionales dependían de métodos 
-                    convencionales, nosotros apostamos por la innovación: segmentación 
-                    algorítmica, automatización inteligente y una red internacional de 
-                    compradores HNWI.
-                  </p>
-                  <p>
-                    Hoy, Anclora no es solo una agencia inmobiliaria. Somos un grupo 
-                    empresarial con dos verticales: Anclora Private Estates (B2C) y 
-                    Anclora Cognitive Solutions (B2B), ofreciendo servicios de IA a 
-                    otras agencias del sector.
-                  </p>
+                  <p>{t('about.story.p1')}</p>
+                  <p>{t('about.story.p2')}</p>
+                  <p>{t('about.story.p3')}</p>
                 </div>
               </div>
 
@@ -123,13 +112,10 @@ export default function AboutPage() {
         <Section background="beige" padding="lg">
           <Container size="md" className="text-center">
             <h2 className="font-serif text-4xl font-bold text-gray-dark mb-6">
-              Nuestra Filosofía
+              {t('about.philosophy.title')}
             </h2>
             <p className="text-xl text-gray-700 leading-relaxed">
-              Creemos que el real estate de lujo requiere un equilibrio perfecto 
-              entre tecnología avanzada y toque humano. Nuestros algoritmos 
-              encuentran a los compradores ideales, pero son nuestras relaciones 
-              personales las que cierran las operaciones.
+              {t('about.philosophy.content')}
             </p>
           </Container>
         </Section>
@@ -139,7 +125,7 @@ export default function AboutPage() {
           <Container size="xl">
             <div className="text-center mb-16">
               <h2 className="font-serif text-4xl font-bold text-gray-dark mb-6">
-                Nuestros Valores
+                {t('about.values.title')}
               </h2>
             </div>
 
@@ -171,7 +157,7 @@ export default function AboutPage() {
           <Container size="lg">
             <div className="text-center mb-12">
               <h2 className="font-serif text-4xl font-bold text-gray-dark mb-6">
-                Nuestro Camino
+                {t('about.milestones.title')}
               </h2>
             </div>
 
@@ -217,10 +203,10 @@ export default function AboutPage() {
           <Container size="xl">
             <div className="text-center mb-16">
               <h2 className="font-serif text-4xl font-bold text-gray-dark mb-6">
-                Nuestro Equipo
+                {t('about.team.title')}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Profesionales apasionados por el real estate y la tecnología
+                {t('about.team.subtitle')}
               </p>
             </div>
 
@@ -259,16 +245,16 @@ export default function AboutPage() {
         <Section background="dark" padding="lg">
           <Container size="md" className="text-center">
             <h2 className="font-serif text-4xl font-bold mb-6">
-              ¿Listo para comenzar?
+              {t('about.cta.title')}
             </h2>
             <p className="text-xl text-gray-300 mb-8">
-              Descubre cómo podemos ayudarte con tus objetivos inmobiliarios
+              {t('about.cta.subtitle')}
             </p>
             <a
               href="/contacto"
               className="inline-block px-8 py-4 bg-anclora-gold text-white font-semibold rounded-md hover:bg-anclora-gold-dark transition-colors"
             >
-              Contactar
+              {t('about.cta.button')}
             </a>
           </Container>
         </Section>

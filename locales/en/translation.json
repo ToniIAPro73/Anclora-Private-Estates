@@ -313,22 +313,65 @@
     "error": "There was an error submitting the form. Please try again."
   },
   "about": {
-    "title": "About Anclora Private Estates",
-    "subtitle": "Technology-driven real estate excellence",
+    "title": "About Anclora",
+    "subtitle": "Redefining luxury real estate in Mallorca through technology, expertise, and exceptional service.",
     "story": {
       "title": "Our Story",
-      "content": "Anclora Private Estates is born from the convergence of Mediterranean real estate experience and technological innovation. Under the umbrella of eXp Realty Spain, we combine the scale of a global network with the agility of a luxury boutique."
+      "p1": "Anclora Private Estates was born from a clear vision: to transform the buying and selling experience of luxury properties in Mallorca by combining deep local knowledge with cutting-edge technology.",
+      "p2": "In 2020, we identified a unique opportunity in the Mallorcan real estate market. While traditional agencies relied on conventional methods, we bet on innovation: algorithmic segmentation, intelligent automation, and an international network of HNWI buyers.",
+      "p3": "Today, Anclora is not just a real estate agency. We are a business group with two verticals: Anclora Private Estates (B2C) and Anclora Cognitive Solutions (B2B), offering AI services to other agencies in the sector."
     },
     "philosophy": {
       "title": "Our Philosophy",
-      "content": "We believe that true luxury lies in privacy, exclusive access, and personalized service. We don't list properties; we curate legacies."
+      "content": "We believe that luxury real estate requires a perfect balance between advanced technology and human touch. Our algorithms find the ideal buyers, but it is our personal relationships that close the deals."
     },
     "values": {
       "title": "Our Values",
-      "discretion": "Discretion",
-      "excellence": "Excellence",
-      "innovation": "Innovation",
-      "integrity": "Integrity"
+      "excellence": {
+        "title": "Excellence",
+        "description": "Exceptional service standards in every interaction and transaction."
+      },
+      "integrity": {
+        "title": "Integrity",
+        "description": "Total transparency and honesty in all our business relationships."
+      },
+      "results": {
+        "title": "Results",
+        "description": "Measurable goal-oriented approach and concrete results for our clients."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Adoption of advanced technology and methodologies in the real estate sector."
+      }
+    },
+    "milestones": {
+      "title": "Our Journey",
+      "m1": { "year": "2020", "event": "Foundation of Anclora Private Estates" },
+      "m2": { "year": "2021", "event": "+€50M in closed transactions" },
+      "m3": { "year": "2022", "event": "Launch of Anclora Cognitive Solutions" },
+      "m4": { "year": "2023", "event": "Expansion into international markets" },
+      "m5": { "year": "2024", "event": "+100 properties managed" }
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "Professionals passionate about real estate and technology",
+      "member1": {
+        "role": "Founder & CEO",
+        "bio": "Expert in luxury real estate with 15+ years of experience in Mallorca."
+      },
+      "member2": {
+        "role": "Head of Sales",
+        "bio": "International sales specialist with fluency in 5 languages."
+      },
+      "member3": {
+        "role": "Technology Director",
+        "bio": "AI solutions architect with expertise in real estate automation."
+      }
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "subtitle": "Discover how we can help you with your real estate goals",
+      "button": "Contact"
     }
   },
   "blog": {
