@@ -1,26 +1,43 @@
+const createNextIntlPlugin = require('next-intl/plugin');
+
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    formats: ['image/webp'],
+    formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.ancloraprivateestates.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.s3.*.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.backblazeb2.com',
+      },
       {
         protocol: 'https',
         hostname: 'anclora-documents.s3.eu-west-1.amazonaws.com',
       },
     ],
   },
-  
-  // Optimizaciones de producción
+
+  poweredByHeader: false,
+  compress: true,
+  reactStrictMode: true,
+
   productionBrowserSourceMaps: false,
-  
-  // Experimental features
+
   experimental: {
     optimizePackageImports: ['lucide-react', 'react-hook-form'],
   },
 
-  // Headers de seguridad
   async headers() {
     return [
       {
@@ -44,7 +61,6 @@ const nextConfig = {
           },
         ],
       },
-      // Cache para assets estáticos
       {
         source: '/assets/:path*',
         headers: [
@@ -57,15 +73,13 @@ const nextConfig = {
     ];
   },
 
-  // Redirects si es necesario
   async redirects() {
     return [];
   },
 
-  // Rewrites para i18n si es necesario
   async rewrites() {
     return [];
   },
 };
 
-module.exports = nextConfig;
+module.exports = withNextIntl(nextConfig);

@@ -1,4 +1,5 @@
 # FASE 7.2 - Multi-Language Support (i18n)
+
 ## Estado Actual de Implementación
 
 **Fecha:** 2026-01-02  
@@ -9,9 +10,10 @@
 
 ## 📋 Resumen Ejecutivo
 
-Se ha completado la implementación del sistema de internacionalización (i18n) para el frontend de Anclora Private Estates, soportando **3 idiomas**: Español (ES), Inglés (EN) y Alemán (DE). 
+Se ha completado la implementación del sistema de internacionalización (i18n) para el frontend de Anclora Private Estates, soportando **3 idiomas**: Español (ES), Inglés (EN) y Alemán (DE).
 
 La implementación incluye:
+
 - ✅ Infraestructura completa de `next-intl` v4.7.0
 - ✅ Todos los datos localizados (propiedades, blog, guías)
 - ✅ Todas las páginas principales refactorizadas para i18n
@@ -25,9 +27,10 @@ La implementación incluye:
 
 ### 1. Infraestructura i18n
 
-#### Archivos Creados/Modificados:
+#### Archivos Creados/Modificados
 
 **`i18n.ts`** (Raíz del proyecto)
+
 ```typescript
 import { getRequestConfig } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -39,26 +42,28 @@ export default getRequestConfig(async ({ locale }) => {
 
   return {
     locale: locale as string,
-    messages: (await import(`./locales/${locale}/translation.json`)).default
+    messages: (await import(`./locales/${locale}/translation.json`)).default,
   };
 });
 ```
 
 **`i18n/navigation.ts`**
+
 ```typescript
 import { createNavigation } from 'next-intl/navigation';
 import { defineRouting } from 'next-intl/routing';
 
 export const routing = defineRouting({
   locales: ['es', 'en', 'de'],
-  defaultLocale: 'es'
+  defaultLocale: 'es',
 });
 
-export const { Link, redirect, usePathname, useRouter, getPathname } = 
+export const { Link, redirect, usePathname, useRouter, getPathname } =
   createNavigation(routing);
 ```
 
 **`middleware.ts`**
+
 ```typescript
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/navigation';
@@ -66,11 +71,12 @@ import { routing } from './i18n/navigation';
 export default createMiddleware(routing);
 
 export const config = {
-  matcher: ['/', '/(es|en|de)/:path*']
+  matcher: ['/', '/(es|en|de)/:path*'],
 };
 ```
 
 **`next.config.ts`**
+
 ```typescript
 import createNextIntlPlugin from 'next-intl/plugin';
 
@@ -82,12 +88,14 @@ export default withNextIntl(nextConfig);
 ### 2. Hooks Personalizados
 
 **`hooks/useTranslation.ts`**
+
 - Refactorizado para usar `next-intl` internamente
 - Proporciona función `t()` para claves de traducción
 - Proporciona función `tr()` para objetos `Translation`
 - Soporte para 3 idiomas (ES, EN, DE)
 
 **`hooks/useLanguageToggle.ts`**
+
 - Ciclo ES → EN → DE → ES
 - Usa `useRouter` de `i18n/navigation` para cambio de locale
 - Mantiene la ruta actual al cambiar idioma
@@ -95,6 +103,7 @@ export default withNextIntl(nextConfig);
 ### 3. Tipos Actualizados
 
 **`types/index.ts`**
+
 ```typescript
 export type Language = 'es' | 'en' | 'de';
 
@@ -108,27 +117,32 @@ export interface Translation {
 ### 4. Datos Localizados
 
 #### ✅ `data/sample-properties.ts`
+
 - 3 propiedades de ejemplo
 - Todos los campos traducidos: `title`, `description`, `features.name`
 - Traducciones completas en ES, EN, DE
 
 #### ✅ `data/sample-blog-posts.ts`
+
 - 3 posts de blog de ejemplo
 - Campos traducidos: `title`, `excerpt`, `content`
 - Autores con `name`, `title`, `bio` traducidos
 - Traducciones completas en ES, EN, DE
 
 #### ✅ `data/location-guides.ts`
+
 - 3 guías de ubicación: Son Vida, Port d'Andratx, Palma Centro
 - Campos traducidos: `tagline`, `description`, `overview`, y 20+ campos más
 - Traducciones completas en ES, EN, DE
 
 #### ✅ `data/navigation.ts`
+
 - Menú principal, footer, y CTAs
 - Todas las etiquetas y rutas traducidas
 - Traducciones completas en ES, EN, DE
 
 #### ✅ `data/site-structure.ts`
+
 - Metadatos SEO por página
 - `metaDescription` usando tipo `Translation`
 - Traducciones completas en ES, EN, DE
@@ -136,15 +150,18 @@ export interface Translation {
 ### 5. Páginas Refactorizadas
 
 #### ✅ `app/[locale]/page.tsx` (Homepage)
+
 - Soporte para async params (Next.js 15)
 - Recibe `locale` del parámetro de ruta
 
 #### ✅ `app/[locale]/propiedades/page.tsx` (Properties Listing)
+
 - Usa `useTranslation` para UI
 - Búsqueda localizada por locale actual
 - Headlines y labels traducidos
 
 #### ✅ `app/[locale]/propiedades/[slug]/page.tsx` (Property Detail)
+
 - Async params (Next.js 15)
 - Contenido dinámico localizado: `title[lang]`, `description[lang]`
 - Helper `getStatusLabel` para estados de propiedad
@@ -152,16 +169,19 @@ export interface Translation {
 - `generateStaticParams` para ES, EN, DE
 
 #### ✅ `app/[locale]/nosotros/page.tsx` (About)
+
 - Componente cliente con `useTranslation`
 - Todo el contenido movido a archivos de traducción
 - Valores, hitos, equipo, CTA traducidos
 
 #### ✅ `app/[locale]/blog/page.tsx` (Blog Listing)
+
 - Usa `useTranslation` para UI
 - Búsqueda localizada por locale actual
 - Filtros y mensajes traducidos
 
 #### ✅ `app/[locale]/blog/[slug]/page.tsx` (Blog Detail)
+
 - Async params (Next.js 15)
 - Contenido dinámico localizado
 - Autor, fecha, tiempo de lectura traducidos
@@ -170,19 +190,23 @@ export interface Translation {
 ### 6. Componentes Actualizados
 
 #### ✅ `components/ui/Input.tsx`
+
 - Añadido soporte para `leftIcon` prop
 - Layout actualizado para iconos a la izquierda
 
 #### ✅ `components/layout/Header.tsx`
+
 - Usa `Link` de `i18n/navigation`
 - Toggle de idioma con ciclo ES → EN → DE
 
 #### ✅ `components/layout/Footer.tsx`
+
 - Usa `Link` de `i18n/navigation`
 
 ### 7. Archivos de Traducción
 
 #### ✅ `locales/es/translation.json`
+
 - Traducciones del bot de WhatsApp (existentes)
 - Traducciones del sitio web (añadidas):
   - `hero`, `problem`, `privateEstates`, `cognitiveSolutions`
@@ -191,10 +215,12 @@ export interface Translation {
   - `blog`, `footer`, `common`
 
 #### ✅ `locales/en/translation.json`
+
 - Estructura idéntica a ES
 - Traducciones profesionales en inglés
 
 #### ✅ `locales/de/translation.json`
+
 - Estructura idéntica a ES
 - Traducciones profesionales en alemán
 
@@ -205,22 +231,26 @@ export interface Translation {
 ### Error: `next-intl` Config File Not Found
 
 **Mensaje de Error:**
-```
-Error: Couldn't find next-intl config file. 
+
+```text
+Error: Couldn't find next-intl config file.
 Please follow the instructions at https://next-intl.dev/docs/getting-started/app-router
 ```
 
 **Ubicación:**
+
 - `app/[locale]/layout.tsx`, línea 66
 - `const messages = await getMessages();`
 
 **Archivos Verificados:**
+
 - ✅ `i18n.ts` existe en la raíz del proyecto
 - ✅ `next.config.ts` configurado con `createNextIntlPlugin('./i18n.ts')`
 - ✅ `middleware.ts` configurado correctamente
 - ✅ Archivos de traducción existen en `locales/{es,en,de}/translation.json`
 
 **Intentos de Resolución:**
+
 1. ✅ Creado `i18n.ts` en raíz del proyecto
 2. ✅ Actualizado `next.config.ts` con ruta explícita
 3. ✅ Instalado `@tailwindcss/postcss` (para Tailwind v4)
@@ -230,6 +260,7 @@ Please follow the instructions at https://next-intl.dev/docs/getting-started/app
 7. ⚠️ Error persiste
 
 **Posibles Causas:**
+
 1. Incompatibilidad entre `next-intl` v4.7.0 y Next.js 15.5.9
 2. Problema con la resolución de módulos en Windows
 3. Caché persistente no limpiada completamente
@@ -240,21 +271,25 @@ Please follow the instructions at https://next-intl.dev/docs/getting-started/app
 ## 🔧 Correcciones Técnicas Realizadas
 
 ### 1. Tailwind CSS
+
 - **Problema:** Tailwind CSS v4 (beta) causaba errores de compilación
 - **Solución:** Downgrade a v3.4.0 (estable)
 - **Archivos:** `package.json`, `postcss.config.js`
 
 ### 2. Dependencias Faltantes
+
 - **Problema:** `axios` no instalado (requerido por WhatsApp API)
 - **Solución:** `npm install axios`
 
 ### 3. CSS Errors
+
 - **Problema:** Clase `border-border` no definida
 - **Solución:** Removida de `app/[locale]/globals.css`
 
 ### 4. TypeScript Errors
+
 - **Problema:** Múltiples errores de tipo en páginas y componentes
-- **Solución:** 
+- **Solución:**
   - Actualizado `BlogPost` interface con `isFeatured`
   - Corregido acceso a campos de autor (`author.name` vs `author.name[lang]`)
   - Corregido `coverImage` vs `featuredImage`
@@ -281,7 +316,7 @@ Please follow the instructions at https://next-intl.dev/docs/getting-started/app
 
 ## 🗂️ Estructura de Archivos i18n
 
-```
+```text
 Anclora_Private_Estates/
 ├── i18n.ts                          # ✅ Config principal next-intl
 ├── i18n/
@@ -331,19 +366,22 @@ Anclora_Private_Estates/
 **Estado:** ❌ Fallo
 
 **Resultados:**
+
 1. ❌ Navegación a `/` → Error 500
 2. ❌ Navegación a `/es` → Error 500
 3. ❌ Navegación a `/en` → Error 500
 4. ❌ Navegación a `/de` → Error 500
 
 **Error Consistente:**
-```
+
+```text
 Error: Couldn't find next-intl config file
 at RootLayout (app\[locale]\layout.tsx:66:37)
 ```
 
 **Logs del Servidor:**
-```
+
+```text
 ✓ Compiled /middleware in 473ms (199 modules)
 ✓ Compiled /[locale] in 3.6s (929 modules)
 ⨯ Error: Couldn't find next-intl config file
@@ -368,6 +406,7 @@ GET /en 500 in 389ms
 ### Opción 1: Debugging del Error Actual
 
 1. **Verificar versiones de dependencias:**
+
    ```bash
    npm list next-intl next
    ```
@@ -377,12 +416,13 @@ GET /en 500 in 389ms
    - O usar `i18n/request.ts` en lugar de `i18n.ts`
 
 3. **Verificar resolución de módulos:**
+
    ```bash
    node -e "console.log(require.resolve('./i18n.ts'))"
    ```
 
 4. **Revisar documentación oficial:**
-   - https://next-intl.dev/docs/getting-started/app-router
+   - <https://next-intl.dev/docs/getting-started/app-router>
 
 ### Opción 2: Solución Alternativa Simplificada
 
@@ -399,6 +439,7 @@ const messages = (await import(`@/locales/${locale}/translation.json`)).default;
 ### Opción 3: Implementación Manual
 
 Eliminar dependencia de `next-intl` y usar solo hooks personalizados:
+
 - Mantener `useTranslation` y `useLanguageToggle`
 - Cargar traducciones manualmente en cada componente
 - Usar `next/navigation` para routing
@@ -407,15 +448,15 @@ Eliminar dependencia de `next-intl` y usar solo hooks personalizados:
 
 ## 📊 Métricas de Implementación
 
-| Categoría | Completado | Total | % |
-|-----------|------------|-------|---|
-| Infraestructura | 4/5 | 5 | 80% |
-| Datos Localizados | 5/5 | 5 | 100% |
-| Páginas Refactorizadas | 6/6 | 6 | 100% |
-| Componentes | 3/3 | 3 | 100% |
-| Traducciones | 3/3 | 3 | 100% |
-| Verificación | 0/1 | 1 | 0% |
-| **TOTAL** | **21/23** | **23** | **91%** |
+| Categoría              | Completado | Total  | %       |
+| ---------------------- | ---------- | ------ | ------- |
+| Infraestructura        | 4/5        | 5      | 80%     |
+| Datos Localizados      | 5/5        | 5      | 100%    |
+| Páginas Refactorizadas | 6/6        | 6      | 100%    |
+| Componentes            | 3/3        | 3      | 100%    |
+| Traducciones           | 3/3        | 3      | 100%    |
+| Verificación           | 0/1        | 1      | 0%      |
+| **TOTAL**              | **21/23**  | **23** | **91%** |
 
 ---
 
@@ -469,12 +510,14 @@ Eliminar dependencia de `next-intl` y usar solo hooks personalizados:
 ## 🐛 Issues Conocidos
 
 ### 1. Error de Configuración `next-intl`
+
 - **Severidad:** 🔴 Crítico
 - **Impacto:** Bloquea verificación completa
 - **Estado:** Sin resolver
 - **Workaround:** Ninguno disponible actualmente
 
 ### 2. Lint Warnings CSS
+
 - **Severidad:** 🟡 Menor
 - **Impacto:** Warnings en IDE (no afecta funcionalidad)
 - **Archivos:** `app/[locale]/globals.css`
@@ -486,17 +529,20 @@ Eliminar dependencia de `next-intl` y usar solo hooks personalizados:
 ## 📚 Recursos y Referencias
 
 ### Documentación Oficial
+
 - [next-intl Docs](https://next-intl.dev/docs/getting-started/app-router)
 - [Next.js i18n](https://nextjs.org/docs/app/building-your-application/routing/internationalization)
 - [Next.js 15 Release Notes](https://nextjs.org/blog/next-15)
 
 ### Archivos de Configuración Clave
+
 - `i18n.ts` - Configuración principal
 - `middleware.ts` - Detección de locale
 - `next.config.ts` - Plugin de next-intl
 - `i18n/navigation.ts` - Utilidades de navegación
 
 ### Hooks Personalizados
+
 - `hooks/useTranslation.ts` - Traducción de strings
 - `hooks/useLanguageToggle.ts` - Cambio de idioma
 
@@ -528,10 +574,10 @@ interface Translation {
 // Ejemplo de uso:
 const property = {
   title: {
-    es: "Villa de Lujo en Son Vida",
-    en: "Luxury Villa in Son Vida",
-    de: "Luxusvilla in Son Vida"
-  }
+    es: 'Villa de Lujo en Son Vida',
+    en: 'Luxury Villa in Son Vida',
+    de: 'Luxusvilla in Son Vida',
+  },
 };
 ```
 
@@ -544,10 +590,10 @@ export default function Page({ params }: { params: { slug: string } }) {
 }
 
 // Ahora (Next.js 15):
-export default async function Page({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
 }
@@ -560,6 +606,7 @@ export default async function Page({
 ### 2026-01-02 - Sesión de Implementación
 
 **Commits Conceptuales:**
+
 1. ✅ Configuración inicial de `next-intl`
 2. ✅ Refactorización de hooks
 3. ✅ Localización de datos (propiedades, blog, guías)
@@ -576,11 +623,11 @@ export default async function Page({
 Para resolver el bloqueador actual, se recomienda:
 
 1. **Consultar con el equipo de `next-intl`:**
-   - GitHub Issues: https://github.com/amannn/next-intl/issues
-   - Discord: https://discord.gg/next-intl
+   - GitHub Issues: <https://github.com/amannn/next-intl/issues>
+   - Discord: <https://discord.gg/next-intl>
 
 2. **Revisar ejemplos oficiales:**
-   - https://github.com/amannn/next-intl/tree/main/examples/example-app-router
+   - <https://github.com/amannn/next-intl/tree/main/examples/example-app-router>
 
 3. **Verificar compatibilidad de versiones:**
    - Next.js 15.5.9
