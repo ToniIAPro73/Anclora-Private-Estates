@@ -6,7 +6,7 @@ import { ArrowRight, ExternalLink } from 'lucide-react';
 import { Section } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { useTranslation } from '@/hooks/useTranslation';
-import siteConfig from '@/lib/config';
+import { cognitiveSolutionsConfig } from '@/lib/config';
 
 /**
  * FinalCTA Component - Homepage
@@ -39,7 +39,7 @@ export function FinalCTA() {
           </Link>
 
           <a 
-            href={siteConfig.cognitiveSolutionsConfig.gptAuditUrl}
+            href={cognitiveSolutionsConfig.gptAuditUrl}
             target="_blank"
             rel="noopener noreferrer"
           >

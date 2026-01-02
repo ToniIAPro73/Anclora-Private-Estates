@@ -161,9 +161,33 @@
   "hero": {
     "headline": "Cementing the future, coding value",
     "subheadline": "The ecosystem where Mediterranean real estate excellence and cutting-edge artificial intelligence converge to create unprecedented results",
-    "cta_properties": "Discover Exclusive Properties",
-    "cta_ai": "Optimize My Agency with AI",
+    "cta": {
+      "primary": "Discover Exclusive Properties",
+      "secondary": "Optimize My Agency with AI"
+    },
     "scroll_hint": "Explore"
+  },
+  "problemOpportunity": {
+    "investor": {
+      "badge": "For Investors",
+      "headline": "Looking for a property that transcends?",
+      "description": "Finding an asset that represents true legacy and privacy requires local knowledge and exclusive access."
+    },
+    "agent": {
+      "badge": "For Agencies",
+      "headline": "Ready for digital transformation?",
+      "description": "Maximizing every lead's potential 24/7 and outperforming competition demands a technological transformation."
+    }
+  },
+  "investor": {
+    "challenge1": "Limited access to exclusive off-market properties",
+    "challenge2": "Difficulty evaluating true investment potential",
+    "challenge3": "Lack of comprehensive and confidential advisory"
+  },
+  "agent": {
+    "challenge1": "Lead loss due to slow response",
+    "challenge2": "Inefficient manual follow-up",
+    "challenge3": "Lack of data for strategic decisions"
   },
   "problem": {
     "title": "Two worlds, one comprehensive solution",
@@ -178,7 +202,9 @@
   },
   "privateEstates": {
     "title": "Anclora Private Estates",
+    "headline": "The privilege of privacy",
     "tagline": "The privilege of privacy in the Mediterranean",
+    "subheadline": "We are lifestyle curators. We offer access to unique and off-market properties in Mallorca, with discreet service that protects your privacy above all.",
     "description": "We are not just another agency. We are lifestyle curators. We offer access to a collection of unique and off-market properties in Mallorca, with discreet and personalized service that protects your privacy above all.",
     "features": {
       "curation": {
@@ -199,9 +225,15 @@
   },
   "cognitiveSolutions": {
     "title": "Anclora Cognitive Solutions",
+    "headline": "Intelligence that transforms businesses",
     "tagline": "Intelligence that transforms businesses",
+    "subheadline": "We transform your real estate agency into an autonomous operating system. We implement AI 'digital employees' that capture, qualify, and nurture leads 24/7.",
     "description": "We transform your real estate agency into an autonomous operating system. We implement AI 'digital employees' that capture, qualify, and nurture leads 24/7, freeing your team to focus on closing deals.",
     "features": {
+      "aiAgent": {
+        "title": "24/7 AI Agent",
+        "description": "Instant response to leads from portals like Idealista"
+      },
       "agent": {
         "title": "24/7 AI Agent",
         "description": "Instant response to leads from portals like Idealista"
@@ -219,7 +251,16 @@
   },
   "socialProof": {
     "title": "Strategic alliances and cutting-edge technology",
+    "headline": "Strategic alliances and cutting-edge technology",
     "subtitle": "Trust backed by industry leaders"
+  },
+  "finalCta": {
+    "headline": "Ready for the next step?",
+    "subheadline": "Whether you're looking for your next exclusive property or want to transform your agency with AI, we're here to help.",
+    "cta": {
+      "primary": "Request Private Consultation",
+      "secondary": "Explore AI Solutions"
+    }
   },
   "properties": {
     "title": "Featured Properties",

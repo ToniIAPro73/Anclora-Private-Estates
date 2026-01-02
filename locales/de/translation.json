@@ -214,5 +214,253 @@
     "privacy": "Durch die Nutzung dieses Dienstes akzeptieren Sie unsere Datenschutzrichtlinie.",
     "terms": "Allgemeine Geschäftsbedingungen ansehen",
     "gdpr": "Ihre Daten sind gemäß DSGVO geschützt."
+  },
+  "site": {
+    "name": "Anclora Private Estates",
+    "tagline": "Das Privileg der Privatsphäre im Mittelmeer",
+    "description": "Luxusimmobilienagentur auf Mallorca. Exklusive Immobilien, absolute Vertraulichkeit und umfassende Beratung für vermögende Anleger."
+  },
+  "hero": {
+    "headline": "Die Zukunft zementieren, Wert codieren",
+    "subheadline": "Das Ökosystem, in dem mediterrane Immobilienexzellenz und modernste künstliche Intelligenz zusammenkommen, um beispiellose Ergebnisse zu erzielen",
+    "cta": {
+      "primary": "Exklusive Immobilien entdecken",
+      "secondary": "Meine Agentur mit KI optimieren"
+    },
+    "scroll_hint": "Erkunden"
+  },
+  "problemOpportunity": {
+    "investor": {
+      "badge": "Für Investoren",
+      "headline": "Suchen Sie eine Immobilie, die darüber hinausgeht?",
+      "description": "Ein Asset zu finden, das echtes Erbe und Privatsphäre repräsentiert, erfordert lokales Wissen und exklusiven Zugang."
+    },
+    "agent": {
+      "badge": "Für Agenturen",
+      "headline": "Bereit für die digitale Transformation?",
+      "description": "Das Potenzial jedes Leads rund um die Uhr zu maximieren und die Konkurrenz zu übertreffen, erfordert eine technologische Transformation."
+    }
+  },
+  "investor": {
+    "challenge1": "Begrenzter Zugang zu exklusiven Off-Market-Immobilien",
+    "challenge2": "Schwierigkeit, das wahre Investitionspotenzial zu bewerten",
+    "challenge3": "Mangel an umfassender und vertraulicher Beratung"
+  },
+  "agent": {
+    "challenge1": "Lead-Verlust durch langsame Antwort",
+    "challenge2": "Ineffizientes manuelles Follow-up",
+    "challenge3": "Fehlende Daten für strategische Entscheidungen"
+  },
+  "problem": {
+    "title": "Zwei Welten, eine umfassende Lösung",
+    "investor": {
+      "title": "Für den Investor",
+      "description": "Eine Immobilie zu finden, die über Ziegel und Mörtel hinausgeht und echtes Erbe und Privatsphäre repräsentiert, ist eine Herausforderung, die lokales Wissen und exklusiven Zugang erfordert."
+    },
+    "agent": {
+      "title": "Für den Makler",
+      "description": "Das Potenzial jedes Leads zu maximieren, rund um die Uhr mit Effizienz zu arbeiten und die Konkurrenz in einem gesättigten Markt zu übertreffen, erfordert eine technologische Transformation, die die meisten Agenturen noch nicht angegangen sind."
+    }
+  },
+  "privateEstates": {
+    "title": "Anclora Private Estates",
+    "headline": "Das Privileg der Privatsphäre",
+    "tagline": "Das Privileg der Privatsphäre im Mittelmeer",
+    "subheadline": "Wir sind Lifestyle-Kuratoren. Wir bieten Zugang zu einzigartigen Off-Market-Immobilien auf Mallorca mit diskretem Service, der Ihre Privatsphäre über alles schützt.",
+    "description": "Wir sind nicht nur eine weitere Agentur. Wir sind Lifestyle-Kuratoren. Wir bieten Zugang zu einer Sammlung einzigartiger und Off-Market-Immobilien auf Mallorca mit diskretem und personalisiertem Service, der Ihre Privatsphäre über alles schützt.",
+    "features": {
+      "curation": {
+        "title": "Asset-Kuration",
+        "description": "Handverlesene Immobilien mit Vermächtnis-Potenzial"
+      },
+      "confidentiality": {
+        "title": "Absolute Vertraulichkeit",
+        "description": "Ihre Privatsphäre ist die Grundlage unserer Beziehung"
+      },
+      "advisory": {
+        "title": "Umfassende Beratung",
+        "description": "Von der Suche bis zur Nachkaufverwaltung"
+      }
+    },
+    "cta": "Private Beratung anfordern",
+    "compliance": "Eine Marke der Anclora Nexus Group | Brokered by eXp Realty Spain"
+  },
+  "cognitiveSolutions": {
+    "title": "Anclora Cognitive Solutions",
+    "headline": "Intelligenz, die Unternehmen transformiert",
+    "tagline": "Intelligenz, die Unternehmen transformiert",
+    "subheadline": "Wir verwandeln Ihre Immobilienagentur in ein autonomes Betriebssystem. Wir implementieren KI-'digitale Mitarbeiter', die Leads rund um die Uhr erfassen, qualifizieren und pflegen.",
+    "description": "Wir verwandeln Ihre Immobilienagentur in ein autonomes Betriebssystem. Wir implementieren KI-'digitale Mitarbeiter', die Leads rund um die Uhr erfassen, qualifizieren und pflegen, damit sich Ihr Team auf den Abschluss konzentrieren kann.",
+    "features": {
+      "aiAgent": {
+        "title": "24/7 KI-Agent",
+        "description": "Sofortige Antwort auf Leads von Portalen wie Idealista"
+      },
+      "agent": {
+        "title": "24/7 KI-Agent",
+        "description": "Sofortige Antwort auf Leads von Portalen wie Idealista"
+      },
+      "automation": {
+        "title": "Follow-up-Automatisierung",
+        "description": "Beharrliche Pflege, die kalte Leads in Kunden verwandelt"
+      },
+      "dashboard": {
+        "title": "ROI-Dashboard",
+        "description": "Treffen Sie Entscheidungen auf Basis von Daten, nicht Intuition"
+      }
+    },
+    "cta": "Kostenloses KI-Audit anfordern"
+  },
+  "socialProof": {
+    "title": "Strategische Allianzen und Spitzentechnologie",
+    "headline": "Strategische Allianzen und Spitzentechnologie",
+    "subtitle": "Vertrauen, gestützt durch Branchenführer"
+  },
+  "finalCta": {
+    "headline": "Bereit für den nächsten Schritt?",
+    "subheadline": "Ob Sie Ihre nächste exklusive Immobilie suchen oder Ihre Agentur mit KI transformieren möchten - wir sind hier, um zu helfen.",
+    "cta": {
+      "primary": "Private Beratung anfordern",
+      "secondary": "KI-Lösungen erkunden"
+    }
+  },
+  "properties": {
+    "title": "Ausgewählte Immobilien",
+    "subtitle": "Exklusive Auswahl an Immobilien auf Mallorca",
+    "viewAll": "Alle Immobilien ansehen",
+    "filters": {
+      "type": "Immobilientyp",
+      "location": "Standort",
+      "priceRange": "Preisklasse",
+      "bedrooms": "Schlafzimmer",
+      "all": "Alle"
+    },
+    "types": {
+      "villa": "Villa",
+      "apartment": "Wohnung",
+      "penthouse": "Penthouse",
+      "estate": "Anwesen",
+      "land": "Grundstück"
+    },
+    "status": {
+      "available": "Verfügbar",
+      "reserved": "Reserviert",
+      "sold": "Verkauft",
+      "offMarket": "Off-Market"
+    },
+    "details": {
+      "bedrooms": "Schlafzimmer",
+      "bathrooms": "Badezimmer",
+      "area": "m² bebaut",
+      "plotSize": "m² Grundstück",
+      "yearBuilt": "Baujahr",
+      "priceOnRequest": "Preis auf Anfrage"
+    },
+    "cta": {
+      "viewDetails": "Details ansehen",
+      "requestInfo": "Informationen anfordern",
+      "scheduleVisit": "Besichtigung vereinbaren"
+    }
+  },
+  "services": {
+    "title": "Unsere Dienstleistungen",
+    "subtitle": "Umfassende Beratung bei jedem Schritt",
+    "buy": {
+      "title": "Kaufen",
+      "description": "Exklusiver Zugang zu Off-Market-Immobilien und persönliche Beratung, um Ihr ideales Zuhause oder die perfekte Investition zu finden"
+    },
+    "sell": {
+      "title": "Verkaufen",
+      "description": "Premium-Marketingstrategie, genaue Bewertung und erfahrene Verhandlung, um den Wert Ihrer Immobilie zu maximieren"
+    },
+    "valuation": {
+      "title": "Bewertung",
+      "description": "Detaillierte Marktanalyse und professionelle Bewertung Ihrer Immobilie ohne Verpflichtung"
+    },
+    "management": {
+      "title": "Verwaltung",
+      "description": "Nachkauf-Services: Renovierungsmanagement, Verwaltung und Instandhaltung Ihrer Immobilie"
+    }
+  },
+  "contact": {
+    "title": "Lassen Sie uns über Ihr Projekt sprechen",
+    "subtitle": "Füllen Sie das Formular aus und wir melden uns innerhalb von 24 Stunden",
+    "form": {
+      "name": "Vollständiger Name",
+      "email": "E-Mail-Adresse",
+      "phone": "Telefon",
+      "message": "Nachricht",
+      "propertyType": "Interessierter Immobilientyp",
+      "budget": "Budget",
+      "timeline": "Entscheidungszeitraum",
+      "newsletter": "Ich möchte News und exklusive Immobilien erhalten",
+      "privacy": "Ich akzeptiere die Datenschutzrichtlinie",
+      "submit": "Anfrage senden",
+      "sending": "Wird gesendet..."
+    },
+    "budgetRanges": {
+      "under500k": "Unter 500.000€",
+      "500k1m": "500.000€ - 1 Mio. €",
+      "1m2m": "1 Mio. € - 2 Mio. €",
+      "2m5m": "2 Mio. € - 5 Mio. €",
+      "over5m": "Über 5 Mio. €"
+    },
+    "timelines": {
+      "immediate": "Sofort",
+      "1-3months": "1-3 Monate",
+      "3-6months": "3-6 Monate",
+      "6-12months": "6-12 Monate",
+      "noRush": "Keine Eile"
+    },
+    "success": "Vielen Dank! Wir haben Ihre Nachricht erhalten und werden uns bald melden.",
+    "error": "Beim Senden des Formulars ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+  },
+  "blog": {
+    "title": "Markteinblicke",
+    "subtitle": "Analysen, Trends und Perspektiven aus dem Luxusimmobiliensektor",
+    "readMore": "Mehr lesen",
+    "readingTime": "Min. Lesezeit",
+    "categories": {
+      "marketInsights": "Markteinblicke",
+      "propertySpotlight": "Immobilien-Spotlight",
+      "lifestyle": "Lifestyle",
+      "investment": "Investment",
+      "news": "Nachrichten"
+    },
+    "latest": "Neueste Beiträge",
+    "featured": "Empfohlen"
+  },
+  "footer": {
+    "description": "Luxusimmobilienagentur auf Mallorca, spezialisiert auf exklusive Immobilien für vermögende Anleger.",
+    "contact": {
+      "title": "Kontakt",
+      "email": "info@ancloraprivateestates.com",
+      "phone": "+34 XXX XXX XXX",
+      "address": "Mallorca, Balearen, Spanien"
+    },
+    "hours": {
+      "title": "Öffnungszeiten",
+      "weekdays": "Montag - Freitag: 9:00 - 19:00",
+      "saturday": "Samstag: 10:00 - 14:00",
+      "sunday": "Sonntag: Geschlossen"
+    },
+    "copyright": "© {{year}} Anclora Private Estates. Alle Rechte vorbehalten.",
+    "brokeredBy": "Brokered by eXp Realty Spain"
+  },
+  "common": {
+    "loading": "Wird geladen...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "close": "Schließen",
+    "search": "Suchen",
+    "filter": "Filtern",
+    "sort": "Sortieren",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen",
+    "learnMore": "Mehr erfahren",
+    "contactUs": "Kontaktieren Sie uns",
+    "backToTop": "Nach oben"
   }
 }

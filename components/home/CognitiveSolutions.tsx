@@ -5,7 +5,7 @@ import { Bot, Workflow, BarChart, ExternalLink } from 'lucide-react';
 import { Section } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { useTranslation } from '@/hooks/useTranslation';
-import siteConfig from '@/lib/config';
+import { cognitiveSolutionsConfig } from '@/lib/config';
 
 const features = [
   {
@@ -71,7 +71,7 @@ export function CognitiveSolutions() {
 
       <div className="text-center">
         <a 
-          href={siteConfig.cognitiveSolutionsConfig.gptAuditUrl}
+          href={cognitiveSolutionsConfig.gptAuditUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
