@@ -1,4 +1,7 @@
 import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   // Image Optimization
@@ -20,6 +23,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: '**.backblazeb2.com',
       },
+      {
+        protocol: 'https',
+        hostname: '**.backblazeb2.com',
+      },
     ],
   },
 
@@ -33,4 +40,4 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

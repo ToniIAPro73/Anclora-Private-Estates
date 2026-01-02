@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { Linkedin, Instagram, Facebook, Twitter, Youtube } from 'lucide-react';
 import { Logo } from '@/components/ui';
 import { Container } from './Container';
 import { footerNavigation, socialLinks } from '@/data';
 import { useTranslation } from '@/hooks/useTranslation';
 import siteConfig from '@/lib/config';
+import { Link } from '@/i18n/navigation';
 
 const socialIcons = {
   linkedin: Linkedin,

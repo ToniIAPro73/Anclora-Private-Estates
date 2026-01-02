@@ -22,7 +22,13 @@ import {
  * 6. Featured Properties (6 properties)
  * 7. Final CTA (dual CTAs)
  */
-export default function Home() {
+export default async function Home({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  
   return (
     <>
       <Header />

@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Logo } from '@/components/ui';
 import { Container } from './Container';
 import { mainNavigation } from '@/data';
 import { useTranslation, useLanguageToggle } from '@/hooks/useTranslation';
+import { Link } from '@/i18n/navigation';
 
 /**
  * Header Component
@@ -72,7 +72,7 @@ export function Header() {
               href={getToggleUrl()}
               className="text-sm font-medium text-gray-700 hover:text-anclora-gold transition-colors"
             >
-              {currentLanguage === 'es' ? 'EN' : 'ES'}
+              {currentLanguage === 'es' ? 'EN' : currentLanguage === 'en' ? 'DE' : 'ES'}
             </Link>
 
             {/* Mobile menu button */}

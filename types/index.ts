@@ -2,11 +2,12 @@
 // TIPOS GENERALES
 // ============================================
 
-export type Language = 'es' | 'en';
+export type Language = 'es' | 'en' | 'de';
 
 export interface Translation {
   es: string;
   en: string;
+  de: string;
 }
 
 // ============================================
