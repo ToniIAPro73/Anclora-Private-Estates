@@ -112,7 +112,7 @@ export function Footer() {
         <div className="py-6 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
             <p>
-              {t('footer.copyright').replace('{{year}}', currentYear.toString())}
+              {t('footer.copyright', { year: currentYear })}
             </p>
             <p className="text-xs opacity-70">
               {t('footer.brokeredBy')}
