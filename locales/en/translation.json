@@ -443,7 +443,7 @@
       "saturday": "Saturday: 10:00 AM - 2:00 PM",
       "sunday": "Sunday: Closed"
     },
-    "copyright": "© {{year}} Anclora Private Estates. All rights reserved.",
+    "copyright": "© {year} Anclora Private Estates. All rights reserved.",
     "brokeredBy": "Brokered by eXp Realty Spain"
   },
   "common": {
