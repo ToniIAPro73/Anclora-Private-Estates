@@ -37,8 +37,12 @@ export function OptimizedImage({
   className = '',
   ...props
 }: OptimizedImageProps) {
-  // VALIDACIÓN: Si src está vacío, usar fallback directamente
-  const [imgSrc, setImgSrc] = React.useState(src && src.trim() !== '' ? src : fallback);
+  // VALIDACIÓN: Si src está vacío o no es string válido, usar fallback
+  const isValidSrc = (source: any): source is string => {
+    return typeof source === 'string' && source.trim().length > 0;
+  };
+
+  const [imgSrc, setImgSrc] = React.useState(isValidSrc(src) ? src : fallback);
 
   const handleError = () => {
     setImgSrc(fallback);

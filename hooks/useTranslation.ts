@@ -14,15 +14,16 @@ export function useTranslation() {
   const t_intl = useTranslations();
   
   /**
-   * Función de traducción
+   * Función de traducción con soporte para interpolación
    * 
    * @param key - Clave de traducción (ej: 'hero.headline')
+   * @param values - Valores de interpolación (ej: {year: 2024})
    * @returns Texto traducido
    */
-  const t = (key: string): string => {
+  const t = (key: string, values?: Record<string, string | number>): string => {
     try {
-      // next-intl expects the key directly if no namespace is used in useTranslations()
-      return t_intl(key);
+      // next-intl supports interpolation natively
+      return t_intl(key, values);
     } catch {
       console.warn(`Translation key not found: ${key}`);
       return key;
@@ -99,8 +100,7 @@ export function useLanguageToggle() {
     if (currentLocaleInPath) {
       segments[1] = targetLanguage;
     } else {
-      // If no locale in path, add it as first segment? 
-      // Actually with middleware redirects, it should usually have it.
+      // If no locale in path, add it as first segment
       segments.splice(1, 0, targetLanguage);
     }
     
@@ -124,9 +124,8 @@ export function useLanguageToggle() {
   };
   
   return {
-    currentLanguage: locale,
-    getLocalizedPath,
     getToggleUrl,
     toggleLanguage,
+    currentLanguage: locale,
   };
 }
