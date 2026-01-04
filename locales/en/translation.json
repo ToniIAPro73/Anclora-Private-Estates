@@ -163,7 +163,7 @@
     "subheadline": "The ecosystem where Mediterranean real estate excellence and cutting-edge artificial intelligence converge to create unprecedented results",
     "cta": {
       "primary": "Discover Exclusive Properties",
-      "secondary": "Optimize My Agency with AI"
+      "contact": "Speak with an Advisor"
     },
     "scroll_hint": "Explore"
   },
@@ -173,10 +173,10 @@
       "headline": "Looking for a property that transcends?",
       "description": "Finding an asset that represents true legacy and privacy requires local knowledge and exclusive access."
     },
-    "agent": {
-      "badge": "For Agencies",
-      "headline": "Ready for digital transformation?",
-      "description": "Maximizing every lead's potential 24/7 and outperforming competition demands a technological transformation."
+    "seller": {
+      "badge": "For Property Owners",
+      "headline": "Looking to sell with discretion?",
+      "description": "Maximize your property's value with exclusive marketing that preserves your privacy and attracts qualified buyers."
     }
   },
   "investor": {
@@ -184,20 +184,16 @@
     "challenge2": "Difficulty evaluating true investment potential",
     "challenge3": "Lack of comprehensive and confidential advisory"
   },
-  "agent": {
-    "challenge1": "Lead loss due to slow response",
-    "challenge2": "Inefficient manual follow-up",
-    "challenge3": "Lack of data for strategic decisions"
+  "seller": {
+    "challenge1": "Unwanted public exposure of your property",
+    "challenge2": "Difficulty finding truly qualified buyers",
+    "challenge3": "Long and disorganized sales processes"
   },
   "problem": {
     "title": "Two worlds, one comprehensive solution",
     "investor": {
       "title": "For the Investor",
       "description": "Finding a property that transcends brick and mortar, representing true legacy and privacy, is a challenge that requires local knowledge and exclusive access."
-    },
-    "agent": {
-      "title": "For the Agent",
-      "description": "Maximizing the potential of every lead, operating with 24/7 efficiency, and outperforming the competition in a saturated market demands a technological transformation that most agencies have yet to address."
     }
   },
   "privateEstates": {
@@ -208,46 +204,20 @@
     "description": "We are not just another agency. We are lifestyle curators. We offer access to a collection of unique and off-market properties in Mallorca, with discreet and personalized service that protects your privacy above all.",
     "features": {
       "curation": {
-        "title": "Asset Curation",
-        "description": "Hand-selected properties with legacy potential"
+        "title": "Exclusive Curation",
+        "description": "Access to off-market properties and unique opportunities"
       },
       "confidentiality": {
         "title": "Absolute Confidentiality",
-        "description": "Your privacy is the foundation of our relationship"
+        "description": "Your privacy is our top priority in every transaction"
       },
       "advisory": {
         "title": "Comprehensive Advisory",
-        "description": "From search to post-purchase management"
+        "description": "Expert support from search to signing"
       }
     },
     "cta": "Request Private Consultation",
     "compliance": "A brand of Anclora Nexus Group | Brokered by eXp Realty Spain"
-  },
-  "cognitiveSolutions": {
-    "title": "Anclora Cognitive Solutions",
-    "headline": "Intelligence that transforms businesses",
-    "tagline": "Intelligence that transforms businesses",
-    "subheadline": "We transform your real estate agency into an autonomous operating system. We implement AI 'digital employees' that capture, qualify, and nurture leads 24/7.",
-    "description": "We transform your real estate agency into an autonomous operating system. We implement AI 'digital employees' that capture, qualify, and nurture leads 24/7, freeing your team to focus on closing deals.",
-    "features": {
-      "aiAgent": {
-        "title": "24/7 AI Agent",
-        "description": "Instant response to leads from portals like Idealista"
-      },
-      "agent": {
-        "title": "24/7 AI Agent",
-        "description": "Instant response to leads from portals like Idealista"
-      },
-      "automation": {
-        "title": "Follow-up Automation",
-        "description": "Persistent nurturing that converts cold leads into clients"
-      },
-      "dashboard": {
-        "title": "ROI Dashboard",
-        "description": "Make decisions based on data, not intuition"
-      }
-    },
-    "cta": "Get My Free AI Audit"
   },
   "socialProof": {
     "title": "Strategic alliances and cutting-edge technology",
@@ -255,11 +225,11 @@
     "subtitle": "Trust backed by industry leaders"
   },
   "finalCta": {
-    "headline": "Ready for the next step?",
-    "subheadline": "Whether you're looking for your next exclusive property or want to transform your agency with AI, we're here to help.",
+    "headline": "Ready to discover your perfect property?",
+    "subheadline": "Access our exclusive portfolio of luxury properties in Mallorca with personalized and confidential advisory",
     "cta": {
       "primary": "Request Private Consultation",
-      "secondary": "Explore AI Solutions"
+      "secondary": "View Featured Properties"
     }
   },
   "properties": {
@@ -370,43 +340,66 @@
       "title": "Our Values",
       "excellence": {
         "title": "Excellence",
-        "description": "Exceptional service standards in every interaction and transaction."
+        "description": "Unwavering commitment to quality in every interaction"
       },
       "integrity": {
         "title": "Integrity",
-        "description": "Total transparency and honesty in all our business relationships."
+        "description": "Transparency and ethics in all our operations"
       },
       "results": {
         "title": "Results",
-        "description": "Measurable goal-oriented approach and concrete results for our clients."
+        "description": "Focus on achieving our clients' objectives"
       },
       "innovation": {
         "title": "Innovation",
-        "description": "Adoption of advanced technology and methodologies in the real estate sector."
+        "description": "Constant adoption of new technologies and methodologies"
       }
     },
     "milestones": {
       "title": "Our Journey",
-      "m1": { "year": "2020", "event": "Foundation of Anclora Private Estates" },
-      "m2": { "year": "2021", "event": "+€50M in closed transactions" },
-      "m3": { "year": "2022", "event": "Launch of Anclora Cognitive Solutions" },
-      "m4": { "year": "2023", "event": "Expansion into international markets" },
-      "m5": { "year": "2024", "event": "+100 properties managed" }
+      "m1": {
+        "year": "2020",
+        "title": "Foundation",
+        "description": "Start of operations in Mallorca"
+      },
+      "m2": {
+        "year": "2021",
+        "title": "First Off-Market Sale",
+        "description": "Successful €3.5M transaction with no advertising"
+      },
+      "m3": {
+        "year": "2022",
+        "title": "B2B Expansion",
+        "description": "Launch of Anclora Cognitive Solutions"
+      },
+      "m4": {
+        "year": "2023",
+        "title": "eXp Realty Partnership",
+        "description": "Strategic alliance with eXp Realty Spain"
+      },
+      "m5": {
+        "year": "2024",
+        "title": "International Recognition",
+        "description": "Top 10 boutique agencies in the Balearics"
+      }
     },
     "team": {
       "title": "Our Team",
       "subtitle": "Professionals passionate about real estate and technology",
       "member1": {
+        "name": "Antonio Sánchez",
         "role": "Founder & CEO",
-        "bio": "Expert in luxury real estate with 15+ years of experience in Mallorca."
+        "bio": "15 years of experience in luxury real estate"
       },
       "member2": {
-        "role": "Head of Sales",
-        "bio": "International sales specialist with fluency in 5 languages."
+        "name": "María Torres",
+        "role": "Operations Director",
+        "bio": "Expert in premium real estate marketing"
       },
       "member3": {
-        "role": "Technology Director",
-        "bio": "AI solutions architect with expertise in real estate automation."
+        "name": "Carlos Ruiz",
+        "role": "CTO",
+        "bio": "Specialist in AI applied to real estate"
       }
     },
     "cta": {

@@ -226,4 +226,33 @@ export const siteConfig = {
   },
 };
 
+/**
+ * Configuración de Anclora Cognitive Solutions (B2B)
+ */
+export const cognitiveSolutionsConfig = {
+  name: 'Anclora Cognitive Solutions',
+  tagline: {
+    es: 'Inteligencia que transforma negocios',
+    en: 'Intelligence that transforms businesses',
+  },
+  gptAuditUrl: 'https://chatgpt.com/g/g-YOUR_GPT_ID', // Actualizar con GPT real
+  services: [
+    {
+      id: 'ai-agent',
+      name: { es: 'Agente IA 24/7', en: '24/7 AI Agent' },
+      icon: 'bot',
+    },
+    {
+      id: 'automation',
+      name: { es: 'Automatización', en: 'Automation' },
+      icon: 'workflow',
+    },
+    {
+      id: 'analytics',
+      name: { es: 'Analytics & ROI', en: 'Analytics & ROI' },
+      icon: 'chart-line',
+    },
+  ],
+};
+
 export default siteConfig;

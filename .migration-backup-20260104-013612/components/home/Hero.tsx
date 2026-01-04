@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Phone } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button, Logo } from '@/components/ui';
 import { Container } from '@/components/layout';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -10,8 +10,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 /**
  * Hero Component - Homepage
  * 
- * Hero section with video background, Nexus Group logo, and primary CTA
- * ACTUALIZADO: Eliminado CTA secundario a Cognitive Solutions
+ * Hero section with video background, Nexus Group logo, and dual CTAs
  */
 export function Hero() {
   const { t } = useTranslation();
@@ -55,9 +54,9 @@ export function Hero() {
           {t('hero.subheadline')}
         </p>
 
-        {/* CTAs - Enfoque único en Private Estates */}
+        {/* Dual CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
-          <Link href="/propiedades">
+          <Link href="#private-estates">
             <Button
               variant="primary"
               size="lg"
@@ -67,14 +66,14 @@ export function Hero() {
             </Button>
           </Link>
 
-          <Link href="/contacto">
+          <Link href="#cognitive-solutions">
             <Button
               variant="outline"
               size="lg"
               className="border-white text-white hover:bg-white hover:text-black"
-              rightIcon={<Phone className="w-5 h-5" />}
+              rightIcon={<ArrowRight className="w-5 h-5" />}
             >
-              {t('hero.cta.contact')}
+              {t('hero.cta.secondary')}
             </Button>
           </Link>
         </div>
