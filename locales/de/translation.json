@@ -4,68 +4,6 @@
     "intro": "Ich helfe Ihnen, die perfekte Immobilie in Mallorca zu finden.",
     "ask_name": "Wie ist Ihr Name?"
   },
-  "about": {
-    "title": "Über Anclora",
-    "subtitle": "Wir definieren Luxusimmobilien auf Mallorca durch Technologie, Expertise und außergewöhnlichen Service neu.",
-    "story": {
-      "title": "Unsere Geschichte",
-      "p1": "Anclora Private Estates entstand aus einer klaren Vision: das Kauf- und Verkaufserlebnis von Luxusimmobilien auf Mallorca zu transformieren, indem tiefes lokales Wissen mit modernster Technologie kombiniert wird.",
-      "p2": "Im Jahr 2020 identifizierten wir eine einzigartige Gelegenheit auf dem mallorquinischen Immobilienmarkt. Während traditionelle Agenturen auf konventionelle Methoden setzten, wir haben auf Innovation gesetzt: algorithmische Segmentierung, intelligente Automatisierung und ein internationales Netzwerk von HNWI-Käufern.",
-      "p3": "Heute ist Anclora nicht nur eine Immobilienagentur. Wir sind eine Unternehmensgruppe mit zwei vertikalen Bereichen: Anclora Private Estates (B2C) und Anclora Cognitive Solutions (B2B), die KI-Dienstleistungen für andere Agenturen in der Branche anbietet."
-    },
-    "philosophy": {
-      "title": "Unsere Philosophie",
-      "content": "Wir glauben, dass Luxusimmobilien ein perfektes Gleichgewicht zwischen fortschrittlicher Technologie und menschlicher Note erfordern. Unsere Algorithmen finden die idealen Käufer, aber es sind unsere persönlichen Beziehungen, die die Geschäfte abschließen."
-    },
-    "values": {
-      "title": "Unsere Werte",
-      "excellence": {
-        "title": "Exzellenz",
-        "description": "Außergewöhnliche Servicestandards bei jeder Interaktion und Transaktion."
-      },
-      "integrity": {
-        "title": "Integrität",
-        "description": "Vollständige Transparenz und Ehrlichkeit in all unseren Geschäftsbeziehungen."
-      },
-      "results": {
-        "title": "Ergebnisse",
-        "description": "Messbarer zielorientierter Ansatz und konkrete Ergebnisse für unsere Kunden."
-      },
-      "innovation": {
-        "title": "Innovation",
-        "description": "Einführung fortschrittlicher Technologien und Methoden im Immobiliensektor."
-      }
-    },
-    "milestones": {
-      "title": "Unser Weg",
-      "m1": { "year": "2020", "event": "Gründung von Anclora Private Estates" },
-      "m2": { "year": "2021", "event": "+50 Mio. € abgeschlossene Transaktionen" },
-      "m3": { "year": "2022", "event": "Einführung von Anclora Cognitive Solutions" },
-      "m4": { "year": "2023", "event": "Expansion in internationale Märkte" },
-      "m5": { "year": "2024", "event": "+100 verwaltete Immobilien" }
-    },
-    "team": {
-      "title": "Unser Team",
-      "subtitle": "Profis mit Leidenschaft für Immobilien und Technologie",
-      "member1": {
-        "role": "Gründer & CEO",
-        "bio": "Experte für Luxusimmobilien mit über 15 Jahren Erfahrung auf Mallorca."
-      },
-      "member2": {
-        "role": "Vertriebsleiterin",
-        "bio": "Spezialistin für den internationalen Vertrieb mit Beherrschung von 5 Sprachen."
-      },
-      "member3": {
-        "role": "Technologie-Direktor",
-        "bio": "Architekt für KI-Lösungen mit Expertise in der Immobilienautomatisierung."
-      }
-    },
-    "cta": {
-      "title": "Bereit zu beginnen?",
-      "subtitle": "Entdecken Sie, wie wir Ihnen bei Ihren Immobilienzielen helfen können",
-      "button": "Kontakt"
-    }
-  },
   "menu": {
     "main": "Wie kann ich Ihnen heute helfen?",
     "options": {
@@ -224,8 +162,8 @@
     "headline": "Die Zukunft zementieren, Wert codieren",
     "subheadline": "Das Ökosystem, in dem mediterrane Immobilienexzellenz und modernste künstliche Intelligenz zusammenkommen, um beispiellose Ergebnisse zu erzielen",
     "cta": {
-      "primary": "Exklusive Immobilien entdecken",
-      "secondary": "Meine Agentur mit KI optimieren"
+      "primary": "Exklusive Immobilien Entdecken",
+      "contact": "Mit einem Berater Sprechen"
     },
     "scroll_hint": "Erkunden"
   },
@@ -235,10 +173,10 @@
       "headline": "Suchen Sie eine Immobilie, die darüber hinausgeht?",
       "description": "Ein Asset zu finden, das echtes Erbe und Privatsphäre repräsentiert, erfordert lokales Wissen und exklusiven Zugang."
     },
-    "agent": {
-      "badge": "Für Agenturen",
-      "headline": "Bereit für die digitale Transformation?",
-      "description": "Das Potenzial jedes Leads rund um die Uhr zu maximieren und die Konkurrenz zu übertreffen, erfordert eine technologische Transformation."
+    "seller": {
+      "badge": "Für Immobilieneigentümer",
+      "headline": "Suchen Sie diskreten Verkauf?",
+      "description": "Maximieren Sie den Wert Ihrer Immobilie mit exklusivem Marketing, das Ihre Privatsphäre wahrt und qualifizierte Käufer anzieht."
     }
   },
   "investor": {
@@ -246,20 +184,16 @@
     "challenge2": "Schwierigkeit, das wahre Investitionspotenzial zu bewerten",
     "challenge3": "Mangel an umfassender und vertraulicher Beratung"
   },
-  "agent": {
-    "challenge1": "Lead-Verlust durch langsame Antwort",
-    "challenge2": "Ineffizientes manuelles Follow-up",
-    "challenge3": "Fehlende Daten für strategische Entscheidungen"
+  "seller": {
+    "challenge1": "Unerwünschte öffentliche Exposition Ihrer Immobilie",
+    "challenge2": "Schwierigkeiten, wirklich qualifizierte Käufer zu finden",
+    "challenge3": "Lange und unorganisierte Verkaufsprozesse"
   },
   "problem": {
     "title": "Zwei Welten, eine umfassende Lösung",
     "investor": {
       "title": "Für den Investor",
       "description": "Eine Immobilie zu finden, die über Ziegel und Mörtel hinausgeht und echtes Erbe und Privatsphäre repräsentiert, ist eine Herausforderung, die lokales Wissen und exklusiven Zugang erfordert."
-    },
-    "agent": {
-      "title": "Für den Makler",
-      "description": "Das Potenzial jedes Leads zu maximieren, rund um die Uhr mit Effizienz zu arbeiten und die Konkurrenz in einem gesättigten Markt zu übertreffen, erfordert eine technologische Transformation, die die meisten Agenturen noch nicht angegangen sind."
     }
   },
   "privateEstates": {
@@ -270,46 +204,20 @@
     "description": "Wir sind nicht nur eine weitere Agentur. Wir sind Lifestyle-Kuratoren. Wir bieten Zugang zu einer Sammlung einzigartiger und Off-Market-Immobilien auf Mallorca mit diskretem und personalisiertem Service, der Ihre Privatsphäre über alles schützt.",
     "features": {
       "curation": {
-        "title": "Asset-Kuration",
-        "description": "Handverlesene Immobilien mit Vermächtnis-Potenzial"
+        "title": "Exklusive Kuratierung",
+        "description": "Zugang zu Off-Market-Immobilien und einzigartigen Gelegenheiten"
       },
       "confidentiality": {
         "title": "Absolute Vertraulichkeit",
-        "description": "Ihre Privatsphäre ist die Grundlage unserer Beziehung"
+        "description": "Ihre Privatsphäre ist unsere oberste Priorität bei jeder Transaktion"
       },
       "advisory": {
         "title": "Umfassende Beratung",
-        "description": "Von der Suche bis zur Nachkaufverwaltung"
+        "description": "Expertenunterstützung von der Suche bis zur Unterzeichnung"
       }
     },
     "cta": "Private Beratung anfordern",
     "compliance": "Eine Marke der Anclora Nexus Group | Brokered by eXp Realty Spain"
-  },
-  "cognitiveSolutions": {
-    "title": "Anclora Cognitive Solutions",
-    "headline": "Intelligenz, die Unternehmen transformiert",
-    "tagline": "Intelligenz, die Unternehmen transformiert",
-    "subheadline": "Wir verwandeln Ihre Immobilienagentur in ein autonomes Betriebssystem. Wir implementieren KI-'digitale Mitarbeiter', die Leads rund um die Uhr erfassen, qualifizieren und pflegen.",
-    "description": "Wir verwandeln Ihre Immobilienagentur in ein autonomes Betriebssystem. Wir implementieren KI-'digitale Mitarbeiter', die Leads rund um die Uhr erfassen, qualifizieren und pflegen, damit sich Ihr Team auf den Abschluss konzentrieren kann.",
-    "features": {
-      "aiAgent": {
-        "title": "24/7 KI-Agent",
-        "description": "Sofortige Antwort auf Leads von Portalen wie Idealista"
-      },
-      "agent": {
-        "title": "24/7 KI-Agent",
-        "description": "Sofortige Antwort auf Leads von Portalen wie Idealista"
-      },
-      "automation": {
-        "title": "Follow-up-Automatisierung",
-        "description": "Beharrliche Pflege, die kalte Leads in Kunden verwandelt"
-      },
-      "dashboard": {
-        "title": "ROI-Dashboard",
-        "description": "Treffen Sie Entscheidungen auf Basis von Daten, nicht Intuition"
-      }
-    },
-    "cta": "Kostenloses KI-Audit anfordern"
   },
   "socialProof": {
     "title": "Strategische Allianzen und Spitzentechnologie",
@@ -317,11 +225,11 @@
     "subtitle": "Vertrauen, gestützt durch Branchenführer"
   },
   "finalCta": {
-    "headline": "Bereit für den nächsten Schritt?",
-    "subheadline": "Ob Sie Ihre nächste exklusive Immobilie suchen oder Ihre Agentur mit KI transformieren möchten - wir sind hier, um zu helfen.",
+    "headline": "Bereit, Ihre perfekte Immobilie zu entdecken?",
+    "subheadline": "Zugang zu unserem exklusiven Portfolio von Luxusimmobilien auf Mallorca mit persönlicher und vertraulicher Beratung",
     "cta": {
-      "primary": "Private Beratung anfordern",
-      "secondary": "KI-Lösungen erkunden"
+      "primary": "Private Beratung Anfragen",
+      "secondary": "Ausgewählte Immobilien Ansehen"
     }
   },
   "properties": {
@@ -414,6 +322,91 @@
     },
     "success": "Vielen Dank! Wir haben Ihre Nachricht erhalten und werden uns bald melden.",
     "error": "Beim Senden des Formulars ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+  },
+  "about": {
+    "title": "Über Anclora",
+    "subtitle": "Wir definieren Luxusimmobilien auf Mallorca durch Technologie, Expertise und außergewöhnlichen Service neu.",
+    "story": {
+      "title": "Unsere Geschichte",
+      "p1": "Anclora Private Estates entstand aus einer klaren Vision: das Kauf- und Verkaufserlebnis von Luxusimmobilien auf Mallorca zu transformieren, indem tiefes lokales Wissen mit modernster Technologie kombiniert wird.",
+      "p2": "Im Jahr 2020 identifizierten wir eine einzigartige Gelegenheit auf dem mallorquinischen Immobilienmarkt. Während traditionelle Agenturen auf konventionelle Methoden setzten, haben wir auf Innovation gesetzt: algorithmische Segmentierung, intelligente Automatisierung und ein internationales Netzwerk von HNWI-Käufern.",
+      "p3": "Heute ist Anclora nicht nur eine Immobilienagentur. Wir sind eine Unternehmensgruppe mit zwei vertikalen Bereichen: Anclora Private Estates (B2C) und Anclora Cognitive Solutions (B2B), die KI-Dienstleistungen für andere Agenturen in der Branche anbietet."
+    },
+    "philosophy": {
+      "title": "Unsere Philosophie",
+      "content": "Wir glauben, dass Luxusimmobilien ein perfektes Gleichgewicht zwischen fortschrittlicher Technologie und menschlicher Note erfordern. Unsere Algorithmen finden die idealen Käufer, aber es sind unsere persönlichen Beziehungen, die die Geschäfte abschließen."
+    },
+    "values": {
+      "title": "Unsere Werte",
+      "excellence": {
+        "title": "Exzellenz",
+        "description": "Unerschütterliches Engagement für Qualität bei jeder Interaktion"
+      },
+      "integrity": {
+        "title": "Integrität",
+        "description": "Transparenz und Ethik in allen unseren Operationen"
+      },
+      "results": {
+        "title": "Ergebnisse",
+        "description": "Fokus auf die Erreichung der Ziele unserer Kunden"
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Ständige Einführung neuer Technologien und Methoden"
+      }
+    },
+    "milestones": {
+      "title": "Unser Weg",
+      "m1": {
+        "year": "2020",
+        "title": "Gründung",
+        "description": "Beginn der Geschäftstätigkeit auf Mallorca"
+      },
+      "m2": {
+        "year": "2021",
+        "title": "Erster Off-Market-Verkauf",
+        "description": "Erfolgreiche 3,5-Mio.-€-Transaktion ohne Werbung"
+      },
+      "m3": {
+        "year": "2022",
+        "title": "B2B-Expansion",
+        "description": "Start von Anclora Cognitive Solutions"
+      },
+      "m4": {
+        "year": "2023",
+        "title": "eXp Realty Partnerschaft",
+        "description": "Strategische Allianz mit eXp Realty Spain"
+      },
+      "m5": {
+        "year": "2024",
+        "title": "Internationale Anerkennung",
+        "description": "Top-10-Boutique-Agenturen auf den Balearen"
+      }
+    },
+    "team": {
+      "title": "Unser Team",
+      "subtitle": "Profis mit Leidenschaft für Immobilien und Technologie",
+      "member1": {
+        "name": "Antonio Sánchez",
+        "role": "Gründer & CEO",
+        "bio": "15 Jahre Erfahrung im Luxusimmobilienbereich"
+      },
+      "member2": {
+        "name": "María Torres",
+        "role": "Betriebsleiterin",
+        "bio": "Expertin für Premium-Immobilienmarketing"
+      },
+      "member3": {
+        "name": "Carlos Ruiz",
+        "role": "CTO",
+        "bio": "Spezialist für KI im Immobilienbereich"
+      }
+    },
+    "cta": {
+      "title": "Bereit zu beginnen?",
+      "subtitle": "Entdecken Sie, wie wir Ihnen bei Ihren Immobilienzielen helfen können",
+      "button": "Kontakt"
+    }
   },
   "blog": {
     "title": "Markteinblicke",
