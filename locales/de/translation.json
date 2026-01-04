@@ -1,7 +1,7 @@
 {
   "welcome": {
     "greeting": "Hallo! Ich bin der virtuelle Assistent von Anclora Private Estates.",
-    "intro": "Ich helfe Ihnen, die perfekte Immobilie in Mallorca zu finden.",
+    "intro": "Ich bin hier, um Ihnen zu helfen, die perfekte Immobilie auf Mallorca zu finden.",
     "ask_name": "Wie ist Ihr Name?"
   },
   "menu": {
@@ -9,9 +9,9 @@
     "options": {
       "search": "🔍 Immobilien suchen",
       "appointment": "📅 Besichtigung vereinbaren",
-      "info": "ℹ️ Informationen zur Immobilie",
+      "info": "ℹ️ Immobilieninformationen",
       "agent": "👤 Mit einem Berater sprechen",
-      "language": "🌍 Sprache ändern"
+      "language": "🌐 Sprache ändern"
     }
   },
   "search": {
@@ -50,7 +50,7 @@
     "no_results": "Entschuldigung, ich habe keine Immobilien mit diesen Kriterien gefunden. Möchten Sie Ihre Suche anpassen?"
   },
   "property": {
-    "details": "📍 **{{title}}**\n\n💰 Preis: {{price}}€\n📐 Fläche: {{size}}m²\n🛏️ Schlafzimmer: {{bedrooms}}\n🚿 Badezimmer: {{bathrooms}}\n📍 Lage: {{location}}\n\n{{description}}",
+    "details": "🏡 **{{title}}**\n\n💰 Preis: {{price}}€\n📐 Größe: {{size}}m²\n🛏️ Schlafzimmer: {{bedrooms}}\n🚿 Badezimmer: {{bathrooms}}\n📍 Lage: {{location}}\n\n{{description}}",
     "schedule_visit": "Möchten Sie eine Besichtigung vereinbaren?",
     "request_info": "Benötigen Sie weitere Informationen?",
     "similar": "Ähnliche Immobilien ansehen"
@@ -64,13 +64,13 @@
       "afternoon": "Nachmittag (15:00-17:00)",
       "evening": "Abend (17:00-19:00)"
     },
-    "contact": "Wie sollen wir Sie am besten kontaktieren?",
+    "contact": "Wie möchten Sie kontaktiert werden?",
     "contact_methods": {
       "whatsapp": "WhatsApp",
       "phone": "Telefonanruf",
       "email": "E-Mail"
     },
-    "confirmation": "✅ **Besichtigung vereinbart**\n\n📅 Datum: {{date}}\n🕐 Uhrzeit: {{time}}\n📍 Immobilie: {{property}}\n\nEin Berater wird sich mit Ihnen in Verbindung setzen, um die Details zu bestätigen.",
+    "confirmation": "✅ **Besichtigung vereinbart**\n\n📅 Datum: {{date}}\n🕐 Uhrzeit: {{time}}\n🏡 Immobilie: {{property}}\n\nEin Berater wird sich mit Ihnen in Verbindung setzen, um die Details zu bestätigen.",
     "notes": "Gibt es noch etwas, das wir wissen sollten?"
   },
   "handoff": {
@@ -78,10 +78,10 @@
     "transferring": "🔄 Verbindung zu einem Berater wird hergestellt...",
     "wait_time": "Geschätzte Wartezeit: {{minutes}} Minuten",
     "agent_connected": "✅ Verbunden mit {{agent_name}}",
-    "agent_unavailable": "Entschuldigung, alle unsere Berater sind derzeit beschäftigt. Möchten Sie eine Nachricht hinterlassen?",
+    "agent_unavailable": "Entschuldigung, alle unsere Berater sind gerade beschäftigt. Möchten Sie eine Nachricht hinterlassen?",
     "leave_message": "Bitte schreiben Sie Ihre Nachricht und wir werden uns so schnell wie möglich bei Ihnen melden.",
     "message_received": "✅ Nachricht erhalten. Wir werden uns innerhalb von {{hours}} Stunden bei Ihnen melden.",
-    "business_hours": "Unsere Geschäftszeiten sind Montag bis Freitag, 9:00-18:00 MEZ."
+    "business_hours": "Unsere Geschäftszeiten sind Montag bis Freitag, 9:00-18:00 Uhr MEZ."
   },
   "buyer_qualification": {
     "buyer_type": "Sind Sie ein Investor oder Endkäufer?",
@@ -94,21 +94,21 @@
     "financing": "Wie planen Sie die Finanzierung des Kaufs?",
     "financing_options": {
       "cash": "Barzahlung",
-      "mortgage_approved": "Vorab genehmigte Hypothek",
-      "mortgage_needed": "Hypothek benötigt",
+      "mortgage_approved": "Vorgenehmigte Hypothek",
+      "mortgage_needed": "Benötige Hypothek",
       "other": "Andere"
     },
     "investment_goals": "Was sind Ihre Investitionsziele?",
     "goals": {
       "rental_income": "Mieteinnahmen",
-      "capital_appreciation": "Wertsteigerung",
+      "capital_appreciation": "Kapitalzuwachs",
       "personal_use": "Eigennutzung",
       "diversification": "Portfolio-Diversifizierung"
     }
   },
   "errors": {
-    "generic": "Entschuldigung, es ist ein Fehler aufgetreten. Könnten Sie es erneut versuchen?",
-    "invalid_input": "Ich habe Ihre Antwort nicht verstanden. Könnten Sie sie anders formulieren?",
+    "generic": "Entschuldigung, ein Fehler ist aufgetreten. Könnten Sie es erneut versuchen?",
+    "invalid_input": "Ich habe Ihre Antwort nicht verstanden. Könnten Sie sie umformulieren?",
     "property_not_found": "Ich konnte diese Immobilie nicht finden. Könnten Sie mehr Details angeben?",
     "system_error": "Wir haben technische Probleme. Ein Berater wird sich bald bei Ihnen melden.",
     "timeout": "Ich habe keine Antwort erhalten. Sind Sie noch da?",
@@ -123,14 +123,14 @@
     "continue": "Weiter"
   },
   "system": {
-    "typing": "Schreibt...",
+    "typing": "Tippt...",
     "processing": "Wird verarbeitet...",
-    "searching": "Sucht...",
+    "searching": "Suche läuft...",
     "loading": "Lädt..."
   },
   "feedback": {
     "rate_experience": "Wie würden Sie Ihre Erfahrung bewerten?",
-    "comments": "Haben Sie weitere Kommentare?",
+    "comments": "Zusätzliche Kommentare?",
     "thank_you": "Vielen Dank für Ihr Feedback!"
   },
   "language": {
@@ -151,37 +151,37 @@
   "legal": {
     "privacy": "Durch die Nutzung dieses Dienstes akzeptieren Sie unsere Datenschutzrichtlinie.",
     "terms": "Allgemeine Geschäftsbedingungen ansehen",
-    "gdpr": "Ihre Daten sind gemäß DSGVO geschützt."
+    "gdpr": "Ihre Daten sind durch die DSGVO geschützt."
   },
   "site": {
     "name": "Anclora Private Estates",
     "tagline": "Das Privileg der Privatsphäre im Mittelmeer",
-    "description": "Luxusimmobilienagentur auf Mallorca. Exklusive Immobilien, absolute Vertraulichkeit und umfassende Beratung für vermögende Anleger."
+    "description": "Luxus-Immobilienagentur auf Mallorca. Exklusive Immobilien, absolute Vertraulichkeit und umfassende Beratung für vermögende Investoren."
   },
   "hero": {
-    "headline": "Die Zukunft zementieren, Wert codieren",
+    "headline": "Die Zukunft bauen, Wert kodieren",
     "subheadline": "Das Ökosystem, in dem mediterrane Immobilienexzellenz und modernste künstliche Intelligenz zusammenkommen, um beispiellose Ergebnisse zu erzielen",
     "cta": {
-      "primary": "Exklusive Immobilien Entdecken",
-      "contact": "Mit einem Berater Sprechen"
+      "primary": "Exklusive Immobilien entdecken",
+      "contact": "Mit einem Berater sprechen"
     },
     "scroll_hint": "Erkunden"
   },
   "problemOpportunity": {
     "investor": {
       "badge": "Für Investoren",
-      "headline": "Suchen Sie eine Immobilie, die darüber hinausgeht?",
-      "description": "Ein Asset zu finden, das echtes Erbe und Privatsphäre repräsentiert, erfordert lokales Wissen und exklusiven Zugang."
+      "headline": "Suchen Sie eine Immobilie, die überdauert?",
+      "description": "Eine Immobilie zu finden, die ein wahres Vermächtnis und Privatsphäre darstellt, erfordert lokales Wissen und exklusiven Zugang."
     },
     "seller": {
-      "badge": "Für Immobilieneigentümer",
-      "headline": "Suchen Sie diskreten Verkauf?",
+      "badge": "Für Eigentümer",
+      "headline": "Möchten Sie diskret verkaufen?",
       "description": "Maximieren Sie den Wert Ihrer Immobilie mit exklusivem Marketing, das Ihre Privatsphäre wahrt und qualifizierte Käufer anzieht."
     }
   },
   "investor": {
     "challenge1": "Begrenzter Zugang zu exklusiven Off-Market-Immobilien",
-    "challenge2": "Schwierigkeit, das wahre Investitionspotenzial zu bewerten",
+    "challenge2": "Schwierigkeiten bei der Bewertung des wahren Investitionspotenzials",
     "challenge3": "Mangel an umfassender und vertraulicher Beratung"
   },
   "seller": {
@@ -193,53 +193,59 @@
     "title": "Zwei Welten, eine umfassende Lösung",
     "investor": {
       "title": "Für den Investor",
-      "description": "Eine Immobilie zu finden, die über Ziegel und Mörtel hinausgeht und echtes Erbe und Privatsphäre repräsentiert, ist eine Herausforderung, die lokales Wissen und exklusiven Zugang erfordert."
+      "description": "Eine Immobilie zu finden, die über Ziegel und Mörtel hinausgeht und wahres Vermächtnis und Privatsphäre darstellt, ist eine Herausforderung, die lokales Wissen und exklusiven Zugang erfordert."
     }
   },
   "privateEstates": {
     "title": "Anclora Private Estates",
     "headline": "Das Privileg der Privatsphäre",
     "tagline": "Das Privileg der Privatsphäre im Mittelmeer",
-    "subheadline": "Wir sind Lifestyle-Kuratoren. Wir bieten Zugang zu einzigartigen Off-Market-Immobilien auf Mallorca mit diskretem Service, der Ihre Privatsphäre über alles schützt.",
-    "description": "Wir sind nicht nur eine weitere Agentur. Wir sind Lifestyle-Kuratoren. Wir bieten Zugang zu einer Sammlung einzigartiger und Off-Market-Immobilien auf Mallorca mit diskretem und personalisiertem Service, der Ihre Privatsphäre über alles schützt.",
+    "subheadline": "Wir sind Lifestyle-Kuratoren. Wir bieten Zugang zu einzigartigen Off-Market-Immobilien auf Mallorca mit diskretem Service, der Ihre Privatsphäre über alles stellt.",
+    "description": "Wir sind nicht nur eine weitere Agentur. Wir sind Lifestyle-Kuratoren. Wir bieten Zugang zu einer Sammlung einzigartiger Off-Market-Immobilien auf Mallorca mit diskretem und personalisiertem Service, der Ihre Privatsphäre über alles stellt.",
     "features": {
       "curation": {
-        "title": "Exklusive Kuratierung",
+        "title": "Exklusive Auswahl",
         "description": "Zugang zu Off-Market-Immobilien und einzigartigen Gelegenheiten"
       },
       "confidentiality": {
         "title": "Absolute Vertraulichkeit",
-        "description": "Ihre Privatsphäre ist unsere oberste Priorität bei jeder Transaktion"
+        "description": "Ihre Privatsphäre hat bei jeder Transaktion höchste Priorität"
       },
       "advisory": {
         "title": "Umfassende Beratung",
-        "description": "Expertenunterstützung von der Suche bis zur Unterzeichnung"
+        "description": "Expertenbegleitung von der Suche bis zur Unterschrift"
       }
     },
-    "cta": "Private Beratung anfordern",
-    "compliance": "Eine Marke der Anclora Nexus Group | Brokered by eXp Realty Spain"
+    "cta": "Private Beratung anfragen",
+    "compliance": "Eine Marke der Anclora Nexus Group | Vermittelt durch eXp Realty Spain"
   },
   "socialProof": {
-    "title": "Strategische Allianzen und Spitzentechnologie",
-    "headline": "Strategische Allianzen und Spitzentechnologie",
-    "subtitle": "Vertrauen, gestützt durch Branchenführer"
+    "title": "Strategische Partnerschaften und modernste Technologie",
+    "headline": "Strategische Partnerschaften und modernste Technologie",
+    "subtitle": "Vertrauen, gestützt von Branchenführern"
+  },
+  "featuredProperties": {
+    "headline": "Ausgewählte Immobilien",
+    "subheadline": "Entdecken Sie unsere exklusive Auswahl an Luxusvillen und Residenzen in den prestigeträchtigsten Lagen Mallorcas",
+    "cta": "Alle Immobilien ansehen"
   },
   "finalCta": {
     "headline": "Bereit, Ihre perfekte Immobilie zu entdecken?",
-    "subheadline": "Zugang zu unserem exklusiven Portfolio von Luxusimmobilien auf Mallorca mit persönlicher und vertraulicher Beratung",
+    "subheadline": "Zugang zu unserem exklusiven Portfolio von Luxusimmobilien auf Mallorca mit personalisierter und vertraulicher Beratung",
     "cta": {
-      "primary": "Private Beratung Anfragen",
-      "secondary": "Ausgewählte Immobilien Ansehen"
+      "primary": "Private Beratung anfragen",
+      "secondary": "Ausgewählte Immobilien ansehen"
     }
   },
   "properties": {
     "title": "Ausgewählte Immobilien",
     "subtitle": "Exklusive Auswahl an Immobilien auf Mallorca",
     "viewAll": "Alle Immobilien ansehen",
+    "exclusive": "Exklusiv",
     "filters": {
       "type": "Immobilientyp",
-      "location": "Standort",
-      "priceRange": "Preisklasse",
+      "location": "Lage",
+      "priceRange": "Preisspanne",
       "bedrooms": "Schlafzimmer",
       "all": "Alle"
     },
@@ -275,43 +281,43 @@
     "subtitle": "Umfassende Beratung bei jedem Schritt",
     "buy": {
       "title": "Kaufen",
-      "description": "Exklusiver Zugang zu Off-Market-Immobilien und persönliche Beratung, um Ihr ideales Zuhause oder die perfekte Investition zu finden"
+      "description": "Exklusiver Zugang zu Off-Market-Immobilien und personalisierte Beratung, um Ihr ideales Zuhause oder die perfekte Investition zu finden"
     },
     "sell": {
       "title": "Verkaufen",
-      "description": "Premium-Marketingstrategie, genaue Bewertung und erfahrene Verhandlung, um den Wert Ihrer Immobilie zu maximieren"
+      "description": "Premium-Marketingstrategie, präzise Bewertung und Expertenverhandlung zur Maximierung des Werts Ihrer Immobilie"
     },
     "valuation": {
       "title": "Bewertung",
-      "description": "Detaillierte Marktanalyse und professionelle Bewertung Ihrer Immobilie ohne Verpflichtung"
+      "description": "Detaillierte Marktanalyse und professionelle Immobilienbewertung ohne Verpflichtung"
     },
     "management": {
       "title": "Verwaltung",
-      "description": "Nachkauf-Services: Renovierungsmanagement, Verwaltung und Instandhaltung Ihrer Immobilie"
+      "description": "Dienstleistungen nach dem Kauf: Renovierungsverwaltung, Administration und Immobilienwartung"
     }
   },
   "contact": {
     "title": "Lassen Sie uns über Ihr Projekt sprechen",
-    "subtitle": "Füllen Sie das Formular aus und wir melden uns innerhalb von 24 Stunden",
+    "subtitle": "Füllen Sie das Formular aus und wir antworten innerhalb von 24 Stunden",
     "form": {
       "name": "Vollständiger Name",
-      "email": "E-Mail-Adresse",
+      "email": "E-Mail",
       "phone": "Telefon",
       "message": "Nachricht",
       "propertyType": "Interessierter Immobilientyp",
       "budget": "Budget",
-      "timeline": "Entscheidungszeitraum",
-      "newsletter": "Ich möchte News und exklusive Immobilien erhalten",
+      "timeline": "Entscheidungszeitrahmen",
+      "newsletter": "Ich möchte Neuigkeiten und exklusive Immobilien erhalten",
       "privacy": "Ich akzeptiere die Datenschutzrichtlinie",
       "submit": "Anfrage senden",
       "sending": "Wird gesendet..."
     },
     "budgetRanges": {
       "under500k": "Unter 500.000€",
-      "500k1m": "500.000€ - 1 Mio. €",
-      "1m2m": "1 Mio. € - 2 Mio. €",
-      "2m5m": "2 Mio. € - 5 Mio. €",
-      "over5m": "Über 5 Mio. €"
+      "500k1m": "500.000€ - 1M€",
+      "1m2m": "1M€ - 2M€",
+      "2m5m": "2M€ - 5M€",
+      "over5m": "Über 5M€"
     },
     "timelines": {
       "immediate": "Sofort",
@@ -320,21 +326,21 @@
       "6-12months": "6-12 Monate",
       "noRush": "Keine Eile"
     },
-    "success": "Vielen Dank! Wir haben Ihre Nachricht erhalten und werden uns bald melden.",
+    "success": "Vielen Dank! Wir haben Ihre Nachricht erhalten und werden uns bald bei Ihnen melden.",
     "error": "Beim Senden des Formulars ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
   },
   "about": {
     "title": "Über Anclora",
-    "subtitle": "Wir definieren Luxusimmobilien auf Mallorca durch Technologie, Expertise und außergewöhnlichen Service neu.",
+    "subtitle": "Neudefinition des Luxusimmobilienmarktes auf Mallorca durch Technologie, Expertise und außergewöhnlichen Service.",
     "story": {
       "title": "Unsere Geschichte",
-      "p1": "Anclora Private Estates entstand aus einer klaren Vision: das Kauf- und Verkaufserlebnis von Luxusimmobilien auf Mallorca zu transformieren, indem tiefes lokales Wissen mit modernster Technologie kombiniert wird.",
-      "p2": "Im Jahr 2020 identifizierten wir eine einzigartige Gelegenheit auf dem mallorquinischen Immobilienmarkt. Während traditionelle Agenturen auf konventionelle Methoden setzten, haben wir auf Innovation gesetzt: algorithmische Segmentierung, intelligente Automatisierung und ein internationales Netzwerk von HNWI-Käufern.",
-      "p3": "Heute ist Anclora nicht nur eine Immobilienagentur. Wir sind eine Unternehmensgruppe mit zwei vertikalen Bereichen: Anclora Private Estates (B2C) und Anclora Cognitive Solutions (B2B), die KI-Dienstleistungen für andere Agenturen in der Branche anbietet."
+      "p1": "Anclora Private Estates entstand aus einer klaren Vision: die Erfahrung beim Kauf und Verkauf von Luxusimmobilien auf Mallorca zu transformieren, indem tiefes lokales Wissen mit modernster Technologie kombiniert wird.",
+      "p2": "Im Jahr 2020 identifizierten wir eine einzigartige Gelegenheit im mallorquinischen Immobilienmarkt. Während traditionelle Agenturen auf konventionelle Methoden setzten, investierten wir in Innovation: algorithmische Segmentierung, intelligente Automatisierung und ein internationales Netzwerk von HNWI-Käufern.",
+      "p3": "Heute ist Anclora nicht nur eine Immobilienagentur. Wir sind eine Unternehmensgruppe mit zwei Geschäftsbereichen: Anclora Private Estates (B2C) und Anclora Cognitive Solutions (B2B), die KI-Dienstleistungen für andere Agenturen im Sektor anbietet."
     },
     "philosophy": {
       "title": "Unsere Philosophie",
-      "content": "Wir glauben, dass Luxusimmobilien ein perfektes Gleichgewicht zwischen fortschrittlicher Technologie und menschlicher Note erfordern. Unsere Algorithmen finden die idealen Käufer, aber es sind unsere persönlichen Beziehungen, die die Geschäfte abschließen."
+      "content": "Wir glauben, dass der Luxusimmobilienmarkt ein perfektes Gleichgewicht zwischen fortschrittlicher Technologie und menschlicher Note erfordert. Unsere Algorithmen finden ideale Käufer, aber es sind unsere persönlichen Beziehungen, die Geschäfte abschließen."
     },
     "values": {
       "title": "Unsere Werte",
@@ -344,11 +350,11 @@
       },
       "integrity": {
         "title": "Integrität",
-        "description": "Transparenz und Ethik in allen unseren Operationen"
+        "description": "Transparenz und Ethik in all unseren Operationen"
       },
       "results": {
         "title": "Ergebnisse",
-        "description": "Fokus auf die Erreichung der Ziele unserer Kunden"
+        "description": "Fokus auf das Erreichen der Ziele unserer Kunden"
       },
       "innovation": {
         "title": "Innovation",
@@ -356,7 +362,7 @@
       }
     },
     "milestones": {
-      "title": "Unser Weg",
+      "title": "Unsere Reise",
       "m1": {
         "year": "2020",
         "title": "Gründung",
@@ -365,7 +371,7 @@
       "m2": {
         "year": "2021",
         "title": "Erster Off-Market-Verkauf",
-        "description": "Erfolgreiche 3,5-Mio.-€-Transaktion ohne Werbung"
+        "description": "Erfolgreiche Transaktion von 3,5 Mio. € ohne Werbung"
       },
       "m3": {
         "year": "2022",
@@ -380,51 +386,51 @@
       "m5": {
         "year": "2024",
         "title": "Internationale Anerkennung",
-        "description": "Top-10-Boutique-Agenturen auf den Balearen"
+        "description": "Top 10 Boutique-Agenturen auf den Balearen"
       }
     },
     "team": {
       "title": "Unser Team",
-      "subtitle": "Profis mit Leidenschaft für Immobilien und Technologie",
+      "subtitle": "Fachleute mit Leidenschaft für Immobilien und Technologie",
       "member1": {
         "name": "Antonio Sánchez",
         "role": "Gründer & CEO",
-        "bio": "15 Jahre Erfahrung im Luxusimmobilienbereich"
+        "bio": "15 Jahre Erfahrung in Luxusimmobilien"
       },
       "member2": {
         "name": "María Torres",
-        "role": "Betriebsleiterin",
+        "role": "Leiterin Operations",
         "bio": "Expertin für Premium-Immobilienmarketing"
       },
       "member3": {
         "name": "Carlos Ruiz",
         "role": "CTO",
-        "bio": "Spezialist für KI im Immobilienbereich"
+        "bio": "Spezialist für KI im Immobiliensektor"
       }
     },
     "cta": {
-      "title": "Bereit zu beginnen?",
+      "title": "Bereit anzufangen?",
       "subtitle": "Entdecken Sie, wie wir Ihnen bei Ihren Immobilienzielen helfen können",
       "button": "Kontakt"
     }
   },
   "blog": {
     "title": "Markteinblicke",
-    "subtitle": "Analysen, Trends und Perspektiven aus dem Luxusimmobiliensektor",
+    "subtitle": "Analysen, Trends und Perspektiven im Luxusimmobiliensektor",
     "readMore": "Mehr lesen",
     "readingTime": "Min. Lesezeit",
     "categories": {
-      "marketInsights": "Markteinblicke",
+      "marketInsights": "Marktanalyse",
       "propertySpotlight": "Immobilien-Spotlight",
       "lifestyle": "Lifestyle",
-      "investment": "Investment",
+      "investment": "Investition",
       "news": "Nachrichten"
     },
     "latest": "Neueste Beiträge",
-    "featured": "Empfohlen"
+    "featured": "Hervorgehoben"
   },
   "footer": {
-    "description": "Luxusimmobilienagentur auf Mallorca, spezialisiert auf exklusive Immobilien für vermögende Anleger.",
+    "description": "Luxus-Immobilienagentur auf Mallorca, spezialisiert auf exklusive Immobilien für vermögende Investoren.",
     "contact": {
       "title": "Kontakt",
       "email": "info@ancloraprivateestates.com",
@@ -433,15 +439,15 @@
     },
     "hours": {
       "title": "Öffnungszeiten",
-      "weekdays": "Montag - Freitag: 9:00 - 19:00",
-      "saturday": "Samstag: 10:00 - 14:00",
+      "weekdays": "Montag - Freitag: 9:00 - 19:00 Uhr",
+      "saturday": "Samstag: 10:00 - 14:00 Uhr",
       "sunday": "Sonntag: Geschlossen"
     },
     "copyright": "© {{year}} Anclora Private Estates. Alle Rechte vorbehalten.",
-    "brokeredBy": "Brokered by eXp Realty Spain"
+    "brokeredBy": "Vermittelt durch eXp Realty Spain"
   },
   "common": {
-    "loading": "Wird geladen...",
+    "loading": "Lädt...",
     "error": "Fehler",
     "success": "Erfolg",
     "cancel": "Abbrechen",
@@ -454,6 +460,6 @@
     "showLess": "Weniger anzeigen",
     "learnMore": "Mehr erfahren",
     "contactUs": "Kontaktieren Sie uns",
-    "backToTop": "Nach oben"
+    "backToTop": "Zurück nach oben"
   }
 }

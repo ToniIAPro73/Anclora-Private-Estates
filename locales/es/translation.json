@@ -11,7 +11,7 @@
       "appointment": "📅 Agendar una visita",
       "info": "ℹ️ Información de propiedades",
       "agent": "👤 Hablar con un agente",
-      "language": "🌍 Cambiar idioma"
+      "language": "🌐 Cambiar idioma"
     }
   },
   "search": {
@@ -50,7 +50,7 @@
     "no_results": "Lo siento, no encontré propiedades con esos criterios. ¿Te gustaría ajustar tu búsqueda?"
   },
   "property": {
-    "details": "📍 **{{title}}**\n\n💰 Precio: {{price}}€\n📐 Tamaño: {{size}}m²\n🛏️ Habitaciones: {{bedrooms}}\n🚿 Baños: {{bathrooms}}\n📍 Ubicación: {{location}}\n\n{{description}}",
+    "details": "🏡 **{{title}}**\n\n💰 Precio: {{price}}€\n📐 Tamaño: {{size}}m²\n🛏️ Habitaciones: {{bedrooms}}\n🚿 Baños: {{bathrooms}}\n📍 Ubicación: {{location}}\n\n{{description}}",
     "schedule_visit": "¿Te gustaría agendar una visita?",
     "request_info": "¿Necesitas más información?",
     "similar": "Ver propiedades similares"
@@ -70,7 +70,7 @@
       "phone": "Llamada telefónica",
       "email": "Correo electrónico"
     },
-    "confirmation": "✅ **Visita agendada**\n\n📅 Fecha: {{date}}\n🕐 Hora: {{time}}\n📍 Propiedad: {{property}}\n\nUn agente se pondrá en contacto contigo para confirmar los detalles.",
+    "confirmation": "✅ **Visita agendada**\n\n📅 Fecha: {{date}}\n🕐 Hora: {{time}}\n🏡 Propiedad: {{property}}\n\nUn agente se pondrá en contacto contigo para confirmar los detalles.",
     "notes": "¿Hay algo más que debamos saber?"
   },
   "handoff": {
@@ -224,6 +224,11 @@
     "headline": "Alianzas estratégicas y tecnología de vanguardia",
     "subtitle": "Confianza respaldada por líderes de la industria"
   },
+  "featuredProperties": {
+    "headline": "Propiedades Destacadas",
+    "subheadline": "Descubra nuestra selección exclusiva de villas y residencias de lujo en las ubicaciones más prestigiosas de Mallorca",
+    "cta": "Ver Todas las Propiedades"
+  },
   "finalCta": {
     "headline": "¿Listo para descubrir su propiedad perfecta?",
     "subheadline": "Acceda a nuestro portfolio exclusivo de propiedades de lujo en Mallorca con asesoría personalizada y confidencial",
@@ -236,6 +241,7 @@
     "title": "Propiedades Destacadas",
     "subtitle": "Selección exclusiva de propiedades en Mallorca",
     "viewAll": "Ver Todas las Propiedades",
+    "exclusive": "Exclusiva",
     "filters": {
       "type": "Tipo de Propiedad",
       "location": "Ubicación",
