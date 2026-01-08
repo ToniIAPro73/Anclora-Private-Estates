@@ -133,9 +133,8 @@ export function useLanguageToggle() {
   };
 
   return {
-    currentLanguage: locale,
-    getLocalizedPath,
     getToggleUrl,
     toggleLanguage,
+    currentLanguage: locale,
   };
 }

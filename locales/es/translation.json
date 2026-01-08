@@ -2,16 +2,16 @@
   "welcome": {
     "greeting": "¡Hola! Soy el asistente virtual de Anclora Private Estates.",
     "intro": "Estoy aquí para ayudarte a encontrar la propiedad perfecta en Mallorca.",
-    "ask_name": "¿Cómo te llamo?"
+    "ask_name": "¿Cuál es tu nombre?"
   },
   "menu": {
-    "main": "¿En qué puedo ayudarte hoy?",
+    "main": "¿Cómo puedo ayudarte hoy?",
     "options": {
       "search": "🔍 Buscar propiedades",
-      "appointment": "📅 Agendar visita",
-      "info": "ℹ️ Información sobre una propiedad",
+      "appointment": "📅 Agendar una visita",
+      "info": "ℹ️ Información de propiedades",
       "agent": "👤 Hablar con un agente",
-      "language": "🌍 Cambiar idioma"
+      "language": "🌐 Cambiar idioma"
     }
   },
   "search": {
@@ -50,15 +50,15 @@
     "no_results": "Lo siento, no encontré propiedades con esos criterios. ¿Te gustaría ajustar tu búsqueda?"
   },
   "property": {
-    "details": "📍 **{{title}}**\n\n💰 Precio: {{price}}€\n📐 Superficie: {{size}}m²\n🛏️ Dormitorios: {{bedrooms}}\n🚿 Baños: {{bathrooms}}\n📍 Ubicación: {{location}}\n\n{{description}}",
+    "details": "🏡 **{{title}}**\n\n💰 Precio: {{price}}€\n📐 Tamaño: {{size}}m²\n🛏️ Habitaciones: {{bedrooms}}\n🚿 Baños: {{bathrooms}}\n📍 Ubicación: {{location}}\n\n{{description}}",
     "schedule_visit": "¿Te gustaría agendar una visita?",
     "request_info": "¿Necesitas más información?",
     "similar": "Ver propiedades similares"
   },
   "appointment": {
     "request": "¿Qué propiedad te gustaría visitar?",
-    "date": "¿Qué día te viene bien?",
-    "time": "¿A qué hora prefieres?",
+    "date": "¿Qué fecha te viene bien?",
+    "time": "¿Qué hora prefieres?",
     "times": {
       "morning": "Mañana (10:00-12:00)",
       "afternoon": "Tarde (15:00-17:00)",
@@ -68,23 +68,23 @@
     "contact_methods": {
       "whatsapp": "WhatsApp",
       "phone": "Llamada telefónica",
-      "email": "Email"
+      "email": "Correo electrónico"
     },
-    "confirmation": "✅ **Visita agendada**\n\n📅 Fecha: {{date}}\n🕐 Hora: {{time}}\n📍 Propiedad: {{property}}\n\nUn agente se pondrá en contacto contigo para confirmar los detalles.",
+    "confirmation": "✅ **Visita agendada**\n\n📅 Fecha: {{date}}\n🕐 Hora: {{time}}\n🏡 Propiedad: {{property}}\n\nUn agente se pondrá en contacto contigo para confirmar los detalles.",
     "notes": "¿Hay algo más que debamos saber?"
   },
   "handoff": {
-    "agent_requested": "Entendido, voy a conectarte con un agente humano.",
+    "agent_requested": "Entendido, te conectaré con un agente humano.",
     "transferring": "🔄 Transfiriendo a un agente...",
     "wait_time": "Tiempo de espera estimado: {{minutes}} minutos",
     "agent_connected": "✅ Conectado con {{agent_name}}",
     "agent_unavailable": "Lo siento, todos nuestros agentes están ocupados en este momento. ¿Te gustaría dejar un mensaje?",
-    "leave_message": "Por favor, escribe tu mensaje y te contactaremos lo antes posible.",
-    "message_received": "✅ Mensaje recibido. Te contactaremos dentro de {{hours}} horas.",
+    "leave_message": "Por favor escribe tu mensaje y nos pondremos en contacto contigo lo antes posible.",
+    "message_received": "✅ Mensaje recibido. Nos pondremos en contacto contigo en {{hours}} horas.",
     "business_hours": "Nuestro horario de atención es de lunes a viernes, 9:00-18:00 CET."
   },
   "buyer_qualification": {
-    "buyer_type": "¿Eres inversor o comprador final?",
+    "buyer_type": "¿Eres un inversor o comprador final?",
     "types": {
       "investor": "Inversor",
       "end_user": "Comprador final (vivienda propia)",
@@ -93,7 +93,7 @@
     },
     "financing": "¿Cómo piensas financiar la compra?",
     "financing_options": {
-      "cash": "Pago al contado",
+      "cash": "Pago en efectivo",
       "mortgage_approved": "Hipoteca pre-aprobada",
       "mortgage_needed": "Necesito hipoteca",
       "other": "Otro"
@@ -101,24 +101,24 @@
     "investment_goals": "¿Cuáles son tus objetivos de inversión?",
     "goals": {
       "rental_income": "Ingresos por alquiler",
-      "capital_appreciation": "Apreciación del capital",
+      "capital_appreciation": "Apreciación de capital",
       "personal_use": "Uso personal",
-      "diversification": "Diversificación de portfolio"
+      "diversification": "Diversificación de cartera"
     }
   },
   "errors": {
     "generic": "Lo siento, ocurrió un error. ¿Podrías intentarlo de nuevo?",
     "invalid_input": "No entendí tu respuesta. ¿Podrías reformularla?",
-    "property_not_found": "No encontré esa propiedad. ¿Podrías darme más detalles?",
-    "system_error": "Estamos experimentando problemas técnicos. Un agente te contactará pronto.",
-    "timeout": "No recibí respuesta. ¿Sigues ahí?",
-    "rate_limit": "Has enviado muchos mensajes. Por favor, espera un momento."
+    "property_not_found": "No pude encontrar esa propiedad. ¿Podrías dar más detalles?",
+    "system_error": "Estamos experimentando problemas técnicos. Un agente se pondrá en contacto contigo pronto.",
+    "timeout": "No recibí una respuesta. ¿Sigues ahí?",
+    "rate_limit": "Has enviado demasiados mensajes. Por favor espera un momento."
   },
   "confirmation": {
     "yes": "Sí",
     "no": "No",
     "maybe": "Quizás",
-    "back": "Volver",
+    "back": "Atrás",
     "cancel": "Cancelar",
     "continue": "Continuar"
   },
@@ -130,7 +130,7 @@
   },
   "feedback": {
     "rate_experience": "¿Cómo calificarías tu experiencia?",
-    "comments": "¿Tienes algún comentario adicional?",
+    "comments": "¿Algún comentario adicional?",
     "thank_you": "¡Gracias por tu feedback!"
   },
   "language": {
@@ -146,12 +146,12 @@
   "marketing": {
     "newsletter": "¿Te gustaría recibir nuestro boletín con las mejores propiedades?",
     "alerts": "¿Quieres recibir alertas cuando haya nuevas propiedades que coincidan con tus criterios?",
-    "subscribed": "✅ Suscrito correctamente"
+    "subscribed": "✅ Suscrito exitosamente"
   },
   "legal": {
     "privacy": "Al usar este servicio, aceptas nuestra Política de Privacidad.",
     "terms": "Ver términos y condiciones",
-    "gdpr": "Tus datos están protegidos según GDPR."
+    "gdpr": "Tus datos están protegidos bajo el RGPD."
   },
   "site": {
     "name": "Anclora Private Estates",
@@ -163,7 +163,7 @@
     "subheadline": "El ecosistema donde la excelencia inmobiliaria del Mediterráneo y la inteligencia artificial de vanguardia convergen para crear resultados sin precedentes",
     "cta": {
       "primary": "Descubrir Propiedades Exclusivas",
-      "secondary": "Optimizar mi Agencia con IA"
+      "contact": "Hablar con un Asesor"
     },
     "scroll_hint": "Explorar"
   },
@@ -178,93 +178,68 @@
       "headline": "¿Busca una propiedad que trascienda?",
       "description": "Encontrar un activo que represente un verdadero legado y privacidad requiere conocimiento local y acceso exclusivo."
     },
-    "agent": {
-      "badge": "Para Agencias",
-      "headline": "¿Listo para la transformación digital?",
-      "description": "Maximizar el potencial de cada lead 24/7 y superar a la competencia exige una transformación tecnológica."
+    "seller": {
+      "badge": "Para Propietarios",
+      "headline": "¿Busca vender con discreción?",
+      "description": "Maximice el valor de su propiedad con marketing exclusivo que preserve su privacidad y atraiga compradores cualificados."
     }
   },
   "investor": {
-    "challenge1": "Acceso limitado a propiedades off-market exclusivas",
+    "challenge1": "Acceso limitado a propiedades exclusivas fuera del mercado",
     "challenge2": "Dificultad para evaluar el verdadero potencial de inversión",
     "challenge3": "Falta de asesoría integral y confidencial"
   },
-  "agent": {
-    "challenge1": "Pérdida de leads por respuesta lenta",
-    "challenge2": "Seguimiento manual ineficiente",
-    "challenge3": "Falta de datos para decisiones estratégicas"
+  "seller": {
+    "challenge1": "Exposición pública indeseada de su propiedad",
+    "challenge2": "Dificultad para encontrar compradores verdaderamente cualificados",
+    "challenge3": "Procesos de venta largos y desorganizados"
   },
   "problem": {
     "title": "Dos mundos, una solución integral",
     "investor": {
       "title": "Para el Inversor",
-      "description": "Encontrar una propiedad que trascienda el ladrillo y el mortero, que represente un verdadero legado y privacidad, es un desafío que requiere conocimiento local y un acceso exclusivo."
-    },
-    "agent": {
-      "title": "Para el Agente",
-      "description": "Maximizar el potencial de cada lead, operar con eficiencia 24/7 y superar a la competencia en un mercado saturado, exige una transformación tecnológica que la mayoría de las agencias aún no han abordado."
+      "description": "Encontrar una propiedad que trascienda el ladrillo y el cemento, que represente un verdadero legado y privacidad, es un desafío que requiere conocimiento local y acceso exclusivo."
     }
   },
   "privateEstates": {
     "title": "Anclora Private Estates",
     "headline": "El privilegio de la privacidad",
     "tagline": "El privilegio de la privacidad en el Mediterráneo",
-    "subheadline": "Somos curadores de estilos de vida. Ofrecemos acceso a propiedades únicas y off-market en Mallorca, con un servicio discreto que protege su privacidad por encima de todo.",
-    "description": "No somos una agencia más. Somos curadores de estilos de vida. Ofrecemos acceso a una colección de propiedades únicas y off-market en Mallorca, con un servicio discreto y personalizado que protege su privacidad por encima de todo.",
+    "subheadline": "Somos curadores de estilo de vida. Ofrecemos acceso a propiedades únicas y fuera del mercado en Mallorca, con servicio discreto que protege tu privacidad por encima de todo.",
+    "description": "No somos solo otra agencia. Somos curadores de estilo de vida. Ofrecemos acceso a una colección de propiedades únicas y fuera del mercado en Mallorca, con servicio discreto y personalizado que protege tu privacidad por encima de todo.",
     "features": {
       "curation": {
-        "title": "Curación de Activos",
-        "description": "Selección manual de propiedades con potencial de legado"
+        "title": "Curación Exclusiva",
+        "description": "Acceso a propiedades off-market y oportunidades únicas"
       },
       "confidentiality": {
         "title": "Confidencialidad Absoluta",
-        "description": "Su privacidad es la base de nuestra relación"
+        "description": "Tu privacidad es nuestra máxima prioridad en cada transacción"
       },
       "advisory": {
         "title": "Asesoría Integral",
-        "description": "Desde la búsqueda hasta la gestión post-compra"
+        "description": "Acompañamiento experto desde la búsqueda hasta la firma"
       }
     },
     "cta": "Solicitar Consulta Privada",
     "compliance": "Una marca de Anclora Nexus Group | Brokered by eXp Realty Spain"
-  },
-  "cognitiveSolutions": {
-    "title": "Anclora Cognitive Solutions",
-    "headline": "Inteligencia que transforma negocios",
-    "tagline": "Inteligencia que transforma negocios",
-    "subheadline": "Transformamos su agencia inmobiliaria en un sistema operativo autónomo. Implementamos 'empleados digitales' de IA que captan, califican y nutren leads 24/7.",
-    "description": "Transformamos su agencia inmobiliaria en un sistema operativo autónomo. Implementamos 'empleados digitales' de IA que captan, califican y nutren leads 24/7, liberando a su equipo para que se centre en cerrar tratos.",
-    "features": {
-      "aiAgent": {
-        "title": "Agente IA 24/7",
-        "description": "Respuesta instantánea a leads de portales como Idealista"
-      },
-      "agent": {
-        "title": "Agente IA 24/7",
-        "description": "Respuesta instantánea a leads de portales como Idealista"
-      },
-      "automation": {
-        "title": "Automatización de Seguimiento",
-        "description": "Nutrición persistente que convierte leads fríos en clientes"
-      },
-      "dashboard": {
-        "title": "Dashboard de ROI",
-        "description": "Tome decisiones basadas en datos, no en intuiciones"
-      }
-    },
-    "cta": "Realizar mi Auditoría IA Gratuita"
   },
   "socialProof": {
     "title": "Alianzas estratégicas y tecnología de vanguardia",
     "headline": "Alianzas estratégicas y tecnología de vanguardia",
     "subtitle": "Confianza respaldada por líderes de la industria"
   },
+  "featuredProperties": {
+    "headline": "Propiedades Destacadas",
+    "subheadline": "Descubra nuestra selección exclusiva de villas y residencias de lujo en las ubicaciones más prestigiosas de Mallorca",
+    "cta": "Ver Todas las Propiedades"
+  },
   "finalCta": {
-    "headline": "¿Listo para el siguiente paso?",
-    "subheadline": "Ya sea que busque su próxima propiedad exclusiva o quiera transformar su agencia con IA, estamos aquí para ayudarle.",
+    "headline": "¿Listo para descubrir su propiedad perfecta?",
+    "subheadline": "Acceda a nuestro portfolio exclusivo de propiedades de lujo en Mallorca con asesoría personalizada y confidencial",
     "cta": {
       "primary": "Solicitar Consulta Privada",
-      "secondary": "Explorar Soluciones IA"
+      "secondary": "Ver Propiedades Destacadas"
     }
   },
   "properties": {
@@ -272,11 +247,12 @@
     "subtitle": "Selección exclusiva de propiedades en Mallorca",
     "viewAll": "Ver Todas las Propiedades",
     "exclusive": "Exclusiva",
+    "exclusive": "Exclusiva",
     "filters": {
       "type": "Tipo de Propiedad",
       "location": "Ubicación",
       "priceRange": "Rango de Precio",
-      "bedrooms": "Dormitorios",
+      "bedrooms": "Habitaciones",
       "all": "Todas"
     },
     "types": {
@@ -294,7 +270,7 @@
       "exclusive": "Exclusiva"
     },
     "details": {
-      "bedrooms": "Dormitorios",
+      "bedrooms": "Habitaciones",
       "bathrooms": "Baños",
       "area": "m² construidos",
       "plotSize": "m² parcela",
@@ -309,27 +285,27 @@
   },
   "services": {
     "title": "Nuestros Servicios",
-    "subtitle": "Asesoría integral en cada paso del camino",
+    "subtitle": "Asesoría integral en cada paso",
     "buy": {
-      "title": "Compra",
-      "description": "Acceso exclusivo a propiedades off-market y asesoría personalizada para encontrar su hogar ideal o inversión perfecta"
+      "title": "Comprar",
+      "description": "Acceso exclusivo a propiedades fuera del mercado y asesoría personalizada para encontrar tu hogar ideal o inversión perfecta"
     },
     "sell": {
-      "title": "Venta",
-      "description": "Estrategia de marketing premium, valoración precisa y negociación experta para maximizar el valor de su propiedad"
+      "title": "Vender",
+      "description": "Estrategia de marketing premium, valoración precisa y negociación experta para maximizar el valor de tu propiedad"
     },
     "valuation": {
       "title": "Valoración",
-      "description": "Análisis detallado del mercado y valoración profesional de su propiedad sin compromiso"
+      "description": "Análisis detallado del mercado y valoración profesional de tu propiedad sin compromiso"
     },
     "management": {
       "title": "Gestión",
-      "description": "Servicios post-compra: gestión de reformas, administración y mantenimiento de su propiedad"
+      "description": "Servicios post-compra: gestión de reformas, administración y mantenimiento de tu propiedad"
     }
   },
   "contact": {
-    "title": "Hablemos de su Proyecto",
-    "subtitle": "Complete el formulario y nos pondremos en contacto en menos de 24 horas",
+    "title": "Hablemos de tu Proyecto",
+    "subtitle": "Rellena el formulario y te responderemos en 24 horas",
     "form": {
       "name": "Nombre completo",
       "email": "Correo electrónico",
@@ -357,39 +333,39 @@
       "6-12months": "6-12 meses",
       "noRush": "Sin prisa"
     },
-    "success": "¡Gracias! Hemos recibido su mensaje y nos pondremos en contacto pronto.",
-    "error": "Hubo un error al enviar el formulario. Por favor, inténtelo de nuevo."
+    "success": "¡Gracias! Hemos recibido tu mensaje y nos pondremos en contacto pronto.",
+    "error": "Hubo un error al enviar el formulario. Por favor intenta de nuevo."
   },
   "about": {
     "title": "Sobre Anclora",
-    "subtitle": "Redefiniendo el real estate de lujo en Mallorca a través de tecnología, expertise y servicio excepcional.",
+    "subtitle": "Redefiniendo el sector inmobiliario de lujo en Mallorca a través de tecnología, experiencia y servicio excepcional.",
     "story": {
       "title": "Nuestra Historia",
-      "p1": "Anclora Private Estates nació de una visión clara: transformar la experiencia de compra y venta de propiedades de lujo en Mallorca combinando el conocimiento local profundo con tecnología de vanguardia.",
-      "p2": "En 2020, identificamos una oportunidad única en el mercado inmobiliario mallorquín. Mientras las agencias tradicionales dependían de métodos convencionales, nosotros apostamos por la innovación: segmentación algorítmica, automatización inteligente y una red internacional de compradores HNWI.",
+      "p1": "Anclora Private Estates nació de una visión clara: transformar la experiencia de compra y venta de propiedades de lujo en Mallorca combinando conocimiento local profundo con tecnología de vanguardia.",
+      "p2": "En 2020, identificamos una oportunidad única en el mercado inmobiliario mallorquín. Mientras las agencias tradicionales confiaban en métodos convencionales, apostamos por la innovación: segmentación algorítmica, automatización inteligente y una red internacional de compradores HNWI.",
       "p3": "Hoy, Anclora no es solo una agencia inmobiliaria. Somos un grupo empresarial con dos verticales: Anclora Private Estates (B2C) y Anclora Cognitive Solutions (B2B), ofreciendo servicios de IA a otras agencias del sector."
     },
     "philosophy": {
       "title": "Nuestra Filosofía",
-      "content": "Creemos que el real estate de lujo requiere un equilibrio perfecto entre tecnología avanzada y toque humano. Nuestros algoritmos encuentran a los compradores ideales, pero son nuestras relaciones personales las que cierran las operaciones."
+      "content": "Creemos que el sector inmobiliario de lujo requiere un equilibrio perfecto entre tecnología avanzada y toque humano. Nuestros algoritmos encuentran a los compradores ideales, pero son nuestras relaciones personales las que cierran los tratos."
     },
     "values": {
       "title": "Nuestros Valores",
       "excellence": {
         "title": "Excelencia",
-        "description": "Estándares de servicio excepcionales en cada interacción y transacción."
+        "description": "Compromiso inquebrantable con la calidad en cada interacción"
       },
       "integrity": {
         "title": "Integridad",
-        "description": "Transparencia total y honestidad en todas nuestras relaciones comerciales."
+        "description": "Transparencia y ética en todas nuestras operaciones"
       },
       "results": {
         "title": "Resultados",
-        "description": "Enfoque orientado a objetivos medibles y resultados concretos para nuestros clientes."
+        "description": "Enfoque orientado a lograr los objetivos de nuestros clientes"
       },
       "innovation": {
         "title": "Innovación",
-        "description": "Adopción de tecnología y metodologías avanzadas en el sector inmobiliario."
+        "description": "Adopción constante de nuevas tecnologías y metodologías"
       }
     },
     "milestones": {
@@ -405,18 +381,21 @@
     },
     "team": {
       "title": "Nuestro Equipo",
-      "subtitle": "Profesionales apasionados por el real estate y la tecnología",
+      "subtitle": "Profesionales apasionados por el sector inmobiliario y la tecnología",
       "member1": {
-        "role": "Founder & CEO",
-        "bio": "Experto en real estate de lujo con 15+ años de experiencia en Mallorca."
+        "name": "Antonio Sánchez",
+        "role": "Fundador & CEO",
+        "bio": "15 años de experiencia en real estate de lujo"
       },
       "member2": {
-        "role": "Head of Sales",
-        "bio": "Especialista en ventas internacionales con dominio de 5 idiomas."
+        "name": "María Torres",
+        "role": "Directora de Operaciones",
+        "bio": "Experta en marketing inmobiliario premium"
       },
       "member3": {
-        "role": "Technology Director",
-        "bio": "Arquitecto de soluciones AI con expertise en automatización inmobiliaria."
+        "name": "Carlos Ruiz",
+        "role": "CTO",
+        "bio": "Especialista en IA aplicada al sector inmobiliario"
       }
     },
     "cta": {

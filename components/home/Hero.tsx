@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Phone } from 'lucide-react';
 import { Button, Logo } from '@/components/ui';
 import { Container } from '@/components/layout';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -66,14 +66,14 @@ export function Hero() {
             </Button>
           </Link>
 
-          <Link href="#cognitive-solutions">
+          <Link href="/contacto">
             <Button
               variant="outline"
               size="md"
               className="border-white text-white hover:bg-white hover:text-black"
               rightIcon={<ArrowRight className="h-4 w-4" />}
             >
-              {t('hero.cta.secondary')}
+              {t('hero.cta.contact')}
             </Button>
           </Link>
         </div>

@@ -2,11 +2,10 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
 import { Section } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { useTranslation } from '@/hooks/useTranslation';
-import { cognitiveSolutionsConfig } from '@/lib/config';
 
 /**
  * FinalCTA Component - Homepage
@@ -38,19 +37,15 @@ export function FinalCTA() {
             </Button>
           </Link>
 
-          <a 
-            href={cognitiveSolutionsConfig.gptAuditUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href="/propiedades">
             <Button 
               variant="outline" 
               size="lg"
-              rightIcon={<ExternalLink className="w-5 h-5" />}
+              rightIcon={<Search className="w-5 h-5" />}
             >
               {t('finalCta.cta.secondary')}
             </Button>
-          </a>
+          </Link>
         </div>
       </div>
     </Section>

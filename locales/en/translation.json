@@ -11,7 +11,7 @@
       "appointment": "📅 Schedule a visit",
       "info": "ℹ️ Property information",
       "agent": "👤 Speak with an agent",
-      "language": "🌍 Change language"
+      "language": "🌐 Change language"
     }
   },
   "search": {
@@ -22,7 +22,7 @@
       "land": "Land",
       "commercial": "Commercial"
     },
-    "location": "Which area of Mallorca would you like to search in?",
+    "location": "Which area of Mallorca would you like to search?",
     "locations": {
       "palma": "Palma de Mallorca",
       "southwest": "Southwest (Calvià, Andratx)",
@@ -47,10 +47,10 @@
       "exploring": "Just exploring"
     },
     "results": "I found {{count}} properties matching your criteria:",
-    "no_results": "Sorry, I didn't find any properties with those criteria. Would you like to adjust your search?"
+    "no_results": "Sorry, I didn't find properties with those criteria. Would you like to adjust your search?"
   },
   "property": {
-    "details": "📍 **{{title}}**\n\n💰 Price: €{{price}}\n📐 Size: {{size}}m²\n🛏️ Bedrooms: {{bedrooms}}\n🚿 Bathrooms: {{bathrooms}}\n📍 Location: {{location}}\n\n{{description}}",
+    "details": "🏡 **{{title}}**\n\n💰 Price: €{{price}}\n📐 Size: {{size}}m²\n🛏️ Bedrooms: {{bedrooms}}\n🚿 Bathrooms: {{bathrooms}}\n📍 Location: {{location}}\n\n{{description}}",
     "schedule_visit": "Would you like to schedule a visit?",
     "request_info": "Need more information?",
     "similar": "View similar properties"
@@ -64,13 +64,13 @@
       "afternoon": "Afternoon (15:00-17:00)",
       "evening": "Evening (17:00-19:00)"
     },
-    "contact": "How would you prefer us to contact you?",
+    "contact": "How would you prefer to be contacted?",
     "contact_methods": {
       "whatsapp": "WhatsApp",
       "phone": "Phone call",
       "email": "Email"
     },
-    "confirmation": "✅ **Visit scheduled**\n\n📅 Date: {{date}}\n🕐 Time: {{time}}\n📍 Property: {{property}}\n\nAn agent will contact you to confirm the details.",
+    "confirmation": "✅ **Visit scheduled**\n\n📅 Date: {{date}}\n🕐 Time: {{time}}\n🏡 Property: {{property}}\n\nAn agent will contact you to confirm the details.",
     "notes": "Is there anything else we should know?"
   },
   "handoff": {
@@ -78,8 +78,8 @@
     "transferring": "🔄 Transferring to an agent...",
     "wait_time": "Estimated wait time: {{minutes}} minutes",
     "agent_connected": "✅ Connected with {{agent_name}}",
-    "agent_unavailable": "Sorry, all our agents are currently busy. Would you like to leave a message?",
-    "leave_message": "Please write your message and we'll contact you as soon as possible.",
+    "agent_unavailable": "Sorry, all our agents are busy right now. Would you like to leave a message?",
+    "leave_message": "Please write your message and we'll get back to you as soon as possible.",
     "message_received": "✅ Message received. We'll contact you within {{hours}} hours.",
     "business_hours": "Our business hours are Monday to Friday, 9:00-18:00 CET."
   },
@@ -108,7 +108,7 @@
   },
   "errors": {
     "generic": "Sorry, an error occurred. Could you try again?",
-    "invalid_input": "I didn't understand your response. Could you rephrase?",
+    "invalid_input": "I didn't understand your response. Could you rephrase it?",
     "property_not_found": "I couldn't find that property. Could you provide more details?",
     "system_error": "We're experiencing technical issues. An agent will contact you soon.",
     "timeout": "I didn't receive a response. Are you still there?",
@@ -145,7 +145,7 @@
   },
   "marketing": {
     "newsletter": "Would you like to receive our newsletter with the best properties?",
-    "alerts": "Want to receive alerts when new properties match your criteria?",
+    "alerts": "Want to receive alerts when there are new properties matching your criteria?",
     "subscribed": "✅ Successfully subscribed"
   },
   "legal": {
@@ -159,11 +159,11 @@
     "description": "Luxury real estate agency in Mallorca. Exclusive properties, absolute confidentiality, and comprehensive advisory for high-net-worth investors."
   },
   "hero": {
-    "headline": "Cementing the future, coding value",
+    "headline": "Building the future, encoding value",
     "subheadline": "The ecosystem where Mediterranean real estate excellence and cutting-edge artificial intelligence converge to create unprecedented results",
     "cta": {
       "primary": "Discover Exclusive Properties",
-      "secondary": "Optimize My Agency with AI"
+      "contact": "Speak with an Advisor"
     },
     "scroll_hint": "Explore"
   },
@@ -178,10 +178,10 @@
       "headline": "Looking for a property that transcends?",
       "description": "Finding an asset that represents true legacy and privacy requires local knowledge and exclusive access."
     },
-    "agent": {
-      "badge": "For Agencies",
-      "headline": "Ready for digital transformation?",
-      "description": "Maximizing every lead's potential 24/7 and outperforming competition demands a technological transformation."
+    "seller": {
+      "badge": "For Owners",
+      "headline": "Looking to sell with discretion?",
+      "description": "Maximize your property's value with exclusive marketing that preserves your privacy and attracts qualified buyers."
     }
   },
   "investor": {
@@ -189,88 +189,64 @@
     "challenge2": "Difficulty evaluating true investment potential",
     "challenge3": "Lack of comprehensive and confidential advisory"
   },
-  "agent": {
-    "challenge1": "Lead loss due to slow response",
-    "challenge2": "Inefficient manual follow-up",
-    "challenge3": "Lack of data for strategic decisions"
+  "seller": {
+    "challenge1": "Unwanted public exposure of your property",
+    "challenge2": "Difficulty finding truly qualified buyers",
+    "challenge3": "Long and disorganized sales processes"
   },
   "problem": {
     "title": "Two worlds, one comprehensive solution",
     "investor": {
       "title": "For the Investor",
-      "description": "Finding a property that transcends brick and mortar, representing true legacy and privacy, is a challenge that requires local knowledge and exclusive access."
-    },
-    "agent": {
-      "title": "For the Agent",
-      "description": "Maximizing the potential of every lead, operating with 24/7 efficiency, and outperforming the competition in a saturated market demands a technological transformation that most agencies have yet to address."
+      "description": "Finding a property that transcends brick and mortar, representing true legacy and privacy, is a challenge requiring local knowledge and exclusive access."
     }
   },
   "privateEstates": {
     "title": "Anclora Private Estates",
     "headline": "The privilege of privacy",
     "tagline": "The privilege of privacy in the Mediterranean",
-    "subheadline": "We are lifestyle curators. We offer access to unique and off-market properties in Mallorca, with discreet service that protects your privacy above all.",
-    "description": "We are not just another agency. We are lifestyle curators. We offer access to a collection of unique and off-market properties in Mallorca, with discreet and personalized service that protects your privacy above all.",
+    "subheadline": "We are lifestyle curators. We offer access to unique off-market properties in Mallorca, with discreet service that protects your privacy above all.",
+    "description": "We're not just another agency. We are lifestyle curators. We offer access to a collection of unique off-market properties in Mallorca, with discreet and personalized service that protects your privacy above all.",
     "features": {
       "curation": {
-        "title": "Asset Curation",
-        "description": "Hand-selected properties with legacy potential"
+        "title": "Exclusive Curation",
+        "description": "Access to off-market properties and unique opportunities"
       },
       "confidentiality": {
         "title": "Absolute Confidentiality",
-        "description": "Your privacy is the foundation of our relationship"
+        "description": "Your privacy is our top priority in every transaction"
       },
       "advisory": {
         "title": "Comprehensive Advisory",
-        "description": "From search to post-purchase management"
+        "description": "Expert guidance from search to signing"
       }
     },
     "cta": "Request Private Consultation",
     "compliance": "A brand of Anclora Nexus Group | Brokered by eXp Realty Spain"
   },
-  "cognitiveSolutions": {
-    "title": "Anclora Cognitive Solutions",
-    "headline": "Intelligence that transforms businesses",
-    "tagline": "Intelligence that transforms businesses",
-    "subheadline": "We transform your real estate agency into an autonomous operating system. We implement AI 'digital employees' that capture, qualify, and nurture leads 24/7.",
-    "description": "We transform your real estate agency into an autonomous operating system. We implement AI 'digital employees' that capture, qualify, and nurture leads 24/7, freeing your team to focus on closing deals.",
-    "features": {
-      "aiAgent": {
-        "title": "24/7 AI Agent",
-        "description": "Instant response to leads from portals like Idealista"
-      },
-      "agent": {
-        "title": "24/7 AI Agent",
-        "description": "Instant response to leads from portals like Idealista"
-      },
-      "automation": {
-        "title": "Follow-up Automation",
-        "description": "Persistent nurturing that converts cold leads into clients"
-      },
-      "dashboard": {
-        "title": "ROI Dashboard",
-        "description": "Make decisions based on data, not intuition"
-      }
-    },
-    "cta": "Get My Free AI Audit"
-  },
   "socialProof": {
-    "title": "Strategic alliances and cutting-edge technology",
-    "headline": "Strategic alliances and cutting-edge technology",
+    "title": "Strategic partnerships and cutting-edge technology",
+    "headline": "Strategic partnerships and cutting-edge technology",
     "subtitle": "Trust backed by industry leaders"
   },
+  "featuredProperties": {
+    "headline": "Featured Properties",
+    "subheadline": "Discover our exclusive selection of luxury villas and residences in Mallorca's most prestigious locations",
+    "cta": "View All Properties"
+  },
   "finalCta": {
-    "headline": "Ready for the next step?",
-    "subheadline": "Whether you're looking for your next exclusive property or want to transform your agency with AI, we're here to help.",
+    "headline": "Ready to discover your perfect property?",
+    "subheadline": "Access our exclusive portfolio of luxury properties in Mallorca with personalized and confidential advisory",
     "cta": {
       "primary": "Request Private Consultation",
-      "secondary": "Explore AI Solutions"
+      "secondary": "View Featured Properties"
     }
   },
   "properties": {
     "title": "Featured Properties",
     "subtitle": "Exclusive selection of properties in Mallorca",
     "viewAll": "View All Properties",
+    "exclusive": "Exclusive",
     "exclusive": "Exclusive",
     "filters": {
       "type": "Property Type",
@@ -296,8 +272,8 @@
     "details": {
       "bedrooms": "Bedrooms",
       "bathrooms": "Bathrooms",
-      "area": "Built m²",
-      "plotSize": "Plot m²",
+      "area": "m² built",
+      "plotSize": "m² plot",
       "yearBuilt": "Year built",
       "priceOnRequest": "Price on request"
     },
@@ -320,7 +296,7 @@
     },
     "valuation": {
       "title": "Valuation",
-      "description": "Detailed market analysis and professional valuation of your property with no obligation"
+      "description": "Detailed market analysis and professional property valuation with no obligation"
     },
     "management": {
       "title": "Management",
@@ -329,23 +305,23 @@
   },
   "contact": {
     "title": "Let's Talk About Your Project",
-    "subtitle": "Fill out the form and we'll get back to you within 24 hours",
+    "subtitle": "Fill out the form and we'll respond within 24 hours",
     "form": {
       "name": "Full name",
-      "email": "Email address",
+      "email": "Email",
       "phone": "Phone",
       "message": "Message",
       "propertyType": "Property type of interest",
       "budget": "Budget",
       "timeline": "Decision timeline",
-      "newsletter": "I wish to receive news and exclusive properties",
+      "newsletter": "I want to receive news and exclusive properties",
       "privacy": "I accept the privacy policy",
-      "submit": "Send Inquiry",
+      "submit": "Submit Inquiry",
       "sending": "Sending..."
     },
     "budgetRanges": {
       "under500k": "Under €500,000",
-      "500k1m": "€500,000 - €1M",
+      "500k1m": "€500K - €1M",
       "1m2m": "€1M - €2M",
       "2m5m": "€2M - €5M",
       "over5m": "Over €5M"
@@ -357,7 +333,7 @@
       "6-12months": "6-12 months",
       "noRush": "No rush"
     },
-    "success": "Thank you! We've received your message and will be in touch soon.",
+    "success": "Thank you! We've received your message and will contact you soon.",
     "error": "There was an error submitting the form. Please try again."
   },
   "about": {
@@ -365,31 +341,31 @@
     "subtitle": "Redefining luxury real estate in Mallorca through technology, expertise, and exceptional service.",
     "story": {
       "title": "Our Story",
-      "p1": "Anclora Private Estates was born from a clear vision: to transform the buying and selling experience of luxury properties in Mallorca by combining deep local knowledge with cutting-edge technology.",
+      "p1": "Anclora Private Estates was born from a clear vision: to transform the luxury property buying and selling experience in Mallorca by combining deep local knowledge with cutting-edge technology.",
       "p2": "In 2020, we identified a unique opportunity in the Mallorcan real estate market. While traditional agencies relied on conventional methods, we bet on innovation: algorithmic segmentation, intelligent automation, and an international network of HNWI buyers.",
       "p3": "Today, Anclora is not just a real estate agency. We are a business group with two verticals: Anclora Private Estates (B2C) and Anclora Cognitive Solutions (B2B), offering AI services to other agencies in the sector."
     },
     "philosophy": {
       "title": "Our Philosophy",
-      "content": "We believe that luxury real estate requires a perfect balance between advanced technology and human touch. Our algorithms find the ideal buyers, but it is our personal relationships that close the deals."
+      "content": "We believe that luxury real estate requires a perfect balance between advanced technology and human touch. Our algorithms find ideal buyers, but it's our personal relationships that close deals."
     },
     "values": {
       "title": "Our Values",
       "excellence": {
         "title": "Excellence",
-        "description": "Exceptional service standards in every interaction and transaction."
+        "description": "Unwavering commitment to quality in every interaction"
       },
       "integrity": {
         "title": "Integrity",
-        "description": "Total transparency and honesty in all our business relationships."
+        "description": "Transparency and ethics in all our operations"
       },
       "results": {
         "title": "Results",
-        "description": "Measurable goal-oriented approach and concrete results for our clients."
+        "description": "Focus on achieving our clients' objectives"
       },
       "innovation": {
         "title": "Innovation",
-        "description": "Adoption of advanced technology and methodologies in the real estate sector."
+        "description": "Constant adoption of new technologies and methodologies"
       }
     },
     "milestones": {
@@ -410,31 +386,34 @@
       "title": "Our Team",
       "subtitle": "Professionals passionate about real estate and technology",
       "member1": {
+        "name": "Antonio Sánchez",
         "role": "Founder & CEO",
-        "bio": "Expert in luxury real estate with 15+ years of experience in Mallorca."
+        "bio": "15 years of experience in luxury real estate"
       },
       "member2": {
-        "role": "Head of Sales",
-        "bio": "International sales specialist with fluency in 5 languages."
+        "name": "María Torres",
+        "role": "Director of Operations",
+        "bio": "Expert in premium real estate marketing"
       },
       "member3": {
-        "role": "Technology Director",
-        "bio": "AI solutions architect with expertise in real estate automation."
+        "name": "Carlos Ruiz",
+        "role": "CTO",
+        "bio": "Specialist in AI applied to real estate"
       }
     },
     "cta": {
       "title": "Ready to get started?",
-      "subtitle": "Discover how we can help you with your real estate goals",
+      "subtitle": "Discover how we can help with your real estate goals",
       "button": "Contact"
     }
   },
   "blog": {
     "title": "Market Insights",
-    "subtitle": "Analysis, trends, and perspectives from the luxury real estate sector",
+    "subtitle": "Analysis, trends, and perspectives on the luxury real estate sector",
     "readMore": "Read more",
     "readingTime": "min read",
     "categories": {
-      "marketInsights": "Market Insights",
+      "marketInsights": "Market Analysis",
       "propertySpotlight": "Property Spotlight",
       "lifestyle": "Lifestyle",
       "investment": "Investment",
@@ -444,7 +423,7 @@
     "featured": "Featured"
   },
   "footer": {
-    "description": "Luxury real estate agency in Mallorca specializing in exclusive properties for high-net-worth investors.",
+    "description": "Luxury real estate agency in Mallorca specialized in exclusive properties for high-net-worth investors.",
     "contact": {
       "title": "Contact",
       "email": "info@ancloraprivateestates.com",

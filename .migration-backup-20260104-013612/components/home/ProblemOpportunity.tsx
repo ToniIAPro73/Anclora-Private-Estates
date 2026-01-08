@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { TrendingUp, BarChart, Target, Shield, Clock } from 'lucide-react';
+import { TrendingUp, BarChart, Target, Zap } from 'lucide-react';
 import { Section } from '@/components/layout';
 import { useTranslation } from '@/hooks/useTranslation';
 
@@ -11,17 +11,16 @@ const investorChallenges = [
   { icon: Target, key: 'investor.challenge3' },
 ];
 
-const sellerChallenges = [
-  { icon: Shield, key: 'seller.challenge1' },
-  { icon: Target, key: 'seller.challenge2' },
-  { icon: Clock, key: 'seller.challenge3' },
+const agentChallenges = [
+  { icon: Zap, key: 'agent.challenge1' },
+  { icon: TrendingUp, key: 'agent.challenge2' },
+  { icon: Target, key: 'agent.challenge3' },
 ];
 
 /**
  * ProblemOpportunity Component - Homepage
  * 
- * Two-column section showing investor needs vs seller needs
- * ACTUALIZADO: Reorientado de "agents" a "sellers"
+ * Two-column section showing investor needs vs agent needs
  */
 export function ProblemOpportunity() {
   const { t } = useTranslation();
@@ -62,27 +61,27 @@ export function ProblemOpportunity() {
           </div>
         </div>
 
-        {/* Seller Column */}
+        {/* Agent Column */}
         <div className="space-y-6">
-          <div className="inline-block px-4 py-2 bg-anclora-gold text-white text-sm font-semibold rounded-full mb-4">
-            {t('problemOpportunity.seller.badge')}
+          <div className="inline-block px-4 py-2 bg-black text-white text-sm font-semibold rounded-full mb-4">
+            {t('problemOpportunity.agent.badge')}
           </div>
           
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-dark mb-6">
-            {t('problemOpportunity.seller.headline')}
+            {t('problemOpportunity.agent.headline')}
           </h2>
           
           <p className="text-lg text-gray-600 leading-relaxed mb-8">
-            {t('problemOpportunity.seller.description')}
+            {t('problemOpportunity.agent.description')}
           </p>
 
           <div className="space-y-4">
-            {sellerChallenges.map((challenge, index) => {
+            {agentChallenges.map((challenge, index) => {
               const Icon = challenge.icon;
               return (
                 <div key={index} className="flex gap-4 items-start">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-anclora-gold/10 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-anclora-gold" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gray-dark text-white flex items-center justify-center">
+                    <Icon className="w-6 h-6" />
                   </div>
                   <div>
                     <p className="text-gray-700 leading-relaxed">

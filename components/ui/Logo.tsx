@@ -6,28 +6,12 @@ export type LogoVariant =
   | 'nexus-group'
   | 'cognitive-solutions';
 export type LogoSize = 'sm' | 'md' | 'lg' | 'xl';
-export type LogoType = 'full' | 'mark';
 
 interface LogoProps {
   variant?: LogoVariant;
   size?: LogoSize;
-  type?: LogoType;
   className?: string;
 }
-
-const sizeMap: Record<LogoSize, { width: number; height: number }> = {
-  sm: { width: 120, height: 30 },
-  md: { width: 180, height: 45 },
-  lg: { width: 240, height: 60 },
-  xl: { width: 320, height: 80 },
-};
-
-const markSizeMap: Record<LogoSize, { width: number; height: number }> = {
-  sm: { width: 30, height: 30 },
-  md: { width: 40, height: 40 },
-  lg: { width: 60, height: 60 },
-  xl: { width: 80, height: 80 },
-};
 
 const logoPathMap: Record<LogoVariant, string> = {
   'private-estates': '/assets/logos/anclora-private-estates.png',
@@ -50,7 +34,6 @@ const logoMarkPath = '/assets/logos/anclora-private-estates.png';
 export function Logo({
   variant = 'private-estates',
   size = 'md',
-  type = 'full',
   className = '',
 }: LogoProps) {
   const dimensions = type === 'mark' ? markSizeMap[size] : sizeMap[size];
@@ -68,10 +51,10 @@ export function Logo({
   return (
     <Image
       src={logoPath}
-      alt={altText}
-      width={dimensions.width}
-      height={dimensions.height}
-      className={className}
+      alt={`Anclora ${variant === 'private-estates' ? 'Private Estates' : 'Nexus Group'}`}
+      width={200}
+      height={80}
+      className={`${sizeClass} w-auto ${className}`}
       priority
     />
   );
