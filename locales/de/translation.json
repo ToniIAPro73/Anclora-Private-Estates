@@ -39,8 +39,14 @@
     "milestones": {
       "title": "Unser Weg",
       "m1": { "year": "2020", "event": "Gründung von Anclora Private Estates" },
-      "m2": { "year": "2021", "event": "+50 Mio. € abgeschlossene Transaktionen" },
-      "m3": { "year": "2022", "event": "Einführung von Anclora Cognitive Solutions" },
+      "m2": {
+        "year": "2021",
+        "event": "+50 Mio. € abgeschlossene Transaktionen"
+      },
+      "m3": {
+        "year": "2022",
+        "event": "Einführung von Anclora Cognitive Solutions"
+      },
       "m4": { "year": "2023", "event": "Expansion in internationale Märkte" },
       "m5": { "year": "2024", "event": "+100 verwaltete Immobilien" }
     },
@@ -229,6 +235,11 @@
     },
     "scroll_hint": "Erkunden"
   },
+  "featuredProperties": {
+    "headline": "Empfohlene Immobilien",
+    "subheadline": "Eine sorgfältig ausgewählte Kollektion unserer exklusivsten Immobilien auf dem Luxusmarkt Mallorcas",
+    "cta": "Alle Immobilien ansehen"
+  },
   "problemOpportunity": {
     "investor": {
       "badge": "Für Investoren",
@@ -328,6 +339,7 @@
     "title": "Ausgewählte Immobilien",
     "subtitle": "Exklusive Auswahl an Immobilien auf Mallorca",
     "viewAll": "Alle Immobilien ansehen",
+    "exclusive": "Exklusiv",
     "filters": {
       "type": "Immobilientyp",
       "location": "Standort",
@@ -346,7 +358,8 @@
       "available": "Verfügbar",
       "reserved": "Reserviert",
       "sold": "Verkauft",
-      "offMarket": "Off-Market"
+      "offMarket": "Off-Market",
+      "exclusive": "Exklusiv"
     },
     "details": {
       "bedrooms": "Schlafzimmer",
@@ -444,7 +457,7 @@
       "saturday": "Samstag: 10:00 - 14:00",
       "sunday": "Sonntag: Geschlossen"
     },
-    "copyright": "© {{year}} Anclora Private Estates. Alle Rechte vorbehalten.",
+    "copyright": "© {year} Anclora Private Estates. Alle Rechte vorbehalten.",
     "brokeredBy": "Brokered by eXp Realty Spain"
   },
   "common": {

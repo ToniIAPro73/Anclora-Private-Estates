@@ -6,44 +6,49 @@ import type { Language, Translation } from '@/types';
 
 /**
  * Hook para gestión de traducciones en componentes
- * 
+ *
  * Bridging existing usage with next-intl
  */
 export function useTranslation() {
   const locale = useLocale() as Language;
   const t_intl = useTranslations();
-  
+
   /**
    * Función de traducción
-   * 
+   *
    * @param key - Clave de traducción (ej: 'hero.headline')
+   * @param params - Parámetros opcionales para interpolación (ej: { year: 2024 })
    * @returns Texto traducido
    */
-  const t = (key: string): string => {
+  const t = (key: string, params?: Record<string, any>): string => {
     try {
       // next-intl expects the key directly if no namespace is used in useTranslations()
-      return t_intl(key);
+      return t_intl(key, params);
     } catch {
       console.warn(`Translation key not found: ${key}`);
       return key;
     }
   };
-  
+
   /**
    * Función para traducir objetos Translation
-   * 
+   *
    * @param translation - Objeto con traducciones {es: '', en: '', de?: ''}
    * @returns Texto en el idioma actual
    */
   const tr = (translation: Translation): string => {
     return translation[locale] || translation['es'] || '';
   };
-  
+
   /**
    * Función para formatear precio
    */
-  const formatPrice = (price: number, currency: 'EUR' | 'USD' = 'EUR'): string => {
-    const localeStr = locale === 'es' ? 'es-ES' : locale === 'de' ? 'de-DE' : 'en-GB';
+  const formatPrice = (
+    price: number,
+    currency: 'EUR' | 'USD' = 'EUR'
+  ): string => {
+    const localeStr =
+      locale === 'es' ? 'es-ES' : locale === 'de' ? 'de-DE' : 'en-GB';
     return new Intl.NumberFormat(localeStr, {
       style: 'currency',
       currency,
@@ -51,7 +56,7 @@ export function useTranslation() {
       maximumFractionDigits: 0,
     }).format(price);
   };
-  
+
   /**
    * Función para formatear fecha
    */
@@ -63,11 +68,12 @@ export function useTranslation() {
       day: 'numeric',
     }
   ): string => {
-    const localeStr = locale === 'es' ? 'es-ES' : locale === 'de' ? 'de-DE' : 'en-GB';
+    const localeStr =
+      locale === 'es' ? 'es-ES' : locale === 'de' ? 'de-DE' : 'en-GB';
     const dateObj = typeof date === 'string' ? new Date(date) : date;
     return new Intl.DateTimeFormat(localeStr, options).format(dateObj);
   };
-  
+
   return {
     t,
     tr,
@@ -87,31 +93,34 @@ export function useLanguageToggle() {
   const pathname = usePathname();
   const locale = useLocale() as Language;
   const router = useRouter();
-  
+
   /**
    * Obtener ruta localizada
    */
   const getLocalizedPath = (path: string, targetLanguage: Language): string => {
     // next-intl handling: replace the first segment if it's a locale
     const segments = path.split('/');
-    const currentLocaleInPath = ['es', 'en', 'de'].includes(segments[1]) ? segments[1] : null;
-    
+    const currentLocaleInPath = ['es', 'en', 'de'].includes(segments[1])
+      ? segments[1]
+      : null;
+
     if (currentLocaleInPath) {
       segments[1] = targetLanguage;
     } else {
-      // If no locale in path, add it as first segment? 
+      // If no locale in path, add it as first segment?
       // Actually with middleware redirects, it should usually have it.
       segments.splice(1, 0, targetLanguage);
     }
-    
+
     return segments.join('/') || '/';
   };
-  
+
   /**
    * Obtener URL para cambiar idioma de la página actual
    */
   const getToggleUrl = (): string => {
-    const targetLanguage: Language = locale === 'es' ? 'en' : locale === 'en' ? 'de' : 'es';
+    const targetLanguage: Language =
+      locale === 'es' ? 'en' : locale === 'en' ? 'de' : 'es';
     return getLocalizedPath(pathname || '/', targetLanguage);
   };
 
@@ -122,7 +131,7 @@ export function useLanguageToggle() {
     const newPath = getLocalizedPath(pathname || '/', targetLanguage);
     router.push(newPath);
   };
-  
+
   return {
     currentLanguage: locale,
     getLocalizedPath,

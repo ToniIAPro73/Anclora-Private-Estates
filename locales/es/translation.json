@@ -167,6 +167,11 @@
     },
     "scroll_hint": "Explorar"
   },
+  "featuredProperties": {
+    "headline": "Propiedades Destacadas",
+    "subheadline": "Una selección cuidada de nuestras propiedades más exclusivas y deseadas en el mercado de lujo de Mallorca",
+    "cta": "Ver Todas las Propiedades"
+  },
   "problemOpportunity": {
     "investor": {
       "badge": "Para Inversores",
@@ -266,6 +271,7 @@
     "title": "Propiedades Destacadas",
     "subtitle": "Selección exclusiva de propiedades en Mallorca",
     "viewAll": "Ver Todas las Propiedades",
+    "exclusive": "Exclusiva",
     "filters": {
       "type": "Tipo de Propiedad",
       "location": "Ubicación",
@@ -284,7 +290,8 @@
       "available": "Disponible",
       "reserved": "Reservada",
       "sold": "Vendida",
-      "offMarket": "Off-Market"
+      "offMarket": "Off-Market",
+      "exclusive": "Exclusiva"
     },
     "details": {
       "bedrooms": "Dormitorios",
@@ -389,7 +396,10 @@
       "title": "Nuestro Camino",
       "m1": { "year": "2020", "event": "Fundación de Anclora Private Estates" },
       "m2": { "year": "2021", "event": "+50M€ en transacciones cerradas" },
-      "m3": { "year": "2022", "event": "Lanzamiento de Anclora Cognitive Solutions" },
+      "m3": {
+        "year": "2022",
+        "event": "Lanzamiento de Anclora Cognitive Solutions"
+      },
       "m4": { "year": "2023", "event": "Expansión a mercados internacionales" },
       "m5": { "year": "2024", "event": "+100 propiedades gestionadas" }
     },
@@ -444,7 +454,7 @@
       "saturday": "Sábado: 10:00 - 14:00",
       "sunday": "Domingo: Cerrado"
     },
-    "copyright": "© {{year}} Anclora Private Estates. Todos los derechos reservados.",
+    "copyright": "© {year} Anclora Private Estates. Todos los derechos reservados.",
     "brokeredBy": "Brokered by eXp Realty Spain"
   },
   "common": {

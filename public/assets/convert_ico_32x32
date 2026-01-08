@@ -1,0 +1,21 @@
+from PIL import Image
+
+def convertir_a_ico(input_path, output_path):
+    try:
+        # 1. Cargar la imagen original
+        img = Image.open(input_path)
+        
+        # 2. Redimensionar a 32x32 usando el filtro LANCZOS
+        # El filtro LANCZOS es óptimo para mantener nitidez al reducir imágenes.
+        img_resized = img.resize((32, 32), Image.Resampling.LANCZOS)
+        
+        # 3. Guardar como formato ICO
+        img_resized.save(output_path, format='ICO')
+        print(f"Éxito: Archivo generado en {output_path}")
+        
+    except Exception as e:
+        print(f"Error durante el proceso: {e}")
+
+# Ejecución
+if __name__ == "__main__":
+    convertir_a_ico('favicon_private_estates.png', 'favicon.ico')

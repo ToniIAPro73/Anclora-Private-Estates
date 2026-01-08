@@ -18,7 +18,7 @@ const socialIcons = {
 
 /**
  * Footer Component
- * 
+ *
  * Site footer with navigation, contact info, and compliance
  */
 export function Footer() {
@@ -29,11 +29,15 @@ export function Footer() {
     <footer className="bg-black text-white">
       <Container size="xl">
         {/* Main Footer Content */}
-        <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Logo variant="private-estates" size="md" className="brightness-0 invert mb-4" />
-            <p className="text-gray-400 text-sm mb-6">
+            <Logo
+              variant="private-estates"
+              size="md"
+              className="mb-4 brightness-0 invert"
+            />
+            <p className="mb-6 text-sm text-gray-400">
               {t('footer.description')}
             </p>
             {/* Social Links */}
@@ -46,10 +50,10 @@ export function Footer() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-anclora-gold transition-colors"
+                    className="text-gray-400 transition-colors hover:text-anclora-gold"
                     aria-label={tr(social.label)}
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="h-5 w-5" />
                   </a>
                 );
               })}
@@ -58,13 +62,15 @@ export function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="font-semibold mb-4">{tr(footerNavigation.company.title)}</h3>
+            <h3 className="mb-4 font-semibold">
+              {tr(footerNavigation.company.title)}
+            </h3>
             <ul className="space-y-2">
               {footerNavigation.company.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-anclora-gold transition-colors text-sm"
+                    className="text-sm text-gray-400 transition-colors hover:text-anclora-gold"
                   >
                     {tr(link.label)}
                   </Link>
@@ -75,13 +81,15 @@ export function Footer() {
 
           {/* Services Links */}
           <div>
-            <h3 className="font-semibold mb-4">{tr(footerNavigation.services.title)}</h3>
+            <h3 className="mb-4 font-semibold">
+              {tr(footerNavigation.services.title)}
+            </h3>
             <ul className="space-y-2">
               {footerNavigation.services.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-anclora-gold transition-colors text-sm"
+                    className="text-sm text-gray-400 transition-colors hover:text-anclora-gold"
                   >
                     {tr(link.label)}
                   </Link>
@@ -92,13 +100,15 @@ export function Footer() {
 
           {/* Legal Links */}
           <div>
-            <h3 className="font-semibold mb-4">{tr(footerNavigation.legal.title)}</h3>
+            <h3 className="mb-4 font-semibold">
+              {tr(footerNavigation.legal.title)}
+            </h3>
             <ul className="space-y-2">
               {footerNavigation.legal.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-anclora-gold transition-colors text-sm"
+                    className="text-sm text-gray-400 transition-colors hover:text-anclora-gold"
                   >
                     {tr(link.label)}
                   </Link>
@@ -109,14 +119,10 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-6 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-            <p>
-              {t('footer.copyright').replace('{{year}}', currentYear.toString())}
-            </p>
-            <p className="text-xs opacity-70">
-              {t('footer.brokeredBy')}
-            </p>
+        <div className="border-t border-gray-800 py-6">
+          <div className="flex flex-col items-center justify-between gap-4 text-sm text-gray-400 md:flex-row">
+            <p>{t('footer.copyright', { year: currentYear })}</p>
+            <p className="text-xs opacity-70">{t('footer.brokeredBy')}</p>
           </div>
         </div>
       </Container>
