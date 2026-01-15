@@ -38,7 +38,7 @@ export function OptimizedImage({
   ...props
 }: OptimizedImageProps) {
   // VALIDACIÓN: Si src está vacío o no es string válido, usar fallback
-  const isValidSrc = (source: any): source is string => {
+  const isValidSrc = (source: unknown): source is string => {
     return typeof source === 'string' && source.trim().length > 0;
   };
 
