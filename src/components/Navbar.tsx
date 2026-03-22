@@ -12,6 +12,7 @@ export function Navbar() {
   const [activeMenuGroup, setActiveMenuGroup] = useState<string | null>(null);
   const scrollToSectionRef = useRef<(href: string) => void>(() => {});
   const hasHandledDeepLinkRef = useRef(false);
+  const previousMenuOpenRef = useRef(false);
   const [isMobileViewport, setIsMobileViewport] = useState(() => {
     if (typeof window === 'undefined') return false;
     return window.innerWidth <= 768;
@@ -323,9 +324,10 @@ export function Navbar() {
   };
 
   useEffect(() => {
-    if (!isMenuOpen) {
+    if (previousMenuOpenRef.current && !isMenuOpen) {
       setActiveMenuGroup(null);
     }
+    previousMenuOpenRef.current = isMenuOpen;
   }, [isMenuOpen]);
 
   const currentLang = i18n.language;
