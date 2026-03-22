@@ -19,6 +19,29 @@ function normalizeBaseUrl(value: string | undefined, fallback: string): string {
   return trimTrailingSlash(candidate);
 }
 
+function getPrivateAreaBaseUrl(): string {
+  const configuredBaseUrl = normalizeBaseUrl(
+    import.meta.env.VITE_ANCLORA_PRIVATE_AREA_URL
+      ?? import.meta.env.VITE_NEXUS_PRIVATE_AREA_URL
+      ?? import.meta.env.VITE_NEXUS_URL,
+    '',
+  );
+
+  if (configuredBaseUrl) return configuredBaseUrl;
+
+  const loginUrl = normalizeBaseUrl(
+    import.meta.env.VITE_ANCLORA_NEXUS_LOGIN_URL ?? import.meta.env.VITE_NEXUS_LOGIN_URL,
+    DEFAULT_NEXUS_LOGIN_URL,
+  );
+
+  try {
+    const parsedLoginUrl = new URL(loginUrl);
+    return trimTrailingSlash(parsedLoginUrl.origin);
+  } catch {
+    return DEFAULT_NEXUS_PRIVATE_AREA_URL;
+  }
+}
+
 function buildPortalUrl(pathname: string, language?: string | null): string {
   const explicitUrl = pathname === '/private-area/partner'
     ? import.meta.env.VITE_ANCLORA_PARTNER_PORTAL_URL ?? import.meta.env.VITE_PARTNER_PORTAL_URL
@@ -28,10 +51,7 @@ function buildPortalUrl(pathname: string, language?: string | null): string {
 
   const baseOrExplicit = explicitUrl
     ? normalizeBaseUrl(explicitUrl, `${DEFAULT_NEXUS_PRIVATE_AREA_URL}${pathname}`)
-    : `${normalizeBaseUrl(
-        import.meta.env.VITE_ANCLORA_PRIVATE_AREA_URL ?? import.meta.env.VITE_NEXUS_PRIVATE_AREA_URL,
-        DEFAULT_NEXUS_PRIVATE_AREA_URL,
-      )}${pathname}`;
+    : `${getPrivateAreaBaseUrl()}${pathname}`;
 
   return withLanguage(baseOrExplicit, language);
 }

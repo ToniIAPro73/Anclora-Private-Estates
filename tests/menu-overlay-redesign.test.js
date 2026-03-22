@@ -33,6 +33,15 @@ test('menu overlay config defines investment and private submenus', () => {
   assert.doesNotMatch(configSource, /id: 'discover'/);
 });
 
+test('private area access resolves partner and data lab URLs with language support and legacy nexus base env', () => {
+  const accessSource = read('src/lib/privateAreaAccess.ts');
+
+  assert.match(accessSource, /getPartnerPortalUrl/);
+  assert.match(accessSource, /getDataLabPortalUrl/);
+  assert.match(accessSource, /VITE_NEXUS_URL/);
+  assert.match(accessSource, /searchParams\.set\('lang', normalized\)/);
+});
+
 test('all supported locales contain required menu overlay keys', () => {
   for (const locale of ['es', 'en', 'de', 'fr']) {
     const data = getLocale(locale);
