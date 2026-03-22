@@ -11,6 +11,7 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeMenuGroup, setActiveMenuGroup] = useState<string | null>(null);
   const scrollToSectionRef = useRef<(href: string) => void>(() => {});
+  const hasHandledDeepLinkRef = useRef(false);
   const [isMobileViewport, setIsMobileViewport] = useState(() => {
     if (typeof window === 'undefined') return false;
     return window.innerWidth <= 768;
@@ -51,6 +52,34 @@ export function Navbar() {
     window.addEventListener('resize', onResize, { passive: true });
     return () => window.removeEventListener('resize', onResize);
   }, []);
+
+  useEffect(() => {
+    if (hasHandledDeepLinkRef.current) return;
+    hasHandledDeepLinkRef.current = true;
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const requestedLanguage = searchParams.get('lang');
+    const openSection = searchParams.get('open');
+
+    if (requestedLanguage) {
+      void ensureLanguageResources(requestedLanguage).then((resolvedLanguage) => {
+        if (resolvedLanguage !== i18n.language) {
+          void i18n.changeLanguage(resolvedLanguage);
+        }
+        window.localStorage.setItem('i18nextLng', resolvedLanguage);
+      });
+    }
+
+    if (openSection === 'private-area') {
+      setIsMenuOpen(true);
+      setActiveMenuGroup('private');
+
+      searchParams.delete('open');
+      const nextSearch = searchParams.toString();
+      const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ''}${window.location.hash}`;
+      window.history.replaceState({}, '', nextUrl);
+    }
+  }, [i18n]);
 
   useEffect(() => {
     const reconcilePendingNavigation = () => {
