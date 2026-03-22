@@ -306,21 +306,15 @@ export function Navbar() {
   scrollToSectionRef.current = scrollToSection;
 
   const openAgentPortal = () => {
-    setIsMenuOpen(false);
-    setActiveMenuGroup(null);
-    window.location.href = nexusLoginUrl;
+    window.location.assign(nexusLoginUrl);
   };
 
   const openPartnerPortal = () => {
-    setIsMenuOpen(false);
-    setActiveMenuGroup(null);
-    window.location.href = partnerPortalUrl;
+    window.location.assign(partnerPortalUrl);
   };
 
   const openDataLabPortal = () => {
-    setIsMenuOpen(false);
-    setActiveMenuGroup(null);
-    window.location.href = dataLabPortalUrl;
+    window.location.assign(dataLabPortalUrl);
   };
 
   useEffect(() => {
