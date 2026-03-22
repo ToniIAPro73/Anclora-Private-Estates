@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ensureLanguageResources } from '../i18n';
 import { buildMenuGroups } from './menuOverlayConfig';
-import { getNexusLoginUrl } from '../lib/privateAreaAccess';
+import { getDataLabPortalUrl, getNexusLoginUrl, getPartnerPortalUrl } from '../lib/privateAreaAccess';
 
 export function Navbar() {
   const pendingScrollTargetKey = 'anclora:pending-scroll-target';
@@ -16,6 +16,8 @@ export function Navbar() {
     return window.innerWidth <= 768;
   });
   const nexusLoginUrl = getNexusLoginUrl(i18n.language);
+  const partnerPortalUrl = getPartnerPortalUrl(i18n.language);
+  const dataLabPortalUrl = getDataLabPortalUrl(i18n.language);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -282,13 +284,13 @@ export function Navbar() {
   const openPartnerPortal = () => {
     setIsMenuOpen(false);
     setActiveMenuGroup(null);
-    window.location.href = nexusLoginUrl;
+    window.location.href = partnerPortalUrl;
   };
 
   const openDataLabPortal = () => {
     setIsMenuOpen(false);
     setActiveMenuGroup(null);
-    window.location.href = nexusLoginUrl;
+    window.location.href = dataLabPortalUrl;
   };
 
   useEffect(() => {
