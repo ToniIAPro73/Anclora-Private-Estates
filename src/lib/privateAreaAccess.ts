@@ -18,14 +18,6 @@ function normalizeBaseUrl(value: string | undefined, fallback: string): string {
   return trimTrailingSlash(candidate);
 }
 
-function deriveBaseFromLogin(loginUrl: string): string {
-  const url = new URL(loginUrl);
-  url.pathname = url.pathname.replace(/\/login\/?$/, '') || '/';
-  url.search = '';
-  url.hash = '';
-  return trimTrailingSlash(url.toString());
-}
-
 function withLanguage(url: string, language?: string | null): string {
   const normalized = normalizeLanguage(language);
   if (!normalized) return url;
@@ -40,23 +32,4 @@ export function getNexusLoginUrl(language?: string | null): string {
     DEFAULT_NEXUS_LOGIN_URL,
   );
   return withLanguage(loginUrl, language);
-}
-
-export function getPrivateAreaBaseUrl(language?: string | null): string {
-  const loginUrl = getNexusLoginUrl(language);
-  const fallbackBase = deriveBaseFromLogin(loginUrl);
-  const baseUrl = normalizeBaseUrl(import.meta.env.VITE_ANCLORA_PRIVATE_AREA_URL, fallbackBase);
-  return withLanguage(baseUrl, language);
-}
-
-export function getPartnerPortalUrl(language?: string | null): string {
-  const fallback = `${normalizeBaseUrl(import.meta.env.VITE_ANCLORA_PRIVATE_AREA_URL, deriveBaseFromLogin(getNexusLoginUrl(language)))}/private-area/partner`;
-  const url = normalizeBaseUrl(import.meta.env.VITE_ANCLORA_PARTNER_PORTAL_URL, fallback);
-  return withLanguage(url, language);
-}
-
-export function getDataLabPortalUrl(language?: string | null): string {
-  const fallback = `${normalizeBaseUrl(import.meta.env.VITE_ANCLORA_PRIVATE_AREA_URL, deriveBaseFromLogin(getNexusLoginUrl(language)))}/private-area/data-lab`;
-  const url = normalizeBaseUrl(import.meta.env.VITE_ANCLORA_DATA_LAB_URL, fallback);
-  return withLanguage(url, language);
 }
