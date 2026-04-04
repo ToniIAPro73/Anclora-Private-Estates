@@ -51,3 +51,20 @@ Lectura mínima antes de tocar interfaz:
 3. `docs/standards/UI_MOTION_CONTRACT.md`
 4. `docs/standards/MODAL_CONTRACT.md`
 5. `docs/standards/LOCALIZATION_CONTRACT.md`
+
+## Branding canónico
+
+- Grupo: `Ultra Premium`
+- Tipografía display: `Cardo` (serif)
+- Tipografía body/UI: `Inter` (sans-serif)
+- Tipografía acentos: `Fraunces` (serif)
+- Borde de icono: Oro pulido `#D4AF37`
+- Accent principal: Oro `#D4AF37`
+- Interior de icono: Teal oscuro `#1A3035`
+- Secundario: Teal `#3AA090`
+- Fondo base: `#07252F`
+- Prefijo favicon: `pe_`
+- Idiomas: `es`, `en`, `de`, `fr`
+- Assets finales (icono, favicon): pendientes de entrega por el usuario
+- Contrato de referencia: `docs/standards/ANCLORA_BRANDING_MASTER_CONTRACT.md`
+- Alcance de esta fase: alineación estructural de branding; assets finales integrados en fase posterior
