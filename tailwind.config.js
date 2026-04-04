@@ -77,12 +77,11 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Outfit', 'Inter', 'system-ui', 'sans-serif'],
-        display: ['Montserrat', 'system-ui', 'sans-serif'],
+        // Ultra-premium stack (ANCLORA_BRANDING_TYPOGRAPHY — Ultra Premium)
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Cardo', 'Georgia', 'serif'],
+        accent: ['Fraunces', 'Georgia', 'serif'],
         mono: ['IBM Plex Mono', 'monospace'],
-        serif: ['Playfair Display', 'Georgia', 'serif'],
-        outfit: ['Outfit', 'system-ui', 'sans-serif'],
-        playfair: ['Playfair Display', 'Georgia', 'serif'],
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",
