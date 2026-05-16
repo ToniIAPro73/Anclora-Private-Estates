@@ -14,9 +14,11 @@ related:
 
 # ANCLORA_BRANDING_MASTER_CONTRACT
 
-## Objetivo
+## Ownership
 
-Definir el sistema de identidad visual completo del ecosistema Anclora: logos, paletas de color, tipografía, iconografía y reglas de uso. Este contrato es la referencia única para cualquier decisión de branding en cualquier aplicación del ecosistema.
+- Todos los activos intangibles, marcas comerciales, logotipos, tokens de diseño y propiedad intelectual del ecosistema son propiedad exclusiva de **Anclora Group**.
+- Las aplicaciones individuales (Anclora Private Estates, Anclora Data Lab, Anclora Synergi, etc.) operan bajo licencia exclusiva otorgada por la matriz.
+- El uso de cualquier elemento de marca fuera de los parámetros definidos en este contrato requiere autorización expresa por escrito de Anclora Group.
 
 ## Autoridad
 

@@ -178,9 +178,14 @@ export function Footer() {
           </p>
 
           {/* Copyright */}
-          <p className="footer-copyright">
-            © {new Date().getFullYear()} <span>ANCLORA GROUP</span> · ID: ANG-PRT-2026-EU
-          </p>
+          <div className="footer-copyright-container">
+            <p className="footer-copyright">
+              {t('footer.rights')} · ID: ANG-PRT-2026-EU
+            </p>
+            <p className="footer-brand-declaration" style={{ fontSize: '0.7rem', opacity: 0.6, marginTop: '0.5rem' }}>
+              Anclora Private Estates es una marca comercial operada bajo licencia exclusiva por Anclora Group.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

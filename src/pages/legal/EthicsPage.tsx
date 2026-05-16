@@ -57,7 +57,7 @@ export function EthicsPage() {
 
           <div className="bg-anclora-teal-bg/50 rounded-2xl p-8 border border-white/10 mb-12">
             <p className="text-anclora-text-muted leading-relaxed m-0">
-              Anclora&apos;s Code of Ethics is based on <strong className="text-anclora-cream">transparency</strong>,{' '}
+              Anclora Group&apos;s Code of Ethics is based on <strong className="text-anclora-cream">transparency</strong>,{' '}
               <strong className="text-anclora-cream">integrity</strong>, and{' '}
               <strong className="text-anclora-cream">absolute confidentiality</strong> (UHNWI). We are committed 
               to the sustainable development of the Balearic Islands and professional excellence in the 

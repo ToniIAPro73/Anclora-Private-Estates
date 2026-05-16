@@ -30,7 +30,7 @@ export function PrivacyPage() {
           <div className="prose prose-invert prose-lg max-w-none">
             <div className="bg-anclora-teal-bg/50 rounded-2xl p-8 border border-white/10 mb-8">
               <p className="text-anclora-text-muted leading-relaxed m-0">
-                At <strong className="text-anclora-cream">Anclora Private Estates S.L.</strong>, we take your personal data protection seriously. 
+                At <strong className="text-anclora-cream">Anclora Group</strong>, we take your personal data protection seriously. 
                 In compliance with GDPR, we inform you that your data will be processed solely to manage your requests 
                 and keep you informed about our luxury properties. We do not share data with third parties without your 
                 express consent, except when legally required.
@@ -47,7 +47,7 @@ export function PrivacyPage() {
               1. Data Controller
             </h2>
             <p className="text-anclora-text-muted">
-              <strong className="text-anclora-cream">Identity:</strong> Anclora Private Estates S.L.<br />
+              <strong className="text-anclora-cream">Identity:</strong> Anclora Group<br />
               <strong className="text-anclora-cream">NIF:</strong> B-XXXXXXXX<br />
               <strong className="text-anclora-cream">Address:</strong> Paseo del Borne, 15, 07012 Palma de Mallorca<br />
               <strong className="text-anclora-cream">Email:</strong>{' '}

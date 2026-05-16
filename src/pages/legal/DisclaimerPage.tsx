@@ -36,7 +36,7 @@ export function DisclaimerPage() {
                 <strong>Important Notice:</strong> The information contained on this website is for 
                 informational purposes only and does not constitute legal, tax, or investment advice. 
                 Property photographs and renders may not exactly match reality. All prices are subject 
-                to change without notice. Anclora Private Estates is not responsible for errors or 
+                to change without notice. Anclora Group is not responsible for errors or 
                 omissions in the published information. Please verify all information directly with 
                 our agents before making any decisions.
               </p>
@@ -51,7 +51,7 @@ export function DisclaimerPage() {
             </p>
             <div className="bg-anclora-teal-bg/50 rounded-2xl p-6 border border-white/10 mt-6">
               <p className="text-anclora-text-muted m-0">
-                <strong className="text-anclora-cream">Company name:</strong> Anclora Private Estates S.L.<br />
+                <strong className="text-anclora-cream">Company name:</strong> Anclora Group<br />
                 <strong className="text-anclora-cream">NIF/CIF:</strong> B-XXXXXXXX<br />
                 <strong className="text-anclora-cream">Registered office:</strong> Paseo del Borne, 15, 07012 Palma de Mallorca, Islas Baleares<br />
                 <strong className="text-anclora-cream">Email:</strong>{' '}
@@ -71,7 +71,7 @@ export function DisclaimerPage() {
             </h2>
             <p className="text-anclora-text-muted">
               This Legal Notice regulates the use of the website www.ancloraprivateestates.com 
-              (hereinafter, the &quot;Website&quot;), owned by Anclora Private Estates S.L.
+              (hereinafter, the &quot;Website&quot;), owned by Anclora Group.
             </p>
             <p className="text-anclora-text-muted">
               Browsing the Website confers the status of user and implies full and unreserved 
@@ -82,7 +82,7 @@ export function DisclaimerPage() {
               3. Responsibility for Content
             </h2>
             <p className="text-anclora-text-muted">
-              Anclora Private Estates reserves the right to modify, without prior notice, the 
+              Anclora Group reserves the right to modify, without prior notice, the 
               presentation, configuration, and content of the Website, as well as the conditions 
               required for its access and/or use.
             </p>
@@ -91,7 +91,7 @@ export function DisclaimerPage() {
               exactly match reality. We recommend verifying all information directly with our agents.
             </p>
             <p className="text-anclora-text-muted">
-              Anclora Private Estates does NOT guarantee:
+              Anclora Group does NOT guarantee:
             </p>
             <ul className="text-anclora-text-muted space-y-2">
               <li>The accuracy, updating, completeness, or truthfulness of the content</li>
@@ -109,7 +109,7 @@ export function DisclaimerPage() {
             </h3>
             <p className="text-anclora-text-muted">
               All published prices are subject to change without prior notice and must be confirmed 
-              directly with Anclora Private Estates before any commitment.
+              directly with Anclora Group before any commitment.
             </p>
             <p className="text-anclora-text-muted">
               Prices do NOT include:
@@ -133,7 +133,7 @@ export function DisclaimerPage() {
               without this information being immediately updated on the Website.
             </p>
             <p className="text-anclora-text-muted">
-              Anclora Private Estates is not responsible for the unavailability of published properties.
+              Anclora Group is not responsible for the unavailability of published properties.
             </p>
 
             <h3 className="font-display text-xl font-semibold text-anclora-cream mt-8 mb-3">
@@ -145,10 +145,10 @@ export function DisclaimerPage() {
             </p>
 
             <h2 className="font-display text-2xl font-semibold text-anclora-cream mt-12 mb-4">
-              5. Role of Anclora Private Estates
+              5. Role of Anclora Group
             </h2>
             <p className="text-anclora-text-muted">
-              Anclora Private Estates acts as a <strong className="text-anclora-cream">professional real estate intermediary</strong> between 
+              Anclora Group acts as a <strong className="text-anclora-cream">professional real estate intermediary</strong> between 
               buyers and sellers/developers.
             </p>
             <p className="text-anclora-text-muted">
@@ -194,7 +194,7 @@ export function DisclaimerPage() {
               </p>
             </div>
             <p className="text-anclora-text-muted mt-4">
-              Anclora Private Estates:
+              Anclora Group:
             </p>
             <ul className="text-anclora-text-muted space-y-2">
               <li>Does NOT guarantee any level of return</li>
@@ -239,7 +239,7 @@ export function DisclaimerPage() {
               8. Links to Third Parties
             </h2>
             <p className="text-anclora-text-muted">
-              The Website may contain links to third-party websites. Anclora Private Estates does 
+              The Website may contain links to third-party websites. Anclora Group does 
               not control or assume responsibility for the content, privacy policies, or practices 
               of such sites.
             </p>
@@ -248,7 +248,7 @@ export function DisclaimerPage() {
               9. Disclaimer of Warranties and Liability
             </h2>
             <p className="text-anclora-text-muted">
-              Anclora Private Estates is not responsible for:
+              Anclora Group is not responsible for:
             </p>
             <ul className="text-anclora-text-muted space-y-2">
               <li>Errors or omissions in the content</li>

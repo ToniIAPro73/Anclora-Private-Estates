@@ -76,7 +76,7 @@ export function TermsPage() {
             </h3>
             <p className="text-anclora-text-muted">
               All content on the Website (texts, photographs, logos, designs) is the property 
-              of Anclora Private Estates or third parties who have authorized its use.
+              of Anclora Group or third parties who have authorized its use.
             </p>
             <p className="text-anclora-text-muted">
               Unauthorized use may constitute copyright infringement and give rise to legal action.
@@ -90,7 +90,7 @@ export function TermsPage() {
               3.1 Nature of the Service
             </h3>
             <p className="text-anclora-text-muted">
-              Anclora Private Estates acts as a <strong className="text-anclora-cream">professional intermediary</strong> between:
+              Anclora Group acts as a <strong className="text-anclora-cream">professional intermediary</strong> between:
             </p>
             <ul className="text-anclora-text-muted space-y-2">
               <li>Buyers/Tenants (Demand)</li>
@@ -161,7 +161,7 @@ export function TermsPage() {
               this information being immediately updated on the Website.
             </p>
             <p className="text-anclora-text-muted">
-              Anclora Private Estates is not responsible for the unavailability of published properties.
+              Anclora Group is not responsible for the unavailability of published properties.
             </p>
 
             <h2 className="font-display text-2xl font-semibold text-anclora-cream mt-12 mb-4">
@@ -186,7 +186,7 @@ export function TermsPage() {
               6. Anti-Money Laundering
             </h2>
             <p className="text-anclora-text-muted">
-              Under Law 10/2010, of April 28, Anclora Private Estates is subject to anti-money 
+              Under Law 10/2010, of April 28, Anclora Group is subject to anti-money 
               laundering obligations.
             </p>
             <p className="text-anclora-text-muted">
@@ -211,7 +211,7 @@ export function TermsPage() {
               7. Limitation of Liability
             </h2>
             <p className="text-anclora-text-muted">
-              Anclora Private Estates is NOT responsible for:
+              Anclora Group is NOT responsible for:
             </p>
             <ul className="text-anclora-text-muted space-y-2">
               <li>❌ Errors or omissions in property descriptions</li>
@@ -223,14 +223,14 @@ export function TermsPage() {
             </ul>
             <p className="text-anclora-text-muted">
               <strong className="text-anclora-cream">Maximum liability:</strong> Limited to the fees actually received 
-              by Anclora in the specific transaction that causes the damage.
+              by Anclora Group in the specific transaction that causes the damage.
             </p>
 
             <h2 className="font-display text-2xl font-semibold text-anclora-cream mt-12 mb-4">
               8. Modifications
             </h2>
             <p className="text-anclora-text-muted">
-              Anclora Private Estates reserves the right to modify these Terms and Conditions at any time.
+              Anclora Group reserves the right to modify these Terms and Conditions at any time.
             </p>
             <p className="text-anclora-text-muted">
               Substantial changes will be notified via:
