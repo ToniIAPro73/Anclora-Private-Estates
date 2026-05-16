@@ -37,7 +37,7 @@ export const PE_BRAND = {
   fontAccent: 'Fraunces',     // Acentos editoriales — serif
 
   // Idiomas soportados
-  locales: ['es', 'en', 'de', 'fr'] as const,
+  locales: ['es', 'en', 'de'] as const,
 
   // Grupo de contrato
   contractGroup: 'Ultra Premium',

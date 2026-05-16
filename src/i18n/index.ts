@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 
 import es from './locales/es.json';
 
-const SUPPORTED_LANGUAGES = ['es', 'en', 'de', 'fr'] as const;
+const SUPPORTED_LANGUAGES = ['es', 'en', 'de'] as const;
 type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
 const resources = {
@@ -13,7 +13,6 @@ const resources = {
 const languageLoaders: Record<Exclude<SupportedLanguage, 'es'>, () => Promise<{ default: unknown }>> = {
   en: () => import('./locales/en.json'),
   de: () => import('./locales/de.json'),
-  fr: () => import('./locales/fr.json'),
 };
 
 const loadedLanguages = new Set<SupportedLanguage>(['es']);
