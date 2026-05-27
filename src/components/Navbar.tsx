@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ensureLanguageResources } from '../i18n';
 import { buildMenuGroups } from './menuOverlayConfig';
 import { getDataLabPortalUrl, getNexusLoginUrl, getPartnerPortalUrl } from '../lib/privateAreaAccess';
+import { LanguageToggle } from './LanguageToggle';
 
 export function Navbar() {
   const pendingScrollTargetKey = 'anclora:pending-scroll-target';
@@ -457,51 +458,11 @@ export function Navbar() {
                 </ul>
               </nav>
 
-              {/* Language Switcher */}
-              <div className="lang-switcher">
-                <button 
-                  className={`lang-btn ${currentLang === 'es' ? 'active' : ''}`}
-                  onClick={() => changeLanguage('es')}
-                >
-                  ES
-                </button>
-                <button 
-                  className={`lang-btn ${currentLang === 'en' ? 'active' : ''}`}
-                  onClick={() => changeLanguage('en')}
-                >
-                  EN
-                </button>
-                <button 
-                  className={`lang-btn ${currentLang === 'de' ? 'active' : ''}`}
-                  onClick={() => changeLanguage('de')}
-                >
-                  DE
-                </button>
-              </div>
+              <LanguageToggle currentLanguage={currentLang} onLanguageChange={changeLanguage} />
             </div>
 
-            {/* Mobile Language Switcher */}
             <div className="md:hidden flex-shrink-0">
-              <div className="lang-switcher mobile-header-lang-switcher">
-                <button
-                  className={`lang-btn ${currentLang === 'es' ? 'active' : ''}`}
-                  onClick={() => changeLanguage('es')}
-                >
-                  ES
-                </button>
-                <button
-                  className={`lang-btn ${currentLang === 'en' ? 'active' : ''}`}
-                  onClick={() => changeLanguage('en')}
-                >
-                  EN
-                </button>
-                <button
-                  className={`lang-btn ${currentLang === 'de' ? 'active' : ''}`}
-                  onClick={() => changeLanguage('de')}
-                >
-                  DE
-                </button>
-              </div>
+              <LanguageToggle currentLanguage={currentLang} onLanguageChange={changeLanguage} compact />
             </div>
           </div>
         </div>

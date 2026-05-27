@@ -211,6 +211,14 @@
     "fr": "Français",
     "de": "Deutsch"
   },
+  "languageToggle": {
+    "groupLabel": "Selector de idioma",
+    "eyebrow": "Ajustes",
+    "title": "Idioma",
+    "pendingLabel": "Pendiente",
+    "closeLabel": "Cerrar selector de idioma",
+    "saveLabel": "Guardar y cerrar"
+  },
   "social": {
     "followUs": "Síguenos"
   },

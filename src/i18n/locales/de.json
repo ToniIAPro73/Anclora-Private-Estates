@@ -211,6 +211,14 @@
     "fr": "Français",
     "de": "Deutsch"
   },
+  "languageToggle": {
+    "groupLabel": "Sprachauswahl",
+    "eyebrow": "Einstellungen",
+    "title": "Sprache",
+    "pendingLabel": "Ausstehend",
+    "closeLabel": "Sprachauswahl schließen",
+    "saveLabel": "Speichern und schließen"
+  },
   "social": {
     "followUs": "Folgen Sie uns"
   },
