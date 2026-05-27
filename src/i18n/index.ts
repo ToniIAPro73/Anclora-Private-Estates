@@ -2,9 +2,15 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 import es from './locales/es.json';
+import {
+  ACTIVE_LOCALES,
+  normalizeActiveLocale,
+  resolveInitialLocale,
+  type ActiveAncloraLocale,
+} from '../lib/ancloraLanguageToggle';
 
-const SUPPORTED_LANGUAGES = ['es', 'en', 'de'] as const;
-type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
+const SUPPORTED_LANGUAGES = ACTIVE_LOCALES;
+type SupportedLanguage = ActiveAncloraLocale;
 
 const resources = {
   es: { translation: es },
@@ -18,9 +24,7 @@ const languageLoaders: Record<Exclude<SupportedLanguage, 'es'>, () => Promise<{ 
 const loadedLanguages = new Set<SupportedLanguage>(['es']);
 
 const normalizeLanguage = (language: string | null | undefined): SupportedLanguage => {
-  if (!language) return 'es';
-  const base = language.toLowerCase().split('-')[0];
-  return (SUPPORTED_LANGUAGES as readonly string[]).includes(base) ? (base as SupportedLanguage) : 'es';
+  return normalizeActiveLocale(language) ?? 'es';
 };
 
 export const ensureLanguageResources = async (language: string): Promise<SupportedLanguage> => {
@@ -50,7 +54,12 @@ i18n
   });
 
 if (typeof window !== 'undefined') {
-  const preferredLanguage = normalizeLanguage(window.localStorage.getItem('i18nextLng'));
+  const searchParams = new URLSearchParams(window.location.search);
+  const preferredLanguage = resolveInitialLocale({
+    urlLocale: searchParams.get('lang') ?? searchParams.get('locale'),
+    persistedLocale: window.localStorage.getItem('i18nextLng'),
+    browserLocales: Array.from(window.navigator.languages ?? [window.navigator.language]),
+  });
   if (preferredLanguage !== 'es') {
     void ensureLanguageResources(preferredLanguage).then((resolvedLanguage) => {
       void i18n.changeLanguage(resolvedLanguage);

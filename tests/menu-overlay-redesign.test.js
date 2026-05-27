@@ -42,8 +42,8 @@ test('private area access resolves partner and data lab URLs with language suppo
   assert.match(accessSource, /searchParams\.set\('lang', normalized\)/);
 });
 
-test('all supported locales contain required menu overlay keys', () => {
-  for (const locale of ['es', 'en', 'de', 'fr']) {
+test('all active locales contain required menu overlay keys', () => {
+  for (const locale of ['es', 'en', 'de']) {
     const data = getLocale(locale);
     const menu = data.menuOverlay ?? {};
 
@@ -54,4 +54,17 @@ test('all supported locales contain required menu overlay keys', () => {
     assert.ok(menu.links?.valuation, `${locale}: menuOverlay.links.valuation missing`);
     assert.ok(menu.links?.contact, `${locale}: menuOverlay.links.contact missing`);
   }
+});
+
+test('language toggle governance uses Ultra Premium modal catalog without enabling pending locales', () => {
+  const source = read('src/lib/ancloraLanguageToggle.ts');
+  const toggleSource = read('src/components/LanguageToggle.tsx');
+  const navbarSource = read('src/components/Navbar.tsx');
+
+  assert.match(source, /ULTRA_PREMIUM_LOCALES/);
+  assert.match(source, /'es',\s*'ca',\s*'de',\s*'en',\s*'sv',\s*'fr',\s*'it',\s*'da',\s*'nl',\s*'no',\s*'pt'/);
+  assert.match(source, /ACTIVE_LOCALES.*\['es', 'en', 'de'\]/s);
+  assert.match(toggleSource, /role="dialog"/);
+  assert.match(toggleSource, /pendingLabel/);
+  assert.doesNotMatch(navbarSource, /className="lang-switcher"/);
 });
