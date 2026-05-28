@@ -67,7 +67,7 @@ export function LanguageToggle({ currentLanguage, onLanguageChange, compact = fa
         className={`language-toggle-trigger ${isOpen ? 'is-open' : ''} ${compact ? 'is-compact' : ''}`}
         aria-expanded={isOpen}
         aria-haspopup="dialog"
-        aria-label="Global preferences"
+        aria-label={t('languageToggle.preferencesLabel')}
       >
         <Globe className="w-4 h-4" aria-hidden />
         <span className="language-toggle-trigger__text">
@@ -78,11 +78,11 @@ export function LanguageToggle({ currentLanguage, onLanguageChange, compact = fa
       </button>
 
       {isOpen && (
-        <div className="language-toggle-panel" role="dialog" aria-label="Global preferences settings">
+        <div className="language-toggle-panel" role="dialog" aria-label={t('languageToggle.preferencesDialogLabel')}>
           <div className="language-toggle-panel__header">
             <div>
               <p>{t('languageToggle.eyebrow')}</p>
-              <h2>Settings</h2>
+              <h2>{t('languageToggle.settingsTitle')}</h2>
             </div>
             <button type="button" className="language-toggle-close" onClick={() => setIsOpen(false)} aria-label={t('languageToggle.closeLabel')}>
               <X className="w-4 h-4" aria-hidden />
@@ -90,7 +90,7 @@ export function LanguageToggle({ currentLanguage, onLanguageChange, compact = fa
           </div>
 
           <label className="mt-4 block text-xs font-semibold uppercase tracking-[0.18em] text-anclora-gold">
-            Language
+            {t('languageToggle.languageLabel')}
             <select
               className="mt-2 w-full rounded-xl border border-white/10 bg-anclora-teal-bg px-3 py-2 text-sm normal-case tracking-normal text-white"
               value={currentCode}
@@ -114,23 +114,23 @@ export function LanguageToggle({ currentLanguage, onLanguageChange, compact = fa
           </label>
 
           <label className="mt-4 block text-xs font-semibold uppercase tracking-[0.18em] text-anclora-gold">
-            Currency
+            {t('languageToggle.currencyLabel')}
             <select className="mt-2 w-full rounded-xl border border-white/10 bg-anclora-teal-bg px-3 py-2 text-sm normal-case tracking-normal text-white" value={currency} onChange={(event) => handleCurrencyChange(event.target.value)}>
-              <option value="EUR">Euro - EUR €</option>
-              <option value="USD">US Dollar - USD $</option>
-              <option value="GBP">Pound sterling - GBP £</option>
-              <option value="CHF">Swiss franc - CHF</option>
-              <option value="SEK">Swedish krona - SEK kr</option>
-              <option value="DKK">Danish krone - DKK kr</option>
-              <option value="NOK">Norwegian krone - NOK kr</option>
+              <option value="EUR">{t('languageToggle.currency.eur')}</option>
+              <option value="USD">{t('languageToggle.currency.usd')}</option>
+              <option value="GBP">{t('languageToggle.currency.gbp')}</option>
+              <option value="CHF">{t('languageToggle.currency.chf')}</option>
+              <option value="SEK">{t('languageToggle.currency.sek')}</option>
+              <option value="DKK">{t('languageToggle.currency.dkk')}</option>
+              <option value="NOK">{t('languageToggle.currency.nok')}</option>
             </select>
           </label>
 
           <label className="mt-4 block text-xs font-semibold uppercase tracking-[0.18em] text-anclora-gold">
-            Measure Units
+            {t('languageToggle.unitsLabel')}
             <select className="mt-2 w-full rounded-xl border border-white/10 bg-anclora-teal-bg px-3 py-2 text-sm normal-case tracking-normal text-white" value={unit} onChange={(event) => handleUnitChange(event.target.value)}>
-              <option value="metric">Square Meter - m² / Hectare - Ha</option>
-              <option value="imperial">Square Foot - sqft / Acre - ac</option>
+              <option value="metric">{t('languageToggle.units.metric')}</option>
+              <option value="imperial">{t('languageToggle.units.imperial')}</option>
             </select>
           </label>
 
