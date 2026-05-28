@@ -56,14 +56,17 @@ test('all active locales contain required menu overlay keys', () => {
   }
 });
 
-test('language toggle governance uses Ultra Premium modal catalog without enabling pending locales', () => {
+test('language toggle governance uses Ultra Premium modal catalog — all 11 locales active', () => {
   const source = read('src/lib/ancloraLanguageToggle.ts');
   const toggleSource = read('src/components/LanguageToggle.tsx');
   const navbarSource = read('src/components/Navbar.tsx');
 
+  // ULTRA_PREMIUM_LOCALES definition must be present
   assert.match(source, /ULTRA_PREMIUM_LOCALES/);
+  // All 11 Ultra Premium locales must be declared in the correct order
   assert.match(source, /'es',\s*'ca',\s*'de',\s*'en',\s*'sv',\s*'fr',\s*'it',\s*'da',\s*'nl',\s*'no',\s*'pt'/);
-  assert.match(source, /ACTIVE_LOCALES.*\['es', 'en', 'de'\]/s);
+  // ACTIVE_LOCALES must now include all 11 Ultra Premium locales (feat/ultra-premium-app-missing-locales-copy)
+  assert.match(source, /ACTIVE_LOCALES.*'es'.*'ca'.*'de'.*'en'.*'sv'.*'fr'.*'it'.*'da'.*'nl'.*'no'.*'pt'/s);
   assert.match(toggleSource, /role="dialog"/);
   assert.match(toggleSource, /pendingLabel/);
   assert.doesNotMatch(navbarSource, /className="lang-switcher"/);

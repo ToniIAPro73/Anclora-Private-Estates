@@ -17,8 +17,16 @@ const resources = {
 };
 
 const languageLoaders: Record<Exclude<SupportedLanguage, 'es'>, () => Promise<{ default: unknown }>> = {
-  en: () => import('./locales/en.json'),
+  ca: () => import('./locales/ca.json'),
   de: () => import('./locales/de.json'),
+  en: () => import('./locales/en.json'),
+  sv: () => import('./locales/sv.json'),
+  fr: () => import('./locales/fr.json'),
+  it: () => import('./locales/it.json'),
+  da: () => import('./locales/da.json'),
+  nl: () => import('./locales/nl.json'),
+  no: () => import('./locales/no.json'),
+  pt: () => import('./locales/pt.json'),
 };
 
 const loadedLanguages = new Set<SupportedLanguage>(['es']);

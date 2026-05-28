@@ -11,7 +11,7 @@ export type AncloraLocale =
   | 'no'
   | 'pt'
 
-export type ActiveAncloraLocale = 'es' | 'en' | 'de'
+export type ActiveAncloraLocale = 'es' | 'ca' | 'de' | 'en' | 'sv' | 'fr' | 'it' | 'da' | 'nl' | 'no' | 'pt'
 
 export type LanguageToggleMode = 'segmented' | 'modal-popover'
 
@@ -29,7 +29,19 @@ export const ULTRA_PREMIUM_LOCALES: AncloraLocale[] = [
   'pt',
 ]
 
-export const ACTIVE_LOCALES: ActiveAncloraLocale[] = ['es', 'en', 'de']
+export const ACTIVE_LOCALES: ActiveAncloraLocale[] = [
+  'es',
+  'ca',
+  'de',
+  'en',
+  'sv',
+  'fr',
+  'it',
+  'da',
+  'nl',
+  'no',
+  'pt',
+]
 
 export const ANCLORA_LOCALE_LABELS: Record<
   AncloraLocale,
