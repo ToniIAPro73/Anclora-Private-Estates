@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Check, ChevronDown, Globe, X } from 'lucide-react';
+import { ChevronDown, Globe, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
   ACTIVE_LOCALES,
@@ -89,33 +89,29 @@ export function LanguageToggle({ currentLanguage, onLanguageChange, compact = fa
             </button>
           </div>
 
-          <div className="language-toggle-list" role="listbox" aria-label="Idiomas disponibles">
+          <label className="mt-4 block text-xs font-semibold uppercase tracking-[0.18em] text-anclora-gold">
+            Language
+            <select
+              className="mt-2 w-full rounded-xl border border-white/10 bg-anclora-teal-bg px-3 py-2 text-sm normal-case tracking-normal text-white"
+              value={currentCode}
+              onChange={(event) => handleLanguageChange(event.target.value as ActiveAncloraLocale)}
+            >
             {ULTRA_PREMIUM_LOCALES.map((code) => {
               const lang = ANCLORA_LOCALE_LABELS[code];
-              const isActive = currentCode === code;
               const isEnabled = ACTIVE_LOCALES.includes(code as ActiveAncloraLocale);
 
               return (
-            <button
+            <option
               key={code}
-              type="button"
-              onClick={() => isEnabled && handleLanguageChange(code as ActiveAncloraLocale)}
-              className={`language-toggle-option ${isActive ? 'is-active' : ''}`}
               disabled={!isEnabled}
-              role="option"
-              aria-selected={isActive}
+              value={code}
             >
-              <span className="language-toggle-option__short">{lang.short}</span>
-              <span className="language-toggle-option__label">
-                <strong>{lang.nativeName}</strong>
-                <small>{lang.englishName}</small>
-              </span>
-              {!isEnabled && <span className="language-toggle-option__pending">{t('languageToggle.pendingLabel')}</span>}
-              {isActive && <Check className="language-toggle-option__check" aria-hidden />}
-            </button>
+              {lang.nativeName} - {lang.englishName}{isEnabled ? '' : ` - ${t('languageToggle.pendingLabel')}`}
+            </option>
               );
             })}
-          </div>
+            </select>
+          </label>
 
           <label className="mt-4 block text-xs font-semibold uppercase tracking-[0.18em] text-anclora-gold">
             Currency
