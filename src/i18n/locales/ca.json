@@ -1,0 +1,278 @@
+{
+  "nav": {
+    "home": "Inici",
+    "properties": "Propietats",
+    "invest": "Invertir",
+    "valuation": "Valora la teva propietat",
+    "insights": "Insights",
+    "contact": "Contacte",
+    "bookCall": "Reservar trucada",
+    "about": "Nosaltres"
+  },
+  "hero": {
+    "tagline": "ANCLORA PRIVATE ESTATES",
+    "title": "Exclusivitat elevada a obra d'art",
+    "discover": "Descobrir"
+  },
+  "search": {
+    "propertyType": "Tipus de propietat",
+    "location": "Localització",
+    "priceRange": "Rang de preu",
+    "anyType": "Qualsevol tipus",
+    "allMallorca": "Tota Mallorca",
+    "button": "Cercar"
+  },
+  "philosophy": {
+    "sectionTitle": "Filosofia d'inversió",
+    "trophy": {
+      "title": "Selecció Trofeu",
+      "description": "Accés exclusiu a actius immobiliaris seleccionats sota criteris rigorosos d'escassetat i potencial de revalorització."
+    },
+    "dataLab": {
+      "title": "Anclora Data Lab",
+      "description": "Intel·ligència institucional aplicada al sector immobiliari. Models predictius per a decisions d'inversió precises."
+    },
+    "legal": {
+      "title": "Legal & Wealth",
+      "description": "Estructuració fiscal i legal optimitzada per a la preservació i el creixement del patrimoni familiar i institucional."
+    }
+  },
+  "properties": {
+    "eyebrow": "Col·lecció curada",
+    "title": "Tres habitatges. Tres històries.",
+    "description": "Propietats seleccionades amb trajectòria sòlida de lloguer, baixa desocupació i clar potencial de revalorització.",
+    "cta": "Explorar el portfolio complet",
+    "villa1": "Cala Fornells · Vila",
+    "villa2": "Santa Ponsa · Moderna",
+    "villa3": "Palma Casc Antic · Àtic"
+  },
+  "investment": {
+    "eyebrow": "Tesi d'Inversió",
+    "title": "Per què les Balears superen el mercat.",
+    "description": "Oferta limitada, demanda global i un mercat de lloguer turístic regulat generen ingressos resilients i apreciació a llarg termini.",
+    "metric1": "Creixement anual de preus (5A)",
+    "metric2": "Ocupació (temporada)",
+    "metric3": "Volum de transaccions (2024)",
+    "cta": "Descarregar informe de mercat"
+  },
+  "neighborhood": {
+    "eyebrow": "Zona Destacada",
+    "title": "Palma Casc Antic",
+    "description": "Carrers empedrats, boutiques de disseny i apartaments històrics amb acabats moderns. Una de les zones amb major demanda de lloguer estable.",
+    "caption": "FOTO: PLAÇA DE SANTA EULÀLIA",
+    "cta": "Veure propietats al Casc Antic"
+  },
+  "valuation": {
+    "title": "Conegui el valor real.",
+    "description": "Combinem comparables locals, coneixement del terreny i senyals de mercat perquè mai pagui de més.",
+    "service1": {
+      "title": "Valoració Instantània",
+      "description": "Una estimació basada en dades en 24 hores."
+    },
+    "service2": {
+      "title": "Previsió de Lloguer",
+      "description": "Ingressos projectats + ocupació per temporada."
+    },
+    "service3": {
+      "title": "Impostos i Costos",
+      "description": "Escenaris de compra, manteniment i venda."
+    },
+    "form": {
+      "title": "Sol·licitar valoració",
+      "name": "Nom",
+      "email": "Correu electrònic",
+      "address": "Adreça de la propietat",
+      "message": "Missatge (opcional)",
+      "placeholderName": "El seu nom",
+      "placeholderEmail": "el-seu@email.com",
+      "placeholderAddress": "Ubicació de la propietat",
+      "placeholderMessage": "Expliqui'ns més sobre la seva propietat...",
+      "submit": "Enviar sol·licitud",
+      "success": "Sol·licitud enviada!",
+      "successMessage": "Ens posarem en contacte en 24 hores."
+    }
+  },
+  "insights": {
+    "title": "Insights de mercat.",
+    "description": "Lectures breus sobre regulació, finançament i tendències de barris.",
+    "article1": {
+      "title": "Normativa de Lloguer 2026",
+      "subtitle": "Què han de saber els propietaris"
+    },
+    "article2": {
+      "title": "Finançament per a No Residents",
+      "subtitle": "Bancs, tipus i documentació"
+    },
+    "article3": {
+      "title": "Tendències de Barris",
+      "subtitle": "On creix la demanda"
+    },
+    "newsletter": {
+      "title": "El Briefing",
+      "description": "Un correu al mes. Sense soroll. Només insights que importen.",
+      "cta": "Subscriure's",
+      "success": "Subscrit!"
+    }
+  },
+  "contact": {
+    "title": "Trobem la seva propera llar.",
+    "description": "Expliqui'ns què cerca. Preseleccionarem propietats, organitzarem visites i calcularem els números.",
+    "cta": "Reservar trucada",
+    "email": "Correu electrònic",
+    "whatsapp": "WhatsApp",
+    "office": "Oficina",
+    "hours": "Horari d'oficina",
+    "weekdays": "Dilluns – Divendres: 9:00 – 18:00",
+    "saturday": "Dissabte: 10:00 – 14:00",
+    "form": {
+      "eyebrow": "Formulari de contacte",
+      "title": "Parlem de la seva recerca",
+      "description": "Comparteixi la seva preferència i li contactarem amb una proposta inicial personalitzada.",
+      "firstName": "Nom",
+      "lastName": "Cognoms",
+      "phone": "Telèfon de contacte",
+      "email": "Correu electrònic",
+      "interest": "M'interessa",
+      "message": "Missatge",
+      "placeholderFirstName": "Escrigui el seu nom",
+      "placeholderLastName": "Escrigui els seus cognoms",
+      "placeholderPhone": "Exemple: +34 600 000 000",
+      "placeholderEmail": "Exemple: vosté@email.com",
+      "placeholderInterest": "Tipus de propietat, zona o inversió",
+      "placeholderMessage": "Descrigui breument el que cerca",
+      "newsletter": "Desitjo rebre el briefing mensual d'Anclora.",
+      "privacy": "He llegit i accepto la Política de Privacitat.",
+      "privacyRequired": "Ha d'acceptar la Política de Privacitat per enviar el formulari.",
+      "captchaLabel": "Verificació anti-spam",
+      "captchaRequired": "Ha de completar la verificació CAPTCHA per enviar el formulari.",
+      "captchaLoading": "Carregant CAPTCHA...",
+      "captchaVerifyPrompt": "Completi la verificació abans d'enviar.",
+      "captchaNotConfigured": "CAPTCHA no configurat. Reviseu les variables d'entorn.",
+      "submit": "Enviar",
+      "sending": "Enviant...",
+      "success": "Gràcies. Hem rebut la seva sol·licitud i un assessor d'Anclora Nexus el contactarà en breu.",
+      "error": "No s'ha pogut enviar el formulari. Torneu-ho a intentar en uns minuts."
+    }
+  },
+  "aboutSection": {
+    "eyebrow": "Nosaltres",
+    "title": "Una immobiliària dissenyada per al nou cicle del mercat.",
+    "description": "Anclora Private Estates integra assessoria premium, automatització operativa i analítica predictiva en una mateixa experiència.",
+    "description2": "No treballem amb eines aïllades: connectem captació, valoració, seguiment i tancament sota una lògica de dades unificada i escalable.",
+    "pillar1Title": "Operació intel·ligent",
+    "pillar1Text": "Automatitzem tasques d'alt volum perquè l'equip es centri en negociació, estratègia i servei d'alt valor.",
+    "pillar2Title": "Decisió basada en dades",
+    "pillar2Text": "Apliquem comparables locals, senyals de demanda i models predictius per valorar millor i reduir la incertesa.",
+    "pillar3Title": "Ecosistema connectat",
+    "pillar3Text": "Unim experiència immobiliària, CRM i capa d'IA per oferir una execució més ràpida, coherent i professional."
+  },
+  "menuOverlay": {
+    "close": "TANCAR",
+    "menuWord": "MENÚ",
+    "back": "Tornar",
+    "brand": "ANCLORA PRIVATE ESTATES",
+    "groups": {
+      "invest": "Inversió",
+      "privateArea": "Àrea privada"
+    },
+    "links": {
+      "valuation": "Valorar Propietat",
+      "contact": "Contactes"
+    },
+    "privateArea": "Àrea Privada",
+    "privateAreaDescription": "Accés centralitzat als portals professionals d'Anclora segons perfil i permisos.",
+    "agentPortalTitle": "Portal d'Agent",
+    "agentPortalDescription": "Accedir al login d'Anclora Nexus CRM.",
+    "partnerPortalTitle": "Portal de Partner",
+    "partnerPortalDescription": "Accés per a partners estratègics i col·laboradors.",
+    "dataLabPortalTitle": "Anclora Data Lab",
+    "dataLabPortalDescription": "Packs d'intel·ligència, senyals territorials i actius analítics amb accés selectiu per a partners, clients i inversors autoritzats.",
+    "partnerModalTitle": "Portal en preparació",
+    "partnerModalText": "Estem treballant per habilitar aquest accés el més aviat possible. Per ara, l'accés operatiu és el Portal d'Agent (Anclora Nexus).",
+    "partnerModalCta": "Entès"
+  },
+  "footer": {
+    "description": "Béns arrels de luxe i assessoria d'inversió a les Illes Balears. Connectem inversors exigents amb propietats excepcionals.",
+    "quickLinks": "Enllaços ràpids",
+    "legal": "Legal",
+    "contact": "Contacte",
+    "privacy": "Privacitat",
+    "cookies": "Cookies",
+    "terms": "Condicions d'ús",
+    "legalNotice": "Avís Legal",
+    "ethics": "Codi Ètic",
+    "rights": "© 2026 Anclora Group - Tots els drets reservats.",
+    "slogan": "On la intel·ligència i el patrimoni convergeixen. Estructura, visió i control a llarg termini.",
+    "disclaimer": "Avís Institucional: La informació continguda en aquesta plataforma és estrictament confidencial i està adreçada únicament a perfils d'inversió qualificats. Anclora Group opera sota les normatives més estrictes de la UE, aplicant arquitectura analítica en cada selecció d'actius."
+  },
+  "language": {
+    "es": "Español",
+    "en": "English",
+    "fr": "Français",
+    "de": "Deutsch"
+  },
+  "languageToggle": {
+    "groupLabel": "Selector d'idioma",
+    "preferencesLabel": "Preferències globals",
+    "preferencesDialogLabel": "Ajustos de preferències globals",
+    "eyebrow": "Preferències",
+    "settingsTitle": "Ajustos",
+    "title": "Idioma",
+    "languageLabel": "Idioma",
+    "currencyLabel": "Moneda",
+    "unitsLabel": "Unitats de mesura",
+    "pendingLabel": "Pendent",
+    "closeLabel": "Tancar selector d'idioma",
+    "saveLabel": "Desar i tancar",
+    "currency": {
+      "eur": "Euro - EUR €",
+      "usd": "Dòlar estatunidenc - USD $",
+      "gbp": "Lliura esterlina - GBP £",
+      "chf": "Franc suís - CHF",
+      "sek": "Corona sueca - SEK kr",
+      "dkk": "Corona danesa - DKK kr",
+      "nok": "Corona noruega - NOK kr"
+    },
+    "units": {
+      "metric": "Metre quadrat - m² / Hectàrea - ha",
+      "imperial": "Peu quadrat - ft² / Acre - ac"
+    }
+  },
+  "social": {
+    "followUs": "Seguiu-nos"
+  },
+  "scroll": {
+    "up": "Pujar",
+    "down": "Baixar"
+  },
+  "newsletter": {
+    "title": "Subscriviu-vos al nostre newsletter",
+    "description": "Rebeu accés anticipat a propietats exclusives i oportunitats d'inversió premium.",
+    "namePlaceholder": "Nom / Name",
+    "emailPlaceholder": "Email",
+    "submit": "Subscriure's",
+    "success": "Gràcies per subscriure's!"
+  },
+  "cookie": {
+    "title": "Privacitat & Cookies",
+    "description": "A Anclora Private Estates apliquem arquitectura analítica per garantir que la seva experiència d'inversió sigui tan impecable com els nostres actius de luxe més apreciats. Fem servir tecnologies essencials per a la gestió del seu perfil institucional.",
+    "acceptAll": "Acceptar Totes",
+    "settings": "Configurar",
+    "settingsTitle": "Configuració de Cookies",
+    "savePreferences": "Desar Preferències",
+    "back": "Tornar",
+    "rejectAll": "Rebutjar les no essencials",
+    "necessary": {
+      "title": "Cookies Necessàries",
+      "description": "Essencials per al funcionament del lloc web. No es poden desactivar."
+    },
+    "analytics": {
+      "title": "Cookies d'Analítica",
+      "description": "Google Analytics - Ens ajuda a entendre com interactua amb el lloc."
+    },
+    "marketing": {
+      "title": "Cookies de Màrqueting",
+      "description": "Meta Pixel - Per mostrar-li anuncis rellevants a les xarxes socials."
+    }
+  }
+}

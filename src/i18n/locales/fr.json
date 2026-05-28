@@ -1,0 +1,278 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "properties": "Propriétés",
+    "invest": "Investir",
+    "valuation": "Estimer votre bien",
+    "insights": "Insights",
+    "contact": "Contact",
+    "bookCall": "Prendre rendez-vous",
+    "about": "À propos"
+  },
+  "hero": {
+    "tagline": "ANCLORA PRIVATE ESTATES",
+    "title": "L'exclusivité portée au rang d'art",
+    "discover": "Découvrir"
+  },
+  "search": {
+    "propertyType": "Type de bien",
+    "location": "Localisation",
+    "priceRange": "Fourchette de prix",
+    "anyType": "Tous types",
+    "allMallorca": "Tout Mallorca",
+    "button": "Rechercher"
+  },
+  "philosophy": {
+    "sectionTitle": "Philosophie d'investissement",
+    "trophy": {
+      "title": "Sélection Trophy",
+      "description": "Accès exclusif à des actifs immobiliers rares, sélectionnés selon des critères stricts de rareté et de potentiel de valorisation."
+    },
+    "dataLab": {
+      "title": "Anclora Data Lab",
+      "description": "Intelligence institutionnelle appliquée à l'immobilier. Des modèles prédictifs au service de décisions d'investissement précises."
+    },
+    "legal": {
+      "title": "Legal & Wealth",
+      "description": "Structuration fiscale et juridique optimisée pour la préservation et la croissance du patrimoine familial et institutionnel."
+    }
+  },
+  "properties": {
+    "eyebrow": "Sélection curatée",
+    "title": "Trois biens. Trois histoires.",
+    "description": "Des propriétés sélectionnées pour leur solide historique locatif, leur faible taux de vacance et leur potentiel de valorisation.",
+    "cta": "Explorer le portfolio complet",
+    "villa1": "Cala Fornells · Villa",
+    "villa2": "Santa Ponsa · Moderne",
+    "villa3": "Palma Centre Historique · Penthouse"
+  },
+  "investment": {
+    "eyebrow": "Thèse d'investissement",
+    "title": "Pourquoi les Baléares surperforment le marché.",
+    "description": "Offre limitée, demande mondiale et marché locatif encadré créent des revenus résilients et une appréciation à long terme.",
+    "metric1": "Hausse annuelle des prix (5 ans)",
+    "metric2": "Taux d'occupation (saisonnier)",
+    "metric3": "Volume de transactions (2024)",
+    "cta": "Télécharger le rapport de marché"
+  },
+  "neighborhood": {
+    "eyebrow": "Quartier à la une",
+    "title": "Palma Centre Historique",
+    "description": "Ruelles pavées, boutiques de créateurs et appartements historiques aux finitions contemporaines. L'un des secteurs les plus prisés pour la location stable.",
+    "caption": "PHOTO : PLAÇA DE SANTA EULÀLIA",
+    "cta": "Voir les biens du Centre Historique"
+  },
+  "valuation": {
+    "title": "Connaître la valeur réelle.",
+    "description": "Nous croisons les comparables locaux, notre connaissance du terrain et les signaux de marché pour que vous ne surpayez jamais.",
+    "service1": {
+      "title": "Estimation instantanée",
+      "description": "Une évaluation basée sur les données en 24 heures."
+    },
+    "service2": {
+      "title": "Projection locative",
+      "description": "Revenus estimés + taux d'occupation par saison."
+    },
+    "service3": {
+      "title": "Fiscalité & Coûts",
+      "description": "Scénarios d'acquisition, de gestion et de cession."
+    },
+    "form": {
+      "title": "Demander une estimation",
+      "name": "Nom",
+      "email": "Adresse e-mail",
+      "address": "Adresse du bien",
+      "message": "Message (facultatif)",
+      "placeholderName": "Votre nom",
+      "placeholderEmail": "votre@email.fr",
+      "placeholderAddress": "Localisation du bien",
+      "placeholderMessage": "Décrivez votre bien en quelques mots...",
+      "submit": "Envoyer la demande",
+      "success": "Demande envoyée !",
+      "successMessage": "Nous reviendrons vers vous dans les 24 heures."
+    }
+  },
+  "insights": {
+    "title": "Insights de marché.",
+    "description": "Lectures courtes sur la réglementation, le financement et les dynamiques de quartier.",
+    "article1": {
+      "title": "Réglementation locative 2026",
+      "subtitle": "Ce que les propriétaires doivent savoir"
+    },
+    "article2": {
+      "title": "Financement pour non-résidents",
+      "subtitle": "Banques, taux et documents"
+    },
+    "article3": {
+      "title": "Dynamiques de quartier",
+      "subtitle": "Là où la demande progresse"
+    },
+    "newsletter": {
+      "title": "Le Briefing",
+      "description": "Un e-mail par mois. Sans bruit. Uniquement les insights qui comptent.",
+      "cta": "S'abonner",
+      "success": "Abonné !"
+    }
+  },
+  "contact": {
+    "title": "Trouvons votre prochain bien.",
+    "description": "Dites-nous ce que vous recherchez. Nous présélectionnerons des biens, organiserons des visites et établirons les projections financières.",
+    "cta": "Prendre rendez-vous",
+    "email": "E-mail",
+    "whatsapp": "WhatsApp",
+    "office": "Bureau",
+    "hours": "Horaires d'ouverture",
+    "weekdays": "Lundi – Vendredi : 9h00 – 18h00",
+    "saturday": "Samedi : 10h00 – 14h00",
+    "form": {
+      "eyebrow": "Formulaire de contact",
+      "title": "Parlons de votre recherche",
+      "description": "Partagez vos critères et nous vous adresserons une première proposition personnalisée.",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "interest": "Je suis intéressé(e) par",
+      "message": "Message",
+      "placeholderFirstName": "Votre prénom",
+      "placeholderLastName": "Votre nom",
+      "placeholderPhone": "Exemple : +34 600 000 000",
+      "placeholderEmail": "Exemple : vous@email.fr",
+      "placeholderInterest": "Type de bien, secteur ou profil d'investissement",
+      "placeholderMessage": "Décrivez brièvement ce que vous recherchez",
+      "newsletter": "Je souhaite recevoir le briefing mensuel d'Anclora.",
+      "privacy": "J'ai lu et j'accepte la Politique de confidentialité.",
+      "privacyRequired": "Vous devez accepter la Politique de confidentialité pour soumettre le formulaire.",
+      "captchaLabel": "Vérification anti-spam",
+      "captchaRequired": "Vous devez compléter la vérification CAPTCHA avant de soumettre.",
+      "captchaLoading": "Chargement du CAPTCHA...",
+      "captchaVerifyPrompt": "Complétez la vérification avant d'envoyer.",
+      "captchaNotConfigured": "CAPTCHA non configuré. Vérifiez les variables d'environnement.",
+      "submit": "Envoyer",
+      "sending": "Envoi en cours...",
+      "success": "Merci. Nous avons bien reçu votre demande et un conseiller Anclora Nexus vous contactera prochainement.",
+      "error": "Le formulaire n'a pas pu être envoyé. Réessayez dans quelques instants."
+    }
+  },
+  "aboutSection": {
+    "eyebrow": "À propos",
+    "title": "Une agence immobilière conçue pour le nouveau cycle de marché.",
+    "description": "Anclora Private Estates réunit conseil premium, automatisation opérationnelle et analytique prédictive au sein d'une expérience cohérente.",
+    "description2": "Nous ne travaillons pas avec des outils isolés : nous connectons prospection, évaluation, suivi et closing sous une logique de données unifiée et évolutive.",
+    "pillar1Title": "Opération intelligente",
+    "pillar1Text": "Nous automatisons les tâches à fort volume pour que l'équipe se concentre sur la négociation, la stratégie et le service à haute valeur ajoutée.",
+    "pillar2Title": "Décision guidée par la donnée",
+    "pillar2Text": "Nous appliquons comparables locaux, signaux de demande et modèles prédictifs pour mieux valoriser et réduire l'incertitude.",
+    "pillar3Title": "Écosystème connecté",
+    "pillar3Text": "Nous combinons expertise immobilière, CRM et couche IA pour une exécution plus rapide, cohérente et professionnelle."
+  },
+  "menuOverlay": {
+    "close": "FERMER",
+    "menuWord": "MENU",
+    "back": "Retour",
+    "brand": "ANCLORA PRIVATE ESTATES",
+    "groups": {
+      "invest": "Investissement",
+      "privateArea": "Espace privé"
+    },
+    "links": {
+      "valuation": "Estimer un bien",
+      "contact": "Contacts"
+    },
+    "privateArea": "Espace Privé",
+    "privateAreaDescription": "Accès centralisé aux portails professionnels d'Anclora selon profil et autorisations.",
+    "agentPortalTitle": "Portail Agent",
+    "agentPortalDescription": "Accéder à la connexion Anclora Nexus CRM.",
+    "partnerPortalTitle": "Portail Partenaire",
+    "partnerPortalDescription": "Accès pour les partenaires stratégiques et collaborateurs.",
+    "dataLabPortalTitle": "Anclora Data Lab",
+    "dataLabPortalDescription": "Packs d'intelligence, signaux territoriaux et actifs analytiques avec accès sélectif pour les partenaires, clients et investisseurs autorisés.",
+    "partnerModalTitle": "Portail en cours de préparation",
+    "partnerModalText": "Nous travaillons à l'activation de cet accès dans les meilleurs délais. Pour l'instant, l'accès opérationnel est le Portail Agent (Anclora Nexus).",
+    "partnerModalCta": "Compris"
+  },
+  "footer": {
+    "description": "Immobilier de prestige et conseil en investissement aux Îles Baléares. Nous mettons en relation des investisseurs exigeants avec des biens d'exception.",
+    "quickLinks": "Liens rapides",
+    "legal": "Mentions légales",
+    "contact": "Contact",
+    "privacy": "Confidentialité",
+    "cookies": "Cookies",
+    "terms": "Conditions d'utilisation",
+    "legalNotice": "Mentions légales",
+    "ethics": "Code éthique",
+    "rights": "© 2026 Anclora Group - Tous droits réservés.",
+    "slogan": "Là où l'intelligence et le patrimoine convergent. Structure, vision et maîtrise à long terme.",
+    "disclaimer": "Avertissement institutionnel : Les informations contenues sur cette plateforme sont strictement confidentielles et s'adressent exclusivement à des profils d'investissement qualifiés. Anclora Group opère selon les réglementations les plus strictes de l'UE, en appliquant une architecture analytique à chaque sélection d'actifs."
+  },
+  "language": {
+    "es": "Español",
+    "en": "English",
+    "fr": "Français",
+    "de": "Deutsch"
+  },
+  "languageToggle": {
+    "groupLabel": "Sélecteur de langue",
+    "preferencesLabel": "Préférences globales",
+    "preferencesDialogLabel": "Paramètres des préférences globales",
+    "eyebrow": "Préférences",
+    "settingsTitle": "Paramètres",
+    "title": "Langue",
+    "languageLabel": "Langue",
+    "currencyLabel": "Devise",
+    "unitsLabel": "Unités de mesure",
+    "pendingLabel": "En attente",
+    "closeLabel": "Fermer le sélecteur de langue",
+    "saveLabel": "Enregistrer et fermer",
+    "currency": {
+      "eur": "Euro - EUR €",
+      "usd": "Dollar américain - USD $",
+      "gbp": "Livre sterling - GBP £",
+      "chf": "Franc suisse - CHF",
+      "sek": "Couronne suédoise - SEK kr",
+      "dkk": "Couronne danoise - DKK kr",
+      "nok": "Couronne norvégienne - NOK kr"
+    },
+    "units": {
+      "metric": "Mètre carré - m² / Hectare - ha",
+      "imperial": "Pied carré - ft² / Acre - ac"
+    }
+  },
+  "social": {
+    "followUs": "Suivez-nous"
+  },
+  "scroll": {
+    "up": "Haut",
+    "down": "Bas"
+  },
+  "newsletter": {
+    "title": "Abonnez-vous à notre newsletter",
+    "description": "Accédez en avant-première aux propriétés exclusives et aux opportunités d'investissement premium.",
+    "namePlaceholder": "Nom / Name",
+    "emailPlaceholder": "E-mail",
+    "submit": "S'abonner",
+    "success": "Merci pour votre inscription !"
+  },
+  "cookie": {
+    "title": "Confidentialité & Cookies",
+    "description": "Chez Anclora Private Estates, nous appliquons une architecture analytique pour garantir que votre expérience d'investissement soit aussi irréprochable que nos actifs de luxe les plus précieux. Nous utilisons des technologies essentielles à la gestion de votre profil institutionnel.",
+    "acceptAll": "Tout accepter",
+    "settings": "Configurer",
+    "settingsTitle": "Paramètres des cookies",
+    "savePreferences": "Enregistrer les préférences",
+    "back": "Retour",
+    "rejectAll": "Refuser les non essentiels",
+    "necessary": {
+      "title": "Cookies nécessaires",
+      "description": "Indispensables au fonctionnement du site. Ils ne peuvent pas être désactivés."
+    },
+    "analytics": {
+      "title": "Cookies analytiques",
+      "description": "Google Analytics - Nous aide à comprendre comment vous interagissez avec le site."
+    },
+    "marketing": {
+      "title": "Cookies marketing",
+      "description": "Meta Pixel - Pour vous proposer des annonces pertinentes sur les réseaux sociaux."
+    }
+  }
+}

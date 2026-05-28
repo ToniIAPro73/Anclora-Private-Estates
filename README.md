@@ -78,3 +78,13 @@ Incluye:
 - unidades, porque muestra superficies
 
 El Theme Toggle se gestiona por separado y no aparece en apps Ultra Premium.
+
+## Ultra Premium locales
+
+This app follows Anclora Group Ultra Premium locale governance.
+
+Supported locales: ES, CA, DE, EN, SV, FR, IT, DA, NL, NO, PT.
+
+Copy localization follows Anclora Locale Copy Guardian: intent over literal translation, premium tone, no added claims and no artificial machine-translated phrasing.
+
+Legal, privacy, cookie, consent and terms copy must preserve legal meaning and remain marked for legal review when translated or substantially changed.

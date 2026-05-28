@@ -1,0 +1,278 @@
+{
+  "nav": {
+    "home": "Forside",
+    "properties": "Ejendomme",
+    "invest": "Investér",
+    "valuation": "Vurder din ejendom",
+    "insights": "Insights",
+    "contact": "Kontakt",
+    "bookCall": "Book et opkald",
+    "about": "Om os"
+  },
+  "hero": {
+    "tagline": "ANCLORA PRIVATE ESTATES",
+    "title": "Eksklusivitet hævet til kunstform",
+    "discover": "Opdag"
+  },
+  "search": {
+    "propertyType": "Ejendomstype",
+    "location": "Beliggenhed",
+    "priceRange": "Prisinterval",
+    "anyType": "Alle typer",
+    "allMallorca": "Hele Mallorca",
+    "button": "Søg"
+  },
+  "philosophy": {
+    "sectionTitle": "Investeringsfilosofi",
+    "trophy": {
+      "title": "Trophy-udvælgelse",
+      "description": "Eksklusiv adgang til nøje udvalgte ejendomsaktiver, selekteret efter strenge kriterier for knaphed og opskrivningspotentiale."
+    },
+    "dataLab": {
+      "title": "Anclora Data Lab",
+      "description": "Institutionel intelligens anvendt på ejendomssektoren. Prædiktive modeller for præcise investeringsbeslutninger."
+    },
+    "legal": {
+      "title": "Legal & Wealth",
+      "description": "Optimeret skatte- og juridisk strukturering for bevaring og vækst af familie- og institutionel formue."
+    }
+  },
+  "properties": {
+    "eyebrow": "Kureret udvalg",
+    "title": "Tre boliger. Tre historier.",
+    "description": "Håndplukkede ejendomme med solid udlejningshistorik, lav tomgang og klart opskrivningspotentiale.",
+    "cta": "Udforsk den fulde portefølje",
+    "villa1": "Cala Fornells · Villa",
+    "villa2": "Santa Ponsa · Moderne",
+    "villa3": "Palma Gamlebyen · Penthouse"
+  },
+  "investment": {
+    "eyebrow": "Investeringstese",
+    "title": "Hvorfor Balearerne overgår markedet.",
+    "description": "Begrænset udbud, global efterspørgsel og et reguleret korttidslejemarked skaber stabile afkast og langsigtet værdistigning.",
+    "metric1": "Årlig prisvækst (5 år)",
+    "metric2": "Belægning (sæson)",
+    "metric3": "Transaktionsvolumen (2024)",
+    "cta": "Hent markedsrapport"
+  },
+  "neighborhood": {
+    "eyebrow": "Fremhævet område",
+    "title": "Palma Gamlebyen",
+    "description": "Brolagte gader, designboutikker og historiske lejligheder med moderne finish. Et topvalg for stabil lejeefterspørgsel.",
+    "caption": "FOTO: PLAÇA DE SANTA EULÀLIA",
+    "cta": "Se ejendomme i Gamlebyen"
+  },
+  "valuation": {
+    "title": "Kend den reelle værdi.",
+    "description": "Vi kombinerer lokale sammenligningsdata, kendskab til markedet og markeds­signaler — så du aldrig betaler for meget.",
+    "service1": {
+      "title": "Øjeblikkelig vurdering",
+      "description": "Et datadrevet estimat inden for 24 timer."
+    },
+    "service2": {
+      "title": "Lejeprognose",
+      "description": "Projicerede indtægter + belægning pr. sæson."
+    },
+    "service3": {
+      "title": "Skat & Omkostninger",
+      "description": "Scenarier for køb, drift og salg."
+    },
+    "form": {
+      "title": "Anmod om en vurdering",
+      "name": "Navn",
+      "email": "E-mail",
+      "address": "Ejendommens adresse",
+      "message": "Besked (valgfrit)",
+      "placeholderName": "Dit navn",
+      "placeholderEmail": "din@email.dk",
+      "placeholderAddress": "Ejendommens beliggenhed",
+      "placeholderMessage": "Fortæl os mere om din ejendom...",
+      "submit": "Send forespørgsel",
+      "success": "Forespørgsel sendt!",
+      "successMessage": "Vi vender tilbage inden for 24 timer."
+    }
+  },
+  "insights": {
+    "title": "Markedsinsights.",
+    "description": "Korte artikler om regulering, finansiering og bydelsudvikling.",
+    "article1": {
+      "title": "Lejeregler 2026",
+      "subtitle": "Hvad ejendomsejere bør vide"
+    },
+    "article2": {
+      "title": "Finansiering for ikke-residenter",
+      "subtitle": "Banker, renter og dokumentation"
+    },
+    "article3": {
+      "title": "Bydelsudvikling",
+      "subtitle": "Hvor efterspørgslen vokser"
+    },
+    "newsletter": {
+      "title": "The Briefing",
+      "description": "Én e-mail om måneden. Ingen støj. Kun de insights, der tæller.",
+      "cta": "Tilmeld",
+      "success": "Tilmeldt!"
+    }
+  },
+  "contact": {
+    "title": "Lad os finde dit næste hjem.",
+    "description": "Fortæl os hvad du søger. Vi foreslår ejendomme, planlægger fremvisninger og gennemgår tallene.",
+    "cta": "Book et opkald",
+    "email": "E-mail",
+    "whatsapp": "WhatsApp",
+    "office": "Kontor",
+    "hours": "Kontortider",
+    "weekdays": "Mandag – Fredag: 9:00 – 18:00",
+    "saturday": "Lørdag: 10:00 – 14:00",
+    "form": {
+      "eyebrow": "Kontaktformular",
+      "title": "Fortæl os om din søgning",
+      "description": "Del dine kriterier, så vender vi tilbage med et skræddersyet første oplæg.",
+      "firstName": "Fornavn",
+      "lastName": "Efternavn",
+      "phone": "Telefonnummer",
+      "email": "E-mail",
+      "interest": "Jeg er interesseret i",
+      "message": "Besked",
+      "placeholderFirstName": "Angiv dit fornavn",
+      "placeholderLastName": "Angiv dit efternavn",
+      "placeholderPhone": "Eksempel: +34 600 000 000",
+      "placeholderEmail": "Eksempel: dig@email.dk",
+      "placeholderInterest": "Ejendomstype, område eller investeringsprofil",
+      "placeholderMessage": "Beskriv kort hvad du søger",
+      "newsletter": "Jeg ønsker at modtage Ancloras månedlige briefing.",
+      "privacy": "Jeg har læst og accepteret privatlivspolitikken.",
+      "privacyRequired": "Du skal acceptere privatlivspolitikken, inden du indsender formularen.",
+      "captchaLabel": "Anti-spam-verifikation",
+      "captchaRequired": "Du skal fuldføre CAPTCHA-verifikationen, inden du indsender.",
+      "captchaLoading": "Indlæser CAPTCHA...",
+      "captchaVerifyPrompt": "Gennemfør verifikationen, inden du sender.",
+      "captchaNotConfigured": "CAPTCHA er ikke konfigureret. Kontroller miljøvariablerne.",
+      "submit": "Send",
+      "sending": "Sender...",
+      "success": "Tak. Vi har modtaget din forespørgsel, og en rådgiver fra Anclora Nexus kontakter dig snarest.",
+      "error": "Formularen kunne ikke sendes. Prøv venligst igen om et øjeblik."
+    }
+  },
+  "aboutSection": {
+    "eyebrow": "Om os",
+    "title": "Et ejendomsbureau bygget til det nye markedsparadigme.",
+    "description": "Anclora Private Estates forener premium-rådgivning, operationel automatisering og prædiktiv analyse i én sammenhængende oplevelse.",
+    "description2": "Vi arbejder ikke med isolerede værktøjer: vi forbinder prospektering, vurdering, opfølgning og closing under en samlet og skalerbar datalogik.",
+    "pillar1Title": "Intelligent drift",
+    "pillar1Text": "Vi automatiserer opgaver i stor volumen, så teamet kan fokusere på forhandling, strategi og service med høj værditilvækst.",
+    "pillar2Title": "Datadrevet beslutning",
+    "pillar2Text": "Vi anvender lokale sammenligningsdata, efterspørgselssignaler og prædiktive modeller for bedre vurdering og reduceret usikkerhed.",
+    "pillar3Title": "Sammenkoblet økosystem",
+    "pillar3Text": "Vi forbinder ejendomsekspertise, CRM og AI-lag for en hurtigere, mere sammenhængende og professionel udførelse."
+  },
+  "menuOverlay": {
+    "close": "LUK",
+    "menuWord": "MENU",
+    "back": "Tilbage",
+    "brand": "ANCLORA PRIVATE ESTATES",
+    "groups": {
+      "invest": "Investering",
+      "privateArea": "Privat område"
+    },
+    "links": {
+      "valuation": "Vurder ejendom",
+      "contact": "Kontakter"
+    },
+    "privateArea": "Privat Område",
+    "privateAreaDescription": "Centraliseret adgang til Ancloras professionelle portaler baseret på profil og tilladelser.",
+    "agentPortalTitle": "Agentportal",
+    "agentPortalDescription": "Log ind på Anclora Nexus CRM.",
+    "partnerPortalTitle": "Partnerportal",
+    "partnerPortalDescription": "Adgang for strategiske partnere og samarbejdspartnere.",
+    "dataLabPortalTitle": "Anclora Data Lab",
+    "dataLabPortalDescription": "Analysepakker, territorielle signaler og analytiske aktiver med selektiv adgang for godkendte partnere, klienter og investorer.",
+    "partnerModalTitle": "Portal under forberedelse",
+    "partnerModalText": "Vi arbejder på at aktivere denne adgang snarest muligt. Indtil videre er Agentportalen (Anclora Nexus) det operative adgangspunkt.",
+    "partnerModalCta": "Forstået"
+  },
+  "footer": {
+    "description": "Luksusejendomme og investeringsrådgivning på Balearerne. Vi forbinder krævende investorer med exceptionelle ejendomme.",
+    "quickLinks": "Hurtige links",
+    "legal": "Juridisk information",
+    "contact": "Kontakt",
+    "privacy": "Privatliv",
+    "cookies": "Cookies",
+    "terms": "Brugervilkår",
+    "legalNotice": "Juridisk meddelelse",
+    "ethics": "Etisk kodeks",
+    "rights": "© 2026 Anclora Group - Alle rettigheder forbeholdes.",
+    "slogan": "Hvor intelligens og kapital mødes. Struktur, vision og langsigtet kontrol.",
+    "disclaimer": "Institutionel ansvarsfraskrivelse: Oplysningerne på denne platform er strengt fortrolige og udelukkende rettet mod kvalificerede investeringsprofiler. Anclora Group opererer under EUs strengeste regler og anvender analytisk arkitektur ved hvert aktivvalg."
+  },
+  "language": {
+    "es": "Español",
+    "en": "English",
+    "fr": "Français",
+    "de": "Deutsch"
+  },
+  "languageToggle": {
+    "groupLabel": "Sprogvælger",
+    "preferencesLabel": "Globale præferencer",
+    "preferencesDialogLabel": "Indstillinger for globale præferencer",
+    "eyebrow": "Præferencer",
+    "settingsTitle": "Indstillinger",
+    "title": "Sprog",
+    "languageLabel": "Sprog",
+    "currencyLabel": "Valuta",
+    "unitsLabel": "Måleenheder",
+    "pendingLabel": "Afventer",
+    "closeLabel": "Luk sprogvælger",
+    "saveLabel": "Gem og luk",
+    "currency": {
+      "eur": "Euro - EUR €",
+      "usd": "US-dollar - USD $",
+      "gbp": "Britisk pund - GBP £",
+      "chf": "Schweizerfranc - CHF",
+      "sek": "Svensk krone - SEK kr",
+      "dkk": "Dansk krone - DKK kr",
+      "nok": "Norsk krone - NOK kr"
+    },
+    "units": {
+      "metric": "Kvadratmeter - m² / Hektar - ha",
+      "imperial": "Kvadratfod - ft² / Acre - ac"
+    }
+  },
+  "social": {
+    "followUs": "Følg os"
+  },
+  "scroll": {
+    "up": "Op",
+    "down": "Ned"
+  },
+  "newsletter": {
+    "title": "Tilmeld vores nyhedsbrev",
+    "description": "Få tidlig adgang til eksklusive ejendomme og premium-investeringsmuligheder.",
+    "namePlaceholder": "Navn / Name",
+    "emailPlaceholder": "E-mail",
+    "submit": "Tilmeld",
+    "success": "Tak for din tilmelding!"
+  },
+  "cookie": {
+    "title": "Privatliv & Cookies",
+    "description": "Hos Anclora Private Estates anvender vi analytisk arkitektur for at sikre, at din investeringsoplevelse er lige så fejlfri som vores mest værdifulde luksusaktiver. Vi bruger essentielle teknologier til administration af din institutionelle profil.",
+    "acceptAll": "Acceptér alle",
+    "settings": "Konfigurer",
+    "settingsTitle": "Cookie-indstillinger",
+    "savePreferences": "Gem præferencer",
+    "back": "Tilbage",
+    "rejectAll": "Afvis ikke-nødvendige",
+    "necessary": {
+      "title": "Nødvendige cookies",
+      "description": "Nødvendige for webstedets funktion. Kan ikke deaktiveres."
+    },
+    "analytics": {
+      "title": "Analytiske cookies",
+      "description": "Google Analytics - Hjælper os med at forstå, hvordan du interagerer med webstedet."
+    },
+    "marketing": {
+      "title": "Marketingcookies",
+      "description": "Meta Pixel - For at vise dig relevante annoncer på sociale medier."
+    }
+  }
+}

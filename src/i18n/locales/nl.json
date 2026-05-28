@@ -1,0 +1,278 @@
+{
+  "nav": {
+    "home": "Home",
+    "properties": "Woningen",
+    "invest": "Investeren",
+    "valuation": "Waardeer uw woning",
+    "insights": "Insights",
+    "contact": "Contact",
+    "bookCall": "Afspraak maken",
+    "about": "Over ons"
+  },
+  "hero": {
+    "tagline": "ANCLORA PRIVATE ESTATES",
+    "title": "Exclusiviteit verheven tot kunstvorm",
+    "discover": "Ontdekken"
+  },
+  "search": {
+    "propertyType": "Type woning",
+    "location": "Locatie",
+    "priceRange": "Prijsklasse",
+    "anyType": "Alle types",
+    "allMallorca": "Heel Mallorca",
+    "button": "Zoeken"
+  },
+  "philosophy": {
+    "sectionTitle": "Investeringsfilosofie",
+    "trophy": {
+      "title": "Trophy-selectie",
+      "description": "Exclusieve toegang tot zorgvuldig geselecteerde vastgoedactiva, gekozen op basis van strikte criteria voor schaarste en waarderingspotentieel."
+    },
+    "dataLab": {
+      "title": "Anclora Data Lab",
+      "description": "Institutionele intelligentie toegepast op de vastgoedsector. Predictieve modellen voor nauwkeurige investeringsbeslissingen."
+    },
+    "legal": {
+      "title": "Legal & Wealth",
+      "description": "Geoptimaliseerde fiscale en juridische structurering voor het behoud en de groei van familie- en institutioneel vermogen."
+    }
+  },
+  "properties": {
+    "eyebrow": "Gecureerde selectie",
+    "title": "Drie woningen. Drie verhalen.",
+    "description": "Zorgvuldig geselecteerde panden met solide verhuurhistoriek, lage leegstand en duidelijk waarderingspotentieel.",
+    "cta": "Verken de volledige portefeuille",
+    "villa1": "Cala Fornells · Villa",
+    "villa2": "Santa Ponsa · Modern",
+    "villa3": "Palma Oude Stad · Penthouse"
+  },
+  "investment": {
+    "eyebrow": "Investeringsthese",
+    "title": "Waarom de Balearen de markt overtreffen.",
+    "description": "Beperkt aanbod, mondiale vraag en een gereguleerde kortetermijnverhuurmarkt creëren stabiele inkomsten en waardestijging op lange termijn.",
+    "metric1": "Jaarlijkse prijsstijging (5 jaar)",
+    "metric2": "Bezetting (seizoen)",
+    "metric3": "Transactievolume (2024)",
+    "cta": "Download het marktrapport"
+  },
+  "neighborhood": {
+    "eyebrow": "Uitgelichte locatie",
+    "title": "Palma Oude Stad",
+    "description": "Kasseistenen straten, designboetieks en historische appartementen met moderne afwerking. Een topkeuze voor stabiele huurvraag.",
+    "caption": "FOTO: PLAÇA DE SANTA EULÀLIA",
+    "cta": "Bekijk woningen in de Oude Stad"
+  },
+  "valuation": {
+    "title": "De werkelijke waarde kennen.",
+    "description": "Wij combineren lokale vergelijkingsdata, marktkennis en marktsignalen — zodat u nooit te veel betaalt.",
+    "service1": {
+      "title": "Directe taxatie",
+      "description": "Een datagedreven schatting binnen 24 uur."
+    },
+    "service2": {
+      "title": "Huurprognose",
+      "description": "Geprojecteerde inkomsten + bezetting per seizoen."
+    },
+    "service3": {
+      "title": "Belastingen & Kosten",
+      "description": "Scenario's voor aankoop, beheer en verkoop."
+    },
+    "form": {
+      "title": "Taxatie aanvragen",
+      "name": "Naam",
+      "email": "E-mailadres",
+      "address": "Adres van de woning",
+      "message": "Bericht (optioneel)",
+      "placeholderName": "Uw naam",
+      "placeholderEmail": "uw@email.nl",
+      "placeholderAddress": "Locatie van de woning",
+      "placeholderMessage": "Vertel ons meer over uw woning...",
+      "submit": "Aanvraag versturen",
+      "success": "Aanvraag verzonden!",
+      "successMessage": "We nemen binnen 24 uur contact met u op."
+    }
+  },
+  "insights": {
+    "title": "Marktinzichten.",
+    "description": "Korte artikelen over regelgeving, financiering en buurtontwikkelingen.",
+    "article1": {
+      "title": "Huurregels 2026",
+      "subtitle": "Wat eigenaren moeten weten"
+    },
+    "article2": {
+      "title": "Financiering voor niet-residenten",
+      "subtitle": "Banken, rentes en documentatie"
+    },
+    "article3": {
+      "title": "Buurtontwikkelingen",
+      "subtitle": "Waar de vraag groeit"
+    },
+    "newsletter": {
+      "title": "The Briefing",
+      "description": "Één e-mail per maand. Geen ruis. Alleen inzichten die er toe doen.",
+      "cta": "Inschrijven",
+      "success": "Ingeschreven!"
+    }
+  },
+  "contact": {
+    "title": "Laten we uw volgende woning vinden.",
+    "description": "Vertel ons wat u zoekt. Wij selecteren woningen voor u, plannen bezichtigingen en analyseren de cijfers.",
+    "cta": "Afspraak maken",
+    "email": "E-mail",
+    "whatsapp": "WhatsApp",
+    "office": "Kantoor",
+    "hours": "Kantooruren",
+    "weekdays": "Maandag – Vrijdag: 9:00 – 18:00",
+    "saturday": "Zaterdag: 10:00 – 14:00",
+    "form": {
+      "eyebrow": "Contactformulier",
+      "title": "Vertel ons over uw zoekopdracht",
+      "description": "Deel uw criteria en wij komen terug met een eerste gepersonaliseerd voorstel.",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "phone": "Telefoonnummer",
+      "email": "E-mail",
+      "interest": "Ik ben geïnteresseerd in",
+      "message": "Bericht",
+      "placeholderFirstName": "Voer uw voornaam in",
+      "placeholderLastName": "Voer uw achternaam in",
+      "placeholderPhone": "Voorbeeld: +34 600 000 000",
+      "placeholderEmail": "Voorbeeld: u@email.nl",
+      "placeholderInterest": "Type woning, locatie of investeringsprofiel",
+      "placeholderMessage": "Beschrijf kort wat u zoekt",
+      "newsletter": "Ik wil Anclora's maandelijkse briefing ontvangen.",
+      "privacy": "Ik heb het privacybeleid gelezen en ga ermee akkoord.",
+      "privacyRequired": "U moet het privacybeleid accepteren voordat u het formulier verzendt.",
+      "captchaLabel": "Anti-spamverificatie",
+      "captchaRequired": "U moet de CAPTCHA-verificatie voltooien voordat u verzendt.",
+      "captchaLoading": "CAPTCHA laden...",
+      "captchaVerifyPrompt": "Voltooi de verificatie voordat u verzendt.",
+      "captchaNotConfigured": "CAPTCHA is niet geconfigureerd. Controleer de omgevingsvariabelen.",
+      "submit": "Verzenden",
+      "sending": "Verzenden...",
+      "success": "Dank u. We hebben uw aanvraag ontvangen en een adviseur van Anclora Nexus neemt binnenkort contact met u op.",
+      "error": "Het formulier kon niet worden verzonden. Probeer het over enkele minuten opnieuw."
+    }
+  },
+  "aboutSection": {
+    "eyebrow": "Over ons",
+    "title": "Een vastgoedbedrijf gebouwd voor de nieuwe marktcyclus.",
+    "description": "Anclora Private Estates integreert premium advies, operationele automatisering en predictieve analyse in één samenhangende ervaring.",
+    "description2": "We werken niet met geïsoleerde tools: we verbinden acquisitie, taxatie, opvolging en afsluiting onder een geunificeerde en schaalbare datalogica.",
+    "pillar1Title": "Intelligente bedrijfsvoering",
+    "pillar1Text": "We automatiseren taken met groot volume zodat het team zich kan richten op onderhandeling, strategie en dienstverlening met hoge toegevoegde waarde.",
+    "pillar2Title": "Datagebaseerde besluitvorming",
+    "pillar2Text": "We passen lokale vergelijkingsdata, vraagSignalen en predictieve modellen toe voor betere taxatie en minder onzekerheid.",
+    "pillar3Title": "Verbonden ecosysteem",
+    "pillar3Text": "We combineren vastgoedexpertise, CRM en AI-laag voor een snellere, consistentere en professionelere uitvoering."
+  },
+  "menuOverlay": {
+    "close": "SLUITEN",
+    "menuWord": "MENU",
+    "back": "Terug",
+    "brand": "ANCLORA PRIVATE ESTATES",
+    "groups": {
+      "invest": "Investering",
+      "privateArea": "Privégebied"
+    },
+    "links": {
+      "valuation": "Woning taxeren",
+      "contact": "Contacten"
+    },
+    "privateArea": "Privégebied",
+    "privateAreaDescription": "Gecentraliseerde toegang tot Anclora's professionele portalen op basis van profiel en rechten.",
+    "agentPortalTitle": "Agentportaal",
+    "agentPortalDescription": "Inloggen bij Anclora Nexus CRM.",
+    "partnerPortalTitle": "Partnerportaal",
+    "partnerPortalDescription": "Toegang voor strategische partners en medewerkers.",
+    "dataLabPortalTitle": "Anclora Data Lab",
+    "dataLabPortalDescription": "Intelligentiepakketten, territoriale signalen en analytische activa met selectieve toegang voor goedgekeurde partners, klanten en investeerders.",
+    "partnerModalTitle": "Portaal in voorbereiding",
+    "partnerModalText": "We werken eraan om deze toegang zo snel mogelijk te activeren. Voorlopig is het Agentportaal (Anclora Nexus) het operationele toegangspunt.",
+    "partnerModalCta": "Begrepen"
+  },
+  "footer": {
+    "description": "Luxe vastgoed en investeringsadvies op de Balearen. Wij verbinden veeleisende investeerders met uitzonderlijke woningen.",
+    "quickLinks": "Snelle links",
+    "legal": "Juridische informatie",
+    "contact": "Contact",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "terms": "Gebruiksvoorwaarden",
+    "legalNotice": "Juridische mededeling",
+    "ethics": "Gedragscode",
+    "rights": "© 2026 Anclora Group - Alle rechten voorbehouden.",
+    "slogan": "Waar intelligentie en vermogen samenkomen. Structuur, visie en langetermijncontrole.",
+    "disclaimer": "Institutionele disclaimer: De informatie op dit platform is strikt vertrouwelijk en uitsluitend bestemd voor gekwalificeerde investeringsprofielen. Anclora Group opereert onder de strengste EU-regelgeving en past analytische architectuur toe bij elke activaselectie."
+  },
+  "language": {
+    "es": "Español",
+    "en": "English",
+    "fr": "Français",
+    "de": "Deutsch"
+  },
+  "languageToggle": {
+    "groupLabel": "Taalkiezer",
+    "preferencesLabel": "Globale voorkeuren",
+    "preferencesDialogLabel": "Instellingen globale voorkeuren",
+    "eyebrow": "Voorkeuren",
+    "settingsTitle": "Instellingen",
+    "title": "Taal",
+    "languageLabel": "Taal",
+    "currencyLabel": "Valuta",
+    "unitsLabel": "Meeteenheden",
+    "pendingLabel": "In behandeling",
+    "closeLabel": "Taalkiezer sluiten",
+    "saveLabel": "Opslaan en sluiten",
+    "currency": {
+      "eur": "Euro - EUR €",
+      "usd": "Amerikaanse dollar - USD $",
+      "gbp": "Brits pond - GBP £",
+      "chf": "Zwitserse frank - CHF",
+      "sek": "Zweedse kroon - SEK kr",
+      "dkk": "Deense kroon - DKK kr",
+      "nok": "Noorse kroon - NOK kr"
+    },
+    "units": {
+      "metric": "Vierkante meter - m² / Hectare - ha",
+      "imperial": "Vierkante voet - ft² / Acre - ac"
+    }
+  },
+  "social": {
+    "followUs": "Volg ons"
+  },
+  "scroll": {
+    "up": "Omhoog",
+    "down": "Omlaag"
+  },
+  "newsletter": {
+    "title": "Schrijf u in voor onze nieuwsbrief",
+    "description": "Krijg vroeg toegang tot exclusieve woningen en premium investeringsmogelijkheden.",
+    "namePlaceholder": "Naam / Name",
+    "emailPlaceholder": "E-mail",
+    "submit": "Inschrijven",
+    "success": "Bedankt voor uw inschrijving!"
+  },
+  "cookie": {
+    "title": "Privacy & Cookies",
+    "description": "Bij Anclora Private Estates passen we analytische architectuur toe om te garanderen dat uw investeringservaring even onberispelijk is als onze meest gewaardeerde luxe activa. We gebruiken essentiële technologieën voor het beheer van uw institutioneel profiel.",
+    "acceptAll": "Alles accepteren",
+    "settings": "Configureren",
+    "settingsTitle": "Cookie-instellingen",
+    "savePreferences": "Voorkeuren opslaan",
+    "back": "Terug",
+    "rejectAll": "Niet-essentiële weigeren",
+    "necessary": {
+      "title": "Noodzakelijke cookies",
+      "description": "Essentieel voor het functioneren van de website. Kunnen niet worden uitgeschakeld."
+    },
+    "analytics": {
+      "title": "Analytische cookies",
+      "description": "Google Analytics - Helpt ons begrijpen hoe u met de site omgaat."
+    },
+    "marketing": {
+      "title": "Marketingcookies",
+      "description": "Meta Pixel - Om u relevante advertenties op sociale media te tonen."
+    }
+  }
+}
