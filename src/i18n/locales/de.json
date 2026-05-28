@@ -213,11 +213,30 @@
   },
   "languageToggle": {
     "groupLabel": "Sprachauswahl",
-    "eyebrow": "Einstellungen",
+    "preferencesLabel": "Globale Einstellungen",
+    "preferencesDialogLabel": "Globale Präferenzeinstellungen",
+    "eyebrow": "Präferenzen",
+    "settingsTitle": "Einstellungen",
     "title": "Sprache",
+    "languageLabel": "Sprache",
+    "currencyLabel": "Währung",
+    "unitsLabel": "Maßeinheiten",
     "pendingLabel": "Ausstehend",
     "closeLabel": "Sprachauswahl schließen",
-    "saveLabel": "Speichern und schließen"
+    "saveLabel": "Speichern und schließen",
+    "currency": {
+      "eur": "Euro - EUR €",
+      "usd": "US-Dollar - USD $",
+      "gbp": "Pfund Sterling - GBP £",
+      "chf": "Schweizer Franken - CHF",
+      "sek": "Schwedische Krone - SEK kr",
+      "dkk": "Dänische Krone - DKK kr",
+      "nok": "Norwegische Krone - NOK kr"
+    },
+    "units": {
+      "metric": "Quadratmeter - m² / Hektar - ha",
+      "imperial": "Quadratfuß - ft² / Acre - ac"
+    }
   },
   "social": {
     "followUs": "Folgen Sie uns"

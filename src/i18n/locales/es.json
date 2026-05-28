@@ -213,11 +213,30 @@
   },
   "languageToggle": {
     "groupLabel": "Selector de idioma",
-    "eyebrow": "Ajustes",
+    "preferencesLabel": "Preferencias globales",
+    "preferencesDialogLabel": "Ajustes de preferencias globales",
+    "eyebrow": "Preferencias",
+    "settingsTitle": "Ajustes",
     "title": "Idioma",
+    "languageLabel": "Idioma",
+    "currencyLabel": "Moneda",
+    "unitsLabel": "Unidades de medida",
     "pendingLabel": "Pendiente",
     "closeLabel": "Cerrar selector de idioma",
-    "saveLabel": "Guardar y cerrar"
+    "saveLabel": "Guardar y cerrar",
+    "currency": {
+      "eur": "Euro - EUR €",
+      "usd": "Dólar estadounidense - USD $",
+      "gbp": "Libra esterlina - GBP £",
+      "chf": "Franco suizo - CHF",
+      "sek": "Corona sueca - SEK kr",
+      "dkk": "Corona danesa - DKK kr",
+      "nok": "Corona noruega - NOK kr"
+    },
+    "units": {
+      "metric": "Metro cuadrado - m² / Hectárea - ha",
+      "imperial": "Pie cuadrado - ft² / Acre - ac"
+    }
   },
   "social": {
     "followUs": "Síguenos"
