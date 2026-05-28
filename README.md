@@ -68,3 +68,13 @@ Lectura mínima antes de tocar interfaz:
 - Assets finales (icono, favicon): pendientes de entrega por el usuario
 - Contrato de referencia: `docs/standards/ANCLORA_BRANDING_MASTER_CONTRACT.md`
 - Alcance de esta fase: alineación estructural de branding; assets finales integrados en fase posterior
+## Global Preferences Toggle
+
+Esta app sigue el contrato global de preferencias de Anclora Group.
+
+Incluye:
+- idioma
+- moneda, porque muestra importes
+- unidades, porque muestra superficies
+
+El Theme Toggle se gestiona por separado y no aparece en apps Ultra Premium.

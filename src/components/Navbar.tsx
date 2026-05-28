@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ensureLanguageResources } from '../i18n';
 import { buildMenuGroups } from './menuOverlayConfig';
 import { getDataLabPortalUrl, getNexusLoginUrl, getPartnerPortalUrl } from '../lib/privateAreaAccess';
-import { LanguageToggle } from './LanguageToggle';
+import { GlobalPreferencesTrigger } from './GlobalPreferencesTrigger';
 
 export function Navbar() {
   const pendingScrollTargetKey = 'anclora:pending-scroll-target';
@@ -458,11 +458,11 @@ export function Navbar() {
                 </ul>
               </nav>
 
-              <LanguageToggle currentLanguage={currentLang} onLanguageChange={changeLanguage} />
+              <GlobalPreferencesTrigger currentLanguage={currentLang} onLanguageChange={changeLanguage} />
             </div>
 
             <div className="md:hidden flex-shrink-0">
-              <LanguageToggle currentLanguage={currentLang} onLanguageChange={changeLanguage} compact />
+              <GlobalPreferencesTrigger currentLanguage={currentLang} onLanguageChange={changeLanguage} compact />
             </div>
           </div>
         </div>
