@@ -326,11 +326,7 @@ export function Navbar() {
   }, [isMenuOpen]);
 
   const currentLang = i18n.language;
-  const currentLangCode = currentLang.toLowerCase().startsWith('en')
-    ? 'EN'
-    : currentLang.toLowerCase().startsWith('de')
-      ? 'DE'
-      : 'ES';
+  const currentLangCode = (currentLang || 'es').slice(0, 2).toUpperCase();
   const menuGroups = buildMenuGroups(t, {
     toPhilosophy: () => scrollToSection('#philosophy'),
     toInvest: () => scrollToSection('#invest'),
