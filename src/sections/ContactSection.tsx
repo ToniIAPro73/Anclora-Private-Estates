@@ -261,6 +261,17 @@ export function ContactSection() {
     try {
       const fullName = `${formData.firstName} ${formData.lastName}`.trim();
       const payload = {
+        // Anclora Intake Contract v1
+        schema_version: 'anclora-intake-v1',
+        intake_domain: 'commercial_lead',
+        request_type: 'general_commercial_inquiry',
+        source: 'private_estates_web',
+        target_product: null,
+        service_interest: 'other',
+        idempotency_key: crypto.randomUUID(),
+        routing_target_domain: 'leads',
+
+        // Lead fields
         name: fullName || formData.firstName || 'Web Contact',
         email: formData.email || undefined,
         phone: formData.phone || undefined,
@@ -270,7 +281,6 @@ export function ContactSection() {
           message: formData.message || null,
           newsletter_opt_in: formData.newsletter,
         },
-        source: 'web',
         source_system: 'cta_web',
         source_channel: 'website',
         source_detail: 'private-estates-contact-form',
