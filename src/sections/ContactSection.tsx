@@ -65,7 +65,7 @@ export function ContactSection() {
   const nexusPublicLeadUrl =
     import.meta.env.VITE_ANCLORA_NEXUS_PUBLIC_LEAD_URL ??
     import.meta.env.VITE_NEXUS_PUBLIC_LEAD_URL ??
-    'https://nexus.anclora.group/api/public/cta/lead';
+    '/api/public/intake/commercial-leads';
   const captchaProviderRaw = (
     import.meta.env.VITE_CONTACT_CAPTCHA_PROVIDER ??
     (recaptchaSiteKey ? 'recaptcha' : 'none')
