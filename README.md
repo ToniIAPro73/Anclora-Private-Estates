@@ -1,90 +1,83 @@
+<!-- markdownlint-disable MD001 MD013 MD033 MD041 MD060 -->
+
+<div align="center">
+
+<img src="./public/logo-anclora-private-estates-exp-old.png" alt="Anclora Private Estates" width="120" />
+
 # Anclora Private Estates
 
-Frontend premium para Anclora Private Estates, construido con React + TypeScript + Vite.
+### Documentación de análisis y mejora
 
-## Stack
+**Español** · [English](./README.en.md) · [Deutsch](./README.de.md)
 
-- React 19
-- TypeScript
-- Vite
-- Tailwind CSS
-- i18next (`es`, `en`, `de`, `fr`)
-- GSAP/ScrollTrigger
+<br />
 
-## Estado actual
+![Anclora](https://img.shields.io/badge/Anclora-ecosystem-111827)
+![Documentation](https://img.shields.io/badge/documentation-premium-BFA46A)
+![Languages](https://img.shields.io/badge/languages-ES%20%7C%20EN-047857)
 
-- Navegación principal y secciones premium de landing operativas.
-- Menú overlay rediseñado con enfoque limpio y jerárquico (sin cards), manteniendo la identidad visual premium.
-- Documentación SDD inicial y de features en `sdd/`.
+</div>
 
-## SDD y gobernanza
+---
 
-- Núcleo SDD: `sdd/core/`
-- Features SDD: `sdd/features/`
-- Reglas de agentes: `.agent/rules/`
-- Skills de features: `.agent/skills/features/`
-- Prompts de orquestación: `.antigravity/prompts/features/`
+> [!IMPORTANT]
+> Repositorio interno del ecosistema Anclora. No publicar detalles operativos, credenciales,
+> datos reales ni logica sensible fuera de los canales autorizados.
 
-Feature activa más reciente:
-- `ANCLORA-MENU-002` (`menu-overlay-clarity-redesign`)
+## Vista rapida
 
-## Validación
+| Area | Definicion |
+| --- | --- |
+| Proposito | Documentación de análisis y mejora |
+| Familia | `ultra_premium` |
+| Visibilidad | `private` |
+| Rol | Repositorio de trabajo interno |
 
-Comandos de validación habilitados:
+## Flujo conceptual
 
-```bash
-npm run lint
-npm run test
+```text
+Contexto interno
+      ↓
+Configuracion y datos controlados
+      ↓
+Logica de producto
+      ↓
+Revision tecnica
+      ↓
+Entrega o soporte operativo
 ```
 
-## Documentación de análisis y mejora
+## Arranque local
 
-- `public/docs/ANALISIS.md`
-- `public/docs/PLAN_MEJORA.md`
+```bash
+npm install
+npm run dev
+```
 
-## Contratos UX/UI
+## Tecnologia
 
-Lectura mínima antes de tocar interfaz:
+| Area | Detalle |
+| --- | --- |
+| React | Detectado en el repositorio |
+| TypeScript | Detectado en el repositorio |
+| Tailwind CSS | Detectado en el repositorio |
+| Zod | Detectado en el repositorio |
 
-1. `docs/standards/ANCLORA_ECOSYSTEM_CONTRACT_GROUPS.md`
-2. `docs/standards/ANCLORA_ULTRA_PREMIUM_APP_CONTRACT.md`
-3. `docs/standards/UI_MOTION_CONTRACT.md`
-4. `docs/standards/MODAL_CONTRACT.md`
-5. `docs/standards/LOCALIZATION_CONTRACT.md`
+## Documentacion
 
-## Branding canónico
+- [Documentacion](./docs)
 
-- Grupo: `Ultra Premium`
-- Tipografía display: `Cardo` (serif)
-- Tipografía body/UI: `Inter` (sans-serif)
-- Tipografía acentos: `Fraunces` (serif)
-- Borde de icono: Oro pulido `#D4AF37`
-- Accent principal: Oro `#D4AF37`
-- Interior de icono: Teal oscuro `#1A3035`
-- Secundario: Teal `#3AA090`
-- Fondo base: `#07252F`
-- Prefijo favicon: `pe_`
-- Idiomas: `es`, `en`, `de`, `fr`
-- Assets finales (icono, favicon): pendientes de entrega por el usuario
-- Contrato de referencia: `docs/standards/ANCLORA_BRANDING_MASTER_CONTRACT.md`
-- Alcance de esta fase: alineación estructural de branding; assets finales integrados en fase posterior
-## Global Preferences Toggle
+## Gobernanza
 
-Esta app sigue el contrato global de preferencias de Anclora Group.
+- Producto canonico: `anclora-private-estates`
+- Boveda: `/mnt/c/Users/antonio.ballesterosa/Desktop/Proyectos/Boveda-Anclora`
+- Contratos: `contracts/` y `docs/governance/`
+- Asset de marca: `presente`
 
-Incluye:
-- idioma
-- moneda, porque muestra importes
-- unidades, porque muestra superficies
+---
 
-El Theme Toggle se gestiona por separado y no aparece en apps Ultra Premium.
+<div align="center">
 
-## Ultra Premium locales
+### Anclora Group · Uso interno
 
-This app follows Anclora Group Ultra Premium locale governance.
-
-Supported locales: ES, CA, DE, EN, SV, FR, IT, DA, NL, NO, PT.
-
-Copy localization follows Anclora Locale Copy Guardian: intent over literal translation, premium tone, no added claims and no artificial machine-translated phrasing.
-
-Legal, privacy, cookie, consent and terms copy must preserve legal meaning and remain marked for legal review when translated or substantially changed.
+</div>
