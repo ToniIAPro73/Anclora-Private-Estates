@@ -60,6 +60,9 @@ Justificación: Inter es la fuente más adecuada para interfaces operativas dens
 | `anclora-advisor-ai` | Sin fuente custom | Añadir Inter como `--font-sans` |
 | `anclora-nexus` | Inter ✓ + Playfair Display | Eliminar Playfair (reservada para ultra premium) |
 | `anclora-content-generator-ai` | DM Sans + Bricolage Grotesque | Eliminar ambas, migrar a Inter |
+| `anclora-filestudio` *(añadido 2026-08)* | Pendiente de verificar fuente real — no auditado en esta sesión (solo se verificó color) | Confirmar/añadir Inter como `--font-sans` |
+| `anclora-fiscal` | **Excepción formal 2026-08** — Montserrat + Playfair Display + EB Garamond vía `next/font`, respaldada por ADR-003/004 de `docs/decision-log.md` del propio repo (identidad visual compartida con Anclora Insights como sello editorial) | No aplicar Inter — excepción de marca aceptada, no deuda técnica |
+| `anclora-visionflow` *(añadido 2026-08)* | Pendiente de verificar fuente real — no auditado en esta sesión (solo se verificó color) | Confirmar/añadir Inter como `--font-sans` |
 
 ---
 
@@ -82,9 +85,10 @@ Justificación: DM Sans aporta un carácter más redondo y accesible que Inter, 
 |-----|--------------|--------|
 | `anclora-impulso` | Sin fuente custom | Añadir DM Sans |
 | `anclora-data-lab` | Georgia, serif | Migrar a DM Sans. Georgia queda reservada para `anclora-group`. |
-| `anclora-talent` | Sin fuente custom | Añadir DM Sans |
+| `anclora-talent` | Sin fuente custom *(pausado, fuera de alcance activo)* | Añadir DM Sans (si se reactiva) |
 | `anclora-synergi` | Cardo (display) + Inter (body) | Eliminar Cardo (reservada para ultra premium). Migrar a DM Sans. |
 | `anclora-command-center` | Sin fuente custom | Añadir DM Sans |
+| `anclora-syncxml` *(añadido 2026-08)* | Pendiente de verificar fuente real — no auditado en esta sesión (solo se verificó color) | Confirmar/añadir DM Sans |
 
 ---
 
@@ -138,11 +142,15 @@ Justificación: Contraste serif (display) + sans-serif (body) clásico de marcas
 | `anclora-advisor-ai` | Interna | Inter | — |
 | `anclora-nexus` | Interna | — | Playfair Display |
 | `anclora-content-generator-ai` | Interna | Inter | DM Sans, Bricolage Grotesque |
+| `anclora-filestudio` | Interna | Inter *(pendiente de verificar estado real)* | Pendiente de auditoría |
+| `anclora-fiscal` | Interna | Inter *(pendiente de verificar estado real)* | Pendiente de auditoría |
+| `anclora-visionflow` | Interna | Inter *(pendiente de verificar estado real)* | Pendiente de auditoría |
 | `anclora-impulso` | Premium | DM Sans | — |
 | `anclora-data-lab` | Premium | DM Sans | Georgia |
-| `anclora-talent` | Premium | DM Sans | — |
+| `anclora-talent` | Premium *(pausado)* | DM Sans | — |
 | `anclora-synergi` | Premium | DM Sans | Cardo, Inter |
 | `anclora-command-center` | Premium | DM Sans | — |
+| `anclora-syncxml` | Premium | DM Sans *(pendiente de verificar estado real)* | Pendiente de auditoría |
 | `anclora-private-estates` | Ultra Premium | — | Cormorant Garamond |
 | `anclora-private-estates-landing-page` | Ultra Premium | Cardo, Fraunces | — |
 
@@ -154,3 +162,14 @@ Una app no cumple este contrato si:
 - No declara `--font-sans` explícitamente en CSS
 - Usa pesos fuera del rango (100-300 o 800-900) en UI operativa
 - No respeta tamaño mínimo de body
+
+## Excepción verificada — `anclora-group-landing` (2026-08)
+
+Aunque las superficies `portfolio` están fuera de alcance de este contrato (ver `ANCLORA_BRANDING_MASTER_CONTRACT.md`), `anclora-group-landing` es una excepción documentada: su repo real (`src/styles/tokens.css`) implementa el brand book completo, incluida tipografía propia verificada:
+
+```css
+--font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+--font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+```
+
+Coincide con el stack Premium (DM Sans + JetBrains Mono), no con un tema editorial genérico de portfolio.

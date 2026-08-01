@@ -362,34 +362,34 @@ Accent: Púrpura `#8C5AB4` | Secondary: Lavanda `#C4A0E0`
 
 ## Anclora Command Center (Premium)
 
-Accent: Rojo granate `#CC4455` | Secondary: Rosa pálido `#E89098`
+Accent: Violeta premium `#6C63FF` | Secondary: Azul luminoso `#5FA8FF`
 
 ### Dark
 ```css
 :root {
-  --background: #10080E; --surface: #18101A; --card: #201422;
-  --elevated: #281C2A; --hover: #302434;
-  --accent: #CC4455; --accent-hover: #DD5868; --accent-dim: #B03848;
-  --accent-soft: rgba(204, 68, 85, 0.12); --accent-glow: rgba(204, 68, 85, 0.10);
-  --accent-border: rgba(204, 68, 85, 0.30);
-  --secondary: #E89098; --secondary-soft: rgba(232, 144, 152, 0.10);
-  --secondary-border: rgba(232, 144, 152, 0.18);
-  --sidebar: #140C14; --sidebar-border: rgba(204, 68, 85, 0.10);
-  --sidebar-active: rgba(204, 68, 85, 0.14);
-  --text-primary: #F5EEF0; --text-secondary: #C8B8C0;
-  --text-muted: #908088; --text-on-accent: #FFFFFF;
+  --background: #121021; --surface: #171426; --card: #1E1A2E;
+  --elevated: #29244A; --hover: #342D61;
+  --accent: #6C63FF; --accent-hover: #8A7CFF; --accent-dim: #4B45C8;
+  --accent-soft: rgba(108, 99, 255, 0.14); --accent-glow: rgba(95, 168, 255, 0.18);
+  --accent-border: rgba(138, 124, 255, 0.34);
+  --secondary: #5FA8FF; --secondary-soft: rgba(95, 168, 255, 0.14);
+  --secondary-border: rgba(95, 168, 255, 0.26);
+  --sidebar: #0B0A18; --sidebar-border: rgba(138, 124, 255, 0.18);
+  --sidebar-active: rgba(108, 99, 255, 0.18);
+  --text-primary: #EAE8F5; --text-secondary: #C7C2EA;
+  --text-muted: #8F89C6; --text-on-accent: #FFFFFF;
 }
 ```
 ### Light
 ```css
 [data-theme='light'] {
-  --background: #FAF5F6; --surface: #FFFFFF; --card: #FFFFFF;
-  --elevated: #F5ECEE; --hover: #F0E4E6;
-  --accent: #B03848; --accent-hover: #9C2E3C;
-  --accent-soft: rgba(176, 56, 72, 0.08);
-  --secondary: #904050; --sidebar: #F2E8EA;
-  --text-primary: #1A1015; --text-secondary: #5A4048;
-  --text-muted: #987880; --text-on-accent: #FFFFFF;
+  --background: #F4F7FF; --surface: #FFFFFF; --card: #F8FAFF;
+  --elevated: #EEF2FF; --hover: #E7ECFF;
+  --accent: #6C63FF; --accent-hover: #4F47D8;
+  --accent-soft: rgba(108, 99, 255, 0.10);
+  --secondary: #2F8BEF; --sidebar: #EEF3FF;
+  --text-primary: #15142A; --text-secondary: #3D3A68;
+  --text-muted: #6E6A98; --text-on-accent: #FFFFFF;
 }
 ```
 
@@ -437,3 +437,131 @@ Accent: Gold `#D4AF37` | Secondary: Teal `#3AA090`
   --text-primary: #F7F4EE; --text-muted: rgba(247, 244, 238, 0.72);
 }
 ```
+
+---
+
+## Apps añadidas 2026-08 — verificadas contra código fuente real
+
+> Las 6 secciones siguientes documentan apps incorporadas a `anclora-design-system` en 2026-08, tras una sesión de auditoría que verificó cada acento contra el repositorio real de cada app (no contra suposición). El modo **Dark** de cada una está confirmado byte a byte contra las variables CSS declaradas en el código fuente real. El modo **Light** no se verificó en esta sesión — se marca explícitamente como pendiente en vez de inventarse, siguiendo el mismo criterio que el resto de este documento.
+
+## Anclora Fiscal (Interna)
+
+Accent: Dorado `#D7A957` | Fondo: Navy `#070C13`
+
+### Dark
+```css
+:root {
+  --background: #070C13; --surface: #0C1624; --card: #152437;
+  --accent: #D7A957;
+  --text-primary: #F5EFE3; --text-secondary: rgba(245, 239, 227, 0.62);
+}
+```
+Fuente: `app/styles.css` real (`--fiscal-ink`, `--fiscal-midnight`, `--fiscal-panel-raised`, `--fiscal-gold`).
+
+### Light
+*No verificado — pendiente de auditoría.*
+
+---
+
+## Anclora VisionFlow (Interna)
+
+Accent: Índigo `#5C70D8`
+
+### Dark
+```css
+:root {
+  --background: #0F1520; --surface: #192640; --card: #1F2E4C;
+  --accent: #5C70D8; --secondary: #A0AAEC;
+  --text-primary: #EDF1FB;
+}
+```
+Fuente: `src/app/globals.css` real (`.dark { --avf-accent }`, shadcn token mapping).
+
+### Light
+*No verificado — pendiente de auditoría. El repo real sí define un modo claro propio (`--avf-accent: #4A5CC0` en `:root`), distinto del dark; queda pendiente confirmarlo como spec oficial.*
+
+---
+
+## Anclora FileStudio (Interna)
+
+Accent: Teal `#4FB3BF` *(sin matiz de marca propio confirmado en el repo — ver nota)*
+
+### Dark
+```css
+:root {
+  --background: #0D0F12; --surface: #1A1E25; --card: #22272F;
+  --accent: #4FB3BF;
+  --text-primary: #F4F1EA;
+}
+```
+> **Nota:** a diferencia de las demás apps de este documento, el repo real de FileStudio (`globals.css`) usa la paleta gris de shadcn sin ningún matiz de color propio (`oklch` con croma cero). El acento `#4FB3BF` no proviene del código — es una asignación del design system solo para diferenciación de wayfinding entre apps Internal. Confirmar con el cliente si esto debe formalizarse como decisión de marca ("herramienta neutra deliberada") o si FileStudio debería recibir un acento de marca propio en el futuro.
+
+### Light
+*No aplica — el repo real no tiene modo claro/oscuro diferenciado, usa un único tema neutro.*
+
+---
+
+## Anclora EnergyScan (Premium)
+
+Accent: Verde `#00DC82`
+
+### Dark
+```css
+:root {
+  --background: #0A0A0A; --surface: #131313; --card: #262626;
+  --accent: #00DC82;
+  --warning: #FFB020; --danger: #EF4444;
+  --text-primary: #F0EDE8;
+}
+```
+Fuente: `src/app/globals.css` real — `#00DC82` confirmado con 625 apariciones, es la firma visual dominante de toda la app, no un acento tímido.
+
+### Light
+*No verificado — pendiente de auditoría.*
+
+---
+
+## Anclora SyncXML (Premium)
+
+Accent: Dorado apagado `#BFA46A`
+
+### Dark
+```css
+:root {
+  --background: #070A12; --surface: #101827; --card: #151F32;
+  --accent: #BFA46A;
+  --success: #34D399; --warning: #FBBF24; --danger: #F87171;
+  --text-primary: #F8FAFC; --text-secondary: #D6DEEA; --text-muted: #A8B3C7;
+}
+```
+Fuente: `src/app/globals.css` real (variables nombradas `--accent`, `--bg`, `--surface`).
+
+### Light
+```css
+[data-theme='light'] {
+  --background: #F8FAFC; --surface: #FFFFFF; --card: #F1F5F9;
+  --accent: #94783E;
+  --success: #047857; --warning: #B45309; --danger: #DC2626;
+  --text-primary: #0F172A; --text-secondary: #334155; --text-muted: #475569;
+}
+```
+Fuente: mismo archivo, bloque `[data-theme='light']` real — única de las 6 apps nuevas con ambos modos verificados directamente en código.
+
+---
+
+## Anclora Group Landing (Portfolio — landing corporativa pública)
+
+Accent: Signal Blue `#5FA8FF` | Acción primaria: Command Purple `#6C63FF` | Fondo: Anchor Navy `#0A1F3D`
+
+### Dark (único modo — no hay variante light)
+```css
+:root {
+  --background: #0A1F3D; --surface: #111827; --card: #12294E;
+  --accent: #5FA8FF;
+  --action-primary-bg: #6C63FF;
+  --text-eyebrow: #C5A059;
+  --text-primary: #F8FAFC; --text-secondary: #CBD5E1;
+}
+```
+Fuente: `src/styles/tokens.css` real, con comentario explícito en el propio código: *"Color (brand book v2.0 — sección 6)"*. Confirmado `body { background: var(--anchor-navy) }` en `globals.css`. **Esta es la app cuyo código real implementa el brand book más fielmente de todo el ecosistema auditado.**
+

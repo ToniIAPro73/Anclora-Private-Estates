@@ -86,13 +86,18 @@ Colocar en `public/` (o `static/` en SvelteKit) y referenciar en `index.html` o 
 | `anclora-advisor-ai` | `advisor_` | `advisor_favicon.ico` |
 | `anclora-nexus` | `nexus_` | `nexus_favicon.ico` |
 | `anclora-content-generator-ai` | `contentgen_` | `contentgen_favicon.ico` |
+| `anclora-filestudio` *(añadido 2026-08)* | `filestudio_` | `filestudio_favicon.ico` |
+| `anclora-fiscal` *(añadido 2026-08)* | `fiscal_` | `fiscal_favicon.ico` |
+| `anclora-visionflow` *(añadido 2026-08)* | `visionflow_` | `visionflow_favicon.ico` |
 | `anclora-impulso` | `impulso_` | `impulso_favicon.ico` |
 | `anclora-data-lab` | `datalab_` | `datalab_favicon.ico` |
-| `anclora-talent` | `talent_` | `talent_favicon.ico` |
+| `anclora-talent` *(pausado)* | `talent_` | `talent_favicon.ico` |
 | `anclora-synergi` | `synergi_` | `synergi_favicon.ico` |
 | `anclora-command-center` | `commandcenter_` | `commandcenter_favicon.ico` |
+| `anclora-syncxml` *(añadido 2026-08)* | `syncxml_` | `syncxml_favicon.ico` |
 | `anclora-private-estates` | `pe_` | `pe_favicon.ico` |
 | `anclora-private-estates-landing-page` | `pe_` | Comparte favicon con PE web app |
+| `anclora-group-landing` | `grouplanding_` | `grouplanding_favicon.ico` |
 
 ## Validación de diferenciación a 32px
 
@@ -106,9 +111,9 @@ A 32px, el borde ocupa ~3px y es el elemento de máxima superficie relativa. Ver
 | Grupo | Apps en el grupo | Diferenciación a 32px |
 |-------|------------------|-----------------------|
 | Entidad Matriz | Anclora Group | Plata monocromático — inconfundible |
-| Internas | Advisor, Nexus, Content Gen | Interior azul+teal, índigo+oro, marrón+coral — distinguibles |
-| Premium | Impulso, Data Lab, Talent, Synergi, Command Ctr | Naranja, verde, azul, púrpura, rojo sobre cobre — 5 hues distintos |
-| Ultra | Private Estates | Oro monocromático+teal — inconfundible |
+| Internas | Advisor, Nexus, Content Gen, FileStudio, Fiscal, VisionFlow | Interior azul+teal, índigo+oro, marrón+coral, carbón+teal claro, navy+dorado, índigo+azul — con 6 apps en el grupo, dos pares caen por debajo del mínimo de 30° de hue (ver advertencia de gobernanza en `ANCLORA_BRANDING_MASTER_CONTRACT.md`); distinguibles en la práctica por diferencia de saturación/luminosidad aunque el hue esté cerca |
+| Premium | Impulso, Data Lab, Talent *(pausado)*, Synergi, Command Ctr, SyncXML | Naranja, verde, azul, púrpura, azul/violeta y dorado apagado — 6 hues, con una colisión exacta preexistente (Data Lab/EnergyScan, no forman parte de la misma vista) y una separación estrecha (Impulso/SyncXML, 16°) |
+| Ultra | Private Estates, Private Estates Landing | Oro monocromático+teal — inconfundible; ambas apps comparten el mismo favicon (misma marca, misma app conceptualmente) |
 
 ## Criterio de cumplimiento
 

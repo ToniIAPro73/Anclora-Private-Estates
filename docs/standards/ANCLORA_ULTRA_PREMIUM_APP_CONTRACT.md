@@ -8,7 +8,7 @@ Definir el contrato UX/UI de la capa más exclusiva del ecosistema. La experienc
 
 ## Autoridad
 
-- Registro operativo: `docs/governance/contracts-registry.json`
+- Registro operativo: `contracts/governance/contracts-registry.json`
 - Inventario aplicable: `docs/governance/ecosystem-repos.json`
 - Fuente ejecutable relacionada: `anclora-design-system`
 
@@ -18,9 +18,9 @@ Definir el contrato UX/UI de la capa más exclusiva del ecosistema. La experienc
 
 ## Sincronización con repos consumidores
 
-- Contrato fuente en la bóveda: `docs/standards/ANCLORA_ULTRA_PREMIUM_APP_CONTRACT.md`
+- Contrato fuente en la bóveda: `contracts/core/ANCLORA_ULTRA_PREMIUM_APP_CONTRACT.md`
 - Target normal de propagación: `docs/standards/`
-- Dependencia de auditoría y propagación desde `docs/governance/contracts-registry.json`
+- Dependencia de auditoría y propagación desde `contracts/governance/contracts-registry.json`
 
 ## Piezas canónicas del design system
 
@@ -99,3 +99,4 @@ Una feature ultra premium no está lista si:
 - un modal o formulario rompe la composición premium por falta de espacio o scroll evitable
 - los componentes base aparecen sin adaptación a la firma visual del producto
 - la solución evita `anclora-design-system` y rehace localmente tokens, botones, cards o overlays que ya deberían vivir en la capa compartida
+

@@ -4,7 +4,7 @@
  * Contrato: ANCLORA_BRANDING_MASTER_CONTRACT + ANCLORA_ULTRA_PREMIUM_APP_CONTRACT
  *
  * Fuente única de verdad para nombre, assets, tokens canónicos y tipografía.
- * Assets finales (icono, favicon) pendientes de entrega por el usuario.
+ * Icono canónico y paquete favicon `pe_` entregados (2026-08, ANCLORA_BRANDING_FAVICON_SPEC).
  */
 export const PE_BRAND = {
   // Identidad
@@ -12,8 +12,8 @@ export const PE_BRAND = {
   shortName: 'Private Estates',
   description: 'Exclusividad elevada a obra de arte. Bienes raíces de lujo en Mallorca.',
 
-  // Assets actuales (pendiente sustitución por assets finales)
-  logoPath: '/Logo_Anclora_Private_Estates_sin_texto.png',
+  // Assets canónicos (icono 1024×1024 RGBA + paquete favicon pe_ en /public)
+  logoPath: '/logos/logo-anclora-private-estates.png',
   faviconPath: '/pe_favicon.ico',
   faviconPrefix: 'pe_',
 

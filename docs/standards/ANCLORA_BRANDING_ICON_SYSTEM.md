@@ -71,12 +71,17 @@ Ondas = mismo color que el borde. Esquema monocromático.
 | Interna | `anclora-advisor-ai` | Plata | `#1DAB89` teal | `#162944` navy azul | 162° |
 | Interna | `anclora-nexus` | Plata | `#D4AF37` oro | `#192350` navy índigo | 45° |
 | Interna | `anclora-content-generator-ai` | Plata | `#E06848` coral | `#1A1410` carbón cálido | 12° |
+| Interna | `anclora-filestudio` *(añadido 2026-08)* | Plata | `#4FB3BF` teal claro *(sin matiz de marca propio confirmado en el repo — asignado para wayfinding)* | `#0D0F12` carbón neutro *(interior inferido del fondo real del producto, no verificado píxel a píxel en el icono ya generado)* | 186° |
+| Interna | `anclora-fiscal` *(añadido 2026-08)* | Plata | `#D7A957` dorado | `#070C13` navy profundo *(inferido del fondo real del producto)* | 38° |
+| Interna | `anclora-visionflow` *(añadido 2026-08)* | Plata | `#5C70D8` índigo | `#0F1520` navy índigo *(inferido del fondo real del producto)* | 230° |
 | Premium | `anclora-impulso` | Cobre | `#FF6A00` naranja | `#1A1C2B` navy | 25° |
 | Premium | `anclora-data-lab` | Cobre | `#2DA078` esmeralda | `#12201C` navy verde | 155° |
-| Premium | `anclora-talent` | Cobre | `#4A9FD8` azul cielo | `#141E28` navy azul | 205° |
+| Premium | `anclora-talent` *(pausado)* | Cobre | `#4A9FD8` azul cielo | `#141E28` navy azul | 205° |
 | Premium | `anclora-synergi` | Cobre | `#8C5AB4` púrpura | `#1C162A` navy púrpura | 280° |
-| Premium | `anclora-command-center` | Cobre | `#CC4455` rojo granate | `#1A1218` carbón rojo | 355° |
+| Premium | `anclora-command-center` | Azul/violeta | `#6C63FF` violeta premium + `#5FA8FF` azul luminoso | `#1E1A2E` navy púrpura | 245° |
+| Premium | `anclora-syncxml` *(añadido 2026-08)* | Cobre | `#BFA46A` dorado apagado | `#070A12` navy profundo *(inferido del fondo real del producto)* | 41° |
 | Ultra | `anclora-private-estates` | Oro | `#D4AF37` oro | `#1A3035` teal oscuro | 45° |
+| Ultra | `anclora-private-estates-landing` *(añadido 2026-08)* | Oro | `#D4AF37` oro *(comparte icono con `anclora-private-estates`, mismo lockup confirmado)* | `#1A3035` teal oscuro | 45° |
 
 ## Regla de lectura visual
 
@@ -108,6 +113,8 @@ Ondas = mismo color que el borde. Esquema monocromático.
 | Rojo (355°) ↔ Naranja (25°) | 30° | ✓ interiores distintos |
 
 ## Prompts de generación AI
+
+> **Nota 2026-08:** los 4 prompts marcados "añadido 2026-08" son una reconstrucción retroactiva siguiendo el patrón establecido por los prompts existentes — los iconos PNG de estas 4 apps ya existían y están en uso (`assets/logos/` de `anclora-design-system`), pero no hay constancia de si se generaron originalmente con un prompt idéntico a este. Si se necesita regenerar el icono de alguna de estas 4 apps, verificar primero visualmente que el resultado coincide con el PNG ya en producción antes de sustituirlo.
 
 ### Template base
 ```
@@ -185,10 +192,10 @@ metal (#8C5AB4) with soft highlights, black background, 3D render, no text
 
 ### Command Center
 ```
-Circular emblem, three horizontal smooth wave lines, outer ring polished 
-brushed rose copper metallic (#C07860) with beveled edges, inner background 
-dark reddish charcoal (#1A1218) with subtle leather grain texture, waves 
-dark garnet red metal (#CC4455) with soft highlights, black background, 3D render, no text
+Circular emblem, three horizontal smooth wave lines, outer ring polished
+blue-violet metallic gradient (#5FA8FF to #6C63FF to #8A7CFF) with beveled edges, inner background
+dark purple navy (#1E1A2E) with subtle leather grain texture, waves
+blue-violet metal gradient (#5FA8FF to #6C63FF to #8A7CFF) with soft highlights, black background, 3D render, no text
 ```
 
 ### Private Estates
@@ -197,6 +204,38 @@ Circular emblem, three horizontal smooth wave lines, outer ring polished gold
 metallic (#D4AF37) with beveled edges, inner background dark teal (#1A3035) 
 with subtle leather grain texture, waves brushed gold metal (#D4AF37) with 
 soft highlights, black background, 3D render, no text
+```
+
+### FileStudio *(añadido 2026-08)*
+```
+Circular emblem, three horizontal smooth wave lines, outer ring polished 
+chrome silver metallic (#A8AEB8) with beveled edges, inner background neutral 
+dark charcoal (#0D0F12) with subtle leather grain texture, waves brushed light 
+teal metal (#4FB3BF) with soft highlights, black background, 3D render, no text
+```
+
+### Fiscal *(añadido 2026-08)*
+```
+Circular emblem, three horizontal smooth wave lines, outer ring polished 
+chrome silver metallic (#A8AEB8) with beveled edges, inner background deep 
+navy (#070C13) with subtle leather grain texture, waves brushed gold metal 
+(#D7A957) with soft highlights, black background, 3D render, no text
+```
+
+### VisionFlow *(añadido 2026-08)*
+```
+Circular emblem, three horizontal smooth wave lines, outer ring polished 
+chrome silver metallic (#A8AEB8) with beveled edges, inner background indigo 
+navy (#0F1520) with subtle leather grain texture, waves brushed indigo blue 
+metal (#5C70D8) with soft highlights, black background, 3D render, no text
+```
+
+### SyncXML *(añadido 2026-08)*
+```
+Circular emblem, three horizontal smooth wave lines, outer ring polished 
+brushed rose copper metallic (#C07860) with beveled edges, inner background 
+deep navy (#070A12) with subtle leather grain texture, waves muted gold metal 
+(#BFA46A) with soft highlights, black background, 3D render, no text
 ```
 
 ## Proceso de alta de nueva app
