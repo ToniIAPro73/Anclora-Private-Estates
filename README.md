@@ -2,50 +2,59 @@
 
 <div align="center">
 
-<img src="./public/logo-anclora-private-estates-exp-old.png" alt="Anclora Private Estates" width="120" />
+<img src="./public/logos/anclora-private-estates.png" alt="Anclora Private Estates" width="132" />
 
 # Anclora Private Estates
 
-### Documentación de análisis y mejora
+### Bienes raíces de lujo en Mallorca
+
+Marca ultra premium de real estate: exclusividad elevada a obra de arte, con presentación editorial de propiedades y experiencia multi-idioma.
 
 **Español** · [English](./README.en.md) · [Deutsch](./README.de.md)
 
 <br />
 
 ![Anclora](https://img.shields.io/badge/Anclora-ecosystem-111827)
-![Documentation](https://img.shields.io/badge/documentation-premium-BFA46A)
-![Languages](https://img.shields.io/badge/languages-ES%20%7C%20EN-047857)
+![Categoría](https://img.shields.io/badge/categoría-Ultra%20Premium-D4AF37)
+![Idiomas](https://img.shields.io/badge/idiomas%20producto-11-047857)
 
 </div>
 
 ---
 
 > [!IMPORTANT]
-> Repositorio interno del ecosistema Anclora. No publicar detalles operativos, credenciales,
-> datos reales ni logica sensible fuera de los canales autorizados.
+> Repositorio interno del ecosistema Anclora. No publicar detalles operativos, credenciales, datos reales de clientes ni lógica sensible fuera de canales autorizados.
 
-## Vista rapida
+## Qué es
 
-| Area | Definicion |
-| --- | --- |
-| Proposito | Documentación de análisis y mejora |
-| Familia | `ultra_premium` |
-| Visibilidad | `private` |
-| Rol | Repositorio de trabajo interno |
+Anclora Private Estates es la marca ultra premium de bienes raíces de lujo del ecosistema Anclora, centrada en Mallorca. Presenta propiedades exclusivas con una identidad visual oro/navy y tipografía editorial (Cardo + Inter + Fraunces).
 
-## Flujo conceptual
+## Categoría en el ecosistema
 
-```text
-Contexto interno
-      ↓
-Configuracion y datos controlados
-      ↓
-Logica de producto
-      ↓
-Revision tecnica
-      ↓
-Entrega o soporte operativo
-```
+| Campo | Valor |
+|---|---|
+| Categoría | Ultra Premium |
+| Acento de marca | `#D4AF37` |
+| Tipografía | Cardo + Inter + Fraunces |
+| Repositorio canónico | `anclora-private-estates` |
+
+## Funcionalidades principales
+
+- Presentación editorial de propiedades de lujo
+- Animaciones de scroll e interacción (GSAP)
+- Sistema de componentes accesible (Radix UI)
+- Formularios validados (React Hook Form + Zod)
+- Soporte multi-idioma (11 idiomas en producción)
+
+## Stack tecnológico
+
+| Área | Tecnología |
+|---|---|
+| Framework | Vite, React, TypeScript |
+| Animación | GSAP |
+| UI | Radix UI |
+| Formularios | React Hook Form, Zod |
+| Tipografía | Cardo, Inter, Fraunces |
 
 ## Arranque local
 
@@ -54,30 +63,23 @@ npm install
 npm run dev
 ```
 
-## Tecnologia
+## Idiomas soportados
 
-| Area | Detalle |
-| --- | --- |
-| React | Detectado en el repositorio |
-| TypeScript | Detectado en el repositorio |
-| Tailwind CSS | Detectado en el repositorio |
-| Zod | Detectado en el repositorio |
+El producto en producción soporta 11 idiomas: Español (predeterminado), Català, Deutsch, English, Svenska, Français, Italiano, Dansk, Nederlands, Norsk, Português (`ULTRA_PREMIUM_LOCALES`, `src/lib/ancloraLanguageToggle.ts`).
 
-## Documentacion
+Esta documentación se mantiene en ES/EN/DE.
 
-- [Documentacion](./docs)
+## Documentación y gobernanza
 
-## Gobernanza
-
-- Producto canonico: `anclora-private-estates`
-- Boveda: `/mnt/c/Users/antonio.ballesterosa/Desktop/Proyectos/Boveda-Anclora`
-- Contratos: `contracts/` y `docs/governance/`
-- Asset de marca: `presente`
+- Contratos de marca y gobernanza: [`docs/standards/`](./docs/standards/)
+- Bóveda Anclora (fuente de verdad): `contracts/` y `docs/governance/`
 
 ---
 
 <div align="center">
 
-### Anclora Group · Uso interno
+### Anclora Group
+
+Uso interno.
 
 </div>

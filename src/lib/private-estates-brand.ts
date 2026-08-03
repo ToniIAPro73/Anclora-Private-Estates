@@ -13,8 +13,8 @@ export const PE_BRAND = {
   description: 'Exclusividad elevada a obra de arte. Bienes raíces de lujo en Mallorca.',
 
   // Assets canónicos (icono 1024×1024 RGBA + paquete favicon pe_ en /public)
-  logoPath: '/logos/logo-anclora-private-estates.png',
-  faviconPath: '/pe_favicon.ico',
+  logoPath: '/logos/anclora-private-estates.png',
+  faviconPath: '/favicon.ico',
   faviconPrefix: 'pe_',
 
   // Paleta ultra-premium canónica (ANCLORA_BRANDING_COLOR_TOKENS — Ultra Premium)

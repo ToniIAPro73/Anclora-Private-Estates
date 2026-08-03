@@ -67,7 +67,7 @@ export function Footer() {
         <div className="footer-brand-column">
           <div className="footer-logo-container">
             <img 
-              src="/logo-anclora-group.png" 
+              src="/anclora-group.png" 
               alt="Anclora Group" 
               className="footer-logo-premium"
             />

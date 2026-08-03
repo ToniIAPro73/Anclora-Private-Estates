@@ -401,7 +401,7 @@ export function Navbar() {
                 }}
               >
                 <img
-                  src="/logos/logo-anclora-private-estates-exp.png"
+                  src="/logos/anclora-private-estates-exp.png"
                   alt="Anclora Private Estates"
                   loading="eager"
                   decoding="async"
@@ -478,7 +478,7 @@ export function Navbar() {
 
               <div className="premium-menu-brand">
                 <img
-                  src="/logo-anclora-private-estates-texto.png"
+                  src="/anclora-private-estates-texto.png"
                   alt={t('menuOverlay.brand')}
                   loading="eager"
                   decoding="async"
