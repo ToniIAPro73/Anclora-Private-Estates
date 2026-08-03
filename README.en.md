@@ -10,7 +10,7 @@
 
 Ultra premium real-estate brand: exclusivity elevated to a work of art, with editorial property presentation and a multi-language experience.
 
-[Español](./README.md) · **English** · [Deutsch](./README.de.md)
+[Español](./README.md) · [Català](./README.ca.md) · [Deutsch](./README.de.md) · **English** · [Svenska](./README.sv.md) · [Français](./README.fr.md) · [Italiano](./README.it.md) · [Dansk](./README.da.md) · [Nederlands](./README.nl.md) · [Norsk](./README.no.md) · [Português](./README.pt.md)
 
 <br />
 
@@ -65,9 +65,7 @@ npm run dev
 
 ## Supported languages
 
-The production product supports 11 languages: Español (default), Català, Deutsch, English, Svenska, Français, Italiano, Dansk, Nederlands, Norsk, Português (`ULTRA_PREMIUM_LOCALES`, `src/lib/ancloraLanguageToggle.ts`).
-
-This documentation is maintained in ES/EN/DE.
+The production product supports 11 languages: Español (default), Català, Deutsch, English, Svenska, Français, Italiano, Dansk, Nederlands, Norsk, Português (`ULTRA_PREMIUM_LOCALES`, `src/lib/ancloraLanguageToggle.ts`). This documentation is maintained in all 11 product languages.
 
 ## Documentation and governance
 
