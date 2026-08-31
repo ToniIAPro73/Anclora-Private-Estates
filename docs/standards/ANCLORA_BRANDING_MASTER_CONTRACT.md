@@ -56,7 +56,7 @@ Este contrato de branding no sustituye el contrato de propiedad intelectual y ma
 - `anclora-synergi`
 - `anclora-data-lab`
 - `anclora-energyscan`
-- `anclora-syncxml` *(añadido 2026-08, verificado, estado `pre-mvp`)*
+- `anclora-guesthub` *(añadido 2026-08, verificado, estado `pre-mvp`)*
 - `anclora-talent` *(pausado, fuera de alcance activo desde 2026-08 — el contrato sigue aplicando por si se reactiva)*
 - `anclora-private-estates`
 - `anclora-private-estates-landing` *(añadido 2026-08 — comparte identidad completa con `anclora-private-estates`)*
@@ -105,7 +105,7 @@ Al modificar la identidad de una app existente:
 |-----------|------|---------------|-----------|-------------|
 | Entidad Matriz | `anclora-group` | Plata monocromática | Georgia, serif | Portal corporativo y entidad matriz del ecosistema. Identidad exclusiva fuera de grupos. |
 | Interna | `anclora-advisor-ai`, `anclora-nexus`, `anclora-content-generator-ai`, `anclora-filestudio`, `anclora-fiscal`, `anclora-visionflow` | Plata cromada | Inter | Herramientas operativas internas. |
-| Premium | `anclora-impulso`, `anclora-talent` *(pausado)*, `anclora-data-lab`, `anclora-energyscan`, `anclora-synergi`, `anclora-command-center`, `anclora-syncxml` | Cobre rosado | DM Sans | Productos de valor añadido. |
+| Premium | `anclora-impulso`, `anclora-talent` *(pausado)*, `anclora-data-lab`, `anclora-energyscan`, `anclora-synergi`, `anclora-command-center`, `anclora-guesthub` | Cobre rosado | DM Sans | Productos de valor añadido. |
 | Ultra Premium | `anclora-private-estates`, `anclora-private-estates-landing` | Oro pulido | Cardo + Inter + Fraunces | Marca de lujo inmobiliario. |
 | Portfolio | `anclora-portfolio`, `anclora-azure-bay-landing-page`, `anclora-playa-viva-uniestate`, `anclora-portfolio-showcase`, `anclora-fiscal-showcase` | Por proyecto | Por proyecto | Fuera de alcance de este contrato — ver `ANCLORA_PORTFOLIO_SHOWCASE_CONTRACT.md`. |
 | Portfolio (excepción — hereda tema de producto real) | `anclora-energyscan-showcase`, `anclora-syncxml-showcase` | Cobre rosado (heredado) | DM Sans (heredado) | No siguen el tema editorial genérico — son el propio producto en fase MVP/pre-MVP mostrándose, heredan el tema completo de su app madre. |
@@ -140,7 +140,7 @@ PLATA MONO (Entidad Matriz) → PLATA + color (internas) → COBRE (premium) →
 | `anclora-talent` | `#4A9FD8` azul cielo *(pausado, fuera de alcance activo)* | 205° | Cobre |
 | `anclora-synergi` | `#8C5AB4` púrpura | 280° | Cobre |
 | `anclora-command-center` | `#6C63FF` violeta premium + `#5FA8FF` azul luminoso | 245° | Azul/violeta |
-| `anclora-syncxml` | `#BFA46A` dorado apagado | 41° | Cobre |
+| `anclora-guesthub` | `#BFA46A` dorado apagado | 41° | Cobre |
 | `anclora-private-estates` | `#D4AF37` oro | 45° | Oro (mono) |
 | `anclora-private-estates-landing` | `#D4AF37` oro *(comparte tema completo con `anclora-private-estates`)* | 45° | Oro (mono) |
 
